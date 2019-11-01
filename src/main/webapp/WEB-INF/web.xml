@@ -67,18 +67,18 @@
 
 	<!-- 게시판 관련 -->
 	<servlet>
-		<servlet-name>boardServlet</servlet-name>
+		<servlet-name>rmboardServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/board-context.xml</param-value>
+			<param-value>/WEB-INF/spring/appServlet/rmboard-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
-		<servlet-name>boardServlet</servlet-name>
-		<url-pattern>*.bo</url-pattern>
+		<servlet-name>rmboardServlet</servlet-name>
+		<url-pattern>*.rm</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 하우스메이트 게시판 관련 -->
