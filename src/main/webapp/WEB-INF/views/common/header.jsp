@@ -208,7 +208,7 @@
                                         <span class="glyphicon glyphicon-book"> 신입생메이트</span>
                                         <ul>
                                             <li>
-                                                <a href="portfolio-2-column.html">2 Column</a>
+                                                <a href="blist.fm">게시판</a>
                                             </li>
                                             <li>
                                                 <a href="portfolio-3-column.html">3 Column</a>

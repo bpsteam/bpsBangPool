@@ -65,38 +65,54 @@
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
 
-	<!-- 게시판 관련 -->
-	<servlet>
-		<servlet-name>rmboardServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/rmboard-context.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-		
-	<servlet-mapping>
-		<servlet-name>rmboardServlet</servlet-name>
-		<url-pattern>*.rm</url-pattern>
-	</servlet-mapping>
-	
-	<!-- 하우스메이트 게시판 관련 -->
-	<servlet>
-		<servlet-name>housemateboardServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/hmboard-context.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-		
-	<servlet-mapping>
-		<servlet-name>housemateboardServlet</servlet-name>
-		<url-pattern>*.hm</url-pattern>
-	</servlet-mapping>
-
+	<!-- 룸메이트 게시판 관련 -->
+   <servlet>
+      <servlet-name>rmboardServlet</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/spring/appServlet/rmboard-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>rmboardServlet</servlet-name>
+      <url-pattern>*.rm</url-pattern>
+   </servlet-mapping>
+   
+   <!-- 하우스메이트 게시판 관련 -->
+   <servlet>
+      <servlet-name>housemateboardServlet</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/spring/appServlet/hmboard-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>housemateboardServlet</servlet-name>
+      <url-pattern>*.hm</url-pattern>
+   </servlet-mapping>
+   
+   <!-- 신입생메이트 게시판 관련 -->
+   <servlet>
+      <servlet-name>fmboardServlet</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+      <init-param>
+         <param-name>contextConfigLocation</param-name>
+         <param-value>/WEB-INF/spring/appServlet/fmboard-context.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
+   </servlet>
+      
+   <servlet-mapping>
+      <servlet-name>fmboardServlet</servlet-name>
+      <url-pattern>*.fm</url-pattern>
+   </servlet-mapping>
+  
 	<!-- 쇼핑몰 관련 -->
 	<servlet>
 		<servlet-name>shoppingServlet</servlet-name>
