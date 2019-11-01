@@ -1,0 +1,19 @@
+.ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+}
+
+.ellipsistb {
+    table-layout:fixed;
+}
+
+#ellipsistd {
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width:100px;
+    overflow: hidden;
+}
