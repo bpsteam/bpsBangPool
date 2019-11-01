@@ -19,7 +19,7 @@
 	<!-- return받은게 String일때 ViewResolver가 받아서 "home"의 주소를 완성시켜서 실행  -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<!-- /WEB-INF/views/home.jsp 로 완성  -->
-		<beans:property name="prefix" value="/WEB-INF/views/board/" />
+		<beans:property name="prefix" value="/WEB-INF/views/board/freshmanmate/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	

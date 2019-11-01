@@ -34,7 +34,7 @@
 <body>
 
 <!-- ==== HEADER START ==== -->
-	<c:import url ="../common/header.jsp"/>
+	<c:import url ="../../common/header.jsp"/>
 <!-- ==== HEADER END ==== -->
 
  <!-- === BEGIN CONTENT === -->
@@ -393,8 +393,8 @@
                                                 
                                                 <div class="write-btn pull-center">
                                                     <!-- <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button> -->
-                                                    <a href="bdetail.bo" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a>
-                                                    <a href="blist.bo" class="btn btn-danger btn-sm" role="button">취소</a>
+                                                    <a href="bdetail.fm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a>
+                                                    <a href="blist.fm" class="btn btn-danger btn-sm" role="button">취소</a>
                                                 </div>
                                             
                                                 <div class="clearfix"></div>
@@ -531,7 +531,7 @@
 
 
 <!-- ==== FOOTER START ==== -->
-	<c:import url ="../common/footer.jsp"/>
+	<c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 </body>
 </html>
