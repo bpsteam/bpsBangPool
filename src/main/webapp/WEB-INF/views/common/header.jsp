@@ -106,7 +106,7 @@
                                                 <span>게시판</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="blist.bo">룸메이트</a>
+                                                        <a href="">룸메이트</a>
                                                     </li>
                                                     <li>
                                                         <a href="features-typo-blockquotes.html">Blockquotes</a>
@@ -171,7 +171,7 @@
                                         <span class="glyphicon glyphicon-home "> 하우스메이트</span>
                                         <ul>
                                             <li>
-                                                <a href="pages-about-us.html">About Us</a>
+                                                <a href="blist.hm">하우스메이트 게시판</a>
                                             </li>
                                             <li>
                                                 <a href="pages-services.html">Services</a>
