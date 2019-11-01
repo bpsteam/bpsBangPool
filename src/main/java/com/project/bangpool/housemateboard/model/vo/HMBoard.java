@@ -2,7 +2,7 @@ package com.project.bangpool.housemateboard.model.vo;
 
 import java.sql.Date;
 
-public class hmBoard {
+public class HMBoard {
 	
 	private int hbId;	
 	private String bcode;
@@ -25,10 +25,10 @@ public class hmBoard {
 	private String hParking;		// 주차가능여부
 	
 	
-	public hmBoard() {}
+	public HMBoard() {}
 
 
-	public hmBoard(int hbId, String bcode, String hbTitle, String hbWriter, String hbContent, String originalFileName,
+	public HMBoard(int hbId, String bcode, String hbTitle, String hbWriter, String hbContent, String originalFileName,
 			String renameFileName, int hbCount, Date hbCreateDate, Date hbModifyDate, String hbStatus, String hLocation,
 			String hRentType, String hLivingType, String hRoom, String hFloor, String hPrice, String hParking) {
 		super();
@@ -235,7 +235,7 @@ public class hmBoard {
 
 	@Override
 	public String toString() {
-		return "hmBoard [hbId=" + hbId + ", bcode=" + bcode + ", hbTitle=" + hbTitle + ", hbWriter=" + hbWriter
+		return "HMBoard [hbId=" + hbId + ", bcode=" + bcode + ", hbTitle=" + hbTitle + ", hbWriter=" + hbWriter
 				+ ", hbContent=" + hbContent + ", originalFileName=" + originalFileName + ", renameFileName="
 				+ renameFileName + ", hbCount=" + hbCount + ", hbCreateDate=" + hbCreateDate + ", hbModifyDate="
 				+ hbModifyDate + ", hbStatus=" + hbStatus + ", hLocation=" + hLocation + ", hRentType=" + hRentType
