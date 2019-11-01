@@ -17,7 +17,8 @@
 	    width: 150px;
 	
 	}
-	
+	//하이
+	//바이
 	#table td {
 	    width: 150px;
 	
@@ -37,7 +38,7 @@
 <body>
 
 <!-- ==== HEADER START ==== -->
-	<c:import url ="../common/header.jsp"/>
+	<c:import url ="../../common/header.jsp"/>
 <!-- ==== HEADER END ==== -->
 
 
@@ -326,18 +327,18 @@
                                 <div class="print-hide view-btn text-right"
                                     style="background-color: white; padding-right: 15px; padding-bottom: 15px;">
                                     <div class="form-group">
-                                        <a href="blist.bo" class="btn btn-danger btn-sm" >
+                                        <a href="blist.rm" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
-                                        <a href="binsert.bo" class="btn btn-warning btn-sm" >
+                                        <a href="binsert.rm" class="btn btn-warning btn-sm" >
                                             <i class="fa fa-plus"></i><span class="hidden-xs"> 수정</span>
                                         </a>
                                         
-                                        <a href="blist.bo" class="btn btn-success btn-sm">
+                                        <a href="blist.rm" class="btn btn-success btn-sm">
                                             <i class="fa fa-bars"></i><span class="hidden-xs"> 목록</span>
                                         </a>
                                         
-                                        <a href="binsert.bo" class="btn btn-info btn-sm">
+                                        <a href="binsert.rm" class="btn btn-info btn-sm">
                                            <i class="fa fa-pencil"></i><span class="hidden-xs"> 글쓰기</span>
                                         </a>
 
@@ -474,7 +475,7 @@
 
 
 <!-- ==== FOOTER START ==== -->
-	<c:import url ="../common/footer.jsp"/>
+	<c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 
 </body>

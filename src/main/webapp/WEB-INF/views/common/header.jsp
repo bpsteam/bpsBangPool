@@ -106,7 +106,7 @@
                                                 <span>게시판</span>
                                                 <ul>
                                                     <li>
-                                                        <a href="blist.bo">룸메이트</a>
+                                                        <a href="blist.rm">룸메이트</a>
                                                     </li>
                                                     <li>
                                                         <a href="features-typo-blockquotes.html">Blockquotes</a>
