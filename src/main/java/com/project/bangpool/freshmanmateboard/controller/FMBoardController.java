@@ -72,9 +72,6 @@ public class FMBoardController {
 
 		int result = bService.insertBoard(b);
 	
-		
-		
-		
 		if(result>0) {
 			
 			return "redirect:blist.fm";
