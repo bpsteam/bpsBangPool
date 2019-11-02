@@ -1,10 +1,13 @@
 package com.project.bangpool.freshmanmateboard.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
@@ -18,8 +21,20 @@ public class FMBoardController {
 	private FMBoardService bService;
 
 	@RequestMapping("blist.fm")
-	public String boardList() {
-		return "fmBoardList";
+	public ModelAndView boardList(ModelAndView mv) {
+		
+		ArrayList<FMBoard> list = bService.selectList();
+		
+		if(list != null ) {
+			System.out.println("리스트불러오기 성공하고 출력 "+list);
+			//  list, pi --> boardListView
+			mv.addObject("list", list);
+			mv.setViewName("fmBoardList");
+		}else {
+			throw new FMBoardException("게시글 전체 조회 실패");
+		}
+		return mv;
+		
 	}
 	
 	@RequestMapping("insertview.fm")

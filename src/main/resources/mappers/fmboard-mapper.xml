@@ -10,5 +10,12 @@
 				#{fLivingType}, #{fRoomCount}, #{fFloor}, #{fPrice}, 
 				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
-
+	
+	<select id="selectList" resultType="FMBoard">
+		select*from freshman_board
+		where fbstatus='Y'
+		order by fbid desc
+	</select>
+	
+	
 </mapper>
