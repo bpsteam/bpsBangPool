@@ -8,7 +8,7 @@
 				#{fbContent}, default, sysdate, sysdate, 
 				default, #{fLocation}, default, #{fRentType}, 
 				#{fLivingType}, #{fRoomCount}, #{fFloor}, #{fPrice}, 
-				#{fParking}, #{fReqGender}, #{contactInfo})
+				#{fParking}, #{fReqGender}, #{contactInfo}, #{originalFileName} , #{renameFileName})
 	</insert>
 	
 	<select id="selectList" resultType="FMBoard">
@@ -29,5 +29,9 @@
 		and fbstatus='Y'
 	</select>
 	
+	<!-- <insert id="insertFile" parameterType="FMBoard">
+		insert into attachment
+		values (attachment_seq.nextval, 'FMBCODE', #{} )
+	</insert> -->
 	
 </mapper>

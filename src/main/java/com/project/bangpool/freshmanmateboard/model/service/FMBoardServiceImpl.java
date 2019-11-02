@@ -21,7 +21,7 @@ public class FMBoardServiceImpl implements FMBoardService {
 
 	@Override
 	public int insertBoard(FMBoard b) {
-		return bDAO.insertBoard(sqlSession, b);
+		return  bDAO.insertBoard(sqlSession, b);
 	}
 
 
