@@ -395,7 +395,7 @@
                                                         <a href="#" style="float:left; margin-left: 3px;" class="btn btn-aqua btn-sm" data-toggle="modal" data-target="#searchModal" onclick="return false;">
                                                             <i class="fa fa-building-o" data-toggle="tooltip" data-placement="top" title="학교검색"></i></a>
                                                         
-                                                        <a href="binsert.fm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
+                                                        <a href="insertview.fm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
                                                     </div>
                                                 </div>
                             
