@@ -10,4 +10,6 @@ public interface FMBoardService {
 
 	ArrayList<FMBoard> selectList();
 
+	FMBoard selectBoard(int bId);
+
 }
