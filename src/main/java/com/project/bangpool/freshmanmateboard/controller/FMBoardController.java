@@ -40,6 +40,7 @@ public class FMBoardController {
 	@RequestMapping("insertview.fm")
 	public String boardInsertView() {
 		return "fmInsertBoard";
+		
 	}
 	
 	@RequestMapping("binsert.fm")
