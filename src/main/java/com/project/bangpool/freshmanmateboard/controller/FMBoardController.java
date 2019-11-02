@@ -2,6 +2,8 @@ package com.project.bangpool.freshmanmateboard.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -66,13 +68,15 @@ public class FMBoardController {
 	}
 	
 	@RequestMapping("bdetail.fm")
-	public ModelAndView selectOneBoard(@RequestParam("bId") int bId, ModelAndView mv) {
+	public ModelAndView selectOneBoard(@RequestParam("bId") int bId, ModelAndView mv,
+										HttpSession session) {
 		
 		FMBoard board = bService.selectBoard(bId);
 		
 
 		if(board != null) {
 			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
+			//System.out.println("세션은 들어오나? "+session.getAttribute("loginUser"));
 			// board, page --> boardDetailView
 			mv.addObject("board", board)
 			.setViewName("fmBoardDetailView"); // method chaining 

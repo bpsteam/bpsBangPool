@@ -22,8 +22,8 @@ public class FMBoard {
 	private String fRoomCount;		// 방갯수
 	private String fFloor;			// 해당층수
 	private String fPrice;			// 거래금액
-	private char fParking;		// 주차가능여부
-	private char fReqGender;		// required gender 원하는 상대성별
+	private String fParking;		// 주차가능여부
+	private String fReqGender;		// required gender 원하는 상대성별
 	private String contactInfo; 	// 연락가능번호
 	
 	public FMBoard() {
@@ -33,8 +33,8 @@ public class FMBoard {
 
 	public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String fbContent, String originalFileName,
 			String renameFileName, int fbCount, Date fbCreateDate, Date fbModifyDate, String fbStatus, String fLocation,
-			String fRentType, String fLivingType, String fRoomCount, String fFloor, String fPrice, char fParking,
-			char fReqGender, String contactInfo) {
+			String fRentType, String fLivingType, String fRoomCount, String fFloor, String fPrice, String fParking,
+			String fReqGender, String contactInfo) {
 		super();
 		this.fbId = fbId;
 		this.bcode = bcode;
@@ -194,19 +194,19 @@ public class FMBoard {
 		this.fPrice = fPrice;
 	}
 
-	public char getfParking() {
+	public String getfParking() {
 		return fParking;
 	}
 
-	public void setfParking(char fParking) {
+	public void setfParking(String fParking) {
 		this.fParking = fParking;
 	}
 
-	public char getfReqGender() {
+	public String getfReqGender() {
 		return fReqGender;
 	}
 
-	public void setfReqGender(char fReqGender) {
+	public void setfReqGender(String fReqGender) {
 		this.fReqGender = fReqGender;
 	}
 
