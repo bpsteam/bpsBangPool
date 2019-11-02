@@ -1,5 +1,7 @@
 package com.project.bangpool.freshmanmateboard.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,12 @@ public class FMBoardServiceImpl implements FMBoardService {
 	@Override
 	public int insertBoard(FMBoard b) {
 		return bDAO.insertBoard(sqlSession, b);
+	}
+
+
+	@Override
+	public ArrayList<FMBoard> selectList() {
+		return bDAO.selectList(sqlSession);
 	}
 
 

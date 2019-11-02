@@ -109,67 +109,25 @@
                                                                     <table class="table table-hover">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th>No.</th>
+                                                                                <th style="text-align:center">No.</th>
                                                                                 <th>분류</th>
                                                                                 <th>제목</th>
                                                                                 <th>작성자</th>
+                                                                                <th style="text-align:center">조회수</th>
+                                                                                
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
+                                                                        <c:forEach var = "b" items="${ list }">
                                                                             <tr>
-                                                                                <td>1</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user1</td>
+                                                                                <td style="text-align:center">${ b.fbId }</td>
+                                                                                <td>${ b.fLocation }</td>
+                                                                                <td style="width:300px">${ b.fbTitle }</td>
+                                                                                <td>${ b.fbWriter }</td>
+                                                                                <td style="text-align:center">${ b.fbCount }</td>
                                                                             </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>인천/부천</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user2</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user3</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user4</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user5</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user6</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>대구/경북</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user7</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>충청/강원</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user8</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user9</td>
-                                                                            </tr>
+                                                                         </c:forEach>
+                                                                          
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -365,6 +323,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <!--페이징처리와 버튼-->
                                                     <div class="text-center">
                                                         <ul class="pagination">
                                                             <li>
@@ -389,6 +349,8 @@
                                                                 <a href="#">»</a>
                                                             </li>
                                                         </ul>
+                                                        
+                                                        
                                                         <a href="#" style="float:left" class="btn btn-aqua btn-sm" data-toggle="modal" data-target="#searchModal" onclick="return false;">
                                                             <i class="fa fa-search" data-toggle="tooltip" data-placement="top" title="검색"></i></a>
                                                         
