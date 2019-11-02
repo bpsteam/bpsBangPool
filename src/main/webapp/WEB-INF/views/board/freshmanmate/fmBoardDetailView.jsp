@@ -61,7 +61,7 @@
                                 <hr style=" margin-top:0px; margin:0px 0px 0px;">
                             </div>
 
-                            <h1 style="text-align: center;"><small>게시물 제목을 보여줍니다</small></h1>
+                            <h1 style="text-align: center;"><small>${ board.fbTitle }</small></h1>
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>
@@ -69,20 +69,20 @@
                                 <div class="panel-heading" style="border-bottom: none;">
                                     <div class="font-12 text-muted">
                                         <i class="fa fa-user"></i>
-                                        <span class="sv_member">송다혜</span> <span class="hidden-xs">
+                                        <span class="sv_member">${ board.fbWriter }</span> <span class="hidden-xs">
                                             <span class="sp"></span>
                                             <i class="fa fa-tag"></i>
-                                            부산/경남 </span>
+                                            ${ board.fLocation } </span>
 
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
                                         <b style="color:red">4</b>
                                         <span class="sp"></span>
                                         <i class="fa fa-eye"></i>
-                                        118
+                                        ${ board.fbCount }
                                         <span class="pull-right">
                                             <i class="fa fa-clock-o"></i>
-                                            09.23 23:49 </span>
+                                            ${ board.fbCreateDate }</span>
                                     </div>
                                 </div>
                             </div>
@@ -93,103 +93,98 @@
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;">
-                                            <b>게시물 제목</b>
+                                            <b>학교인증 이메일 </b>
                                         </div>
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;">
-                                            <font color="006699"><b>매너인만</b></font>
+                                            <font color="006699"><b>${ board.fbTitle }</b></font>
                                         </div>
                                         <div style="both:clear;">
                                         </div>
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>작성자</b>
+                                            <b>지역</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            확인 </div>
+                                            ${ board.fLocation } </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>작성일자</b>
+                                            <b>층수</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            19-09-02 </div>
+                                            ${ board.fFloor } </div>
                                         <div style="both:clear;">
                                         </div>
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>게시물구분</b>
+                                            <b>매물구분</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            세놓아요 </div>
+                                            ${ board.fRentType } </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>조회건수</b>
+                                            <b>방개수</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            128
+                                            ${ board.fRoomCount }
                                         </div>
                                         <div style="both:clear;">
                                         </div>
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>게시자 성별</b>
+                                            <b>거주지형태</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            여자 </div>
+                                           ${ board.fLivingType }</div>
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>본인 성별</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            ${ loginUser.gender } </div>
+                                        <div style="both:clear;">
+                                        </div>
+
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>연락가능번호</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            ${ board.contactInfo } </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>상대 성별</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            무관 </div>
+                                            ${ board.fReqGender } </div>
                                         <div style="both:clear;">
                                         </div>
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>핸드폰번호</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            010-000-0000 </div>
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>지역구분</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            대구/경북 </div>
-                                        <div style="both:clear;">
-                                        </div>
-
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>거주지구분</b>
+                                            <b>거래금액</b>
                                         </div>
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            아파트 </div>
+                                            ${ board.fPrice }</div>
                                         <div style="both:clear;">
                                         </div>
 
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
-                                        이사가려고 집 알아보다가 글올립니다.
-                                        <br>보증금은 제가 1억정도 보유하고 있고 월세는 최대 합쳐서 60~80정도로 생각하고 있어요.
-                                        <br>서울 너무 외곽만 아니면 위치는 제가 맞출테니 진지하신 분만 연락주세요 .
-                                        <br>저는 20대 여자고 직장인이라 저랑 또래거나&nbsp; 나이많으셔도 상관없어요 직업있는분이셨으면 좋겠습니다.
-                                        <br>
-                                        <br>(여성분만 연락주세요.) 카톡ID-goodbde
+                                      ${ board.fbContent }
                                     </div>
 
                                     <div class="print-hide view-icon">
@@ -363,7 +358,7 @@
                                 <a href="#">하우스메이트</a> <br>
                                 <a href="#">신입생메이트</a> -->
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="active">
+                                    <li >
                                         <a href="#sample-3a" data-toggle="tab">
                                             <i class="fa fa-cloud"></i> 룸메이트</a>
                                     </li>
@@ -371,7 +366,7 @@
                                         <a href="#sample-3b" data-toggle="tab">
                                             <i class="fa fa-home"></i> 하우스메이트</a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="#sample-3c" data-toggle="tab">
                                             <i class="fa fa-comments"></i> 신입생메이트</a>
                                     </li>

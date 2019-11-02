@@ -179,9 +179,9 @@
                                                         <div class="col-sm-4">
                                                         <select name="fReqGender" required class="form-control input-sm">
                                                             <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
-                                                            <option value="N">무관</option>
-                                                            <option value="F">여성</option>
-                                                            <option value="M">남성</option>
+                                                            <option value="무관">무관</option>
+                                                            <option value="여성">여성</option>
+                                                            <option value="남성">남성</option>
                                                         </select>
                                                         </div>
                                                     </div>
@@ -223,8 +223,8 @@
                                         <div class="col-sm-4">
                                         <select name="fParking" required class="form-control input-sm">
                                             <option value="" >주차가능여부를 선택해주세요.</option>
-                                            <option value="Y">가능</option>
-                                            <option value="N">불가능</option>
+                                            <option value="가능">가능</option>
+                                            <option value="불가능">불가능</option>
                                         </select>
                                         </div>
                                     </div>
