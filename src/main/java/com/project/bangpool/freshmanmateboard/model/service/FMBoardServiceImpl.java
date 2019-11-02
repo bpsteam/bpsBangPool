@@ -31,4 +31,19 @@ public class FMBoardServiceImpl implements FMBoardService {
 	}
 
 
+	@Override
+	public FMBoard selectBoard(int bId) {
+		
+		FMBoard b = null;
+		
+		int result = bDAO.addReadCount(sqlSession, bId);
+		
+		if(result>0) {
+			b = bDAO.selectBoard(sqlSession, bId);
+		}
+		
+		return b;
+	}
+
+
 }

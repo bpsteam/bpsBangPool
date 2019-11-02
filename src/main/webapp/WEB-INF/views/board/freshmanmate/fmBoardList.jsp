@@ -111,7 +111,7 @@
                                                                             <tr>
                                                                                 <th style="text-align:center">No.</th>
                                                                                 <th>분류</th>
-                                                                                <th>제목</th>
+                                                                                <th style="width:300px">제목</th>
                                                                                 <th>작성자</th>
                                                                                 <th style="text-align:center">조회수</th>
                                                                                 
@@ -122,7 +122,18 @@
                                                                             <tr>
                                                                                 <td style="text-align:center">${ b.fbId }</td>
                                                                                 <td>${ b.fLocation }</td>
-                                                                                <td style="width:300px">${ b.fbTitle }</td>
+                                                                                 <td align="left">
+																		            <c:if test="${ !empty loginUser }">
+																		               <c:url var="bdetail" value="bdetail.fm">
+																		                  <c:param name="bId" value="${ b.fbId }"/>
+																		                <%--   <c:param name="page" value="${ pi.currentPage }"/> --%>
+																		               </c:url>
+																		               <a href="${ bdetail }">${ b.fbTitle }</a>
+																		            </c:if>
+																		            <c:if test="${ empty loginUser }">
+																		               ${ b.fbTitle }      
+																		            </c:if>
+																		         </td>
                                                                                 <td>${ b.fbWriter }</td>
                                                                                 <td style="text-align:center">${ b.fbCount }</td>
                                                                             </tr>

@@ -18,4 +18,12 @@ public class FMBoardDAO {
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectList");
 	}
 
+	public int addReadCount(SqlSessionTemplate sqlSession, int bId) {
+		return sqlSession.update("fmboardMapper.addReadCount", bId);
+	}
+
+	public FMBoard selectBoard(SqlSessionTemplate sqlSession, int bId) {
+		return sqlSession.selectOne("fmboardMapper.selectBoard", bId);
+	}
+
 }

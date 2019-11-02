@@ -65,9 +65,22 @@ public class FMBoardController {
 	}
 	
 	@RequestMapping("bdetail.fm")
-	public String selectOneBoard() {
+	public ModelAndView selectOneBoard(@RequestParam("bId") int bId, ModelAndView mv) {
 		
-		return "fmBoardDetailView";
+		FMBoard board = bService.selectBoard(bId);
+		
+
+		if(board != null) {
+			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
+			// board, page --> boardDetailView
+			mv.addObject("board", board)
+			.setViewName("fmBoardDetailView"); // method chaining 
+		}else {
+			throw new FMBoardException("게시글 상세보기를 실패하였습니다.");
+		}
+		
+		return mv;
+		
 	}
 	
 }

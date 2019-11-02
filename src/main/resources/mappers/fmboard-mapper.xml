@@ -17,5 +17,17 @@
 		order by fbid desc
 	</select>
 	
+	<update id="addReadCount" parameterType="_int">
+		update freshman_board
+		set fbcount = fbcount+1
+		where fbId = #{fbId}
+	</update>
+	
+	<select id="selectBoard" parameterType="_int" resultType="FMBoard" >
+		select*from freshman_board
+		where fbid = #{fbId}
+		and fbstatus='Y'
+	</select>
+	
 	
 </mapper>
