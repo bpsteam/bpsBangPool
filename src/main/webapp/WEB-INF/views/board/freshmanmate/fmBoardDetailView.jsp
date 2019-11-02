@@ -184,7 +184,11 @@
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
+                                      <br>
                                       ${ board.fbContent }
+                                      
+                                      <br><br><br><br><br><br>
+                                      <br> <img src="${contextPath}/resources/fmboarduploads/${board.renameFileName}">
                                     </div>
 
                                     <div class="print-hide view-icon">

@@ -258,7 +258,7 @@
 																	<div class="form-group">
 																		<div class="input-group input-group-sm">
 																			<span class="input-group-addon">파일 0</span> 
-																			<input type="file" class="input-sm" name="file[]">
+																			<input type="file" class="input-sm" name="uploadFile">
 																		</div>
 																	</div>
 																</div>
@@ -449,7 +449,7 @@
 				objContent = "<div class='row'>";
 				objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
 						+ objNum
-						+ "</span>	<input type='file' class='input-sm' name='file[]'></div></div></div>";
+						+ "</span>	<input type='file' class='input-sm' name='uploadFile'></div></div></div>";
 				if (delete_code) {
 					objContent += delete_code;
 				} else {
