@@ -26,4 +26,13 @@ public class FMBoardDAO {
 		return sqlSession.selectOne("fmboardMapper.selectBoard", bId);
 	}
 
+	public int selectCurrentBno(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("fmboardMapper.selectCurrentBno");
+	}
+
+	public int insertFile(SqlSessionTemplate sqlSession, FMBoard b) {
+		return sqlSession.insert("fmboardMapper.insertFile", b);
+	}
+
+
 }
