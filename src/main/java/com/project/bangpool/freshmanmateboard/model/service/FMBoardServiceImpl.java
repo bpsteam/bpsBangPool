@@ -21,7 +21,25 @@ public class FMBoardServiceImpl implements FMBoardService {
 
 	@Override
 	public int insertBoard(FMBoard b) {
-		return  bDAO.insertBoard(sqlSession, b);
+		
+		int result2 = 0;
+		
+		int result = bDAO.insertBoard(sqlSession, b);
+		
+		if(result>0) {
+			int fbId = bDAO.selectCurrentBno(sqlSession);
+			System.out.println("번호받아져왔니? : " +fbId);
+			
+			b.setFbId(fbId);
+			b.setBcode("FMBCODE");
+			System.out.println("보드 전체 출력 : "+ b);
+			
+			result2 = bDAO.insertFile(sqlSession, b); 
+		}
+		
+		return result2;
+		
+//		return  bDAO.insertBoard(sqlSession, b);
 	}
 
 

@@ -29,9 +29,13 @@
 		and fbstatus='Y'
 	</select>
 	
-	<!-- <insert id="insertFile" parameterType="FMBoard">
+	<select id="selectCurrentBno" resultType="_int">
+		SELECT FRESHMAN_BOARD_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<insert id="insertFile" parameterType="FMBoard">
 		insert into attachment
-		values (attachment_seq.nextval, 'FMBCODE', #{} )
-	</insert> -->
+		values (attachment_seq.nextval, #{bcode}, #{fbId}, #{originalFileName},#{renameFileName} )
+	</insert>
 	
 </mapper>
