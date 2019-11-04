@@ -125,7 +125,7 @@
                                                                                  <td align="left">
 																		            <c:if test="${ !empty loginUser }">
 																		               <c:url var="bdetail" value="bdetail.fm">
-																		                  <c:param name="bId" value="${ b.fbId }"/>
+																		                  <c:param name="fbId" value="${ b.fbId }"/>
 																		                <%--   <c:param name="page" value="${ pi.currentPage }"/> --%>
 																		               </c:url>
 																		               <a href="${ bdetail }">${ b.fbTitle }</a>

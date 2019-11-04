@@ -64,4 +64,25 @@ public class FMBoardServiceImpl implements FMBoardService {
 	}
 
 
+	@Override
+	public int deleteBoard(int fbId) {
+		return bDAO.deleteBoard(sqlSession, fbId);
+	}
+
+
+	@Override
+	public int updateBoard(FMBoard b) {
+		
+		int result2 = 0;
+		
+		int result = bDAO.updateBoard(sqlSession, b);
+		
+		if(result > 0) {
+			b.setBcode("FMBCODE");
+			result2 = bDAO.updateFile(sqlSession, b);
+		}
+		return result2;
+	}
+
+
 }

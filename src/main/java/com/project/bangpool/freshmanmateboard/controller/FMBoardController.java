@@ -67,7 +67,6 @@ public class FMBoardController {
 				b.setRenameFileName(renameFileName);
 				// System.out.println("인서트정보 파일이랑 같이 들어오는지? "+ b); // 들어온다 
 			}
-			
 		}
 
 		int result = bService.insertBoard(b);
@@ -113,7 +112,7 @@ public class FMBoardController {
 	
 	
 	@RequestMapping("bdetail.fm")
-	public ModelAndView selectOneBoard(@RequestParam("bId") int bId, ModelAndView mv,
+	public ModelAndView selectOneBoard(@RequestParam("fbId") int bId, ModelAndView mv,
 										HttpSession session) {
 		
 		FMBoard board = bService.selectBoard(bId);
@@ -133,6 +132,84 @@ public class FMBoardController {
 		
 	}
 	
+	@RequestMapping("bupView.fm")
+	public ModelAndView updateBoard(@RequestParam("fbId") int fbId, ModelAndView mv) {
+		
+		System.out.println("bupdate.fm/fbId : "+fbId);
+		FMBoard b = bService.selectBoard(fbId);
+		
+		System.out.println("bupdate.fm/b : " + b);
+		
+		String contact =  b.getContactInfo();
+		String[] phone = new String[3];
+		if(contact != null) {
+			phone =contact.split("-");
+		}
+		mv.addObject("board",b).addObject("phone1",phone[0]).addObject("phone2",phone[1]).addObject("phone3",phone[2]).
+		setViewName("fmUpdateBoard");
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping("bdelete.fm")
+	public String deleteBoard(@RequestParam("fbId") int fbId) {
+		int result = bService.deleteBoard(fbId);
+		
+		if(result>0) {
+			return "redirect: blist.fm";
+		}else {
+			throw new FMBoardException("삭제실패");
+		}
+	}
+	
+	@RequestMapping("bupdate.fm")
+	public ModelAndView updateBoard(@ModelAttribute FMBoard b, @RequestParam("phone1")String phone1,
+			@RequestParam("phone2")String phone2, @RequestParam("phone3")String phone3, @RequestParam("reloadFile") MultipartFile reloadFile, 
+							HttpServletRequest request, ModelAndView mv) {
+		
+		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
+
+		System.out.println("bupdate.fm / b : "+b);
+		System.out.println("bupdate.fm / reloadFile : "+reloadFile);
+		
+		if(reloadFile != null && !reloadFile.isEmpty()) {
+			deleteFile(b.getRenameFileName(), request); // 파일삭제하는 메소드 만들기
+		}
+		
+		String renameFileName = saveFile(reloadFile, request);
+		
+		if(renameFileName != null) {
+			b.setOriginalFileName(reloadFile.getOriginalFilename());
+			b.setRenameFileName(renameFileName);
+		}
+		
+		System.out.println("파일네임 수정 됐어? : "+b);
+		
+		int result = bService.updateBoard(b);
+		
+		if(result>0) {
+			// page --> bdetail
+			mv.setViewName("redirect:bdetail.fm?fbId=" + b.getFbId());
+		}else {
+			throw new FMBoardException("게시글 수정에 실패하였습니다.");
+		}
+		
+		
+		return mv;
+	}
+	
+
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "/fmboarduploads"; 
+		
+		File f = new File(savePath+"/"+fileName);
+		
+		if(f.exists()) { 
+			f.delete();  
+		}
+	}
 }
 
 
