@@ -24,12 +24,12 @@ public class FMBoardController {
 	
 
 	@Autowired // boardservice에 알아서 객체만들어서 쏴준다. 
-	private FMBoardService bService;
+	private FMBoardService fbService;
 
 	@RequestMapping("blist.fm")
 	public ModelAndView boardList(ModelAndView mv) {
 		
-		ArrayList<FMBoard> list = bService.selectList();
+		ArrayList<FMBoard> list = fbService.selectList();
 		
 		if(list != null ) {
 			System.out.println("리스트불러오기 성공하고 출력 "+list);
@@ -69,7 +69,7 @@ public class FMBoardController {
 			}
 		}
 
-		int result = bService.insertBoard(b);
+		int result = fbService.insertBoard(b);
 	
 		if(result>0) {
 			
@@ -115,7 +115,7 @@ public class FMBoardController {
 	public ModelAndView selectOneBoard(@RequestParam("fbId") int bId, ModelAndView mv,
 										HttpSession session) {
 		
-		FMBoard board = bService.selectBoard(bId);
+		FMBoard board = fbService.selectBoard(bId);
 		
 
 		if(board != null) {
@@ -136,7 +136,7 @@ public class FMBoardController {
 	public ModelAndView updateBoard(@RequestParam("fbId") int fbId, ModelAndView mv) {
 		
 		System.out.println("bupdate.fm/fbId : "+fbId);
-		FMBoard b = bService.selectBoard(fbId);
+		FMBoard b = fbService.selectBoard(fbId);
 		
 		System.out.println("bupdate.fm/b : " + b);
 		
@@ -154,7 +154,7 @@ public class FMBoardController {
 	
 	@RequestMapping("bdelete.fm")
 	public String deleteBoard(@RequestParam("fbId") int fbId) {
-		int result = bService.deleteBoard(fbId);
+		int result = fbService.deleteBoard(fbId);
 		
 		if(result>0) {
 			return "redirect: blist.fm";
@@ -186,7 +186,7 @@ public class FMBoardController {
 		
 		System.out.println("파일네임 수정 됐어? : "+b);
 		
-		int result = bService.updateBoard(b);
+		int result = fbService.updateBoard(b);
 		
 		if(result>0) {
 			// page --> bdetail

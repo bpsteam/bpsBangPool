@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 
-@Repository("bDAO")
+@Repository("fbDAO")
 public class FMBoardDAO {
 	
 	public int insertBoard(SqlSessionTemplate sqlSession, FMBoard b) {
