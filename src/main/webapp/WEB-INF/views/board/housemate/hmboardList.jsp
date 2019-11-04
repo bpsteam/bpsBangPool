@@ -119,7 +119,11 @@
                                                                             <tr>
                                                                                 <td>${ b.hbId }</td>
                                                                                 <td>${ b.hLocation }</td>
-                                                                                <td>${ b.hbTitle }</td>
+                                                                                <td>
+                                                                                	<c:url var="hbdetail" value="bdetail.hm">
+																						<c:param name="hbId" value="${ b.hbId }"/>
+																					</c:url>
+                                                                               		<a href="${ hbdetail }">${ b.hbTitle }</a></td>
                                                                                 <td>${ b.hbWriter }</td>
                                                                             </tr>
                                                                             <!-- <tr>
@@ -391,7 +395,7 @@
                                                             </li>
                                                         </ul>
                                                         <a href="#" style="float:left" class="btn btn-aqua btn-sm" data-toggle="modal" data-target="#searchModal" onclick="return false;"><i class="fa fa-search"></i></a>
-                                                        <a href="binsert.hm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
+                                                        <a href="binsertView.hm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
                                                     </div>
                                                 </div>
                             

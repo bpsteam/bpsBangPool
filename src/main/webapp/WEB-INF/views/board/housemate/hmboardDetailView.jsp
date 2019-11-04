@@ -61,7 +61,7 @@
                                 <hr style=" margin-top:0px; margin:0px 0px 0px;">
                             </div>
 
-                            <h1 style="text-align: center;"><small>게시물 제목을 보여줍니다</small></h1>
+                            <h1 style="text-align: center;"><small>${ hboard.hbTitle } </small></h1>
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>
@@ -97,7 +97,7 @@
                                         </div>
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;">
-                                            <font color="006699"><b>매너인만</b></font>
+                                            <font color="006699"><b>${ hboard.hbTitle }</b></font>
                                         </div>
                                         <div style="both:clear;">
                                         </div>
@@ -108,14 +108,14 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            확인 </div>
+                                       		${ hboard.hbWriter }</div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>작성일자</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            19-09-02 </div>
+                                            ${ hboard.hbCreateDate } </div>
                                         <div style="both:clear;">
                                         </div>
 
@@ -125,14 +125,14 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            세놓아요 </div>
+                                            	세놓아요 </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>조회건수</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            128
+                                            ${ hboard.hbCount }
                                         </div>
                                         <div style="both:clear;">
                                         </div>
@@ -143,14 +143,14 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            여자 </div>
+                                           	 여자 </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>상대 성별</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            무관 </div>
+                                     	       ${ hboard.hreqgender } </div>
                                         <div style="both:clear;">
                                         </div>
 
@@ -167,7 +167,7 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            대구/경북 </div>
+                                          	  ${ hboard.hLocation } </div>
                                         <div style="both:clear;">
                                         </div>
 
@@ -177,19 +177,14 @@
                                         </div>
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            아파트 </div>
+                                            ${ hboard.hLivingType } </div>
                                         <div style="both:clear;">
                                         </div>
 
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
-                                        이사가려고 집 알아보다가 글올립니다.
-                                        <br>보증금은 제가 1억정도 보유하고 있고 월세는 최대 합쳐서 60~80정도로 생각하고 있어요.
-                                        <br>서울 너무 외곽만 아니면 위치는 제가 맞출테니 진지하신 분만 연락주세요 .
-                                        <br>저는 20대 여자고 직장인이라 저랑 또래거나&nbsp; 나이많으셔도 상관없어요 직업있는분이셨으면 좋겠습니다.
-                                        <br>
-                                        <br>(여성분만 연락주세요.) 카톡ID-goodbde
+                                       	 ${ hboard.hbContent }
                                     </div>
 
                                     <div class="print-hide view-icon">
