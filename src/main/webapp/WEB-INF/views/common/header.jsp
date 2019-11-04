@@ -55,7 +55,7 @@
                             <a href="#login" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginUser }">
-                            <a href="#login" style="color:black">로그아웃</a>&nbsp;&nbsp;&nbsp;
+                            <a href="logout.me" style="color:black">로그아웃</a>&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <c:if test="${ empty sessionScope.loginUser }">
                                 |&nbsp;&nbsp;&nbsp;<a href="termsNConditions.me" style="color:black">회원가입</a>&nbsp;&nbsp;&nbsp;

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fmboardMapper">
+
+	<insert id="insertBoard" parameterType="FMBoard">
+		insert into freshman_board
+		values (FRESHMAN_BOARD_SEQ.nextval, default, #{fbTitle}, #{fbWriter}, 
+				#{fbContent}, default, sysdate, sysdate, 
+				default, #{fLocation}, default, #{fRentType}, 
+				#{fLivingType}, #{fRoomCount}, #{fFloor}, #{fPrice}, 
+				#{fParking}, #{fReqGender}, #{contactInfo}, #{originalFileName} , #{renameFileName})
+	</insert>
+	
+	<select id="selectList" resultType="FMBoard">
+		select*from freshman_board
+		where fbstatus='Y'
+		order by fbid desc
+	</select>
+	
+	<update id="addReadCount" parameterType="_int">
+		update freshman_board
+		set fbcount = fbcount+1
+		where fbId = #{fbId}
+	</update>
+	
+	<select id="selectBoard" parameterType="_int" resultType="FMBoard" >
+		select*from freshman_board
+		where fbid = #{fbId}
+		and fbstatus='Y'
+	</select>
+	
+	<select id="selectCurrentBno" resultType="_int">
+		SELECT FRESHMAN_BOARD_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<insert id="insertFile" parameterType="FMBoard">
+		insert into attachment
+		values (attachment_seq.nextval, #{bcode}, #{fbId}, #{originalFileName},#{renameFileName} )
+	</insert>
+	
+</mapper>
