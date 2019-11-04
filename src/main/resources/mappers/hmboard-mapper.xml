@@ -50,7 +50,7 @@
 	
 	<insert id="insertBoard" parameterType="hmBoard">
 		insert into HOUSEMATE_BOARD
-		values(HOUSEMATE_BOARD_SEQ.nextval, default , #{hbTitle}, #{hbContent}, #{hbWriter}, #{hbCount},
+		values(HOUSEMATE_BOARD_SEQ.nextval, default , #{hbTitle}, #{hbContent}, #{hbWriter}, default,
 				sysdate, sysdate, default, #{hLocation}, #{hRentType}, #{hLivingType},
 				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hreqgender})
 	</insert>
