@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.project.bangpool.member.model.exception.MemberException;
 import com.project.bangpool.member.model.service.MemberService;
@@ -44,6 +45,16 @@ public class MemberController {
 		 
 		return "redirect:home.do";
 	}
+	
+	//로그아웃 용 컨트롤러 2
+		@RequestMapping("logout.me")
+		public String logout(SessionStatus status) {
+			
+			
+			status.setComplete();
+			
+			return "redirect:home.do";
+		}
 
 	@RequestMapping("termsNConditions.me")
 	public String showTermsNConditions() {

@@ -294,7 +294,7 @@
 							
 
 								<a href="mypage.me" class="btn btn-green btn-sm"><i
-									class="fa fa-user"></i> MyPage</a> <a href="#"
+									class="fa fa-user"></i> MyPage</a> <a href="logout.me"
 									class="btn btn-blue btn-sm"><i class="fa fa-power-off"></i>
 									Logout </a>
 
