@@ -19,4 +19,6 @@ public interface FMBoardService {
 
 	int insertReply(Reply r);
 
+	ArrayList<Reply> selectReplyList(int fbId);
+
 }

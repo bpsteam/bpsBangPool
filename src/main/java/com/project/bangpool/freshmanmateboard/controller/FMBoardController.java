@@ -1,10 +1,13 @@
 package com.project.bangpool.freshmanmateboard.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
@@ -237,6 +243,21 @@ public class FMBoardController {
 	}
 	
 	
+	@RequestMapping("rList.fm")
+	public void getReplyList(HttpServletResponse response, int fbId) throws JsonIOException, IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		ArrayList<Reply> list = fbService.selectReplyList(fbId);
+		
+		for(Reply r : list) {
+			r.setrContent(URLEncoder.encode(r.getrContent(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
 	
 	
 	

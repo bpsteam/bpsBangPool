@@ -92,4 +92,10 @@ public class FMBoardServiceImpl implements FMBoardService {
 	}
 
 
+	@Override
+	public ArrayList<Reply> selectReplyList(int fbId) {
+		return fbDAO.selectReplyList(sqlSession, fbId);
+	}
+
+
 }

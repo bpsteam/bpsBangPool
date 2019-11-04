@@ -77,7 +77,7 @@
 
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
-                                        <b style="color:red">4</b>
+                                        <b style="color:red" id="rCount"></b>
                                         <span class="sp"></span>
                                         <i class="fa fa-eye"></i>
                                         ${ board.fbCount }
@@ -220,16 +220,16 @@
                                     <div class="row">
                                         <!-- Testimonials - Default Full Width -->
                                         <div class="col-md-12">
-                                            <div class="carousel slide testimonials" id="testimonials1">
+                                            <div class="carousel slide testimonials" id="allCommentdiv">
 
-                                                <div class=" col-md-12">
+                                               <%--  <div class=" col-md-12" id="oneCommentdiv">
                                                     <p>
                                                         댓글입력하면 보여주기
                                                     </p>
-                                                    <div class="testimonial-info">
+                                                    <div class="testimonial-info" id="infodiv">
                                                         <img alt="" src="${contextPath}/resources/assets/img/profiles/53.jpg"
                                                             class="img-circle img-responsive">
-                                                        <span class="testimonial-author">
+                                                        <span class="testimonial-author" id="nameNtime">
                                                             닉네임1
                                                             <em>
                                                                 2019년 07월 21일 12시 43분 12초
@@ -237,17 +237,19 @@
                                                         </span>
                                                     </div>
                                                     <br>
-                                                </div>
-
-                                                <div class="col-md-1"></div>
-                                                <div class="testimonials-bg-primary col-md-11">
+                                                </div> --%>
+                                                
+                                                
+<%-- 			댓글의 댓글 부분 
+                                                <div class="col-md-1" id="tabSpace"></div>
+                                                <div class="testimonials-bg-primary col-md-11" id="oneReplydiv">
                                                     <p>
                                                         댓글의 댓글 입력하면 보여주기
                                                     </p>
-                                                    <div class="testimonial-info">
+                                                    <div class="testimonial-info" id="rInfodiv">
                                                         <img alt="" src="${contextPath}/resources/assets/img/profiles/78.jpg"
                                                             class="img-circle img-responsive">
-                                                        <span class="testimonial-author">
+                                                        <span class="testimonial-author" id="rNameNtime">
                                                             댓글의 댓글 -1
                                                             <em>
                                                                 2019년 07월 21일 12시 43분 12초
@@ -256,9 +258,9 @@
                                                     </div>
                                                     <br>
                                                 </div>
+ --%>
 
-
-                                                <div class="col-md-12">
+                                               <%--  <div class="col-md-12">
                                                     <p>
                                                         댓글입력하면 보여주기
                                                     </p>
@@ -292,7 +294,7 @@
                                                     </div>
                                                     <br>
                                                 </div>
-
+ --%>
                                                 <!-- </div> -->
                                             </div>
                                             <div class="testimonials-arrows pull-right">
@@ -489,6 +491,15 @@
 <!-- ==== FOOTER END ==== -->
 
 	<script>
+	
+	$(function(){
+   		getReplyList();
+   		
+   		setInterval(function(){
+   			getReplyList();
+   		}, 10000);
+   	});
+	
 		$("#rSubmit").on("click",function(){
 	   		var rContent = $("#rContent").val();
 	   		var refbId = ${board.fbId};
@@ -506,7 +517,90 @@
 	   			
 	   		});
 	   	});
-	
+		
+		
+		function getReplyList(){
+	   		var fbId = ${ board.fbId };
+	   		
+	   		$.ajax({
+	   			url: "rList.fm",
+	   			data: {fbId:fbId},
+	   			dataType: "json",
+	   			success: function(data){
+	   				$allCommentdiv = $("#allCommentdiv");
+	   				$allCommentdiv.html(""); // div 안의 html 모두 지우기 
+	   				
+	   				var $oneCommentdiv;
+	   				var $rContent;
+	   				var $infodiv;
+	   				var $img;
+	   				var $nameNtime;
+	   				
+	   				var $rContent;
+	   				var $rCreateDate;
+	   				
+	   				$("#rCount").text(data.length);
+	   				
+	   				if(data.length >0){
+	   					for(var i in data){
+	   						$oneCommentdiv = $("<div>").addClass("col-md-12");
+	   						$rContent = $("<p>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
+	   						$infodiv = $("<div>").addClass("testimonial-info");
+	   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profile/53.jpg');
+	   						$nameNtime =$("<span>").addClass("testimonial-author").text(data[i].rWriter);
+	   						$time = $("<em>").text(data[i].rCreateDate);
+	   						
+	   						$oneCommentdiv.append($rContent);
+	   						$oneCommentdiv.append($infodiv);
+	   						$oneCommentdiv.append($img);
+	   						$oneCommentdiv.append($nameNtime.append($time)).append("<br>");
+	   						
+	   						$allCommentdiv.append($oneCommentdiv);
+	   						
+	   						
+	   					/* 	
+	   					 <div class="carousel slide testimonials" id="allCommentdiv">
+
+                         <div class=" col-md-12" id="oneCommentdiv">
+                             <p>
+                                 댓글입력하면 보여주기
+                             </p>
+                             <div class="testimonial-info" id="infodiv">
+                                 <img alt="" src="${contextPath}/resources/assets/img/profiles/53.jpg"
+                                     class="img-circle img-responsive">
+                                 <span class="testimonial-author" id="nameNtime">
+                                     닉네임1
+                                     <em>
+                                         2019년 07월 21일 12시 43분 12초
+                                     </em>
+                                 </span>
+                             </div>
+                             <br>
+                         </div> */
+	   					}
+	   				}else{
+	   					$oneCommentdiv = $("<div>").addClass("col-md-12");
+	   					$rContent = $("<p>").text("등록된 댓글이 없습니다.");
+	   					$infodiv = $("<div>").addClass("testimonial-info");
+   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profile/53.jpg');
+   						$admin =$("<span>").addClass("testimonial-author").text("관리자");
+	   					
+   						$oneCommentdiv.append($rContent);
+   						$oneCommentdiv.append($infodiv);
+   						$oneCommentdiv.append($img);
+   						$oneCommentdiv.append($admin);
+   						
+   						$allCommentdiv.append($oneCommentdiv);
+   						
+	   					
+	   					$tr.append($rContent);
+	   					$tableBody.append($tr);
+	   					
+	   				}
+	   			}
+	   		});
+	   		
+		}
 	</script>
 
 </body>

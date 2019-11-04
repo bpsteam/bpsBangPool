@@ -51,5 +51,9 @@ public class FMBoardDAO {
 		return sqlSession.insert("fmboardMapper.insertReply", r);
 	}
 
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int fbId) {
+		return (ArrayList)sqlSession.selectList("fmboardMapper.selectReplyList",fbId);
+	}
+
 
 }
