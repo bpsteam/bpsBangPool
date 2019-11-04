@@ -59,28 +59,16 @@
                                 
                                 <div class="panel panel-blue">
                                     <div class="panel-body" style="background-color: white;">
-                                            <form name="fwrite" id="fwrite" action="http://myroom.oceanmate.co.kr/bbs/write_update.php" onsubmit="return fwrite_submit(this);" method="post" enctype="multipart/form-data" autocomplete="off" role="form" class="form-horizontal">
-                                                <input type="hidden" name="uid" value="2019102301493799">
-                                                <input type="hidden" name="w" value="">
-                                                <input type="hidden" name="bo_table" value="rent">
-                                                <input type="hidden" name="wr_id" value="0">
-                                                <input type="hidden" name="sca" value="">
-                                                <input type="hidden" name="sfl" value="">
-                                                <input type="hidden" name="stx" value="">
-                                                <input type="hidden" name="spt" value="">
-                                                <input type="hidden" name="sst" value="">
-                                                <input type="hidden" name="sod" value="">
-                                                <input type="hidden" name="page" value="">
-                                                
+                                            <form action="binsert.rm" method="post" enctype="Multipart/form-data" class="form-horizontal">
                                                         <div class="form-group has-feedback">
                                                         <label class="col-sm-2 control-label" for="wr_name">이름<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
-                                                            <input type="text" name="wr_name" value="" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20">
+                                                            <input type="text" name="rbWriter" value="" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20">
                                                             <span class="fa fa-check form-control-feedback"></span>
                                                         </div>
                                                     </div>
                                                 
-                                                        <div class="form-group has-feedback">
+                                                        <!-- <div class="form-group has-feedback">
                                                         <label class="col-sm-2 control-label" for="wr_password">비밀번호<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                                             <input type="password" name="wr_password" id="wr_password" required="" class="form-control input-sm" maxlength="20">
@@ -93,20 +81,21 @@
                                                         <div class="col-sm-6">
                                                             <input type="text" name="wr_email" id="wr_email" value="" class="form-control input-sm email" size="50" maxlength="100">
                                                         </div>
-                                                    </div>
+                                                    	</div> -->
                                                 
-                                                        <div class="form-group">
+                                                        <!-- <div class="form-group">
                                                         <label class="col-sm-2 control-label" for="wr_homepage">홈페이지</label>
                                                         <div class="col-sm-6">
                                                             <input type="text" name="wr_homepage" id="wr_homepage" value="" class="form-control input-sm" size="50">
                                                         </div>
-                                                    </div>
+                                                   		 </div> -->
                                                 
                                                         <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="ca_name">
+                                                        <label class="col-sm-2 control-label" for="RLOCATION">
                                                         지역분류 			<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
-                                                            <select name="ca_name" id="ca_name" required="" class="form-control input-sm">
+                                                            <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
+                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
                                                                 <option value="">선택하세요</option>
                                                                 <option value="서울">서울</option>
                                             <option value="인천/부천">인천/부천</option>
@@ -120,10 +109,11 @@
                                                     </div>
                                                         
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="wr_subject">제목<strong class="sound_only">필수</strong></label>
+                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
                                                     <div class="col-sm-10">
                                                         <div class="input-group">
-                                                            <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
+                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
+                                                            <input type="text" name="rbTitle" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
                                                             <span class="input-group-btn">
                                                                 <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
                                                                 <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
@@ -134,13 +124,12 @@
                                             
                                             
                                             
-                                            
-                                            
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="ca_name">매물구분<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label " for=RRENTTYPE>매물구분<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                             
-                                                            <select name="wr_1" id="wr_1" required="" itemname="게시물분류" class="form-control input-sm">
+                                                            <!-- <select name="wr_1" id="wr_1" required="" itemname="게시물분류" class="form-control input-sm"> -->
+                                                            <select name="rRentType" id="wr_1" required="" itemname="게시물분류" class="form-control input-sm">
                                                                 <option value="" selected="">매물구분 선택</option>
                                                                 <option value="전세">전세</option>
                                                                 <option value="월세">월세</option>
@@ -150,9 +139,10 @@
                                                     </div>
                                             
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="ca_name">매물종류<strong class="sound_only">필수</strong></label>
+                                                        <!-- <label class="col-sm-2 control-label " for="RLIVINGTYPE">매물종류<strong class="sound_only">필수</strong></label> -->
+                                                        <label class="col-sm-2 control-label " for="RLIVINGTYPE">매물종류<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
-                                                            <select name="wr_7" id="wr_7" required="" itemname="매물종류" class="form-control input-sm">
+                                                            <select name="rLivingType" id="wr_7" required="" itemname="매물종류" class="form-control input-sm">
                                                                 <option value="">매물종류 선택</option>
                                                                 <option value="오피스텔">오피스텔</option>
                                                                 <option value="아파트">아파트</option>
@@ -164,21 +154,15 @@
                                                 
                                                 
                                                 
-                                                    
-                                                
-                                                
-                                                    
-                                                
-                                                
-                                                
                                                 
                                                 
                                                 
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="ca_name">방갯수<strong class="sound_only">필수</strong></label>
+                                                        <!-- <label class="col-sm-2 control-label " for="RROOMCOUNT">방갯수<strong class="sound_only">필수</strong></label> -->
+                                                        <label class="col-sm-2 control-label " for="RROOMCOUNT">방갯수<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <select name="wr_2" required="" itemname="방갯수" class="form-control input-sm">
+                                                        <select name="rRoomCount" required="" itemname="방갯수" class="form-control input-sm">
                                                             <option value="" selected="">방갯수를 선택해주세요.</option>
                                                             <option value="원룸">원룸</option>
                                                             <option value="투룸">투룸</option>
@@ -191,9 +175,9 @@
                                                 
                                                 
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="ca_name">해당층수<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label " for="RFLOOR">해당층수<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
-                                                        <select name="wr_3" required="" itemname="해당층수" class="form-control input-sm">
+                                                        <select name="rFloor" required="" itemname="해당층수" class="form-control input-sm">
                                                             <option value="" selected="">층수를 선택해주세요.</option>
                                                             <option value="지하">지하</option>
                                                             <option value="반지하">반지하</option>
@@ -244,35 +228,29 @@
                                             
                                             
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="ca_name">거래금액</label>
+                                                        <!-- <label class="col-sm-2 control-label " for="RPRICE">거래금액</label> -->
+                                                        <label class="col-sm-2 control-label " for="RPRICE">거래금액</label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <input type="text" name="wr_8" size="50" value="" class="form-control input-sm">
+                                                        <input type="text" name="rPrice" size="50" value="" class="form-control input-sm">
                                                         </div>
                                                     </div>
                                             
                                             
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="ca_name">주차가능여부</label>
+                                                        <!-- <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label> -->
+                                                        <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <input type="text" name="wr_9" size="50" value="" class="form-control input-sm">
+                                                        <input type="text" name="rParking" size="50" value="" class="form-control input-sm">
                                                         </div>
                                                     </div>
-                                            
-                                            
-                                            
-                                                
-                                                
-                                                
-                                                
-                                            
                                             
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">내용</label>
                                                     <div class="col-sm-12">
                                                                     <span class="sound_only"></span>
-                                            <textarea id="wr_content" name="wr_content" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px"></textarea>
+                                            <textarea id="wr_content" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px"></textarea>
                                             <span class="sound_only"></span>		</div>
                                                 </div>
                                             
@@ -392,8 +370,8 @@
                                             </fieldset>		</div>
                                                 
                                                 <div class="write-btn pull-center">
-                                                    <!-- <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button> -->
-                                                    <a href="bdetail.rm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a>
+                                                    <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button>
+                                                  <!-- <a href="bdetail.rm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a> -->
                                                     <a href="blist.rm" class="btn btn-danger btn-sm" role="button">취소</a>
                                                 </div>
                                             
