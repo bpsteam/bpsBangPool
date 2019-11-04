@@ -10,6 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.project.bangpool.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.FMBoard" alias="FMBoard"/>
+		<!-- <typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.Attachment" alias="Attachment"/> -->
 	</typeAliases>
 	
 	<mappers>

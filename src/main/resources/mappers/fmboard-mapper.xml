@@ -8,7 +8,7 @@
 				#{fbContent}, default, sysdate, sysdate, 
 				default, #{fLocation}, default, #{fRentType}, 
 				#{fLivingType}, #{fRoomCount}, #{fFloor}, #{fPrice}, 
-				#{fParking}, #{fReqGender}, #{contactInfo}, #{originalFileName} , #{renameFileName})
+				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
 	
 	<select id="selectList" resultType="FMBoard">
@@ -24,10 +24,42 @@
 	</update>
 	
 	<select id="selectBoard" parameterType="_int" resultType="FMBoard" >
-		select*from freshman_board
-		where fbid = #{fbId}
+		select fm.*, a.originalfilename, a.renamefilename
+		from freshman_board fm
+		left join attachment a on a.bcode=fm.bcode
+		where fm.fbid = a.refbid
 		and fbstatus='Y'
+		and fbid=${fbId}
 	</select>
+	
+	<!--  <resultMap type="FMBoard" id="fmboardMap">
+			 <id property="fbId" column="FBID"/>
+	 		<result column="BCODE" property="bcode"/>
+	 		<result column="FBTITLE" property="fbTitle"/>
+	 		<result column="FBWRITER" property="fbWriter"/>
+	 		<result column="FBCONTENT" property="fbContent"/>
+	 		<result column="FBCOUNT" property="fbCount"/>
+	 		<result column="FBCREATEDATE" property="fbCreateDate"/>
+	 		<result column="FBMODIFYDATE" property="fbModifyDate"/>
+	 		<result column="FBSTATUS" property="fbStatus"/>
+	 		<result column="FLOCATION" property="fLocation"/>
+	 		<result column="FRENTTYPE" property="fRentType"/>
+	 		<result column="FLIVINGTYPE" property="fLivingType"/>
+	 		<result column="FROOMCOUNT" property="fRoomCount"/>
+	 		<result column="FFLOOR" property="fFloor"/>
+	 		<result column="FPRICE" property="fPrice"/>
+	 		<result column="FPARKING" property="fParking"/>
+	 		<result column="FREQGENDER" property="fReqGender"/>
+	 		<result column="CONTACTINFO" property="contactInfo"/>
+	 		<result column="COLLEGE" property="college"/>
+	 		<result column="ORIGINALFILENAME" property="originalFileName"/>
+			<result column="RENAMEFILENAME" property="renameFileName"/> -->
+	<!-- 
+		<association javaType ="Attachment" property="att">
+			<result column="ORIGINALFILENAME" property="originalFileName"/>
+			<result column="RENAMEFILENAME" property="renameFileName"/>
+		</association> -->
+	
 	
 	<select id="selectCurrentBno" resultType="_int">
 		SELECT FRESHMAN_BOARD_SEQ.CURRVAL FROM DUAL
@@ -37,5 +69,35 @@
 		insert into attachment
 		values (attachment_seq.nextval, #{bcode}, #{fbId}, #{originalFileName},#{renameFileName} )
 	</insert>
+	
+	<update id="deleteBoard" parameterType="_int">
+		update freshman_board
+		set fbstatus = 'N'
+		where fbid = #{fbId}
+	</update>
+	
+	<update id="updateBoard" parameterType="FMBoard">
+		update freshman_board
+		set fbContent=#{fbContent},
+			fbmodifydate = SYSDATE,
+			flocation = #{fLocation},
+			frenttype=#{fRentType},
+			flivingtype=#{fLivingType},
+			froomcount=#{fRoomCount},
+			ffloor=#{fFloor},
+			fprice=#{fPrice},
+			fparking=#{fParking},
+			freqgender=#{fReqGender},
+			contactInfo=#{contactInfo}
+		where fbId = #{fbId}
+	</update>
+	
+	<update id="updateFile" parameterType="FMBoard">
+		update attachment
+		set originalFilename = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where bcode = #{bcode}
+		and refbid = #{fbId}
+	</update>
 	
 </mapper>

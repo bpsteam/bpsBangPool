@@ -62,6 +62,7 @@
                             </div>
 
                             <h1 style="text-align: center;"><small>${ board.fbTitle }</small></h1>
+                         
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>
@@ -188,7 +189,9 @@
                                       ${ board.fbContent }
                                       
                                       <br><br><br><br><br><br>
+                                      <c:if test="${ !empty board.renameFileName }">
                                       <br> <img src="${contextPath}/resources/fmboarduploads/${board.renameFileName}">
+                                    	</c:if>
                                     </div>
 
                                     <div class="print-hide view-icon">
@@ -322,13 +325,23 @@
                                             <hr style="margin:0px; height:10px;">
                                         </div>
                                 </div>
+                                
+                               <c:url var="bupView" value="bupView.fm">
+	                           <c:param name="fbId" value="${ board.fbId }"/>
+	                           <%--   <c:param name="page" value="${ page }"/> --%>
+	                           </c:url>
+                               <c:url var="bdelete" value="bdelete.fm">
+	                           <c:param name="fbId" value="${ board.fbId }"/>
+	                            <%--  <c:param name="page" value="${ page }"/> --%>
+	                           </c:url>
+                                
                                 <div class="print-hide view-btn text-right"
                                     style="background-color: white; padding-right: 15px; padding-bottom: 15px;">
                                     <div class="form-group">
-                                        <a href="blist.fm" class="btn btn-danger btn-sm" >
+                                        <a href="${ bdelete }" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
-                                        <a href="binsert.fm" class="btn btn-warning btn-sm" >
+                                        <a href="${ bupView }" class="btn btn-warning btn-sm" >
                                             <i class="fa fa-plus"></i><span class="hidden-xs"> 수정</span>
                                         </a>
                                         

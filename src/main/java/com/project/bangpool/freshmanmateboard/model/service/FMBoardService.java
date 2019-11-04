@@ -12,4 +12,8 @@ public interface FMBoardService {
 
 	FMBoard selectBoard(int bId);
 
+	int deleteBoard(int fbId);
+
+	int updateBoard(FMBoard b);
+
 }

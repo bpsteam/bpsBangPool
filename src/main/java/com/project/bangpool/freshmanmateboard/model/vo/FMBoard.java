@@ -25,37 +25,66 @@ public class FMBoard {
 	private String fParking;		// 주차가능여부
 	private String fReqGender;		// required gender 원하는 상대성별
 	private String contactInfo; 	// 연락가능번호
+	private String college;
+//	private Attachment att; 
 	
+	
+	
+	
+
 	public FMBoard() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String fbContent, String originalFileName,
-			String renameFileName, int fbCount, Date fbCreateDate, Date fbModifyDate, String fbStatus, String fLocation,
-			String fRentType, String fLivingType, String fRoomCount, String fFloor, String fPrice, String fParking,
-			String fReqGender, String contactInfo) {
-		super();
-		this.fbId = fbId;
-		this.bcode = bcode;
-		this.fbTitle = fbTitle;
-		this.fbWriter = fbWriter;
-		this.fbContent = fbContent;
-		this.originalFileName = originalFileName;
-		this.renameFileName = renameFileName;
-		this.fbCount = fbCount;
-		this.fbCreateDate = fbCreateDate;
-		this.fbModifyDate = fbModifyDate;
-		this.fbStatus = fbStatus;
-		this.fLocation = fLocation;
-		this.fRentType = fRentType;
-		this.fLivingType = fLivingType;
-		this.fRoomCount = fRoomCount;
-		this.fFloor = fFloor;
-		this.fPrice = fPrice;
-		this.fParking = fParking;
-		this.fReqGender = fReqGender;
-		this.contactInfo = contactInfo;
+	
+	
+
+public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String fbContent, String originalFileName,
+		String renameFileName, int fbCount, Date fbCreateDate, Date fbModifyDate, String fbStatus, String fLocation,
+		String fRentType, String fLivingType, String fRoomCount, String fFloor, String fPrice, String fParking,
+		String fReqGender, String contactInfo, String college) {
+	super();
+	this.fbId = fbId;
+	this.bcode = bcode;
+	this.fbTitle = fbTitle;
+	this.fbWriter = fbWriter;
+	this.fbContent = fbContent;
+	this.originalFileName = originalFileName;
+	this.renameFileName = renameFileName;
+	this.fbCount = fbCount;
+	this.fbCreateDate = fbCreateDate;
+	this.fbModifyDate = fbModifyDate;
+	this.fbStatus = fbStatus;
+	this.fLocation = fLocation;
+	this.fRentType = fRentType;
+	this.fLivingType = fLivingType;
+	this.fRoomCount = fRoomCount;
+	this.fFloor = fFloor;
+	this.fPrice = fPrice;
+	this.fParking = fParking;
+	this.fReqGender = fReqGender;
+	this.contactInfo = contactInfo;
+	this.college = college;
+}
+
+
+
+
+//	public Attachment getAtt() {
+//		return att;
+//	}
+//
+//	public void setAtt(Attachment att) {
+//		this.att = att;
+//	}
+
+	public String getCollege() {
+		return college;
+	}
+	
+	public void setCollege(String college) {
+		this.college = college;
 	}
 
 	public int getFbId() {
@@ -218,6 +247,9 @@ public class FMBoard {
 		this.contactInfo = contactInfo;
 	}
 
+
+
+
 	@Override
 	public String toString() {
 		return "FMBoard [fbId=" + fbId + ", bcode=" + bcode + ", fbTitle=" + fbTitle + ", fbWriter=" + fbWriter
@@ -226,8 +258,10 @@ public class FMBoard {
 				+ fbModifyDate + ", fbStatus=" + fbStatus + ", fLocation=" + fLocation + ", fRentType=" + fRentType
 				+ ", fLivingType=" + fLivingType + ", fRoomCount=" + fRoomCount + ", fFloor=" + fFloor + ", fPrice="
 				+ fPrice + ", fParking=" + fParking + ", fReqGender=" + fReqGender + ", contactInfo=" + contactInfo
-				+ "]";
+				+ ", college=" + college + "]";
 	}
+
+	
 	
 	
 }

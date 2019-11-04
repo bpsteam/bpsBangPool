@@ -34,5 +34,17 @@ public class FMBoardDAO {
 		return sqlSession.insert("fmboardMapper.insertFile", b);
 	}
 
+	public int deleteBoard(SqlSessionTemplate sqlSession, int fbId) {
+		return sqlSession.update("fmboardMapper.deleteBoard", fbId);
+	}
+
+	public int updateBoard(SqlSessionTemplate sqlSession, FMBoard b) {
+		return sqlSession.update("fmboardMapper.updateBoard", b);
+	}
+
+	public int updateFile(SqlSessionTemplate sqlSession, FMBoard b) {
+		return sqlSession.update("fmboardMapper.updateFile", b);
+	}
+
 
 }
