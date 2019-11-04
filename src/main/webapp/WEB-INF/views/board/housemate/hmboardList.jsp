@@ -68,7 +68,7 @@
                     <!-- Main Column -->
                     <div class="col-sm-9">
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="sample-3a">
+                                <div class="tab-pane fade in active" id="sample-3b">
                                         <h1><small>ROOMMATE</small></h1>
                                         <div class="margin-bottom-10">
                                                 <hr>
@@ -464,11 +464,11 @@
                                 <a href="#">하우스메이트</a> <br>
                                 <a href="#">신입생메이트</a> -->
                                 <ul class="nav nav-pills nav-stacked">
-                                        <li class="active">
+                                        <li>
                                             <a href="#sample-3a" data-toggle="tab">
                                                 <i class="fa fa-cloud"></i>  룸메이트</a>
                                         </li>
-                                        <li>
+                                        <li class="active">
                                             <a href="#sample-3b" data-toggle="tab">
                                                 <i class="fa fa-home"></i>  하우스메이트</a>
                                         </li>
