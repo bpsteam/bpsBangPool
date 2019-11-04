@@ -65,14 +65,16 @@ public class HMBoardController {
 	public String boardInsert(HMBoard hb ) {
 		
 		System.out.println("갔다오기전 hb : "+ hb);
-		int result = hbService.insertBoard(hb);
+		/*int result = hbService.insertBoard(hb);
 		System.out.println("갔다왔니 hb : "+ hb);
 		
 		if(result > 0 ) {
 			return "redirect:blist.hm";
 		}else { 
 			throw new  HMBoardException("게시글 등록 실패하였습니다.");
-		}
+		}*/
+		
+		return "redirect:blist.hm";
 	}
 	
 	
