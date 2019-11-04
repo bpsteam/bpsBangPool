@@ -51,8 +51,8 @@
                         <hr>
                     </div>
                     <!-- ==== BEGIN ADVERTISEMENT ==== -->
-	<c:import url ="../../common/advertisement.jsp"/>
-<!-- ==== END ADVERTISEMENT ==== -->
+						<c:import url ="../../common/advertisement.jsp"/>
+					<!-- ==== END ADVERTISEMENT ==== -->
                     <br>
                     <br>
                 </div>
@@ -115,13 +115,14 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
+                                                                        <c:forEach var="b" items="${ list }" >
                                                                             <tr>
-                                                                                <td>1</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user1</td>
+                                                                                <td>${ b.hbId }</td>
+                                                                                <td>${ b.hLocation }</td>
+                                                                                <td>${ b.hbTitle }</td>
+                                                                                <td>${ b.hbWriter }</td>
                                                                             </tr>
-                                                                            <tr>
+                                                                            <!-- <tr>
                                                                                 <td>2</td>
                                                                                 <td>인천/부천</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
@@ -168,7 +169,8 @@
                                                                                 <td>수원/경기</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
                                                                                 <td>user9</td>
-                                                                            </tr>
+                                                                            </tr> -->
+                                                                            </c:forEach>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>

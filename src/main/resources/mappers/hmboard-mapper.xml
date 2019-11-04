@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper>
-  <cache-ref namespace="hmboardMapper"/>
+<mapper namespace="hmboardMapper">
   
-  <select id="getListCount" resultType="_int">
+  	<select id="getListCount" resultType="_int">
 		select count(*)
 		from board
 		where b_status='Y'
@@ -17,7 +16,7 @@
 	</select>
 	
 	<resultMap type="hmBoard" id="boardResultSet">
-		<id property="hbId" column="BID"/>
+		<id property="hbId" column="HBID"/>
 		<result property="bcode" column="BCODE"/>
 		<result property="hbTitle" column="HBTITLE"/>
 		<result property="hbWriter" column="HBWRITER"/>

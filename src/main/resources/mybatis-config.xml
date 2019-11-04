@@ -9,10 +9,12 @@
 
 	<typeAliases>
 		<typeAlias type="com.project.bangpool.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.project.bangpool.housemateboard.model.vo.HMBoard" alias="hmBoard"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/hmboard-mapper.xml"/>
 	</mappers>
 	
 </configuration>
