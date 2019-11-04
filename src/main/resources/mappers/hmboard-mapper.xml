@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hmboardMapper">
+  
+  	<select id="getListCount" resultType="_int">
+		select count(*)
+		from board
+		where b_status='Y'
+	</select>
+	
+	<select id="selectList" resultMap="boardResultSet">
+		select *
+		from HOUSEMATE_BOARD
+		where HBSTATUS='Y'
+		order by HBID desc
+	</select>
+	<resultMap type="hmBoard" id="boardResultSet">
+		<id property="hbId" column="HBID"/>
+		<result property="bcode" column="BCODE"/>
+		<result property="hbTitle" column="HBTITLE"/>
+		<result property="hbWriter" column="HBWRITER"/>
+		<result property="hbContent" column="HBCONTENT"/>
+		<result property="hbCount" column="HBCOUNT"/>
+		<result property="hbCreateDate" column="HBCREATEDATE"/>
+		<result property="hbModifyDate" column="HBMODIFYDATE"/>
+		<result property="hbStatus" column="HBSTATUS"/>
+		
+		<result property="hLocation" column="LOCATION"/>
+		<result property="hRentType" column="HRENTTYPE"/>
+		<result property="hLivingType" column="HLIVINGTYPE"/>
+		<result property="hRoom" column="HROOMCOUNT"/>
+		<result property="hFloor" column="HFLOOR"/>
+		<result property="hPrice" column="HPRICE"/>
+		<result property="hParking" column="HPARKING"/>
+		<result property="hreqgender" column="HREQGENDER"/>
+	</resultMap>
+	
+	<update id="addReadCount" parameterType="_int">
+		update HOUSEMATE_BOARD
+		set HBCOUNT = HBCOUNT + 1
+		where HBID = #{hbId}
+	</update>
+	
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+		select *
+		from HOUSEMATE_BOARD hb 
+		where hbid =#{hbId}
+			  and hbstatus='Y' 
+	</select>
+	
+	<insert id="insertBoard" parameterType="hmBoard">
+		insert into HOUSEMATE_BOARD
+		values(HOUSEMATE_BOARD_SEQ.nextval, default , #{hbTitle}, #{hbContent}, #{hbWriter}, default,
+				sysdate, sysdate, default, #{hLocation}, #{hRentType}, #{hLivingType},
+				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hreqgender})
+	</insert>
+	
+	
+	
+	
+</mapper>

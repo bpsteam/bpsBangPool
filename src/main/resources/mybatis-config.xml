@@ -9,13 +9,24 @@
 
 	<typeAliases>
 		<typeAlias type="com.project.bangpool.member.model.vo.Member" alias="Member"/>
+
+		<typeAlias type="com.project.bangpool.housemateboard.model.vo.HMBoard" alias="hmBoard"/>
+
 		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.FMBoard" alias="FMBoard"/>
-		<!-- <typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.Attachment" alias="Attachment"/> -->
+
+    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+
+		<mapper resource="mappers/hmboard-mapper.xml"/>
+
 		<mapper resource="mappers/fmboard-mapper.xml"/>
+    
+   	<mapper resource="mappers/rmboard-mapper.xml"/>
+
 	</mappers>
 	
 </configuration>
+

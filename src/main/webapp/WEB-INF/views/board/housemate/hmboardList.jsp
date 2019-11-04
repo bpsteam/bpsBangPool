@@ -51,8 +51,8 @@
                         <hr>
                     </div>
                     <!-- ==== BEGIN ADVERTISEMENT ==== -->
-	<c:import url ="../../common/advertisement.jsp"/>
-<!-- ==== END ADVERTISEMENT ==== -->
+						<c:import url ="../../common/advertisement.jsp"/>
+					<!-- ==== END ADVERTISEMENT ==== -->
                     <br>
                     <br>
                 </div>
@@ -68,7 +68,7 @@
                     <!-- Main Column -->
                     <div class="col-sm-9">
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="sample-3a">
+                                <div class="tab-pane fade in active" id="sample-3b">
                                         <h1><small>ROOMMATE</small></h1>
                                         <div class="margin-bottom-10">
                                                 <hr>
@@ -115,13 +115,18 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
+                                                                        <c:forEach var="b" items="${ list }" >
                                                                             <tr>
-                                                                                <td>1</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user1</td>
+                                                                                <td>${ b.hbId }</td>
+                                                                                <td>${ b.hLocation }</td>
+                                                                                <td>
+                                                                                	<c:url var="hbdetail" value="bdetail.hm">
+																						<c:param name="hbId" value="${ b.hbId }"/>
+																					</c:url>
+                                                                               		<a href="${ hbdetail }">${ b.hbTitle }</a></td>
+                                                                                <td>${ b.hbWriter }</td>
                                                                             </tr>
-                                                                            <tr>
+                                                                            <!-- <tr>
                                                                                 <td>2</td>
                                                                                 <td>인천/부천</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
@@ -168,7 +173,8 @@
                                                                                 <td>수원/경기</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
                                                                                 <td>user9</td>
-                                                                            </tr>
+                                                                            </tr> -->
+                                                                            </c:forEach>
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -389,7 +395,7 @@
                                                             </li>
                                                         </ul>
                                                         <a href="#" style="float:left" class="btn btn-aqua btn-sm" data-toggle="modal" data-target="#searchModal" onclick="return false;"><i class="fa fa-search"></i></a>
-                                                        <a href="binsert.hm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
+                                                        <a href="binsertView.hm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
                                                     </div>
                                                 </div>
                             
@@ -464,11 +470,11 @@
                                 <a href="#">하우스메이트</a> <br>
                                 <a href="#">신입생메이트</a> -->
                                 <ul class="nav nav-pills nav-stacked">
-                                        <li class="active">
+                                        <li>
                                             <a href="#sample-3a" data-toggle="tab">
                                                 <i class="fa fa-cloud"></i>  룸메이트</a>
                                         </li>
-                                        <li>
+                                        <li class="active">
                                             <a href="#sample-3b" data-toggle="tab">
                                                 <i class="fa fa-home"></i>  하우스메이트</a>
                                         </li>

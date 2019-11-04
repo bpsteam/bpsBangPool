@@ -389,7 +389,7 @@
                                                             </li>
                                                         </ul>
                                                         <a href="#" style="float:left" class="btn btn-aqua btn-sm" data-toggle="modal" data-target="#searchModal" onclick="return false;"><i class="fa fa-search"></i></a>
-                                                        <a href="binsert.rm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
+                                                        <a href="binsertview.rm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
                                                     </div>
                                                 </div>
                             
