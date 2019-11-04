@@ -100,4 +100,11 @@
 		and refbid = #{fbId}
 	</update>
 	
+	<insert id="insertReply" parameterType="Reply">
+		insert into Reply
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+	</insert>
+	
+	
+	
 </mapper>

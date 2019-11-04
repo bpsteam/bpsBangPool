@@ -12,12 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.exception.BoardException;
 
 @Controller
 public class FMBoardController {
@@ -112,10 +116,10 @@ public class FMBoardController {
 	
 	
 	@RequestMapping("bdetail.fm")
-	public ModelAndView selectOneBoard(@RequestParam("fbId") int bId, ModelAndView mv,
+	public ModelAndView selectOneBoard(@RequestParam("fbId") int fbId, ModelAndView mv,
 										HttpSession session) {
 		
-		FMBoard board = fbService.selectBoard(bId);
+		FMBoard board = fbService.selectBoard(fbId);
 		
 
 		if(board != null) {
@@ -210,6 +214,32 @@ public class FMBoardController {
 			f.delete();  
 		}
 	}
+	
+	@RequestMapping("addReply.fm")
+	@ResponseBody
+	public String addReply(Reply r, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String rWriter = loginUser.getNickname();
+		
+		r.setrWriter(rWriter);
+		r.setbCode("FMBCODE");
+		
+		System.out.println("댓글불러오기 : "+ r);
+		int result = fbService.insertReply(r);
+		
+		if(result>0) {
+			return "success";
+			
+		}else {
+			throw new BoardException("댓글등록실패");
+		}
+		
+	}
+	
+	
+	
+	
+	
 }
 
 

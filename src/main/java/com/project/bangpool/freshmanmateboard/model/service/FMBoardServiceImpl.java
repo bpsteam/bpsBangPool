@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.dao.FMBoardDAO;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 
@@ -82,6 +83,12 @@ public class FMBoardServiceImpl implements FMBoardService {
 			result2 = fbDAO.updateFile(sqlSession, b);
 		}
 		return result2;
+	}
+
+
+	@Override
+	public int insertReply(Reply r) {
+		return fbDAO.insertReply(sqlSession, r);
 	}
 
 

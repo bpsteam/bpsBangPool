@@ -1,4 +1,4 @@
-package com.project.bangpool.freshmanmateboard.model.vo;
+package com.project.bangpool.comment.model.vo;
 
 import java.sql.Date;
 

@@ -14,7 +14,9 @@
 
 		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.FMBoard" alias="FMBoard"/>
 
-    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
+	    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
+    	
+    	<typeAlias type="com.project.bangpool.comment.model.vo.Reply" alias="Reply"/>
 	</typeAliases>
 	
 	<mappers>
@@ -24,7 +26,7 @@
 
 		<mapper resource="mappers/fmboard-mapper.xml"/>
     
-   	<mapper resource="mappers/rmboard-mapper.xml"/>
+  	 	<mapper resource="mappers/rmboard-mapper.xml"/>
 
 	</mappers>
 	

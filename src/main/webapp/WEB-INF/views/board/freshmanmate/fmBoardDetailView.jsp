@@ -316,9 +316,9 @@
                                             <label >댓글 입력</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" style="width:80%">
+                                            <input type="text" id="rContent" style="width:80%">
                                             &nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-primary btn-sm">추가</button>
+                                            <button class="btn btn-primary btn-sm" id="rSubmit">추가</button>
                                         </div>
                                     </div>
                                     <div class="margin-bottom-10">
@@ -481,13 +481,33 @@
             <hr>
         </div>
 
-    </div>
     <!-- === END CONTENT === -->
 
 
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
+
+	<script>
+		$("#rSubmit").on("click",function(){
+	   		var rContent = $("#rContent").val();
+	   		var refbId = ${board.fbId};
+	   		console.log(refbId);
+	   		$.ajax({
+	   			url: "addReply.fm",
+	   			data: {rContent:rContent, refbId: refbId},
+	   			type: "post",
+	   			success: function(data){
+	   				if(data == "success"){
+	   					getReplyList();
+	   					$("#rContent").val("");
+	   				}
+	   			}
+	   			
+	   		});
+	   	});
+	
+	</script>
 
 </body>
 </html>
