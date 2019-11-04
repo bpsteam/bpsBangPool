@@ -1,10 +1,13 @@
 package com.project.bangpool.freshmanmateboard.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,24 +15,31 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.exception.BoardException;
 
 @Controller
 public class FMBoardController {
 	
 
 	@Autowired // boardservice에 알아서 객체만들어서 쏴준다. 
-	private FMBoardService bService;
+	private FMBoardService fbService;
 
 	@RequestMapping("blist.fm")
 	public ModelAndView boardList(ModelAndView mv) {
 		
-		ArrayList<FMBoard> list = bService.selectList();
+		ArrayList<FMBoard> list = fbService.selectList();
 		
 		if(list != null ) {
 			System.out.println("리스트불러오기 성공하고 출력 "+list);
@@ -69,7 +79,7 @@ public class FMBoardController {
 			}
 		}
 
-		int result = bService.insertBoard(b);
+		int result = fbService.insertBoard(b);
 	
 		if(result>0) {
 			
@@ -112,10 +122,10 @@ public class FMBoardController {
 	
 	
 	@RequestMapping("bdetail.fm")
-	public ModelAndView selectOneBoard(@RequestParam("fbId") int bId, ModelAndView mv,
+	public ModelAndView selectOneBoard(@RequestParam("fbId") int fbId, ModelAndView mv,
 										HttpSession session) {
 		
-		FMBoard board = bService.selectBoard(bId);
+		FMBoard board = fbService.selectBoard(fbId);
 		
 
 		if(board != null) {
@@ -136,7 +146,7 @@ public class FMBoardController {
 	public ModelAndView updateBoard(@RequestParam("fbId") int fbId, ModelAndView mv) {
 		
 		System.out.println("bupdate.fm/fbId : "+fbId);
-		FMBoard b = bService.selectBoard(fbId);
+		FMBoard b = fbService.selectBoard(fbId);
 		
 		System.out.println("bupdate.fm/b : " + b);
 		
@@ -154,7 +164,7 @@ public class FMBoardController {
 	
 	@RequestMapping("bdelete.fm")
 	public String deleteBoard(@RequestParam("fbId") int fbId) {
-		int result = bService.deleteBoard(fbId);
+		int result = fbService.deleteBoard(fbId);
 		
 		if(result>0) {
 			return "redirect: blist.fm";
@@ -186,7 +196,7 @@ public class FMBoardController {
 		
 		System.out.println("파일네임 수정 됐어? : "+b);
 		
-		int result = bService.updateBoard(b);
+		int result = fbService.updateBoard(b);
 		
 		if(result>0) {
 			// page --> bdetail
@@ -210,6 +220,47 @@ public class FMBoardController {
 			f.delete();  
 		}
 	}
+	
+	@RequestMapping("addReply.fm")
+	@ResponseBody
+	public String addReply(Reply r, HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String rWriter = loginUser.getNickname();
+		
+		r.setrWriter(rWriter);
+		r.setbCode("FMBCODE");
+		
+		System.out.println("댓글불러오기 : "+ r);
+		int result = fbService.insertReply(r);
+		
+		if(result>0) {
+			return "success";
+			
+		}else {
+			throw new BoardException("댓글등록실패");
+		}
+		
+	}
+	
+	
+	@RequestMapping("rList.fm")
+	public void getReplyList(HttpServletResponse response, int fbId) throws JsonIOException, IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		ArrayList<Reply> list = fbService.selectReplyList(fbId);
+		
+		for(Reply r : list) {
+			r.setrContent(URLEncoder.encode(r.getrContent(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
+	
+	
+	
 }
 
 

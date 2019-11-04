@@ -100,4 +100,17 @@
 		and refbid = #{fbId}
 	</update>
 	
+	<insert id="insertReply" parameterType="Reply">
+		insert into Reply
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+	</insert>
+	
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+		select * from Reply r
+		join freshman_board f on f.bcode=r.bcode
+		and r.refbid = f.fbid
+		where refbid=${fbId}
+		
+	</select>
+	
 </mapper>
