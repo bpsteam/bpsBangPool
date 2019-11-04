@@ -22,7 +22,8 @@ public class HMBoard {
 	private String hRoom;			//방갯수
 	private String hFloor;			//해당층수
 	private String hPrice;			// 거래금액
-	private String hParking;		// 주차가능여부
+	private char hParking;			// 주차가능여부
+	private char hreqgender;		// 원하는 상대 성별
 	
 	
 	public HMBoard() {}
@@ -30,7 +31,8 @@ public class HMBoard {
 
 	public HMBoard(int hbId, String bcode, String hbTitle, String hbWriter, String hbContent, String originalFileName,
 			String renameFileName, int hbCount, Date hbCreateDate, Date hbModifyDate, String hbStatus, String hLocation,
-			String hRentType, String hLivingType, String hRoom, String hFloor, String hPrice, String hParking) {
+			String hRentType, String hLivingType, String hRoom, String hFloor, String hPrice, char hParking,
+			char hreqgender) {
 		super();
 		this.hbId = hbId;
 		this.bcode = bcode;
@@ -50,6 +52,7 @@ public class HMBoard {
 		this.hFloor = hFloor;
 		this.hPrice = hPrice;
 		this.hParking = hParking;
+		this.hreqgender = hreqgender;
 	}
 
 
@@ -223,13 +226,23 @@ public class HMBoard {
 	}
 
 
-	public String gethParking() {
+	public char gethParking() {
 		return hParking;
 	}
 
 
-	public void sethParking(String hParking) {
+	public void sethParking(char hParking) {
 		this.hParking = hParking;
+	}
+
+
+	public char getHreqgender() {
+		return hreqgender;
+	}
+
+
+	public void setHreqgender(char hreqgender) {
+		this.hreqgender = hreqgender;
 	}
 
 
@@ -240,10 +253,10 @@ public class HMBoard {
 				+ renameFileName + ", hbCount=" + hbCount + ", hbCreateDate=" + hbCreateDate + ", hbModifyDate="
 				+ hbModifyDate + ", hbStatus=" + hbStatus + ", hLocation=" + hLocation + ", hRentType=" + hRentType
 				+ ", hLivingType=" + hLivingType + ", hRoom=" + hRoom + ", hFloor=" + hFloor + ", hPrice=" + hPrice
-				+ ", hParking=" + hParking + "]";
+				+ ", hParking=" + hParking + ", hreqgender=" + hreqgender + "]";
 	}
-	
-	
+
+
 	
 
 }
