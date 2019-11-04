@@ -393,8 +393,8 @@
                                                 
                                                 <div class="write-btn pull-center">
                                                     <!-- <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button> -->
-                                                    <a href="bdetail.bo" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a>
-                                                    <a href="blist.bo" class="btn btn-danger btn-sm" role="button">취소</a>
+                                                    <a href="bdetail.hm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a>
+                                                    <a href="blist.hm" class="btn btn-danger btn-sm" role="button">취소</a>
                                                 </div>
                                             
                                                 <div class="clearfix"></div>
@@ -419,11 +419,11 @@
                                 <a href="#">하우스메이트</a> <br>
                                 <a href="#">신입생메이트</a> -->
                                 <ul class="nav nav-pills nav-stacked">
-                                        <li class="active">
+                                        <li >
                                             <a href="#sample-3a" data-toggle="tab">
                                                 <i class="fa fa-cloud"></i>  룸메이트</a>
                                         </li>
-                                        <li>
+                                        <li class="active">
                                             <a href="#sample-3b" data-toggle="tab">
                                                 <i class="fa fa-home"></i>  하우스메이트</a>
                                         </li>
