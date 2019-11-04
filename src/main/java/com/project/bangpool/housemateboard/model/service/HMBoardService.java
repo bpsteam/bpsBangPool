@@ -8,4 +8,8 @@ public interface HMBoardService {
 
 	ArrayList<HMBoard> selectList();
 
+	HMBoard selectBoard(int hbId);
+
+	int insertBoard(HMBoard hb);
+
 }

@@ -13,15 +13,32 @@ import com.project.bangpool.housemateboard.model.vo.HMBoard;
 public class HMBoardServiceImpl implements HMBoardService {
 
 	@Autowired
-	private HMBoardDAO bDAO;
+	private HMBoardDAO hbDAO;
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
 	@Override
 	public ArrayList<HMBoard> selectList() {
-		return bDAO.selectList(sqlSession);
+		return hbDAO.selectList(sqlSession);
 
+	}
+
+	@Override
+	public HMBoard selectBoard(int hbId) {
+		HMBoard b = null;
+		
+		int result = hbDAO.addReadCount(sqlSession, hbId);
+		System.out.println("result :" +result);
+		if(result > 0) {
+			b = hbDAO.selectBoard(sqlSession, hbId);
+		}
+		return b;
+	}
+
+	@Override
+	public int insertBoard(HMBoard hb) {
+		return hbDAO.insertBoard(sqlSession, hb);
 	}
 
 }
