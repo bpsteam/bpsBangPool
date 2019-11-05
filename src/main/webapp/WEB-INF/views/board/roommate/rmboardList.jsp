@@ -115,7 +115,24 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr>
+                                                                        <c:forEach var="b" items="${ list }">
+                                                                        	<tr>
+                                                                        		<td>${ b.rbId }</td>
+                                                                        		<td>${ b.rLocation }</td>
+                                                                        		<td>${ b.rbTitle }</td>
+                                                                        		<td>${ b.rbWriter }</td>
+                                                                        		
+                                                                       			<%-- <c:param name="rbId" value="${ b.rbId }"></c:param>
+                                                                       			<c:param name="rLocation" value="${ b.rLocation }"></c:param>
+                                                                       			<c:param name="rbTitle" value="${ b.rbTitle }"></c:param>
+                                                                       			<c:param name="rbWriter" value="${ b.rbWriter }"></c:param> --%>
+                                                                        		
+                                                                        	</tr>
+                                                                        
+                                                                        </c:forEach>
+                                                                        
+                                                                        
+                                                                            <!-- <tr>
                                                                                 <td>1</td>
                                                                                 <td>서울</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
@@ -168,7 +185,7 @@
                                                                                 <td>수원/경기</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
                                                                                 <td>user9</td>
-                                                                            </tr>
+                                                                            </tr> -->
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -190,7 +207,7 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr>
+                                                                            <!-- <tr>
                                                                                 <td>1</td>
                                                                                 <td>서울</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
@@ -243,13 +260,15 @@
                                                                                 <td>수원/경기</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
                                                                                 <td>user9</td>
-                                                                            </tr>
+                                                                            </tr> -->
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    
                                                     <div class="tab-pane fade in" id="sample-2c">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -264,7 +283,7 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr>
+                                                                            <!-- <tr>
                                                                                 <td>1</td>
                                                                                 <td>서울</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
@@ -293,7 +312,7 @@
                                                                                 <td>서울</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
                                                                                 <td>user5</td>
-                                                                            </tr>
+                                                                            </tr> -->
                             
                                                                         </tbody>
                                                                     </table>
@@ -301,6 +320,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    
                                                     <div class="tab-pane fade in" id="sample-2d">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -315,7 +336,7 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <tr>
+                                                                            <!-- <tr>
                                                                                 <td>1</td>
                                                                                 <td>서울</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
@@ -356,7 +377,7 @@
                                                                                 <td>대구/경북</td>
                                                                                 <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
                                                                                 <td>user7</td>
-                                                                            </tr>
+                                                                            </tr> -->
                             
                                                                         </tbody>
                                                                     </table>

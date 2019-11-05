@@ -1,5 +1,7 @@
 package com.project.bangpool.roommateboard.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +23,23 @@ public class RMBoardServiceImpl implements RMBoardService{
 		System.out.println("rbService ???????");
 		return rbDAO.insertBoard(sqlSession, b);
 	}
+
+	@Override
+	public ArrayList<RMBoard> selectList() {
+		return rbDAO.selectList(sqlSession);
+	}
+
+	@Override
+	public RMBoard selectBoard(int rbId) {
+		RMBoard b = null;
+		int result = rbDAO.addReadCount(sqlSession, rbId);
+		
+		if(result > 0) {
+			b = rbDAO.selectBoard(sqlSession, rbId);
+		}
+		return b;
+		
+	}
+	
 
 }
