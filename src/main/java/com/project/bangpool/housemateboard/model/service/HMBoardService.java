@@ -12,4 +12,6 @@ public interface HMBoardService {
 
 	int insertBoard(HMBoard hb);
 
+	int updateBoard(HMBoard hb);
+
 }

@@ -324,7 +324,10 @@
                                         <a href="blist.hm" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
-                                        <a href="binsert.hm" class="btn btn-warning btn-sm" >
+                                        <c:url var="hbUpdateView" value="bupView.hm">
+                                        	<c:param name="hbId" value="${ hboard.hbId }"/>
+                                        </c:url>
+                                        <a href="${ hbUpdateView }" class="btn btn-warning btn-sm" >
                                             <i class="fa fa-plus"></i><span class="hidden-xs"> 수정</span>
                                         </a>
                                         

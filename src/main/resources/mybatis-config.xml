@@ -10,7 +10,7 @@
 	<typeAliases>
 		<typeAlias type="com.project.bangpool.member.model.vo.Member" alias="Member"/>
 
-		<typeAlias type="com.project.bangpool.housemateboard.model.vo.HMBoard" alias="hmBoard"/>
+		<typeAlias type="com.project.bangpool.housemateboard.model.vo.HMBoard" alias="HMBoard"/>
 
 		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.FMBoard" alias="FMBoard"/>
 

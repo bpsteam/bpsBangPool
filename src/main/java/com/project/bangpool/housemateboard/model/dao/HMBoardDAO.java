@@ -26,4 +26,20 @@ public class HMBoardDAO {
 		return sqlSession.insert("hmboardMapper.insertBoard", hb);
 	}
 
+	public int selectHbId(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("hmboardMapper.selectHbId");
+	}
+
+	public int insertFile(SqlSessionTemplate sqlSession, HMBoard hb) {
+		return sqlSession.insert("hmboardMapper.insertFile", hb);
+	}
+
+	public int updateBoard(SqlSessionTemplate sqlSession, HMBoard hb) {
+		return sqlSession.update("hmboardMapper.updateBoard", hb);
+	}
+
+	public int updateFile(SqlSessionTemplate sqlSession, HMBoard hb) {
+		return sqlSession.update("hmboardMapper.updateFile", hb);
+	}
+
 }
