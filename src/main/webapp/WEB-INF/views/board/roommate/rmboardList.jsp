@@ -119,7 +119,7 @@
                                                                         	<tr>
                                                                         		<td>${ b.rbId }</td>
                                                                         		<td>${ b.rLocation }</td>
-                                                                        		<td>${ b.rbTitle }</td>
+                                                                        		<td><a href="${ bdetail.rm }">${ b.rbTitle }</a></td>
                                                                         		<td>${ b.rbWriter }</td>
                                                                         		
                                                                        			<%-- <c:param name="rbId" value="${ b.rbId }"></c:param>

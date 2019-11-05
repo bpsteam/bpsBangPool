@@ -62,7 +62,7 @@
                                 <hr style=" margin-top:0px; margin:0px 0px 0px;">
                             </div>
 
-                            <h1 style="text-align: center;"><small>게시물 제목을 보여줍니다</small></h1>
+                            <h1 style="text-align: center;"><small>ROOMMATE 게시판</small></h1>
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>

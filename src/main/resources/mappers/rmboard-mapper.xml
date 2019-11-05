@@ -16,7 +16,7 @@
 		order by RBID desc
 	</select>
 	
-	<!-- <update id="addReadCount" parameterMap="_int">
+	<update id="addReadCount" parameterMap="_int">
 		update ROOMATE_BOARD
 		set RBCOUNT = RBCOUNT + 1
 		where rbId = #{rbId}
@@ -27,7 +27,7 @@
 		from ROOMATE_BOARD
 		where rbId = #{rbId}
 			  and RBSTATUS = 'Y'
-	</select> -->
+	</select>
 	
 	
 </mapper>

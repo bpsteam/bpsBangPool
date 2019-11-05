@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.bangpool.roommateboard.model.exception.RMBoardException;
@@ -58,9 +59,20 @@ public class RMBoardController {
 	
 	
 	@RequestMapping("bdetail.rm")
-	public String selectOneBoard() {
+	public ModelAndView selectOneBoard(@RequestParam("rbId") int rbId,
+									// @RequestParam("page") int page,
+									  ModelAndView mv) {
 		
-		return "rmboardDetailView";
+		RMBoard board = rbService.selectBoard(rbId);
+		
+		if(board != null) {
+			mv.addObject("board", board)
+			  .setViewName("rmboardDetailView");
+		}else {
+			throw new RMBoardException("게시글 상세보기 실패");
+		}
+		
+		return mv;
 	}
 	
 }
