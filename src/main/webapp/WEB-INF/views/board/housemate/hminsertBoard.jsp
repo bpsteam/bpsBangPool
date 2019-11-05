@@ -319,10 +319,8 @@
 																<div class="col-sm-7">
 																	<div class="form-group">
 																		<div class="input-group input-group-sm">
-																			<span class="input-group-addon">파일 0</span><input
-																				type="file" class="form-control input-sm"
-																				name="bf_file[]"
-																				title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
+																			<span class="input-group-addon">파일 0</span>
+																			<input type="file" class="input-sm" name="uploadFile">
 																		</div>
 																	</div>
 																</div>
