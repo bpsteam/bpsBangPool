@@ -89,39 +89,38 @@
                                                             <input type="text" name="wr_homepage" id="wr_homepage" value="" class="form-control input-sm" size="50">
                                                         </div>
                                                    		 </div> -->
+                                                   		 
+                                                   		 <div class="form-group">
+		                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
+		                                                    <div class="col-sm-10">
+		                                                        <div class="input-group">
+		                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
+		                                                            <input type="text" name="rbTitle" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
+		                                                            <span class="input-group-btn">
+		                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
+		                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
+		                                                            </span>
+		                                                        </div>
+		                                                    </div>
+		                                                </div>
                                                 
                                                         <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="RLOCATION">
-                                                        지역분류 			<strong class="sound_only">필수</strong></label>
-                                                        <div class="col-sm-3">
-                                                            <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
-                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
-                                                                <option value="">선택하세요</option>
-                                                                <option value="서울">서울</option>
-                                            <option value="인천/부천">인천/부천</option>
-                                            <option value="수원/경기">수원/경기</option>
-                                            <option value="대구/경북">대구/경북</option>
-                                            <option value="부산/경남">부산/경남</option>
-                                            <option value="충청/강원">충청/강원</option>
-                                            <option value="광주/전라">광주/전라</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+	                                                        <label class="col-sm-2 control-label" for="RLOCATION">지역분류<strong class="sound_only">필수</strong></label>
+	                                                        <div class="col-sm-3">
+	                                                            <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
+	                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
+	                                                                <option value="">선택하세요</option>
+	                                                                <option value="서울">서울</option>
+						                                            <option value="인천/부천">인천/부천</option>
+						                                            <option value="수원/경기">수원/경기</option>
+						                                            <option value="대구/경북">대구/경북</option>
+						                                            <option value="부산/경남">부산/경남</option>
+						                                            <option value="충청/강원">충청/강원</option>
+						                                            <option value="광주/전라">광주/전라</option>
+	                                                            </select>
+	                                                        </div>
+	                                                    </div>
                                                         
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
-                                                    <div class="col-sm-10">
-                                                        <div class="input-group">
-                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
-                                                            <input type="text" name="rbTitle" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
-                                                            <span class="input-group-btn">
-                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
-                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
-                                                                                </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            
                                             
                                             
                                                     <div class="form-group">
@@ -286,7 +285,24 @@
                                                     </div>
                                                     <div class="form-group" style="margin-bottom:0;">
                                                         <div class="col-sm-10 col-sm-offset-2">
-                                                            <table id="variableFiles"><tbody><tr><td><div class="row"><div class="col-sm-7"><div class="form-group"><div class="input-group input-group-sm"><span class="input-group-addon">파일 0</span><input type="file" class="form-control input-sm" name="bf_file[]" title="파일 용량 33,485,760 바이트 이하만 업로드 가능"></div></div></div></div></td></tr></tbody></table>
+                                                            <table id="variableFiles">
+	                                                            <tbody>
+		                                                            <tr>
+			                                                            <td>
+				                                                            <div class="row">
+					                                                            <div class="col-sm-7">
+						                                                            <div class="form-group">
+						                                                            <div class="input-group input-group-sm">
+						                                                            <span class="input-group-addon">파일 0</span>
+						                                                            <input type="file" class="form-control input-sm" name="uploadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
+						                                                            </div>
+						                                                           </div>
+					                                                            </div>
+			                                                            </div>
+			                                                            </td>
+			                                                        </tr>
+	                                                            </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                     <script>

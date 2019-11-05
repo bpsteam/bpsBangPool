@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%-- <script src="<c:url value="code.jquery.com/jquery-1.11.1.min.js" />"></script> --%>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -180,7 +182,7 @@
                                         <div style="both:clear;">
                                         </div>
 
-                                        <div
+                                        <%-- <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>거주지구분</b>
                                         </div>
@@ -189,7 +191,26 @@
                                             	<!-- 아파트 </div> -->
                                             	${ rboard.rLivingType} </div>
                                         <div style="both:clear;">
+                                        </div> --%>
+                                        
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>거주지구분</b>
                                         </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            ${ rboard.rLivingType} </div>
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>첨부파일</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            	<a href="${ contextPath }/resources/rmboarduploads/${ rboard.renameFileName }" download="${ rboard.originalFileName }">${ rboard.originalFileName }</a>
+												<!-- a태그 안에서 다운로드 받을 것이 있을 때 쓰는 속성 download, 얘는 download="fileName" 이라고 해서 fileName을 지정해줄 수 있다. --> </div>
+                                        <div style="both:clear;">
+                                        </div>
+                                        
 
                                     </div>
 
@@ -324,10 +345,10 @@
                                         <div class="col-sm-3"style="text-align: center;">
                                             <label >댓글 입력</label>
                                         </div>
+                                        
                                         <div class="col-sm-9">
-                                            <input type="text" style="width:80%">
-                                            &nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-primary btn-sm">추가</button>
+                                            <input type="text" id="rContent" style="width:80%">&nbsp;&nbsp;&nbsp;
+                                            <button class="btn btn-primary btn-sm" id="rSubmit">추가</button>
                                         </div>
                                     </div>
                                     <div class="margin-bottom-10">
@@ -486,7 +507,78 @@
 
     </div>
     <!-- === END CONTENT === -->
-
+    
+    
+    <script>
+		$(function(){
+			getReplyList();
+			
+			setInterval(function(){
+				getReplyList();
+			}, 10000);
+		});
+		
+		$("#rSubmit").on("click", function(){
+			var rContent = $("#rContent").val();
+			var refBid = ${ rboard.rbId };
+			
+			$.ajax({
+				url: "addReply.rm",
+				data: {rContent:rContent, refBid:refBid},
+				type: "post",
+				success: function(data){
+					if(data == "success"){
+						getReplyList();
+						$("#rContent").val("");
+					}
+				}
+			});
+		});
+		
+		function getReplyList(){
+			var bId = ${ rboard.rbId };
+			
+			$.ajax({
+				url: "rList.rm",
+				data: {rbId:rbId},
+				dataType : "json",
+				success: function(data){
+					$tableBody = $("#rtb tbody");
+					$tableBody.html("");
+					
+					var $tr;
+					var $rWriter;
+					var $rContent;
+					var $rCreateDate;
+					
+					$("#rCount").text("댓글 ("+data.length + ")");
+					
+					if(data.length > 0){
+						for(var i in data){
+							$tr = $("<tr>");
+							$rWriter = $("<td width='100'>").text(data[i].rWriter);
+							$rContent = $("<td>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
+							$rCreateDate = $("<td width='100'>").text(data[i].rCreateDate);
+							
+							$tr.append($rWriter);
+							$tr.append($rContent);
+							$tr.append($rCreateDate);
+							$tableBody.append($tr);
+							
+						}
+					}else{
+						$tr = $("<tr>");
+						$rContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
+						
+						$tr.appent($rContent);
+						$tableBody.append($tr);
+					}
+				}
+			});
+			
+		}
+	</script>
+    
 
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../../common/footer.jsp"/>

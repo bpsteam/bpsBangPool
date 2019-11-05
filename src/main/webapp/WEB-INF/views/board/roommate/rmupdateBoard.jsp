@@ -66,8 +66,8 @@
                                             	<input type="hidden" name="rbId" value="${ rboard.rbId }">
                                                         <div class="form-group has-feedback">
                                                         <label class="col-sm-2 control-label" for="wr_name">작성자<strong class="sound_only"></strong></label>
-                                                        <div class="col-sm-3">{ rboard.rbWriter}
-                                                            <input type="hidden" name="rbWriter" value="${ rboard.rbWriter}" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20">
+                                                        <div class="col-sm-3">
+                                                            <input type="text" name="rbWriter" value="${ rboard.rbWriter }" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20" readonly>
                                                             <span class="fa fa-check form-control-feedback"></span>
                                                         </div>
                                                     </div>
@@ -93,10 +93,23 @@
                                                             <input type="text" name="wr_homepage" id="wr_homepage" value="" class="form-control input-sm" size="50">
                                                         </div>
                                                    		 </div> -->
+                                                   		 
+                                                   		 <div class="form-group">
+                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="input-group">
+                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
+                                                            <input type="text" name="rbTitle" value="${ rboard.rbTitle}" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
+                                                            <span class="input-group-btn">
+                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
+                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
+                                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 
                                                         <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="RLOCATION">
-                                                        지역분류 			<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label" for="RLOCATION"> 지역분류<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                                             <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
                                                             <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
@@ -112,19 +125,7 @@
                                                         </div>
                                                     </div>
                                                         
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
-                                                    <div class="col-sm-10">
-                                                        <div class="input-group">
-                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
-                                                            <input type="text" name="rbTitle" value="${ rboard.rbTitle}" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
-                                                            <span class="input-group-btn">
-                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
-                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
-                                                                                </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             
                                             
                                             
@@ -370,7 +371,11 @@
                                             </fieldset>		</div>
                                                 
                                                 <div class="write-btn pull-center">
-                                                    <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button>
+                                                    <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b>
+	                                                    <c:url var="blist" value="blist.rm">
+															<%-- <c:param name="page" value="${ page }"/> --%>
+														</c:url>
+                                                    </button>
                                                   <!-- <a href="bdetail.rm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a> -->
                                                     <a href="blist.rm" class="btn btn-danger btn-sm" role="button">취소</a>
                                                 </div>
