@@ -12,7 +12,7 @@ public class RMBoardDAO {
 	
 	
 	public int insertBoard(SqlSessionTemplate sqlSession, RMBoard b) {
-		System.out.println("bDAO??????");
+		System.out.println("rbDAO??");
 		return sqlSession.insert("rmboardMapper.insertBoard", b);
 	}
 
@@ -27,8 +27,11 @@ public class RMBoardDAO {
 	public RMBoard selectBoard(SqlSessionTemplate sqlSession, int rbId) {
 		return sqlSession.selectOne("rmboardMapper.selectBoard", rbId);
 	}
-	
-	
+
+	public int updateBoard(SqlSessionTemplate sqlSession, RMBoard b) {
+		System.out.println("updatedao");
+		return sqlSession.update("rmboardMapper.updateBoard", b);
+	}
 	
 
 }

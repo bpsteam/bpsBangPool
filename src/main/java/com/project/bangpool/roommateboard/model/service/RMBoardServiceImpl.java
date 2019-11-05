@@ -33,12 +33,20 @@ public class RMBoardServiceImpl implements RMBoardService{
 	public RMBoard selectBoard(int rbId) {
 		RMBoard b = null;
 		int result = rbDAO.addReadCount(sqlSession, rbId);
+		System.out.println("rbService result값 ? "+result);
 		
 		if(result > 0) {
 			b = rbDAO.selectBoard(sqlSession, rbId);
+			System.out.println("rbService b?"+b);
 		}
 		return b;
 		
+	}
+
+	@Override
+	public int updateBoard(RMBoard b) {
+		System.out.println("update?");
+		return rbDAO.updateBoard(sqlSession, b);
 	}
 	
 

@@ -2,6 +2,8 @@ package com.project.bangpool.roommateboard.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -54,7 +56,20 @@ public class RMBoardController {
 	@RequestMapping("binsertview.rm")
 	public String insertViewBoard() {
 		return "rminsertBoard";
+	}
+	
+	@RequestMapping("bupView.rm")
+	public ModelAndView boardUpdateView(@RequestParam("rbId") int rbId,
+//								@RequestParam("page") int page,
+								ModelAndView mv) {
 		
+		RMBoard rboard = rbService.selectBoard(rbId);
+		
+		mv.addObject("rboard", rboard)
+//		  .addObject("page", page)
+		  .setViewName("rmupdateBoard");
+		
+		return mv;
 	}
 	
 	
@@ -66,7 +81,7 @@ public class RMBoardController {
 		RMBoard board = rbService.selectBoard(rbId);
 		
 		if(board != null) {
-			mv.addObject("board", board)
+			mv.addObject("rboard", board)
 			  .setViewName("rmboardDetailView");
 		}else {
 			throw new RMBoardException("게시글 상세보기 실패");
@@ -74,6 +89,37 @@ public class RMBoardController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("bupdate.rm")
+	public ModelAndView boardUpdate(@ModelAttribute RMBoard b,
+									HttpServletRequest request,
+									ModelAndView mv) {
+		
+//		if(reloadFile != null && !reloadFile.isEmpty()) {
+//			// 기존 필요없는 파일 지우기
+//			deleteFile(b.getRenameFileName(), request);
+//		}
+//		
+//		String renameFileName = saveFile(reloadFile, request);
+//		
+//		if(renameFileName != null) {
+//			b.setOriginalFileName(reloadFile.getOriginalFilename());;
+//			b.setRenameFileName(renameFileName);
+//		}
+		
+		int result = rbService.updateBoard(b);
+		
+		if(result > 0) {
+			// page가지고 --> bdetail [수정된 거 보여주기]
+//			mv.addObject("page", page).setViewName("redirect:bdetail.rm?rbId="+b.getRbId());
+			mv.setViewName("redirect:bdetail.rm?rbId="+b.getRbId());
+		}else {
+			throw new RMBoardException("게시글 수정에 실패");
+		}
+		
+		return mv;
+	}
+	
 	
 }
 

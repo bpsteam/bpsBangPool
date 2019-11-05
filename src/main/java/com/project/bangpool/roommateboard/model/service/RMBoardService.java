@@ -11,5 +11,7 @@ public interface RMBoardService {
 	ArrayList<RMBoard> selectList();
 	
 	RMBoard selectBoard(int rbId);
+	
+	int updateBoard(RMBoard b);
 
 }

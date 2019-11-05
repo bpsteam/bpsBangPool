@@ -71,11 +71,11 @@
                                     <div class="font-12 text-muted">
                                         <i class="fa fa-user"></i>
                                         <!-- <span class="sv_member">송다혜</span> --> 
-                                        <span class="sv_member">${ RMBoard.rbWriter}</span> 
+                                        <span class="sv_member">${ rboard.rbWriter}</span> 
                                         <span class="hidden-xs">
                                             <span class="sp"></span>
                                             <!-- <i class="fa fa-tag"></i> 부산/경남 </span> -->
-                                            <i class="fa fa-tag"></i> ${ RMBoard.rLocation} </span>
+                                            <i class="fa fa-tag"></i> ${ rboard.rLocation} </span>
 
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
@@ -101,19 +101,19 @@
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;">
                                             <!-- <font color="006699"><b>매너인만</b></font> -->
-                                            <font color="006699"><b>${ RMBoard.rbTitle}</b></font>
+                                            <font color="006699"><b>${ rboard.rbTitle}</b></font>
                                         </div>
                                         <div style="both:clear;">
                                         </div>
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <!-- <b>작성자</b> -->
-                                            <b>${ RMBoard.rbWriter}</b>
+                                            <b>작성자</b>
+                                            <%-- <b>${ rboard.rbWriter}</b> --%>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            	확인 </div>
+                                            	${ rboard.rbWriter} </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>작성일자</b>
@@ -121,7 +121,7 @@
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <!-- 19-09-02 </div> -->
-                                            ${ RMBoard.rbCreateDate} </div>
+                                            ${ rboard.rbCreateDate} </div>
                                         <div style="both:clear;">
                                         </div>
 
@@ -132,7 +132,7 @@
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             	<!-- 세놓아요 </div> -->
-                                            	${ RMBoard.bcode} </div>
+                                            	${ rboard.bcode} </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>조회건수</b>
@@ -140,7 +140,7 @@
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <!-- 128 -->
-                                            ${ RMBoard.rbCount}
+                                            ${ rboard.rbCount}
                                         </div>
                                         <div style="both:clear;">
                                         </div>
@@ -176,7 +176,7 @@
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             	<!-- 대구/경북 </div> -->
-                                            	${ RMBoard.rLocation} </div>
+                                            	${ rboard.rLocation} </div>
                                         <div style="both:clear;">
                                         </div>
 
@@ -187,14 +187,14 @@
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             	<!-- 아파트 </div> -->
-                                            	${ RMBoard.rLivingType} </div>
+                                            	${ rboard.rLivingType} </div>
                                         <div style="both:clear;">
                                         </div>
 
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
-                                    ${ RMBoard.rbContent}
+                                    ${ rboard.rbContent}
                                         	<!-- 이사가려고 집 알아보다가 글올립니다.
                                         <br>보증금은 제가 1억정도 보유하고 있고 월세는 최대 합쳐서 60~80정도로 생각하고 있어요.
                                         <br>서울 너무 외곽만 아니면 위치는 제가 맞출테니 진지하신 분만 연락주세요 .
@@ -340,7 +340,11 @@
                                         <a href="blist.rm" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
-                                        <a href="binsert.rm" class="btn btn-warning btn-sm" >
+                                        
+                                        <c:url var="bupView" value="bupView.rm">
+                                    		<c:param name="rbId" value="${ rboard.rbId }"></c:param>
+                                    	</c:url>
+                                        <a href="${ bupView }" class="btn btn-warning btn-sm" >
                                             <i class="fa fa-plus"></i><span class="hidden-xs"> 수정</span>
                                         </a>
                                         

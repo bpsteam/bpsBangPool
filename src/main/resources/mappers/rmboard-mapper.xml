@@ -16,18 +16,46 @@
 		order by RBID desc
 	</select>
 	
-	<update id="addReadCount" parameterMap="_int">
+	<update id="addReadCount" parameterType="_int">
 		update ROOMATE_BOARD
 		set RBCOUNT = RBCOUNT + 1
 		where rbId = #{rbId}
 	</update>
 	
-	<select id="selectBoard" parameterMap="_int" resultType="RMBoard">
+	<resultMap type="RMBoard" id="rmboardResultSet">
+		<id property="rbId" column="RBID"/>
+		<result property="bcode" column="BCODE"/>
+		<result property="rbTitle" column="RBTITLE"/>
+		<result property="rbWriter" column="RBWRITER"/>
+		<result property="rbContent" column="RBCONTENT"/>
+		<result property="rbCount" column="RBCOUNT"/>
+		<result property="rbCreateDate" column="RBCREATEDATE"/>
+		<result property="rbModifyDate" column="RBMODIFYDATE"/>
+		<result property="rbStatus" column="RBSTATUS"/>
+		<result property="rLocation" column="RLOCATION"/>
+		<result property="rRentType" column="RRENTTYPE"/>
+		<result property="rLivingType" column="RLIVINGTYPE"/>
+		<result property="rRoomCount" column="RROOMCOUNT"/>
+		<result property="rFloor" column="RFLOOR"/>
+		<result property="rPrice" column="RPRICE"/>
+		<result property="rParking" column="RPARKING"/>
+		<result property="rReqGender" column="RREQGENDER"/>
+	</resultMap>
+	
+	<select id="selectBoard" parameterType="_int" resultMap="rmboardResultSet">
 		select *
 		from ROOMATE_BOARD
 		where rbId = #{rbId}
 			  and RBSTATUS = 'Y'
 	</select>
+	
+	<update id="updateBoard" parameterType="RMBoard">
+		update ROOMATE_BOARD
+		set rLocation=#{rLocation}, rbTitle=#{rbTitle}, rbContent=#{rbContent}, 
+			rbWriter=#{rbWriter}, rRentType=#{rRentType}, rLivingType=#{rLivingType}, rRoomCount=#{rRoomCount},
+			rFloor=#{rFloor}, rPrice=#{rPrice}, rParking=#{rParking}, rReqGender=#{rReqGender}
+	<!-- 생성/수정 날짜 -->		
+	</update>
 	
 	
 </mapper>
