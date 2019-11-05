@@ -8,4 +8,26 @@
 				#{rbWriter}, default, sysdate, sysdate, default, 
 				#{rRentType}, #{rLivingType}, #{rRoomCount}, #{rFloor}, #{rPrice}, #{rParking}, #{rReqGender})
 	</insert>
+	
+	<select id="selectList" resultType="RMBoard">
+		select * 
+		from ROOMATE_BOARD
+		where RBSTATUS = 'Y'
+		order by RBID desc
+	</select>
+	
+	<update id="addReadCount" parameterMap="_int">
+		update ROOMATE_BOARD
+		set RBCOUNT = RBCOUNT + 1
+		where rbId = #{rbId}
+	</update>
+	
+	<select id="selectBoard" parameterMap="_int" resultType="RMBoard">
+		select *
+		from ROOMATE_BOARD
+		where rbId = #{rbId}
+			  and RBSTATUS = 'Y'
+	</select>
+	
+	
 </mapper>

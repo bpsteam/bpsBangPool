@@ -193,7 +193,7 @@
                                             
                                             
                                             
-                                                    <div class="form-group">
+                                                    <!-- <div class="form-group">
                                                         <label class="col-sm-2 control-label " for="ca_name">핸드폰<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-7">
                                                         
@@ -224,7 +224,7 @@
                                                         </td>
                                                         </tr></tbody></table>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                             
                                             
                                                     <div class="form-group">

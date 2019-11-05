@@ -17,8 +17,8 @@ public class RMBoard {
 	private String rbStatus;		// 글 삭제여부
 	
 	private String rLocation; 		// 지역분류
-	private String rRentType;		// 매물구분
-	private String rLivingType; 	// 매물종류(거주지형태)
+	private String rRentType;		// 매물구분 (전세,월세,매매)
+	private String rLivingType; 	// 매물종류(거주지형태) 오피스텔,아파트
 	private String rRoomCount;		// 방갯수
 	private String rFloor;			// 해당층수
 	private String rPrice;			// 거래금액
