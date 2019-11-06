@@ -119,8 +119,13 @@
                                                                         	<tr>
                                                                         		<td>${ b.rbId }</td>
                                                                         		<td>${ b.rLocation }</td>
-                                                                        		<td><a href="${ bdetail.rm }">${ b.rbTitle }</a></td>
+                                                                        		<td>
+                                                                        			<c:url var="bdetail" value="bdetail.rm">
+                                                                        				<c:param name="rbId" value="${ b.rbId }"></c:param>
+                                                                        			</c:url>
+                                                                        				<a href="${ bdetail }">${ b.rbTitle }</a></td>
                                                                         		<td>${ b.rbWriter }</td>
+                                                                        		
                                                                         		
                                                                        			<%-- <c:param name="rbId" value="${ b.rbId }"></c:param>
                                                                        			<c:param name="rLocation" value="${ b.rLocation }"></c:param>

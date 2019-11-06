@@ -29,7 +29,6 @@ import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
-import com.project.bangpool.roommateboard.model.exception.BoardException;
 
 
 @Controller
@@ -284,7 +283,7 @@ public class FMBoardController {
 			return "success";
 			
 		}else {
-			throw new BoardException("댓글등록실패");
+			throw new FMBoardException("댓글등록실패");
 		}
 		
 	}

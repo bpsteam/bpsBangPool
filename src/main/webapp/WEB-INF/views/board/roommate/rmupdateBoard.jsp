@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 
     <style>
-    /*     #ultag li {
+    /*  ㅇㅇ   dd
+    	#ultag li {
             display: inline;
             padding: 0 30px;
         }
@@ -59,11 +60,15 @@
                                 
                                 <div class="panel panel-blue">
                                     <div class="panel-body" style="background-color: white;">
-                                            <form action="binsert.rm" method="post" enctype="Multipart/form-data" class="form-horizontal">
+                                            <form action="bupdate.rm" method="post" enctype="Multipart/form-data" class="form-horizontal">
+                                            	<!-- 페이지 처리 후 수정  -->
+                                            	<%-- <input type="hidden" name="page" value="${ page }"> --%>
+                                            	<%-- <input type="hidden" name="renameFileName" value="${ board.renameFileName }"> --%>
+                                            	<input type="hidden" name="rbId" value="${ rboard.rbId }">
                                                         <div class="form-group has-feedback">
-                                                        <label class="col-sm-2 control-label" for="wr_name">이름<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label" for="wr_name">작성자<strong class="sound_only"></strong></label>
                                                         <div class="col-sm-3">
-                                                            <input type="text" name="rbWriter" value="" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20">
+                                                            <input type="text" name="rbWriter" value="${ rboard.rbWriter }" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20" readonly>
                                                             <span class="fa fa-check form-control-feedback"></span>
                                                         </div>
                                                     </div>
@@ -91,43 +96,44 @@
                                                    		 </div> -->
                                                    		 
                                                    		 <div class="form-group">
-		                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
-		                                                    <div class="col-sm-10">
-		                                                        <div class="input-group">
-		                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
-		                                                            <input type="text" name="rbTitle" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
-		                                                            <span class="input-group-btn">
-		                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
-		                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
-		                                                            </span>
-		                                                        </div>
-		                                                    </div>
-		                                                </div>
+                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
+                                                    <div class="col-sm-10">
+                                                        <div class="input-group">
+                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
+                                                            <input type="text" name="rbTitle" value="${ rboard.rbTitle}" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
+                                                            <span class="input-group-btn">
+                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
+                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
+                                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 
                                                         <div class="form-group">
-	                                                        <label class="col-sm-2 control-label" for="RLOCATION">지역분류<strong class="sound_only">필수</strong></label>
-	                                                        <div class="col-sm-3">
-	                                                            <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
-	                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
-	                                                                <option value="">선택하세요</option>
-	                                                                <option value="서울">서울</option>
-						                                            <option value="인천/부천">인천/부천</option>
-						                                            <option value="수원/경기">수원/경기</option>
-						                                            <option value="대구/경북">대구/경북</option>
-						                                            <option value="부산/경남">부산/경남</option>
-						                                            <option value="충청/강원">충청/강원</option>
-						                                            <option value="광주/전라">광주/전라</option>
-	                                                            </select>
-	                                                        </div>
-	                                                    </div>
+                                                        <label class="col-sm-2 control-label" for="RLOCATION"> 지역분류<strong class="sound_only">필수</strong></label>
+                                                        <div class="col-sm-3">
+                                                            <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
+                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
+                                                                <option value="">선택하세요</option>
+                                                                <option value="서울">서울</option>
+                                            <option value="인천/부천">인천/부천</option>
+                                            <option value="수원/경기">수원/경기</option>
+                                            <option value="대구/경북">대구/경북</option>
+                                            <option value="부산/경남">부산/경남</option>
+                                            <option value="충청/강원">충청/강원</option>
+                                            <option value="광주/전라">광주/전라</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                         
+                                                
+                                            
                                             
                                             
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label " for=RRENTTYPE>매물구분<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                             
-                                                            <!-- <select name="wr_1" id="wr_1" required="" itemname="게시물분류" class="form-control input-sm"> -->
                                                             <select name="rRentType" id="wr_1" required="" itemname="게시물분류" class="form-control input-sm">
                                                                 <option value="" selected="">매물구분 선택</option>
                                                                 <option value="전세">전세</option>
@@ -150,9 +156,6 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                
-                                                
-                                                
                                                 
                                                 
                                                 
@@ -231,7 +234,7 @@
                                                         <label class="col-sm-2 control-label " for="RPRICE">거래금액</label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <input type="text" name="rPrice" size="50" value="" class="form-control input-sm">
+                                                        <input type="text" name="rPrice" size="50" value="${ rboard.rPrice}" class="form-control input-sm">
                                                         </div>
                                                     </div>
                                             
@@ -241,7 +244,7 @@
                                                         <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <input type="text" name="rParking" size="50" value="" class="form-control input-sm">
+                                                        <input type="text" name="rParking" size="50" value="${ rboard.rParking}" class="form-control input-sm">
                                                         </div>
                                                     </div>
                                             
@@ -249,7 +252,7 @@
                                                     <label class="col-sm-2 control-label">내용</label>
                                                     <div class="col-sm-12">
                                                                     <span class="sound_only"></span>
-                                            <textarea id="wr_content" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px"></textarea>
+                                            <textarea id="wr_content" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px">${ rboard.rbContent }</textarea>
                                             <span class="sound_only"></span>		</div>
                                                 </div>
                                             
@@ -285,24 +288,7 @@
                                                     </div>
                                                     <div class="form-group" style="margin-bottom:0;">
                                                         <div class="col-sm-10 col-sm-offset-2">
-                                                            <table id="variableFiles">
-	                                                            <tbody>
-		                                                            <tr>
-			                                                            <td>
-				                                                            <div class="row">
-					                                                            <div class="col-sm-7">
-						                                                            <div class="form-group">
-						                                                            <div class="input-group input-group-sm">
-						                                                            <span class="input-group-addon">파일 0</span>
-						                                                            <input type="file" class="form-control input-sm" name="uploadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
-						                                                            </div>
-						                                                           </div>
-					                                                            </div>
-			                                                            </div>
-			                                                            </td>
-			                                                        </tr>
-	                                                            </tbody>
-                                                            </table>
+                                                            <table id="variableFiles"><tbody><tr><td><div class="row"><div class="col-sm-7"><div class="form-group"><div class="input-group input-group-sm"><span class="input-group-addon">파일 0</span><input type="file" class="form-control input-sm" name="bf_file[]" title="파일 용량 33,485,760 바이트 이하만 업로드 가능"></div></div></div></div></td></tr></tbody></table>
                                                         </div>
                                                     </div>
                                                     <script>
@@ -386,7 +372,11 @@
                                             </fieldset>		</div>
                                                 
                                                 <div class="write-btn pull-center">
-                                                    <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button>
+                                                    <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b>
+	                                                    <c:url var="blist" value="blist.rm">
+															<%-- <c:param name="page" value="${ page }"/> --%>
+														</c:url>
+                                                    </button>
                                                   <!-- <a href="bdetail.rm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a> -->
                                                     <a href="blist.rm" class="btn btn-danger btn-sm" role="button">취소</a>
                                                 </div>
