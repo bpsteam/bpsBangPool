@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.common.Pagination;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.housemateboard.model.exception.HMBoardException;
 import com.project.bangpool.housemateboard.model.service.HMBoardService;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
@@ -36,16 +38,25 @@ public class HMBoardController {
 
 	/*** 전체 게시글 불러오기 ***/
 	@RequestMapping("blist.hm")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page,
+								ModelAndView mv) {
 		
-		ArrayList<HMBoard> list = hbService.selectList();
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = hbService.getListCount(); // 총 게시물 갯수
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		System.out.println("pi" + pi);
+		
+		ArrayList<HMBoard> list = hbService.selectList(pi);
 		if(list != null) {
-			mv.addObject("list", list);
+			mv.addObject("list", list).addObject("pi", pi);
 			mv.setViewName("hmboardList");
 		} else {
 			throw new HMBoardException("게시글 전체 조회 실패하였습니다.");
 		}
-		//return "hmboardList";
 		return mv;
 	}
 	
@@ -56,6 +67,7 @@ public class HMBoardController {
 									ModelAndView mv) {
 		
 		HMBoard hmboard = hbService.selectBoard(hbId);
+		System.out.println("bdetail hbId : "+ hbId);
 		System.out.println("bdetail hmboard : "+ hmboard);
 		
 		if(hmboard != null) {

@@ -61,7 +61,7 @@
                                 <hr style=" margin-top:0px; margin:0px 0px 0px;">
                             </div>
 
-                            <h1 style="text-align: center;"><small>${ hboard.hbTitle } </small></h1>
+                            <h1 style="text-align: center;"><small>${ hboard.hbTitle }</small></h1>
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>
@@ -69,20 +69,19 @@
                                 <div class="panel-heading" style="border-bottom: none;">
                                     <div class="font-12 text-muted">
                                         <i class="fa fa-user"></i>
-                                        <span class="sv_member">송다혜</span> <span class="hidden-xs">
+                                        <span class="sv_member">${ hboard.hbWriter }</span> 
+                                        <span class="hidden-xs">
                                             <span class="sp"></span>
                                             <i class="fa fa-tag"></i>
-                                            부산/경남 </span>
-
+                                            ${ hboard.hLocation } 
+                                        </span>
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
                                         <b style="color:red">4</b>
                                         <span class="sp"></span>
-                                        <i class="fa fa-eye"></i>
-                                        118
+                                        <i class="fa fa-eye"></i>${ hboard.hbCount }
                                         <span class="pull-right">
-                                            <i class="fa fa-clock-o"></i>
-                                            09.23 23:49 </span>
+                                        	<i class="fa fa-clock-o"></i>${ hboard.hbCreateDate }</span>
                                     </div>
                                 </div>
                             </div>
@@ -176,8 +175,18 @@
                                             <b>거주지구분</b>
                                         </div>
                                         <div
-                                            style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             ${ hboard.hLivingType } </div>
+                                        <div style="both:clear;">
+                                        </div>
+                                        
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>파일첨부</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                          	  ${ hboard.originalFileName } </div>
                                         <div style="both:clear;">
                                         </div>
 
