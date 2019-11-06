@@ -14,7 +14,7 @@
 		where HBSTATUS='Y'
 		order by HBID desc
 	</select>
-	<resultMap type="hmBoard" id="boardResultSet">
+	<resultMap type="HMBoard" id="boardResultSet">
 		<id property="hbId" column="HBID"/>
 		<result property="bcode" column="BCODE"/>
 		<result property="hbTitle" column="HBTITLE"/>
@@ -25,7 +25,7 @@
 		<result property="hbModifyDate" column="HBMODIFYDATE"/>
 		<result property="hbStatus" column="HBSTATUS"/>
 		
-		<result property="hLocation" column="LOCATION"/>
+		<result property="hLocation" column="HLOCATION"/>
 		<result property="hRentType" column="HRENTTYPE"/>
 		<result property="hLivingType" column="HLIVINGTYPE"/>
 		<result property="hRoom" column="HROOMCOUNT"/>
@@ -41,21 +41,64 @@
 		where HBID = #{hbId}
 	</update>
 	
-	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
-		select *
-		from HOUSEMATE_BOARD hb 
-		where hbid =#{hbId}
-			  and hbstatus='Y' 
+	<select id="selectBoard" parameterType="_int" resultType="HMBoard">
+		select hb.*, a.ORIGINALFILENAME, a.renamefilename
+		from HOUSEMATE_BOARD hb
+		left join attachment a on a.bcode=hb.bcode
+		where hb.hbid = a.refbid
+		and hb.hbstatus='Y' 
+		and hb.hbid =#{hbId} 
 	</select>
 	
-	<insert id="insertBoard" parameterType="hmBoard">
+	<insert id="insertBoard" parameterType="HMBoard">
 		insert into HOUSEMATE_BOARD
 		values(HOUSEMATE_BOARD_SEQ.nextval, default , #{hbTitle}, #{hbContent}, #{hbWriter}, default,
 				sysdate, sysdate, default, #{hLocation}, #{hRentType}, #{hLivingType},
 				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hreqgender})
 	</insert>
 	
+	<select id="selectHbId" resultType="_int">
+		select max(hbid)
+		from HOUSEMATE_BOARD
+	</select>
 	
+	<insert id="insertFile">
+		insert into ATTACHMENT
+		values (attachment_seq.nextval, #{bcode}, #{hbId}, #{originalFileName}, #{renameFileName} )
+	</insert>
 	
+	<update id="updateBoard" parameterType="HMBoard" >
+		update HOUSEMATE_BOARD
+		set hbtitle=#{hbTitle}, hbcontent=#{hbContent}, location=#{hLocation}, 
+			HBMODIFYDATE=sysdate, hrenttype=#{hRentType}, hlivingtype=#{hLivingType},
+			hroomcount=#{hRoom}, hfloor=#{hFloor}, hprice=#{hPrice}, hparking=#{hParking}, hreqgender=#{hreqgender}
+		where hbid=#{hbId}
+	</update>
+	
+	<update id="updateFile" parameterType="HMBoard">
+		update attachment
+		set originalFilename = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where bcode = #{bcode}
+		and refbid = #{hbId}
+	</update>
+	
+	<update id="deleteBoard" parameterType="_int">
+		update HOUSEMATE_BOARD
+		set HBSTATUS='N'
+		where hbid = #{hbId}
+	</update>
+	
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+		select * from Reply r
+		join HOUSEMATE_BOARD hm on hm.bcode=r.bcode
+		and r.refbid = hbid
+		where refbid=${hbId}
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		insert into Reply
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+	</insert>
 	
 </mapper>

@@ -4,19 +4,19 @@ import java.sql.Date;
 
 public class HMBoard {
 	
-	private int hbId;	
-	private String bcode;
+	private int hbId;				//게시글 번호
+	private String bcode;			//게시판코드(HMBOARD)
 	private String hbTitle;			//제목
 	private String hbWriter;		//작성자
 	private String hbContent;		//게시물내용
-	private String originalFileName;
-	private String renameFileName;	
+	private String originalFileName;//기존파일이름
+	private String renameFileName;	//변경파일이름
 	private int hbCount;			//조회수
 	private Date hbCreateDate;		//작성일자
-	private Date hbModifyDate;
-	private String hbStatus;
+	private Date hbModifyDate;		//수정일자
+	private String hbStatus;		//게시글상태
 	
-	private String hLocation; 		// 지역분류
+	private String hLocation; 		//지역분류
 	private String hRentType;		//매물구분
 	private String hLivingType; 	//매물종류(거주지형태)
 	private String hRoom;			//방갯수

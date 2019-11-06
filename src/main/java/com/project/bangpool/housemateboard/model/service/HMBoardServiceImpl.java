@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.housemateboard.model.dao.HMBoardDAO;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
 
@@ -38,7 +39,53 @@ public class HMBoardServiceImpl implements HMBoardService {
 
 	@Override
 	public int insertBoard(HMBoard hb) {
-		return hbDAO.insertBoard(sqlSession, hb);
+		// insert시에  파일은 attachment테이블에  저장
+		
+		int result1 = hbDAO.insertBoard(sqlSession, hb);
+		int result2  = 0;
+		
+		if(result1 > 0) {
+			int hbId = hbDAO.selectHbId(sqlSession);	//해당 게시글번호 select 가져오기
+			hb.setHbId(hbId);
+			hb.setBcode("HMBCODE");
+			
+			result2 = hbDAO.insertFile(sqlSession, hb);
+		}
+		
+		return result2;
 	}
+
+	@Override
+	public int updateBoard(HMBoard hb) {
+		// update시, 첨부파일은 attachment테이블에 저장
+		
+		int result1 = hbDAO.updateBoard(sqlSession, hb);
+		int result2  = 0;
+		
+		if(result1 > 0) {
+			hb.setBcode("HMBCODE");
+			
+			result2 = hbDAO.updateFile(sqlSession, hb);
+		}
+		return result2;
+	}
+
+	@Override
+	public int deleteBoard(int hbId) {
+		return hbDAO.deleteBoard(sqlSession, hbId);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int hbId) {
+		return hbDAO.selectReplyList(sqlSession, hbId);
+	}
+
+	@Override
+	public int insertReply(Reply r) {
+		return hbDAO.insertReply(sqlSession, r);
+	}
+	
+	
+	
 
 }

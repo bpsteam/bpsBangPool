@@ -1,20 +1,32 @@
 package com.project.bangpool.housemateboard.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.housemateboard.model.exception.HMBoardException;
 import com.project.bangpool.housemateboard.model.service.HMBoardService;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
+import com.project.bangpool.member.model.vo.Member;
 
 @Controller
 public class HMBoardController {
@@ -44,6 +56,7 @@ public class HMBoardController {
 									ModelAndView mv) {
 		
 		HMBoard hmboard = hbService.selectBoard(hbId);
+		System.out.println("bdetail hmboard : "+ hmboard);
 		
 		if(hmboard != null) {
 			mv.addObject("hboard", hmboard)
@@ -51,8 +64,6 @@ public class HMBoardController {
 		} else {
 			throw new HMBoardException("게시글 상세보기 조회 실패하였습니다.");
 		}
-		
-		//return "hmboardDetailView";
 		return mv;
 	}
 	
@@ -81,6 +92,7 @@ public class HMBoardController {
 				hb.setOriginalFileName(uploadFile.getOriginalFilename());  //파일네임지정
 				hb.setRenameFileName(renameFileName); // 리네임파일 지정
 			}
+			System.out.println("파일이름 넣은후 hb : "+ hb);
 		}
 		
 		int result = hbService.insertBoard(hb);
@@ -95,11 +107,11 @@ public class HMBoardController {
 
 
 	private String saveFile(MultipartFile file, HttpServletRequest request) {
-		//파일이 저장될 경로 설정
-		String root = request.getSession().getServletContext().getRealPath("resources");
-		// ==> webapp 아래에 있는 resources를 데려온다는 의미.
 		
-		String savePath = root + "\\hbuploadFiles";   // '\\' 두개 입력해줘야함
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		// 파일이 저장될 경로 설정 ==> webapp 아래에 있는 resources를 데려온다는 의미.
+		
+		String savePath = root + "\\hmBoardUploadFiles";   
 		
 		File folder = new File(savePath);
 		if(!folder.exists()) {
@@ -124,6 +136,120 @@ public class HMBoardController {
 	}
 	
 	
+	/*** 게시글 디테일에서 수정하기 화면가기 ***/
+	@RequestMapping("bupView.hm")
+	public ModelAndView boardUpdateView(@RequestParam("hbId") int hbId,
+								  		/*@RequestParam("page") int page, */
+										ModelAndView mv) {
+		
+		HMBoard hboard = hbService.selectBoard(hbId);
+		System.out.println("upView에서 db후 hb: "+ hboard);
+		
+		mv.addObject("hboard", hboard)
+		  /*.addObject("page",page)*/
+		  .setViewName("hmUpdateForm");
+		
+		return mv;
+	}
+	
+	
+	/*** 정보 입력 후 수정하기 버튼 눌렀을 시 ***/
+	@RequestMapping("bupdate.hm")
+	public ModelAndView boardUpdate(@ModelAttribute HMBoard hb,
+							/*@RequestParam("page") Integer page,*/
+							@RequestParam("reloadFile") MultipartFile reloadFile,
+							HttpServletRequest request,
+							ModelAndView mv) {
+		
+		if(reloadFile != null && !reloadFile.isEmpty()) {
+			deleteFile(hb.getRenameFileName(), request);
+		}
+		
+		String renameFileName = saveFile(reloadFile, request);
+		
+		if(renameFileName != null) {
+			hb.setOriginalFileName(reloadFile.getOriginalFilename());
+			hb.setRenameFileName(renameFileName);
+		}
+		System.out.println("update.hm db전 hb: "+ hb);
+		int result = hbService.updateBoard(hb);
+		System.out.println("update.hm db후 hb: "+ hb);
+		
+		if(result > 0) {
+			//mv.addObject("page", page).setViewName("redirect:bdetail.bo?bId="+hb.getHbId());
+			mv.setViewName("redirect:bdetail.hm?hbId="+hb.getHbId());
+		} else {
+			throw new HMBoardException("게시글 수정 실패하였습니다.");
+		}
+		
+		return mv;
+	}
+
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\hmBoardUploadFiles";
+		
+		File f = new File(savePath + "\\" + fileName);
+		
+		if(f.exists()) {
+			f.delete();	//파일 존재시 삭제
+		}
+	}
+	
+	
+	/*** 정보 입력 후 삭제하기 버튼 눌렀을 시 ***/
+	@RequestMapping("bdelete.hm")
+	public ModelAndView boardDelete(@RequestParam("hbId") int hbId,
+			/* @RequestParam(value="page", required=false) Integer page, */
+									ModelAndView mv) {
+		
+		int result = hbService.deleteBoard(hbId);
+		
+		if(result > 0) {
+			//mv.addObject("page", page).setViewName("redirect:blist.hm");
+			mv.setViewName("redirect:blist.hm");
+		} else {
+			throw new HMBoardException("게시글 삭제 실패하였습니다.");
+		}
+		
+		return mv;
+	}
+	
+	
+	//reply 형태 보여주기
+	@RequestMapping("rList.hm")
+	public void getReplyList(HttpServletResponse response, int hbId) throws JsonIOException, IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Reply> list = hbService.selectReplyList(hbId);
+		
+		for(Reply r : list) {
+			r.setrContent(URLEncoder.encode(r.getrContent(), "utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	}
+	
+	//reply data 가져오기
+	@RequestMapping("addReply.hm")
+	@ResponseBody
+	public String addReply(Reply r, HttpSession session) {
+
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		String rWriter=loginUser.getName();
+		
+		r.setrWriter(rWriter);
+		
+		int result = hbService.insertReply(r);
+		
+		if(result > 0 ) {
+			return "success";
+		}else {
+			throw new HMBoardException("댓글 등록에 실패하였습니다.");
+		}
+				
+	}
 	
 	
 }
