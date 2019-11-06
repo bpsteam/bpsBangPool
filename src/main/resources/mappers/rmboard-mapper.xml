@@ -6,7 +6,8 @@
 		insert into ROOMATE_BOARD
 		values (ROOMATE_BOARD_SEQ.nextval, default, #{rLocation}, #{rbTitle}, #{rbContent},
 				#{rbWriter}, default, sysdate, sysdate, default, 
-				#{rRentType}, #{rLivingType}, #{rRoomCount}, #{rFloor}, #{rPrice}, #{rParking}, #{rReqGender})
+				#{rRentType}, #{rLivingType}, #{rRoomCount}, #{rFloor}, #{rPrice}, #{rParking}, #{rReqGender},
+				#{originalFileName}, #{renameFileName})
 	</insert>
 	
 	<select id="selectList" resultType="RMBoard">
@@ -40,6 +41,8 @@
 		<result property="rPrice" column="RPRICE"/>
 		<result property="rParking" column="RPARKING"/>
 		<result property="rReqGender" column="RREQGENDER"/>
+		<result property="originalFileName" column="ORIGINAL_FILENAME"/>
+		<result property="renameFileName" column="RENAME_FILENAME"/>
 	</resultMap>
 	
 	<select id="selectBoard" parameterType="_int" resultMap="rmboardResultSet">
@@ -54,8 +57,28 @@
 		set rLocation=#{rLocation}, rbTitle=#{rbTitle}, rbContent=#{rbContent}, 
 			rbWriter=#{rbWriter}, rRentType=#{rRentType}, rLivingType=#{rLivingType}, rRoomCount=#{rRoomCount},
 			rFloor=#{rFloor}, rPrice=#{rPrice}, rParking=#{rParking}, rReqGender=#{rReqGender}
+		where rbId = #{rbId} 	
 	<!-- 생성/수정 날짜 -->		
 	</update>
 	
+	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+		select *
+		from reply r
+			join board b on(refbId = rbId)
+		where refbId = #{rbId}	
+		order by rid desc
+	</select>
+	
+	<resultMap id="replyResultSet" type="Reply">
+		<result property="refbId" column="REFBID"/>
+		<result property="rCreateDate" column="RCREATEDATE"/>
+		<result property="rModifyDate" column="RMODIFYDATE"/>
+		<result property="rStatus" column="RSTATUS"/>
+	</resultMap>
+	
+	<insert id="insertReply" parameterType="Reply">
+		insert into reply
+		values (REPLY_SEQ.nextval, default, #{rContent}, #{refbId}, #{rWriter},sysdate, sysdate, default)
+	</insert>
 	
 </mapper>
