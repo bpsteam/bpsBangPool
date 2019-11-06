@@ -2,11 +2,13 @@ package com.project.bangpool.freshmanmateboard.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 
 @Repository("fbDAO")
 public class FMBoardDAO {
@@ -15,16 +17,20 @@ public class FMBoardDAO {
 		return sqlSession.insert("fmboardMapper.insertBoard",b);
 	}
 
-	public ArrayList<FMBoard> selectList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("fmboardMapper.selectList");
+	public ArrayList<FMBoard> selectList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("fmboardMapper.selectList", location, rowBounds);
 	}
 
-	public int addReadCount(SqlSessionTemplate sqlSession, int bId) {
-		return sqlSession.update("fmboardMapper.addReadCount", bId);
+	public int addReadCount(SqlSessionTemplate sqlSession, int fbId) {
+		return sqlSession.update("fmboardMapper.addReadCount", fbId);
 	}
 
-	public FMBoard selectBoard(SqlSessionTemplate sqlSession, int bId) {
-		return sqlSession.selectOne("fmboardMapper.selectBoard", bId);
+	public FMBoard selectBoard(SqlSessionTemplate sqlSession, int fbId) {
+		return sqlSession.selectOne("fmboardMapper.selectBoard", fbId);
 	}
 
 	public int selectCurrentBno(SqlSessionTemplate sqlSession) {
@@ -53,6 +59,10 @@ public class FMBoardDAO {
 
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int fbId) {
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectReplyList",fbId);
+	}
+
+	public int getListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("fmboardMapper.getListCount");
 	}
 
 

@@ -23,11 +23,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.common.Pagination;
 import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.BoardException;
+
 
 @Controller
 public class FMBoardController {
@@ -37,14 +40,29 @@ public class FMBoardController {
 	private FMBoardService fbService;
 
 	@RequestMapping("blist.fm")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, 
+								ModelAndView mv, @RequestParam("fLocation") String location) {
 		
-		ArrayList<FMBoard> list = fbService.selectList();
+		System.out.println("blist location 출력 : " +location);
+		if(location.equals("전체")) {
+			location = null;
+		}
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = fbService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<FMBoard> list = fbService.selectList(location, pi);
 		
 		if(list != null ) {
-			System.out.println("리스트불러오기 성공하고 출력 "+list);
+			System.out.println("리스트불러오기 성공하고 페이지 출력 "+pi);
 			//  list, pi --> boardListView
 			mv.addObject("list", list);
+			mv.addObject("pi", pi);
 			mv.setViewName("fmBoardList");
 		}else {
 			throw new FMBoardException("게시글 전체 조회 실패");
@@ -53,6 +71,34 @@ public class FMBoardController {
 		
 	}
 	
+
+	@RequestMapping("tablist.fm")
+	public void tabBoardList(@RequestParam(value="page", required=false) Integer page,
+						HttpServletResponse response, String location) throws JsonIOException, IOException {
+		response.setContentType("application/json; charset=utf-8");
+		
+		System.out.println("blist location 출력 : " +location);
+		
+		if(location.equals("전체")) {
+			location = null;
+		}
+
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = fbService.getListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		System.out.println("탭리스트에서 페이지 pi정보 "+pi);
+		ArrayList<FMBoard> list = fbService.selectList(location, pi);
+		System.out.println(list);
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
+
+	
 	@RequestMapping("insertview.fm")
 	public String boardInsertView() {
 		return "fmInsertBoard";
@@ -60,9 +106,9 @@ public class FMBoardController {
 	}
 	
 	@RequestMapping("binsert.fm")
-	public String insertBoard(@ModelAttribute FMBoard b, @RequestParam("phone1")String phone1,
+	public ModelAndView insertBoard(@ModelAttribute FMBoard b, @RequestParam("phone1")String phone1,
 							@RequestParam("phone2")String phone2, @RequestParam("phone3")String phone3,
-							@RequestParam("uploadFile") MultipartFile uploadFile, HttpServletRequest request) {
+							@RequestParam("uploadFile") MultipartFile uploadFile, HttpServletRequest request,ModelAndView mv) {
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
 
@@ -82,12 +128,12 @@ public class FMBoardController {
 		int result = fbService.insertBoard(b);
 	
 		if(result>0) {
-			
-			return "redirect:blist.fm";
+			mv.addObject("fLocation",b.getfLocation()).setViewName("redirect:blist.fm");
 		}else {
 			throw new FMBoardException("게시글등록실패 ");
 		}
 		
+		return mv;
 		
 	}
 	
@@ -124,9 +170,10 @@ public class FMBoardController {
 	@RequestMapping("bdetail.fm")
 	public ModelAndView selectOneBoard(@RequestParam("fbId") int fbId, ModelAndView mv,
 										HttpSession session) {
+
 		
+		System.out.println("디테일뷰 보드 출력 fbId : "+fbId);
 		FMBoard board = fbService.selectBoard(fbId);
-		
 
 		if(board != null) {
 			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
@@ -258,7 +305,6 @@ public class FMBoardController {
 		gson.toJson(list, response.getWriter());
 		
 	}
-	
 	
 	
 }

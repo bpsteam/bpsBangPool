@@ -11,10 +11,18 @@
 				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
 	
-	<select id="selectList" resultType="FMBoard">
+	<select id="selectList" resultType="FMBoard" parameterType="String">
 		select*from freshman_board
 		where fbstatus='Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
 		order by fbid desc
+	</select>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*) from freshman_board
+		where fbstatus = 'Y'
 	</select>
 	
 	<update id="addReadCount" parameterType="_int">
@@ -29,7 +37,7 @@
 		left join attachment a on a.bcode=fm.bcode
 		where fm.fbid = a.refbid
 		and fbstatus='Y'
-		and fbid=${fbId}
+		and fbid=#{fbId}
 	</select>
 	
 	<!--  <resultMap type="FMBoard" id="fmboardMap">

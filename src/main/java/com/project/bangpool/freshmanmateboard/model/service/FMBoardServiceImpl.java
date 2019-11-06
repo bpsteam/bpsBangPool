@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.dao.FMBoardDAO;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 
 @Service("fbService")
 public class FMBoardServiceImpl implements FMBoardService {
@@ -18,6 +19,8 @@ public class FMBoardServiceImpl implements FMBoardService {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+
+
 	
 
 	@Override
@@ -43,22 +46,26 @@ public class FMBoardServiceImpl implements FMBoardService {
 //		return  bDAO.insertBoard(sqlSession, b);
 	}
 
+	@Override
+	public int getListCount() {
+		return fbDAO.getListCount(sqlSession);
+	}
 
 	@Override
-	public ArrayList<FMBoard> selectList() {
-		return fbDAO.selectList(sqlSession);
+	public ArrayList<FMBoard> selectList(String location, PageInfo pi) {
+		return fbDAO.selectList(sqlSession, location, pi);
 	}
 
 
 	@Override
-	public FMBoard selectBoard(int bId) {
+	public FMBoard selectBoard(int fbId) {
 		
 		FMBoard b = null;
 		
-		int result = fbDAO.addReadCount(sqlSession, bId);
+		int result = fbDAO.addReadCount(sqlSession, fbId);
 		
 		if(result>0) {
-			b = fbDAO.selectBoard(sqlSession, bId);
+			b = fbDAO.selectBoard(sqlSession, fbId);
 		}
 		
 		return b;
@@ -96,6 +103,8 @@ public class FMBoardServiceImpl implements FMBoardService {
 	public ArrayList<Reply> selectReplyList(int fbId) {
 		return fbDAO.selectReplyList(sqlSession, fbId);
 	}
+
+
 
 
 }
