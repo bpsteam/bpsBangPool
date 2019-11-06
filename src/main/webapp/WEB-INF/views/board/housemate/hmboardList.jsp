@@ -69,7 +69,7 @@
                     <div class="col-sm-9">
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="sample-3b">
-                                        <h1><small>ROOMMATE</small></h1>
+                                        <h1><small>HOUSEMATE</small></h1>
                                         <div class="margin-bottom-10">
                                                 <hr>
                                          </div>

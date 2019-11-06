@@ -213,17 +213,14 @@
                                     <div class="row">
                                         <!-- Testimonials - Default Full Width -->
                                         <div class="col-md-12">
-                                            <div class="carousel slide testimonials" id="testimonials1">
+                                            <div class="carousel slide testimonials" id="replyDiv">
 
                                                 <div class=" col-md-12">
-                                                    <p>
-                                                        댓글입력하면 보여주기
-                                                    </p>
+                                                    <p> 댓글입력하면 보여주기</p>
                                                     <div class="testimonial-info">
                                                         <img alt="" src="${contextPath}/resources/assets/img/profiles/53.jpg"
                                                             class="img-circle img-responsive">
-                                                        <span class="testimonial-author">
-                                                            닉네임1
+                                                        <span class="testimonial-author"> 닉네임1
                                                             <em>
                                                                 2019년 07월 21일 12시 43분 12초
                                                             </em>
@@ -232,7 +229,7 @@
                                                     <br>
                                                 </div>
 
-                                                <div class="col-md-1"></div>
+                                               <%--  <div class="col-md-1"></div>
                                                 <div class="testimonials-bg-primary col-md-11">
                                                     <p>
                                                         댓글의 댓글 입력하면 보여주기
@@ -250,41 +247,7 @@
                                                     <br>
                                                 </div>
 
-
-                                                <div class="col-md-12">
-                                                    <p>
-                                                        댓글입력하면 보여주기
-                                                    </p>
-                                                    <div class="testimonial-info">
-                                                        <img alt="" src="${contextPath}/resources/assets/img/profiles/99.jpg"
-                                                            class="img-circle img-responsive">
-                                                        <span class="testimonial-author">
-                                                            닉네임2
-                                                            <em>
-                                                                2019년 09월 12일 8시 12분 34초
-                                                            </em>
-                                                        </span>
-                                                    </div>
-                                                    <br>
-                                                </div>
-
-
-                                                <div class="col-md-12">
-                                                    <p>
-                                                        댓글입력하면 보여주기
-                                                    </p>
-                                                    <div class="testimonial-info">
-                                                        <img alt="" src="${contextPath}/resources/assets/img/profiles/78.jpg"
-                                                            class="img-circle img-responsive">
-                                                        <span class="testimonial-author">
-                                                            닉네임3
-                                                            <em>
-                                                                2019년 10월 23일 20시 23분 04초
-                                                            </em>
-                                                        </span>
-                                                    </div>
-                                                    <br>
-                                                </div>
+                                                 --%>
 
                                                 <!-- </div> -->
                                             </div>
@@ -309,9 +272,9 @@
                                             <label >댓글 입력</label>
                                         </div>
                                         <div class="col-sm-9">
-                                            <input type="text" style="width:80%">
+                                            <input type="text" id="rContent" style="width:80%">
                                             &nbsp;&nbsp;&nbsp;
-                                            <button class="btn btn-primary btn-sm">추가</button>
+                                            <button class="btn btn-primary btn-sm" id="rSubmit">추가</button>
                                         </div>
                                     </div>
                                     <div class="margin-bottom-10">
@@ -321,7 +284,10 @@
                                 <div class="print-hide view-btn text-right"
                                     style="background-color: white; padding-right: 15px; padding-bottom: 15px;">
                                     <div class="form-group">
-                                        <a href="blist.hm" class="btn btn-danger btn-sm" >
+                                    	<c:url var="deleteboard" value="bdelete.hm">
+                                        	<c:param name="hbId" value="${ hboard.hbId }"/>
+                                        </c:url>
+                                        <a href="${ deleteboard }" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
                                         <c:url var="hbUpdateView" value="bupView.hm">
@@ -361,11 +327,11 @@
                                 <a href="#">하우스메이트</a> <br>
                                 <a href="#">신입생메이트</a> -->
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li class="active">
+                                    <li >
                                         <a href="#sample-3a" data-toggle="tab">
                                             <i class="fa fa-cloud"></i> 룸메이트</a>
                                     </li>
-                                    <li>
+                                    <li class="active">
                                         <a href="#sample-3b" data-toggle="tab">
                                             <i class="fa fa-home"></i> 하우스메이트</a>
                                     </li>
@@ -474,6 +440,82 @@
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
+
+
+	<script>
+	$(function(){
+		getReplyList();
+		setInterval(function(){
+			getReplyList();
+		},10000	);
+	});
+	
+	function getReplyList(){
+   		var hbId = ${ hboard.hbId };
+   		
+   		$.ajax({
+   			url: "rList.hm",
+   			data: {hbId:hbId},
+   			dataType: "json",
+   			success: function(data){
+   				$replyDiv = $("#replyDiv");
+   				$replyDiv.html("");
+   				
+   				var $replyContent;
+   				var $rCreateDate;
+   				var $rimg;
+   				var $rWriter;
+   				
+   				//$("#rCount").text("댓글( " + data.length + ")");
+   				
+   				if(data.length >0){
+   					for (var i in data) {
+   						$rDiv = $("<div>").addClass("col-md-12");
+   						$replyContent = $("<p>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
+   						$rrDiv = $("<div>").addClass("testimonial-info");
+   						$rimg = $("<img>").addClass("img-circle img-responsive img-sm").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').width( '10%' ).height('10%');
+   						$rWriter = $("<span>").addClass("testimonial-author").text(data[i].rWriter);
+   						$rCreateDate = $("<em>").text(data[i].rCreateDate);
+   						
+   						$rDiv.append($replyContent);
+   						$rrDiv.append($rimg);
+   						$rrDiv.append($rWriter);
+   						$rrDiv.append($rCreateDate);
+   						$rDiv.append($rrDiv);
+   						$replyDiv.append($rDiv);
+   					}
+   				} else {
+   					$rDiv = $("<div>").addClass("col-md-12");
+   					$replyContent = $("<p>").text("등록된 댓글이 없습니다.");
+   					
+   					$rDiv.append($replyContent);
+   					$replyDiv.append($rDiv);
+   				}
+   			}
+   		})
+   	}
+	
+	$("#rSubmit").on("click",function(){
+   		var rContent = $("#rContent").val();
+   		var refbId = ${hboard.hbId};
+   		var bCode = "${hboard.bcode}";
+   		console.log(bCode);
+   		$.ajax({
+   			url: "addReply.hm",
+   			data: {rContent:rContent, refbId: refbId, bCode:bCode},
+   			type: "post",
+   			success: function(data){
+   				if(data == "success"){
+   					getReplyList();
+   					$("#rContent").val("");
+   				}
+   			}
+   			
+   		});
+   	});
+	
+	</script>
+
 
 </body>
 </html>

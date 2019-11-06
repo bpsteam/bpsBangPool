@@ -25,7 +25,7 @@
 		<result property="hbModifyDate" column="HBMODIFYDATE"/>
 		<result property="hbStatus" column="HBSTATUS"/>
 		
-		<result property="hLocation" column="LOCATION"/>
+		<result property="hLocation" column="HLOCATION"/>
 		<result property="hRentType" column="HRENTTYPE"/>
 		<result property="hLivingType" column="HLIVINGTYPE"/>
 		<result property="hRoom" column="HROOMCOUNT"/>
@@ -83,5 +83,22 @@
 		and refbid = #{hbId}
 	</update>
 	
+	<update id="deleteBoard" parameterType="_int">
+		update HOUSEMATE_BOARD
+		set HBSTATUS='N'
+		where hbid = #{hbId}
+	</update>
+	
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+		select * from Reply r
+		join HOUSEMATE_BOARD hm on hm.bcode=r.bcode
+		and r.refbid = hbid
+		where refbid=${hbId}
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		insert into Reply
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+	</insert>
 	
 </mapper>

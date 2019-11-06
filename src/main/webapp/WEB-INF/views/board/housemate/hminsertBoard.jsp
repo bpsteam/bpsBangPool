@@ -255,10 +255,14 @@
 
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">원하는 상대 성별</label>
+										<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
 										<div class="col-sm-3">
-											<input type="text" name="hreqgender" size="50" value=""
-												class="form-control input-sm">
+											<select name="hreqgender" required class="form-control input-sm">
+                                                <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
+                                                <option value="N">무관</option>
+                                                <option value="F">여성</option>
+                                                <option value="M">남성</option>
+                                            </select>	
 										</div>
 									</div>
 									

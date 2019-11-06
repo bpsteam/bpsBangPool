@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.housemateboard.model.dao.HMBoardDAO;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
 
@@ -67,6 +68,21 @@ public class HMBoardServiceImpl implements HMBoardService {
 			result2 = hbDAO.updateFile(sqlSession, hb);
 		}
 		return result2;
+	}
+
+	@Override
+	public int deleteBoard(int hbId) {
+		return hbDAO.deleteBoard(sqlSession, hbId);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int hbId) {
+		return hbDAO.selectReplyList(sqlSession, hbId);
+	}
+
+	@Override
+	public int insertReply(Reply r) {
+		return hbDAO.insertReply(sqlSession, r);
 	}
 	
 	

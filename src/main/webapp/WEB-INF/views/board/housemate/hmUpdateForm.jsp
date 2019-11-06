@@ -341,54 +341,57 @@
 										</div>
 									</div>
 									<script>
-                                                    var flen = 0;
-                                                    function add_file(delete_code) {
-                                                        var upload_count = 2;
-                                                        if (upload_count && flen >= upload_count) {
-                                                            alert("이 게시판은 "+upload_count+"개 까지만 파일 업로드가 가능합니다.");
-                                                            return;
-                                                        }
-                                            
-                                                        var objTbl;
-                                                        var objNum;
-                                                        var objRow;
-                                                        var objCell;
-                                                        var objContent;
-                                                        if (document.getElementById)
-                                                            objTbl = document.getElementById("variableFiles");
-                                                        else
-                                                            objTbl = document.all["variableFiles"];
-                                            
-                                                        objNum = objTbl.rows.length;
-                                                        objRow = objTbl.insertRow(objNum);
-                                                        objCell = objRow.insertCell(0);
-                                            
-                                                        objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+objNum+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
-                                                        if (delete_code) {
-                                                            objContent += delete_code;
-                                                        } else {
-                                                                            ;
-                                                        }
-                                                        objContent += "</div>";
-                                            
-                                                        objCell.innerHTML = objContent;
-                                            
-                                                        flen++;
-                                                    }
-                                            
-                                                    add_file('');
-                                            
-                                                    function del_file() {
-                                                        // file_length 이하로는 필드가 삭제되지 않아야 합니다.
-                                                        var file_length = 0;
-                                                        var objTbl = document.getElementById("variableFiles");
-                                                        if (objTbl.rows.length - 1 > file_length) {
-                                                            objTbl.deleteRow(objTbl.rows.length - 1);
-                                                            flen--;
-                                                        }
-                                                    }
-                                                    </script>
+									
+									
+									
+                                     var flen = 0;
+                                     function add_file(delete_code) {
+                                         var upload_count = 2;
+                                         if (upload_count && flen >= upload_count) {
+                                             alert("이 게시판은 "+upload_count+"개 까지만 파일 업로드가 가능합니다.");
+                                             return;
+                                         }
+                             
+                                         var objTbl;
+                                         var objNum;
+                                         var objRow;
+                                         var objCell;
+                                         var objContent;
+                                         if (document.getElementById)
+                                             objTbl = document.getElementById("variableFiles");
+                                         else
+                                             objTbl = document.all["variableFiles"];
+                             
+                                         objNum = objTbl.rows.length;
+                                         objRow = objTbl.insertRow(objNum);
+                                         objCell = objRow.insertCell(0);
+                             
+                                         objContent = "<div class='row'>";
+                                         objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+objNum+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                         if (delete_code) {
+                                             objContent += delete_code;
+                                         } else {
+                                                             ;
+                                         }
+                                         objContent += "</div>";
+                             
+                                         objCell.innerHTML = objContent;
+                             
+                                         flen++;
+                                     }
+                             
+                                     add_file('');
+                             
+                                     function del_file() {
+                                         // file_length 이하로는 필드가 삭제되지 않아야 합니다.
+                                         var file_length = 0;
+                                         var objTbl = document.getElementById("variableFiles");
+                                         if (objTbl.rows.length - 1 > file_length) {
+                                             objTbl.deleteRow(objTbl.rows.length - 1);
+                                             flen--;
+                                         }
+                                     }
+                                     </script>
 
 
 									<div class="well well-sm text-center">
