@@ -288,7 +288,30 @@
                                                     </div>
                                                     <div class="form-group" style="margin-bottom:0;">
                                                         <div class="col-sm-10 col-sm-offset-2">
-                                                            <table id="variableFiles"><tbody><tr><td><div class="row"><div class="col-sm-7"><div class="form-group"><div class="input-group input-group-sm"><span class="input-group-addon">파일 0</span><input type="file" class="form-control input-sm" name="bf_file[]" title="파일 용량 33,485,760 바이트 이하만 업로드 가능"></div></div></div></div></td></tr></tbody></table>
+                                                            <table id="variableFiles">
+	                                                            <tbody>
+		                                                            <tr>
+			                                                            <td>
+				                                                            <div class="row">
+					                                                            <div class="col-sm-7">
+					                                                            <div class="form-group">
+					                                                            <div class="input-group input-group-sm">
+					                                                            <span class="input-group-addon">파일 0</span>
+					                                                            <input type="file" class="form-control input-sm" name="uploadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
+						                                                            <c:if test="${ !empty rboard.originalFileName }">
+																						<br>현재 업로드한 파일 : 
+																						<a href="${ contextPath }/resources/rmboarduploads/${ rboard.renameFileName }" download="${ rboard.originalFileName }">
+																							${ rboard.originalFileName }
+																						</a>
+																					</c:if>
+					                                                            </div>
+					                                                            </div>
+					                                                            </div>
+				                                                            </div>
+			                                                            </td>
+		                                                            </tr>
+	                                                            </tbody>
+                                                            </table>
                                                         </div>
                                                     </div>
                                                     <script>

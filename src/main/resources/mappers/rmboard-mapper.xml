@@ -64,7 +64,7 @@
 	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
 		select *
 		from reply r
-			join board b on(refbId = rbId)
+			join ROOMATE_BOARD b on(refbId = rbId)
 		where refbId = #{rbId}	
 		order by rid desc
 	</select>
@@ -78,7 +78,7 @@
 	
 	<insert id="insertReply" parameterType="Reply">
 		insert into reply
-		values (REPLY_SEQ.nextval, default, #{rContent}, #{refbId}, #{rWriter},sysdate, sysdate, default)
+		values (REPLY_SEQ.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter},sysdate, sysdate, default)
 	</insert>
 	
 </mapper>
