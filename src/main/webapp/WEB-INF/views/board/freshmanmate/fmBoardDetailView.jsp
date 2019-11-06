@@ -336,6 +336,10 @@
 	                           <c:param name="fbId" value="${ board.fbId }"/>
 	                            <%--  <c:param name="page" value="${ page }"/> --%>
 	                           </c:url>
+                               <c:url var="blist" value="blist.fm">
+	                           <c:param name="fLocation" value="${ board.fLocation }"/>
+	                            <%--  <c:param name="page" value="${ page }"/> --%>
+	                           </c:url>
                                 
                                 <div class="print-hide view-btn text-right"
                                     style="background-color: white; padding-right: 15px; padding-bottom: 15px;">
@@ -347,11 +351,11 @@
                                             <i class="fa fa-plus"></i><span class="hidden-xs"> 수정</span>
                                         </a>
                                         
-                                        <a href="blist.fm" class="btn btn-success btn-sm">
+                                        <a href="${ blist }" class="btn btn-success btn-sm">
                                             <i class="fa fa-bars"></i><span class="hidden-xs"> 목록</span>
                                         </a>
                                         
-                                        <a href="binsert.fm" class="btn btn-info btn-sm">
+                                        <a href="insertview.fm" class="btn btn-info btn-sm">
                                            <i class="fa fa-pencil"></i><span class="hidden-xs"> 글쓰기</span>
                                         </a>
 
@@ -546,14 +550,12 @@
 	   						$oneCommentdiv = $("<div>").addClass("col-md-12");
 	   						$rContent = $("<p>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
 	   						$infodiv = $("<div>").addClass("testimonial-info");
-	   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profile/53.jpg');
+	   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').attr('width','80px');
 	   						$nameNtime =$("<span>").addClass("testimonial-author").text(data[i].rWriter);
 	   						$time = $("<em>").text(data[i].rCreateDate);
 	   						
 	   						$oneCommentdiv.append($rContent);
-	   						$oneCommentdiv.append($infodiv);
-	   						$oneCommentdiv.append($img);
-	   						$oneCommentdiv.append($nameNtime.append($time)).append("<br>");
+	   						$oneCommentdiv.append($infodiv.append($img).append($nameNtime.append($time)).append("<br>"));
 	   						
 	   						$allCommentdiv.append($oneCommentdiv);
 	   						
@@ -582,13 +584,11 @@
 	   					$oneCommentdiv = $("<div>").addClass("col-md-12");
 	   					$rContent = $("<p>").text("등록된 댓글이 없습니다.");
 	   					$infodiv = $("<div>").addClass("testimonial-info");
-   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profile/53.jpg');
+   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').attr('width','80px');
    						$admin =$("<span>").addClass("testimonial-author").text("관리자");
 	   					
    						$oneCommentdiv.append($rContent);
-   						$oneCommentdiv.append($infodiv);
-   						$oneCommentdiv.append($img);
-   						$oneCommentdiv.append($admin);
+   					/* 	$oneCommentdiv.append($infodiv.append($img).append($admin)); */
    						
    						$allCommentdiv.append($oneCommentdiv);
    						
