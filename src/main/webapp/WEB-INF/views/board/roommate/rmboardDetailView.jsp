@@ -216,12 +216,7 @@
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
                                     ${ rboard.rbContent}
-                                        	<!-- 이사가려고 집 알아보다가 글올립니다.
-                                        <br>보증금은 제가 1억정도 보유하고 있고 월세는 최대 합쳐서 60~80정도로 생각하고 있어요.
-                                        <br>서울 너무 외곽만 아니면 위치는 제가 맞출테니 진지하신 분만 연락주세요 .
-                                        <br>저는 20대 여자고 직장인이라 저랑 또래거나&nbsp; 나이많으셔도 상관없어요 직업있는분이셨으면 좋겠습니다.
-                                        <br>
-                                        <br>(여성분만 연락주세요.) 카톡ID-goodbde -->
+                                        <!-- 이사가려고 집 알아보다가 글올립니다. -->
                                     </div>
 
                                     <div class="print-hide view-icon">
@@ -245,6 +240,7 @@
                                         <hr style="margin:0px; height:10px">
                                     </div>
                                     <br>
+                                    
                                     <h3 class="view-comment">Comments</h3>
                                     <br>
                                     <div class="row">
@@ -253,14 +249,13 @@
                                             <div class="carousel slide testimonials" id="testimonials1">
 
                                                 <div class=" col-md-12">
-                                                    <p>
-                                                        댓글입력하면 보여주기
-                                                    </p>
+                                                    <p>댓글입력하면 보여주기</p>
+                                                    <%-- <p>${ reply.rContent }</p> --%>
                                                     <div class="testimonial-info">
                                                         <img alt="" src="${contextPath}/resources/assets/img/profiles/53.jpg"
                                                             class="img-circle img-responsive">
-                                                        <span class="testimonial-author">
-                                                            닉네임1
+                                                        <!-- <span class="testimonial-author">닉네임1 -->
+                                                        <span class="testimonial-author">${ rboard.rbWriter }
                                                             <em>
                                                                 2019년 07월 21일 12시 43분 12초
                                                             </em>
@@ -271,14 +266,11 @@
 
                                                 <div class="col-md-1"></div>
                                                 <div class="testimonials-bg-primary col-md-11">
-                                                    <p>
-                                                        댓글의 댓글 입력하면 보여주기
-                                                    </p>
+                                                    <p>댓글의 댓글 입력하면 보여주기</p>
                                                     <div class="testimonial-info">
                                                         <img alt="" src="${contextPath}/resources/assets/img/profiles/78.jpg"
                                                             class="img-circle img-responsive">
-                                                        <span class="testimonial-author">
-                                                            댓글의 댓글 -1
+                                                        <span class="testimonial-author">댓글의 댓글 -1
                                                             <em>
                                                                 2019년 07월 21일 12시 43분 12초
                                                             </em>
@@ -379,11 +371,8 @@
 
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
 
                     <!-- End Main Column -->
@@ -512,22 +501,25 @@
     <script>
 		$(function(){
 			getReplyList();
-			
+		 	
 			setInterval(function(){
 				getReplyList();
-			}, 10000);
+			}, 10000); 
 		});
 		
 		$("#rSubmit").on("click", function(){
 			var rContent = $("#rContent").val();
 			var refBid = ${ rboard.rbId };
+			var bCode ="${ rboard.bcode }";
 			
 			$.ajax({
 				url: "addReply.rm",
-				data: {rContent:rContent, refBid:refBid},
+				data: {rContent:rContent, refBid:refBid, bCode:bCode},
 				type: "post",
 				success: function(data){
 					if(data == "success"){
+						
+						//alert('성공');
 						getReplyList();
 						$("#rContent").val("");
 					}
@@ -536,7 +528,50 @@
 		});
 		
 		function getReplyList(){
-			var bId = ${ rboard.rbId };
+			var rbId = ${ rboard.rbId };
+			
+			$.ajax({
+				url: "rList.rm",
+				data: {rbId:rbId},
+				dataType : "json",
+				success: function(data){
+					$allCommentdiv = $("#allCommentdiv");
+					$allCommentdiv.html("");
+					
+					var $tr;
+					var $rWriter;
+					var $rContent;
+					var $rCreateDate;
+					
+					$("#rCount").text("댓글 ("+data.length + ")");
+					
+					if(data.length > 0){
+						for(var i in data){
+							$tr = $("<tr>");
+							$rWriter = $("<td width='100'>").text(data[i].rWriter);
+							$rContent = $("<td>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
+							$rCreateDate = $("<td width='100'>").text(data[i].rCreateDate);
+							
+							$tr.append($rWriter);
+							$tr.append($rContent);
+							$tr.append($rCreateDate);
+							$tableBody.append($tr);
+							
+						}
+					}else{
+						$tr = $("<tr>");
+						$rContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
+						
+						$tr.append($rContent);
+						$tableBody.append($tr);
+					}
+				}
+			});
+			
+		}
+		
+		/* function getReplyList(){
+			var rbId = ${ rboard.rbId };
 			
 			$.ajax({
 				url: "rList.rm",
@@ -570,13 +605,13 @@
 						$tr = $("<tr>");
 						$rContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
 						
-						$tr.appent($rContent);
+						$tr.append($rContent);
 						$tableBody.append($tr);
 					}
 				}
 			});
 			
-		}
+		} */
 	</script>
     
 
