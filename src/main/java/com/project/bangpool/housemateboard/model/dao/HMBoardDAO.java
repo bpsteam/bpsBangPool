@@ -2,17 +2,23 @@ package com.project.bangpool.housemateboard.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
 
 @Repository("hbDAO")
 public class HMBoardDAO {
 
-	public ArrayList<HMBoard> selectList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("hmboardMapper.selectList");
+	public ArrayList<HMBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("hmboardMapper.selectList", null, rowBounds);
 	}
 
 	public int addReadCount(SqlSessionTemplate sqlSession, int hbId) {
@@ -53,6 +59,10 @@ public class HMBoardDAO {
 	
 	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
 		return sqlSession.insert("hmboardMapper.insertReply", r);
+	}
+
+	public int getListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("hmboardMapper.getListCount");
 	}
 
 }
