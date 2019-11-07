@@ -182,7 +182,11 @@ public class RMBoardController {
 	
 	@RequestMapping("rList.rm")
 	public void getReplyList(HttpServletResponse response, int rbId) throws JsonIOException, IOException {
+		response.setContentType("application/json; charset=utf-8");
 		ArrayList<Reply> list = rbService.selectReplyList(rbId);
+		
+		System.out.println("Controller"+rbId);
+		System.out.println("Controller list"+list);
 		
 		for(Reply r : list) {
 			r.setrContent(URLEncoder.encode(r.getrContent(), "utf-8"));

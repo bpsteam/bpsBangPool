@@ -61,20 +61,22 @@
 	<!-- 생성/수정 날짜 -->		
 	</update>
 	
-	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+	<!-- resultMap="replyResultSet" -->
 		select *
 		from reply r
-			join ROOMATE_BOARD b on(refbId = rbId)
-		where refbId = #{rbId}	
-		order by rid desc
+			join ROOMATE_BOARD b on r.bcode=b.bcode
+		and r.refbid = b.rbid
+		where refbid = #{rbId}	
+		
 	</select>
 	
-	<resultMap id="replyResultSet" type="Reply">
+	<!-- <resultMap id="replyResultSet" type="Reply">
 		<result property="refbId" column="REFBID"/>
 		<result property="rCreateDate" column="RCREATEDATE"/>
 		<result property="rModifyDate" column="RMODIFYDATE"/>
 		<result property="rStatus" column="RSTATUS"/>
-	</resultMap>
+	</resultMap> -->
 	
 	<insert id="insertReply" parameterType="Reply">
 		insert into reply

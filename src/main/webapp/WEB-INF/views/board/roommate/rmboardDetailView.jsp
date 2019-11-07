@@ -515,19 +515,19 @@
 		
 		$("#rSubmit").on("click", function(){
 			var rContent = $("#rContent").val();
-			var refBid = ${ rboard.rbId };
+			var refbId = ${ rboard.rbId };
 			var bCode ="${ rboard.bcode }";
 			console.log(bCode);
 			
 			$.ajax({
 				url: "addReply.rm",
-				data: {rContent:rContent, refBid:refBid, bCode:bCode},
+				data: {rContent:rContent, refbId:refbId, bCode:bCode},
 				type: "post",
 				success: function(data){
 					if(data == "success"){
 						
-						alert('성공');
-						//getReplyList();
+						//alert('성공');
+						getReplyList();
 						$("#rContent").val("");
 					}
 				}
@@ -537,6 +537,7 @@
 		function getReplyList(){
 			var rbId = ${ rboard.rbId };
 			
+			
 			$.ajax({
 				url: "rList.rm",
 				data: {rbId:rbId},
@@ -544,15 +545,15 @@
 				success: function(data){
 					$replyDiv = $("#replyDiv");
 	   				$replyDiv.html("");
-					
+	   				console.log(rbId);
 					var $rWriter;
 					var $rimg;
-					var $rContent;
 					var $rCreateDate;
 					var $replyContent;
 					
 					//$("#rCount").text("댓글 ("+data.length + ")");
-					
+					console.log(data);
+					console.log(data.length);
 					if(data.length > 0){
 						for(var i in data){
 							$firDiv = $("<div>").addClass("col-md-12");
