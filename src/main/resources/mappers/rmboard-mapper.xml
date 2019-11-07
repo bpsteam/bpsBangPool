@@ -81,4 +81,10 @@
 		values (REPLY_SEQ.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter},sysdate, sysdate, default)
 	</insert>
 	
+	<update id="deleteBoard">
+		update ROOMATE_BOARD
+		set RBSTATUS='N'
+		where rbId = #{rbId}
+	</update>
+	
 </mapper>

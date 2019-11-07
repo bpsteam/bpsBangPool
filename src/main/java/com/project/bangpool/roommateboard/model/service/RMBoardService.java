@@ -18,5 +18,7 @@ public interface RMBoardService {
 	ArrayList<Reply> selectReplyList(int rbId);
 
 	int insertReply(Reply r);
+	
+	int deleteBoard(int rbId);
 
 }

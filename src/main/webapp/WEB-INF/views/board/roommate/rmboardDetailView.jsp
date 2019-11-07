@@ -248,7 +248,7 @@
                                     <div class="row">
                                         <!-- Testimonials - Default Full Width -->
                                         <div class="col-md-12">
-                                            <div class="carousel slide testimonials" id="testimonials1">
+                                            <div class="carousel slide testimonials" id="replyDiv">
 
                                                 <div class=" col-md-12">
                                                     <p>댓글입력하면 보여주기</p>
@@ -352,7 +352,11 @@
                                 <div class="print-hide view-btn text-right"
                                     style="background-color: white; padding-right: 15px; padding-bottom: 15px;">
                                     <div class="form-group">
-                                        <a href="blist.rm" class="btn btn-danger btn-sm" >
+                                    
+                                    	<c:url var="bdelete" value="bdelete.rm">
+                                    		<c:param name="rbId" value="${ rboard.rbId }"></c:param>
+                                    	</c:url>
+                                        <a href="${ bdelete }" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
                                         
@@ -513,6 +517,7 @@
 			var rContent = $("#rContent").val();
 			var refBid = ${ rboard.rbId };
 			var bCode ="${ rboard.bcode }";
+			console.log(bCode);
 			
 			$.ajax({
 				url: "addReply.rm",
@@ -521,8 +526,8 @@
 				success: function(data){
 					if(data == "success"){
 						
-						//alert('성공');
-						getReplyList();
+						alert('성공');
+						//getReplyList();
 						$("#rContent").val("");
 					}
 				}
@@ -537,40 +542,45 @@
 				data: {rbId:rbId},
 				dataType : "json",
 				success: function(data){
-					$allCommentdiv = $("#allCommentdiv");
-					$allCommentdiv.html("");
+					$replyDiv = $("#replyDiv");
+	   				$replyDiv.html("");
 					
-					var $tr;
 					var $rWriter;
+					var $rimg;
 					var $rContent;
 					var $rCreateDate;
+					var $replyContent;
 					
-					$("#rCount").text("댓글 ("+data.length + ")");
+					//$("#rCount").text("댓글 ("+data.length + ")");
 					
 					if(data.length > 0){
 						for(var i in data){
-							$tr = $("<tr>");
-							$rWriter = $("<td width='100'>").text(data[i].rWriter);
-							$rContent = $("<td>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
-							$rCreateDate = $("<td width='100'>").text(data[i].rCreateDate);
+							$firDiv = $("<div>").addClass("col-md-12");
+							$replyContent = $("<p>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
+							$secDiv = $("<div>").addClass("testimonial-info");
+							$rimg = $("<img>").addClass("img-circle img-responsive img-sm").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').width( '10%' ).height('10%');
+							$rWriter = $("<span>").addClass("testimonial-author").text(data[i].rWriter);
+							$rCreateDate = $("<em>").text(data[i].rCreateDate);
 							
-							$tr.append($rWriter);
-							$tr.append($rContent);
-							$tr.append($rCreateDate);
-							$tableBody.append($tr);
-							
+							$firDiv.append($replyContent);
+							$secDiv.append($rimg);
+							$secDiv.append($rWriter);
+							$secDiv.append($rCreateDate);
+							$firDiv.append($secDiv);
+							$replyDiv.append($firDiv);
 						}
 					}else{
-						$tr = $("<tr>");
-						$rContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
+						$firDiv = $("<div>").addClass("col-md-12");
+						$replyContent = $("<p>").text("등록된 댓글이 없습니다.");
 						
-						$tr.append($rContent);
-						$tableBody.append($tr);
+						$firDiv.append($replyContent);
+						$replyDiv.append($firDiv);
 					}
 				}
 			});
 			
 		}
+		
 		
 		/* function getReplyList(){
 			var rbId = ${ rboard.rbId };
@@ -614,6 +624,8 @@
 			});
 			
 		} */
+		
+		
 	</script>
     
 

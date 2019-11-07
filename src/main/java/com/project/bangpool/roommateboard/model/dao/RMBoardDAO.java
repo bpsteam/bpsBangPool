@@ -40,6 +40,10 @@ public class RMBoardDAO {
 	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
 		return sqlSession.insert("rmboardMapper.insertReply", r);
 	}
+
+	public int deleteBoard(SqlSessionTemplate sqlSession, int rbId) {
+		return sqlSession.update("rmboardMapper.deleteBoard", rbId);
+	}
 	
 
 }

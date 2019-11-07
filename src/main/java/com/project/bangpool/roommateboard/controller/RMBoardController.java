@@ -210,4 +210,21 @@ public class RMBoardController {
 			throw new RMBoardException("댓글 등록에 실패");
 		}
 	}
+	
+	// 게시글 삭제
+	@RequestMapping("bdelete.rm")
+	public String deleteBoard(@RequestParam("rbId") int rbId) {
+		int result = rbService.deleteBoard(rbId);
+		
+		if(result > 0) {
+			return "redirect:blist.rm";
+		}else {
+			throw new RMBoardException("게시글 삭제 실패");
+		}
+	}
+	
+	
+	
+	
+	
 }

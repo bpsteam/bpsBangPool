@@ -58,6 +58,11 @@ public class RMBoardServiceImpl implements RMBoardService{
 	public int insertReply(Reply r) {
 		return rbDAO.insertReply(sqlSession, r);
 	}
+
+	@Override
+	public int deleteBoard(int rbId) {
+		return rbDAO.deleteBoard(sqlSession, rbId);
+	}
 	
 
 }
