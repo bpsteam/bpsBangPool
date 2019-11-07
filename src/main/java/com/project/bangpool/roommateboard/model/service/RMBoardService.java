@@ -3,13 +3,14 @@ package com.project.bangpool.roommateboard.model.service;
 import java.util.ArrayList;
 
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 public interface RMBoardService {
 	
 	int insertBoard(RMBoard b);
 	
-	ArrayList<RMBoard> selectList();
+	ArrayList<RMBoard> selectList(PageInfo pi);
 	
 	RMBoard selectBoard(int rbId);
 	
@@ -20,5 +21,7 @@ public interface RMBoardService {
 	int insertReply(Reply r);
 	
 	int deleteBoard(int rbId);
+
+	int getListCount();
 
 }

@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.common.Pagination;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.RMBoardException;
 import com.project.bangpool.roommateboard.model.service.RMBoardService;
@@ -35,13 +37,25 @@ public class RMBoardController {
 	private RMBoardService rbService;
 
 	@RequestMapping("blist.rm")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
 		
-		ArrayList<RMBoard> list = rbService.selectList();
+		int currentPage = 1;
+		
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		// 총 게시글 개수
+		int listCount = rbService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<RMBoard> list = rbService.selectList(pi);
 		
 		if(list != null) {
 			System.out.println("rbService list : "+list);
 			mv.addObject("list", list);
+			mv.addObject("pi", pi);
 			mv.setViewName("rmboardList");
 		}else {
 			throw new RMBoardException("게시글 전체 조회 실패");
