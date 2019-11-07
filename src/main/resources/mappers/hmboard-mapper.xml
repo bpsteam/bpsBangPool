@@ -8,10 +8,13 @@
 		where HBstatus='Y'
 	</select>
 	
-	<select id="selectList" resultMap="boardResultSet">
+	<select id="selectList" resultMap="boardResultSet" parameterType="String">
 		select *
 		from HOUSEMATE_BOARD
 		where HBSTATUS='Y'
+		<choose>
+			<when test="hLoc.equals('서울')"> and HLOCATION = '서울' </when>
+		</choose>
 		order by HBID desc
 	</select>
 	<resultMap type="HMBoard" id="boardResultSet">

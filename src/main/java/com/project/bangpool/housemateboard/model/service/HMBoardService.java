@@ -8,7 +8,7 @@ import com.project.bangpool.housemateboard.model.vo.HMBoard;
 
 public interface HMBoardService {
 
-	ArrayList<HMBoard> selectList(PageInfo pi);
+	ArrayList<HMBoard> selectList(PageInfo pi, String hLoc);
 
 	HMBoard selectBoard(int hbId);
 

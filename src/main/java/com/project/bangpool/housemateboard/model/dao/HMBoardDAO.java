@@ -13,12 +13,12 @@ import com.project.bangpool.housemateboard.model.vo.HMBoard;
 @Repository("hbDAO")
 public class HMBoardDAO {
 
-	public ArrayList<HMBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<HMBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi, String hLoc) {
 		
 		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("hmboardMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("hmboardMapper.selectList", hLoc, rowBounds);
 	}
 
 	public int addReadCount(SqlSessionTemplate sqlSession, int hbId) {
