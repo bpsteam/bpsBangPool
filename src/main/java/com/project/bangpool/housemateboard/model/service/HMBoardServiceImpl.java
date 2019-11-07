@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.housemateboard.model.dao.HMBoardDAO;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
 
@@ -20,8 +21,8 @@ public class HMBoardServiceImpl implements HMBoardService {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public ArrayList<HMBoard> selectList() {
-		return hbDAO.selectList(sqlSession);
+	public ArrayList<HMBoard> selectList(PageInfo pi) {
+		return hbDAO.selectList(sqlSession, pi);
 
 	}
 
@@ -83,6 +84,12 @@ public class HMBoardServiceImpl implements HMBoardService {
 	@Override
 	public int insertReply(Reply r) {
 		return hbDAO.insertReply(sqlSession, r);
+	}
+
+	@Override
+	public int getListCount() {
+		// TODO Auto-generated method stub
+		return hbDAO.getListCount(sqlSession);
 	}
 	
 	
