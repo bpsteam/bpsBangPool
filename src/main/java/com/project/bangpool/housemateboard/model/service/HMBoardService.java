@@ -22,6 +22,6 @@ public interface HMBoardService {
 
 	int insertReply(Reply r);
 
-	int getListCount();
+	int getListCount(String hLoc);
 
 }

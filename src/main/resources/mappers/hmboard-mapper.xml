@@ -6,15 +6,24 @@
 		select count(*)
 		from HOUSEMATE_BOARD
 		where HBstatus='Y'
+		<if test="hLoc != null">
+		<choose>
+			<when test="hLoc.equals('SEOUL')"> and HLOCATION = '서울' </when>
+			<when test="hLoc.equals('INCHEON')"> and HLOCATION = '인천/부천' </when>
+		</choose>
+		</if>
 	</select>
 	
 	<select id="selectList" resultMap="boardResultSet" parameterType="String">
 		select *
 		from HOUSEMATE_BOARD
 		where HBSTATUS='Y'
+		<if test="hLoc != null">
 		<choose>
-			<when test="hLoc.equals('서울')"> and HLOCATION = '서울' </when>
+			<when test="hLoc.equals('SEOUL')"> and HLOCATION = '서울' </when>
+			<when test="hLoc.equals('INCHEON')"> and HLOCATION = '인천/부천' </when>
 		</choose>
+		</if>
 		order by HBID desc
 	</select>
 	<resultMap type="HMBoard" id="boardResultSet">

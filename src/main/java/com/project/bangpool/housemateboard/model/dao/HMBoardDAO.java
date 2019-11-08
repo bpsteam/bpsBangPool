@@ -61,8 +61,8 @@ public class HMBoardDAO {
 		return sqlSession.insert("hmboardMapper.insertReply", r);
 	}
 
-	public int getListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("hmboardMapper.getListCount");
+	public int getListCount(SqlSessionTemplate sqlSession, String hLoc) {
+		return sqlSession.selectOne("hmboardMapper.getListCount", hLoc);
 	}
 
 }

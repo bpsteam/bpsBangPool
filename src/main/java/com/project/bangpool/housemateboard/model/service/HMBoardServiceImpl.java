@@ -87,9 +87,9 @@ public class HMBoardServiceImpl implements HMBoardService {
 	}
 
 	@Override
-	public int getListCount() {
+	public int getListCount(String hLoc) {
 		// TODO Auto-generated method stub
-		return hbDAO.getListCount(sqlSession);
+		return hbDAO.getListCount(sqlSession, hLoc);
 	}
 	
 	

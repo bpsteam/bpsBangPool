@@ -39,16 +39,16 @@ public class HMBoardController {
 	/*** 전체 게시글 불러오기 ***/
 	@RequestMapping("blist.hm")
 	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page,
-								@RequestParam("hLoc") String hLoc,
+								@RequestParam(value="hLocation", required=false) String hLoc,
 								ModelAndView mv) {
-		System.out.println("blist에서 hLoc" + hLoc);
+		System.out.println("blist에서 hLoc: " + hLoc);
 		
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
 		}
 		
-		int listCount = hbService.getListCount(); // 총 게시물 갯수
+		int listCount = hbService.getListCount(hLoc); // 총 게시물 갯수
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		System.out.println("pi" + pi);
 		
