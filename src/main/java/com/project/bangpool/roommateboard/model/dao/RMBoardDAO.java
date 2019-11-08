@@ -20,7 +20,6 @@ public class RMBoardDAO {
 
 	public ArrayList<RMBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		
-		// 시작위치(offset), 한 번에 요청할 갯수(limit)
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		

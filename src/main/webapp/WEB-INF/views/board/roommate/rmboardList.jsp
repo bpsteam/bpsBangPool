@@ -390,9 +390,56 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <!-- 페이징 처리  -->
                                                     <div class="text-center">
                                                         <ul class="pagination">
-                                                            <li>
+                                                        	<!-- [이전]-->
+                                                        	<li>
+	                                                        	<c:if test="${ pi.currentPage <= 1 }">
+	                                                        		<a>«</a>
+	                                                        	</c:if>
+	                                                        	<c:if test="${ pi.currentPage > 1 }">
+	                                                        		<c:url var="before" value="blist.rm">
+	                                                        			<c:param name="page" value="${ pi.currentPage -1 }"/>
+	                                                        		</c:url>
+	                                                        		<a href="${ before }">«</a>
+	                                                        	</c:if>
+                                                        	</li>
+                                                        	
+                                                        	<!-- 페이지 -->
+                                                        	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                                                        		<c:if test="${ p eq pi.currentPage }">
+                                                        			<li class="active">
+                                                        				<a>${ p }</a>
+                                                        			</li>
+                                                        		</c:if>
+                                                        			
+                                                        		<c:if test="${ p ne pi.currentPage }">
+                                                        			<li>
+	                                                        			<c:url var="pg" value="blist.rm">
+	                                                        				<c:param name="page" value="${ p }"/>
+	                                                        			</c:url>
+	                                                        			<a href="${ pg }">${ p }</a>
+                                                        			</li>
+                                                        		</c:if> 
+                                                        	</c:forEach>
+                                                        	
+                                                        	<!-- [다음] -->
+                                                        	<li>
+	                                                        	<c:if test="${ pi.currentPage >= pi.maxPage }">
+	                                                        		<a>»</a>
+	                                                        	</c:if>
+	                                                        	<c:if test="${ pi.currentPage < pi.maxPage }">
+	                                                        		<c:url var="after" value="blist.rm">
+	                                                        			<c:param name="page" value="${ pi.currentPage +1 }"/>
+	                                                        		</c:url>
+	                                                        		<a href="${ after }">»</a>
+	                                                        	</c:if>
+                                                        	</li>
+                                                        	
+                                                        
+                                                            <!-- <li>
                                                                 <a href="#">«</a>
                                                             </li>
                                                             <li>
@@ -412,7 +459,7 @@
                                                             </li>
                                                             <li>
                                                                 <a href="#">»</a>
-                                                            </li>
+                                                            </li> -->
                                                         </ul>
                                                         <a href="#" style="float:left" class="btn btn-aqua btn-sm" data-toggle="modal" data-target="#searchModal" onclick="return false;"><i class="fa fa-search"></i></a>
                                                         <a href="binsertview.rm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
