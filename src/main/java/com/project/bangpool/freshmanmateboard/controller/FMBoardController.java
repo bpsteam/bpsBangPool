@@ -2,6 +2,7 @@ package com.project.bangpool.freshmanmateboard.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +31,7 @@ import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.BoardException;
 
@@ -53,16 +57,16 @@ public class FMBoardController {
 			currentPage = page;
 		}
 		
-		int listCount = fbService.getListCount();
+		int listCount = fbService.getListCount(location);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<FMBoard> list = fbService.selectList(location, pi);
+		ArrayList<FMBoard> list = fbService.selectFMList(location, pi);
 		
 		if(list != null ) {
 			System.out.println("리스트불러오기 성공하고 페이지 출력 "+pi);
 			//  list, pi --> boardListView
 			mv.addObject("list", list);
-			mv.addObject("pi", pi);
+			mv.addObject("pi", pi).addObject("location",location);
 			mv.setViewName("fmBoardList");
 		}else {
 			throw new FMBoardException("게시글 전체 조회 실패");
@@ -74,10 +78,12 @@ public class FMBoardController {
 
 	@RequestMapping("tablist.fm")
 	public void tabBoardList(@RequestParam(value="page", required=false) Integer page,
-						HttpServletResponse response, String location) throws JsonIOException, IOException {
+						HttpServletResponse response,String fLocation) throws JsonIOException, IOException {
 		response.setContentType("application/json; charset=utf-8");
 		
-		System.out.println("blist location 출력 : " +location);
+		System.out.println("blist location 출력 : " +fLocation);
+		
+		String location = fLocation.trim();
 		
 		if(location.equals("전체")) {
 			location = null;
@@ -88,14 +94,77 @@ public class FMBoardController {
 			currentPage = page;
 		}
 		
-		int listCount = fbService.getListCount();
+		int listCount = fbService.getListCount(location);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		System.out.println("탭리스트에서 페이지 pi정보 "+pi);
-		ArrayList<FMBoard> list = fbService.selectList(location, pi);
+		ArrayList<PiBoard> list = fbService.selectList(location, pi);
 		System.out.println(list);
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(list, response.getWriter());
 		
+		JSONArray jArr = new JSONArray();
+		for(PiBoard b : list) {
+			
+			b.setBoardLimit(pi.getBoardLimit());
+			b.setEndPage(pi.getEndPage());
+			b.setListCount(pi.getListCount());
+			b.setCurrentPage(pi.getCurrentPage());
+			b.setMaxPage(pi.getMaxPage());
+			b.setStartPage(pi.getStartPage());
+			b.setPageLimit(pi.getPageLimit());
+		}
+		
+		for(PiBoard b : list) {
+			JSONObject board = new JSONObject();
+			
+			board.put("fbId", b.getFbId());
+			board.put("fLocation", b.getfLocation());
+			board.put("fbTitle", b.getFbTitle());
+			board.put("fbCount", b.getFbCount());
+			board.put("fbWriter", b.getFbWriter());
+			
+			board.put("boardLimit", b.getBoardLimit());
+			board.put("endPage", b.getEndPage());
+			board.put("listCount", b.getListCount());
+			board.put("currentPage", b.getCurrentPage());
+			board.put("maxPage", b.getMaxPage());
+			board.put("startPage", b.getStartPage());
+			board.put("pageLimit", b.getPageLimit());
+	        
+	        jArr.add(board);
+	        
+	  //      System.out.println("jsonarray: "+board);
+		}
+		
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("list", list);
+//		map.put("pi", pi);
+		
+//		mv.addAllObjects(map);
+//		mv.setViewName("jsonView");
+//		
+//		response.setContentType("application/json; charset=utf-8");
+		
+//		return mv;
+		
+//		return map;
+		
+		JSONObject sendJson = new JSONObject();
+		sendJson.put("list",jArr);
+//		sendJson.put("pi", pi);
+//		
+//		JSONObject real = new JSONObject();
+//		real.put("real", sendJson);
+//		
+		PrintWriter out = response.getWriter();
+		out.print(sendJson);
+		out.flush();
+		out.close();
+		
+		
+		
+		//model.addAttribute("tabPi", pi);
+//		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//		gson.toJson(list, response.getWriter());
+//		gson.toJson(pi, response.getWriter());
 	}
 
 	

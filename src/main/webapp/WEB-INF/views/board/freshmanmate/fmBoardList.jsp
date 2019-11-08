@@ -78,28 +78,28 @@
                                         <div class="tabs alternative" >
                                                 <ul class="nav nav-tabs" id="tabs">
                                                     <li class="active">
-                                                        <a href="#all" data-toggle="tab">전체 </a>
+                                                        <a href="#all" id="all" data-toggle="tab">전체 </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#all" data-toggle="tab">서울 </a>
+                                                        <a href="#all" id="서울" data-toggle="tab">서울 </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#all" data-toggle="tab">인천/부천 </a>
+                                                        <a href="#all" id="인천/부천" data-toggle="tab">인천/부천 </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#all" data-toggle="tab">수원/경기 </a>
+                                                        <a href="#all" id="수원/경기" data-toggle="tab">수원/경기 </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#all" data-toggle="tab">대구/경북 </a>
+                                                        <a href="#all" id="대구/경북" data-toggle="tab">대구/경북 </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#all" data-toggle="tab">부산/경남 </a>
+                                                        <a href="#all" id="부산/경남" data-toggle="tab">부산/경남 </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#all" data-toggle="tab">충청/강원 </a>
+                                                        <a href="#all" id="충청/강원" data-toggle="tab">충청/강원 </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#all" data-toggle="tab">광주/전라</a>
+                                                        <a href="#all" id="광주/전라" data-toggle="tab">광주/전라</a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">
@@ -401,65 +401,95 @@
 
 // 탭 액티브처리하는 코드 진행중
 	$(function(){
-		var location = "${ list[0].fLocation }";
-		console.log(location);
+		var location = "${ location }";
+		console.log("나와? " + location);
 		
-		if(location != null){
+		if(location != ""){
 			var val = $("#tabs a").text().split(" ");
-			console.log(val);
-			for(var i; i<val.length; i++){
+			console.log("location is not null");
+			for(var i in val){
 				if(val[i]==location){
 					console.log(val[i]);
+					var idval=val[i];
+					document.getelementById(idval);
+					
 				}
 			}
 			//$("#tabs li").attr('class','active');
+		}else{
+			console.log("location is null");
 		}
 	});
 
 
+
 	$("#tabs a").on("click",function(){
 		var location =$(this).text();
-
+		console.log(location);
+		
+		// paging 
+		var currentPage="${ pi.currentPage }";
+		var listCount="${ pi.listCount }";  
+		var pageLimit="${ pi.pageLimit }";  
+		var maxPage="${ pi.maxPage }";    
+		var startPage="${ pi.startPage }";  
+		var endPage="${ pi.endPage }";    
+		
+		var boardLimit="${ pi.boardLimit }";
+		
+		console.log("ajax전: " +currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
+		
 			$.ajax({
 	   			url: "tablist.fm",
-	   			data: {location:location},
+	   			data: {fLocation:location, currentPage:currentPage, listCount:listCount,
+	   					pageLimit:pageLimit, maxPage:maxPage, startPage:startPage, 
+	   					endPage:endPage, boardLimit:boardLimit
+	   					},
 	   			type: "post",
+	   			dataType: "json",
 	   			success: function(data){
-	   					console.log(data);
-	   					var $tbody;
-	   					var $tr;
-   						var $fbid;
-   						var $flocation;
-   						var $fbtitle;
-   						var $atag;
-   						var $fbWriter;
-   						var $fbCount;
-   						
-   						var loginUser = "${ loginUser }";
-   						
+   					console.log(data);
+   				//	console.log("${pi}");
+   				//	console.log("list 출력 : " +data);
+   					
+   					var $tbody;
+   					var $tr;
+					var $fbid;
+					var $flocation;
+					var $fbtitle;
+					var $atag;
+					var $fbWriter;
+					var $fbCount;
+					
+					var loginUser = "${ loginUser }";
+   					console.log(loginUser);
+   					
 	   				
 	   				$tbody = $("#tbody");
 	   				$tbody.html("");
-	   					for(var i in data){
-   						fbId = data[i].fbId;
-	   						
-	   						console.log(data);
+	   					for(var i in data.list){
+   				
+	   					/* 	console.log(data.list[i]); */
+   						fbId = data.list[i].fbId;
+	   						/* console.log(data.list[0].currentPage); */
+	   					//	console.log(data);
 	   					
 		   					$tr = $("<tr>");
-		   					$fbid=$("<td text-align:'center'>").text(data[i].fbId);
-		   					$flocation=$("<td>").text(data[i].fLocation);
+		   					$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);
+		   					$flocation=$("<td>").text(data.list[i].fLocation);
 		   					
 		   					$fbtitle = $("<td align='left'>");
-		   					if(loginUser != null){
+		   					if(loginUser != ""){
+		   						console.log("왜 여기 타?");
 		   						$atag=$("<a>").attr('href','bdetail.fm?fbId='+fbId);
-		   						$atag.text(data[i].fbTitle);
+		   						$atag.text(data.list[i].fbTitle);
 		   						$fbtitle.append($atag);
 		   					}else{
-		   						$fbtitle.text(data[i].fbTitle);
+		   						$fbtitle.text(data.list[i].fbTitle);
 		   					}
 		   					
-		   					$fbWriter=$("<td>").text(data[i].fbWriter);
-		   					$fbCount=$("<td text-align:'center'>").text(data[i].fbCount);
+		   					$fbWriter=$("<td>").text(data.list[i].fbWriter);
+		   					$fbCount=$("<td text-align:'center'>").text(data.list[i].fbCount);
 		   					
 		   					$tr.append($fbid);
 		   					$tr.append($flocation);
@@ -469,6 +499,122 @@
 	   					
 		   					$tbody.append($tr);
 	   					 }
+	   					
+	   				// 페이징
+	   				$pagingul = $("#paging");
+	   				$pagingul.html("");
+	   				
+	   				var tt = data.list[0];
+	   				console.log("data.list[0] : "+tt);
+	   				
+	   				startPage=data.list[0].startPage;
+	   				currentPage=data.list[0].currentPage;
+	   				listCount=data.list[0].listCount;  
+	   				pageLimit=data.list[0].pageLimit;  
+	   				maxPage=data.list[0].maxPage;    
+	   				endPage=data.list[0].endPage;    
+	   				
+	   				boardLimit=data.list[0].boardLimit;
+	   				
+	   				console.log("ajax : "+currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
+	   				
+	   			
+	   				$previousli = $("<li>");
+	   				if(currentPage <= 1){
+	   					$least=$("<a>").text("«");
+	   					$previousli.append($least);
+	   				}else{
+	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)+'&fLocation='+location).text("«");
+	   					$previousli.append($previousatag);
+	   				}
+	   				$pagingul.append($previousli);
+	   				
+	   				$numliactive=$("<li>").addClass("active");
+	   				$numli=$("<li>");
+	   			   for (var startPage ; startPage<=endPage ; startPage++){
+                  	 if(startPage==currentPage){
+                  		 $activepagenum = $("<a>").text(startPage);
+                  		 $numliactive.append($activepagenum);
+                  		 $pagingul.append($numliactive);
+                  		 
+                  	 }else{
+                  		 $pagenum=$("<a>").attr('href','blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
+                  		 $numli.append($pagenum);
+                  		 $pagingul.append($numli);
+                  	 }
+                   }
+                              
+             	  $nextli=$("<li>");
+				  if(currentPage>=maxPage){
+					  $nextatag=$("<a>").text("»");
+					  $nextli.append($nextatag);
+				  }else{
+					  $maxatag=$("<a>").attr('href','blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
+					  $nextli.append($maxatag);
+				  }
+				  
+				  $pagingul.append($nextli);
+				  
+	   				   /* <!--페이징처리와 버튼-->
+                        <div class="text-center">
+                            <ul class="pagination" id="paging">
+                             <!-- [이전] -->
+                                <li>
+					            <c:if test="${ pi.currentPage <= 1 }">
+					              <a> « </a>
+					            </c:if>
+					            <c:if test="${ pi.currentPage > 1 }">
+					               <c:url var="before" value="blist.fm">
+					                  <c:param name="page" value="${ pi.currentPage - 1 }"/>
+					                  <c:param name="fLocation" value="전체"/>
+					               </c:url>
+                                    <a href="${ before }">«</a>
+					            </c:if>
+                                </li>*/
+                                
+                  
+                                 
+					    /*         <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					               <c:if test="${ p eq pi.currentPage }">
+                                        <li class="active">
+                                            <a >${ p }</a>
+                                        </li>
+					               </c:if>
+					               
+					               <c:if test="${ p ne pi.currentPage }">
+					                  <c:url var="pagination" value="blist.fm">
+					                     <c:param name="page" value="${ p }"/>
+					                  <c:param name="fLocation" value="전체"/>
+					                  </c:url>
+                                        <li>
+                                            <a href="${ pagination }">${ p }</a>
+                                        </li>
+					               </c:if>
+					            </c:forEach>*/
+                       
+				
+		            
+					 
+                             /*   <li>
+						            <c:if test="${ pi.currentPage >= pi.maxPage }">
+						               <a>»</a>
+						            </c:if>
+						            <c:if test="${ pi.currentPage < pi.maxPage }">
+						               <c:url var="after" value="blist.fm">
+						                  <c:param name="page" value="${ pi.currentPage + 1 }"/>
+					                  <c:param name="fLocation" value="전체"/>
+						               </c:url> 
+                                   		 <a href="${ after }">»</a>
+						            </c:if>
+                                </li>
+                               
+                            </ul> */
+                            
+                            
+	   				},
+	   				error: function(data){
+	   					console.log('dpfjekdpfj!!!');
+	   					console.log(data);
 	   				}
 	   			
 	   		}); 

@@ -10,6 +10,7 @@ import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.dao.FMBoardDAO;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 
 @Service("fbService")
 public class FMBoardServiceImpl implements FMBoardService {
@@ -46,15 +47,18 @@ public class FMBoardServiceImpl implements FMBoardService {
 //		return  bDAO.insertBoard(sqlSession, b);
 	}
 
-	@Override
-	public int getListCount() {
-		return fbDAO.getListCount(sqlSession);
-	}
+	
 
 	@Override
-	public ArrayList<FMBoard> selectList(String location, PageInfo pi) {
+	public ArrayList<PiBoard> selectList(String location, PageInfo pi) {
 		return fbDAO.selectList(sqlSession, location, pi);
 	}
+	
+	@Override
+	public ArrayList<FMBoard> selectFMList(String location, PageInfo pi) {
+		return fbDAO.selectFMList(sqlSession, location, pi);
+	}
+	
 
 
 	@Override
@@ -103,6 +107,14 @@ public class FMBoardServiceImpl implements FMBoardService {
 	public ArrayList<Reply> selectReplyList(int fbId) {
 		return fbDAO.selectReplyList(sqlSession, fbId);
 	}
+
+
+
+	@Override
+	public int getListCount(String location) {
+		return fbDAO.getListCount(sqlSession, location);
+	}
+
 
 
 

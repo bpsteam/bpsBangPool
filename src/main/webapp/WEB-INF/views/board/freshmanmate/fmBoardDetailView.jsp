@@ -593,8 +593,6 @@
    						$allCommentdiv.append($oneCommentdiv);
    						
 	   					
-	   					$tr.append($rContent);
-	   					$tableBody.append($tr);
 	   					
 	   				}
 	   			}

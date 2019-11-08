@@ -11,7 +11,7 @@
 				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
 	
-	<select id="selectList" resultType="FMBoard" parameterType="String">
+	<select id="selectList" resultType="PiBoard" parameterType="string">
 		select*from freshman_board
 		where fbstatus='Y'
 		<if test="location!=null">
@@ -20,9 +20,21 @@
 		order by fbid desc
 	</select>
 	
-	<select id="getListCount" resultType="_int">
+	<select id="selectFMList" resultType="FMBoard" parameterType="string">
+		select*from freshman_board
+		where fbstatus='Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
+		order by fbid desc
+	</select>
+	
+	<select id="getListCount" resultType="_int" parameterType="string">
 		select count(*) from freshman_board
 		where fbstatus = 'Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
 	</select>
 	
 	<update id="addReadCount" parameterType="_int">

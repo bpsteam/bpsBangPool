@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 
 @Repository("fbDAO")
 public class FMBoardDAO {
@@ -17,12 +18,19 @@ public class FMBoardDAO {
 		return sqlSession.insert("fmboardMapper.insertBoard",b);
 	}
 
-	public ArrayList<FMBoard> selectList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
+	public ArrayList<PiBoard> selectList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
+		System.out.println(offset + " rowBounds: " + rowBounds);
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectList", location, rowBounds);
+	}
+	public ArrayList<FMBoard> selectFMList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		System.out.println(offset + " rowBounds: " + rowBounds);
+		return (ArrayList)sqlSession.selectList("fmboardMapper.selectFMList", location, rowBounds);
 	}
 
 	public int addReadCount(SqlSessionTemplate sqlSession, int fbId) {
@@ -61,8 +69,8 @@ public class FMBoardDAO {
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectReplyList",fbId);
 	}
 
-	public int getListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("fmboardMapper.getListCount");
+	public int getListCount(SqlSessionTemplate sqlSession, String location) {
+		return sqlSession.selectOne("fmboardMapper.getListCount", location);
 	}
 
 
