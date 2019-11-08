@@ -11,17 +11,17 @@
 				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
 	
-	<select id="selectList" resultType="PiBoard" parameterType="string">
+	<!-- <select id="selectPiList" resultType="PiBoard" parameterType="string">
 		select*from freshman_board
 		where fbstatus='Y'
 		<if test="location!=null">
 		and flocation=#{location}
 		</if>
 		order by fbid desc
-	</select>
+	</select> -->
 	
-	<select id="selectFMList" resultType="FMBoard" parameterType="string">
-		select*from freshman_board
+	<select id="selectList" resultType="FMBoard" parameterType="string">
+		select fbid, fbtitle, fbwriter, fbcount, flocation from freshman_board
 		where fbstatus='Y'
 		<if test="location!=null">
 		and flocation=#{location}

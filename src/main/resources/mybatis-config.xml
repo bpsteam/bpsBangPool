@@ -14,7 +14,7 @@
 
 		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.FMBoard" alias="FMBoard"/>
 		
-		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.PiBoard" alias="PiBoard"/>
+		<!-- <typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.PiBoard" alias="PiBoard"/> -->
 
 	    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
     	

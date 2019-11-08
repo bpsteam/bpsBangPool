@@ -18,19 +18,19 @@ public class FMBoardDAO {
 		return sqlSession.insert("fmboardMapper.insertBoard",b);
 	}
 
-	public ArrayList<PiBoard> selectList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
+//	public ArrayList<PiBoard> selectPiList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
+//		
+//		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+//		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+//		System.out.println(offset + " rowBounds: " + rowBounds);
+//		return (ArrayList)sqlSession.selectList("fmboardMapper.selectPiList", location, rowBounds);
+//	}
+	public ArrayList<FMBoard> selectList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		System.out.println(offset + " rowBounds: " + rowBounds);
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectList", location, rowBounds);
-	}
-	public ArrayList<FMBoard> selectFMList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
-		
-		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		System.out.println(offset + " rowBounds: " + rowBounds);
-		return (ArrayList)sqlSession.selectList("fmboardMapper.selectFMList", location, rowBounds);
 	}
 
 	public int addReadCount(SqlSessionTemplate sqlSession, int fbId) {

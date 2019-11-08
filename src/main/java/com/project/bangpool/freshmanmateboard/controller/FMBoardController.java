@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +32,6 @@ import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
-import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.BoardException;
 
@@ -60,7 +60,7 @@ public class FMBoardController {
 		int listCount = fbService.getListCount(location);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<FMBoard> list = fbService.selectFMList(location, pi);
+		ArrayList<FMBoard> list = fbService.selectList(location, pi);
 		
 		if(list != null ) {
 			System.out.println("리스트불러오기 성공하고 페이지 출력 "+pi);
@@ -77,8 +77,8 @@ public class FMBoardController {
 	
 
 	@RequestMapping("tablist.fm")
-	public void tabBoardList(@RequestParam(value="page", required=false) Integer page,
-						HttpServletResponse response,String fLocation) throws JsonIOException, IOException {
+	public ModelAndView tabBoardList(@RequestParam(value="page", required=false) Integer page,
+						HttpServletResponse response,String fLocation, ModelAndView mv) throws JsonIOException, IOException {
 		response.setContentType("application/json; charset=utf-8");
 		
 		System.out.println("blist location 출력 : " +fLocation);
@@ -97,22 +97,23 @@ public class FMBoardController {
 		int listCount = fbService.getListCount(location);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		System.out.println("탭리스트에서 페이지 pi정보 "+pi);
-		ArrayList<PiBoard> list = fbService.selectList(location, pi);
+//		ArrayList<PiBoard> list = fbService.selectPiList(location, pi);
+		ArrayList<FMBoard> list = fbService.selectList(location, pi);
 		System.out.println(list);
 		
 		JSONArray jArr = new JSONArray();
-		for(PiBoard b : list) {
-			
-			b.setBoardLimit(pi.getBoardLimit());
-			b.setEndPage(pi.getEndPage());
-			b.setListCount(pi.getListCount());
-			b.setCurrentPage(pi.getCurrentPage());
-			b.setMaxPage(pi.getMaxPage());
-			b.setStartPage(pi.getStartPage());
-			b.setPageLimit(pi.getPageLimit());
-		}
+//		for(PiBoard b : list) {
+//			
+//			b.setBoardLimit(pi.getBoardLimit());
+//			b.setEndPage(pi.getEndPage());
+//			b.setListCount(pi.getListCount());
+//			b.setCurrentPage(pi.getCurrentPage());
+//			b.setMaxPage(pi.getMaxPage());
+//			b.setStartPage(pi.getStartPage());
+//			b.setPageLimit(pi.getPageLimit());
+//		}
 		
-		for(PiBoard b : list) {
+		for(FMBoard b : list) {
 			JSONObject board = new JSONObject();
 			
 			board.put("fbId", b.getFbId());
@@ -121,43 +122,43 @@ public class FMBoardController {
 			board.put("fbCount", b.getFbCount());
 			board.put("fbWriter", b.getFbWriter());
 			
-			board.put("boardLimit", b.getBoardLimit());
-			board.put("endPage", b.getEndPage());
-			board.put("listCount", b.getListCount());
-			board.put("currentPage", b.getCurrentPage());
-			board.put("maxPage", b.getMaxPage());
-			board.put("startPage", b.getStartPage());
-			board.put("pageLimit", b.getPageLimit());
+//			board.put("boardLimit", b.getBoardLimit());
+//			board.put("endPage", b.getEndPage());
+//			board.put("listCount", b.getListCount());
+//			board.put("currentPage", b.getCurrentPage());
+//			board.put("maxPage", b.getMaxPage());
+//			board.put("startPage", b.getStartPage());
+//			board.put("pageLimit", b.getPageLimit());
 	        
 	        jArr.add(board);
 	        
 	  //      System.out.println("jsonarray: "+board);
 		}
 		
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		map.put("list", list);
-//		map.put("pi", pi);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("pi", pi);
 		
-//		mv.addAllObjects(map);
-//		mv.setViewName("jsonView");
+		mv.addAllObjects(map);
+		mv.setViewName("jsonView");
 //		
 //		response.setContentType("application/json; charset=utf-8");
 		
-//		return mv;
+		return mv;
 		
 //		return map;
 		
-		JSONObject sendJson = new JSONObject();
-		sendJson.put("list",jArr);
+//		JSONObject sendJson = new JSONObject();
+//		sendJson.put("list",jArr);
 //		sendJson.put("pi", pi);
 //		
 //		JSONObject real = new JSONObject();
 //		real.put("real", sendJson);
 //		
-		PrintWriter out = response.getWriter();
-		out.print(sendJson);
-		out.flush();
-		out.close();
+//		PrintWriter out = response.getWriter();
+//		out.print(real);
+//		out.flush();
+//		out.close();
 		
 		
 		

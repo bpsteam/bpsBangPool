@@ -49,14 +49,14 @@ public class FMBoardServiceImpl implements FMBoardService {
 
 	
 
+//	@Override
+//	public ArrayList<PiBoard> selectPiList(String location, PageInfo pi) {
+//		return fbDAO.selectList(sqlSession, location, pi);
+//	}
+//	
 	@Override
-	public ArrayList<PiBoard> selectList(String location, PageInfo pi) {
+	public ArrayList<FMBoard> selectList(String location, PageInfo pi) {
 		return fbDAO.selectList(sqlSession, location, pi);
-	}
-	
-	@Override
-	public ArrayList<FMBoard> selectFMList(String location, PageInfo pi) {
-		return fbDAO.selectFMList(sqlSession, location, pi);
 	}
 	
 

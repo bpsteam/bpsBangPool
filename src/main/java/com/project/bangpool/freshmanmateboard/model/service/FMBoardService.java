@@ -11,9 +11,9 @@ public interface FMBoardService {
 	
 	int insertBoard(FMBoard b);
 
-	ArrayList<PiBoard> selectList(String location, PageInfo pi);
+//	ArrayList<PiBoard> selectPiList(String location, PageInfo pi);
 	
-	ArrayList<FMBoard> selectFMList(String location, PageInfo pi);
+	ArrayList<FMBoard> selectList(String location, PageInfo pi);
 
 	FMBoard selectBoard(int fbId);
 

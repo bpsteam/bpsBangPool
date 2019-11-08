@@ -411,7 +411,6 @@
 				if(val[i]==location){
 					console.log(val[i]);
 					var idval=val[i];
-					document.getelementById(idval);
 					
 				}
 			}
@@ -449,6 +448,7 @@
 	   			dataType: "json",
 	   			success: function(data){
    					console.log(data);
+   					console.log(data.pi);
    				//	console.log("${pi}");
    				//	console.log("list 출력 : " +data);
    					
@@ -504,17 +504,17 @@
 	   				$pagingul = $("#paging");
 	   				$pagingul.html("");
 	   				
-	   				var tt = data.list[0];
+	   				var tt = data.pi;
 	   				console.log("data.list[0] : "+tt);
 	   				
-	   				startPage=data.list[0].startPage;
-	   				currentPage=data.list[0].currentPage;
-	   				listCount=data.list[0].listCount;  
-	   				pageLimit=data.list[0].pageLimit;  
-	   				maxPage=data.list[0].maxPage;    
-	   				endPage=data.list[0].endPage;    
+	   				startPage=data.pi.startPage;
+	   				currentPage=data.pi.currentPage;
+	   				listCount=data.pi.listCount;  
+	   				pageLimit=data.pi.pageLimit;  
+	   				maxPage=data.pi.maxPage;    
+	   				endPage=data.pi.endPage;    
 	   				
-	   				boardLimit=data.list[0].boardLimit;
+	   				boardLimit=data.pi.boardLimit;
 	   				
 	   				console.log("ajax : "+currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
 	   				
