@@ -18,12 +18,12 @@ public class RMBoardDAO {
 		return sqlSession.insert("rmboardMapper.insertBoard", b);
 	}
 
-	public ArrayList<RMBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<RMBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi, String loc) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("rmboardMapper.selectList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("rmboardMapper.selectList", loc, rowBounds);
 	}
 
 	public int addReadCount(SqlSessionTemplate sqlSession, int rbId) {

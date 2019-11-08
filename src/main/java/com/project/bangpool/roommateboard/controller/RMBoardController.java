@@ -37,8 +37,10 @@ public class RMBoardController {
 	private RMBoardService rbService;
 
 	@RequestMapping("blist.rm")
-	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, ModelAndView mv) {
-		
+	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, 
+								  @RequestParam(value="loc", required=false) String loc,
+								  ModelAndView mv) {
+		System.out.println("loc:"+loc);
 		int currentPage = 1;
 		
 		if(page != null) {
@@ -50,7 +52,8 @@ public class RMBoardController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<RMBoard> list = rbService.selectList(pi);
+		System.out.println("selectList loc: "+loc);
+		ArrayList<RMBoard> list = rbService.selectList(pi, loc);
 		
 		if(list != null) {
 			System.out.println("rbService list : "+list);
@@ -240,6 +243,7 @@ public class RMBoardController {
 			throw new RMBoardException("게시글 삭제 실패");
 		}
 	}
+	
 	
 	
 	

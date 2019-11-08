@@ -14,6 +14,16 @@
 		select * 
 		from ROOMATE_BOARD
 		where RBSTATUS = 'Y'
+		<!-- <choose>
+			<when test="loc != null"> and loc = #{rLocation} </when>
+			<when test="writer != null"> and nickName = #{writer} </when>
+		</choose> -->
+		<if test="loc != null and !loc.equals('')">
+		<choose>
+			<when test="loc.equals('SEOUL')"> and rlocation='서울' </when>
+			<when test="loc.equals('INCHEON')"> and rlocation='충청/강원' </when>
+		</choose>
+		 </if>
 		order by RBID desc
 	</select>
 	

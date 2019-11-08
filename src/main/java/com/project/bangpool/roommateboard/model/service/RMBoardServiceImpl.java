@@ -26,8 +26,8 @@ public class RMBoardServiceImpl implements RMBoardService{
 	}
 
 	@Override
-	public ArrayList<RMBoard> selectList(PageInfo pi) {
-		return rbDAO.selectList(sqlSession, pi);
+	public ArrayList<RMBoard> selectList(PageInfo pi, String loc) {
+		return rbDAO.selectList(sqlSession, pi, loc);
 	}
 
 	@Override

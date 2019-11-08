@@ -75,14 +75,24 @@
                                             </div>
                                         <div class="tabs alternative" >
                                                 <ul class="nav nav-tabs">
-                                                    <li class="active">
-                                                        <a href="#sample-2a" data-toggle="tab">전체</a>
+                                                    <li class="active" >
+                                                   		<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value=""/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">전체</a>
+                                                    </li>
+                                                    <li class="ploc">
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="SEOUL"/>
+                                                   		</c:url>
+                                                       	<a href="${ ploc }" >서울</a>
+                                                        <!-- <a href="#sample-2a" data-toggle="tab">서울</a -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2a" data-toggle="tab">서울</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#sample-2b" data-toggle="tab">인천/부천</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="INCHEON"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">인천/부천</a>
                                                     </li>
                                                     <li>
                                                         <a href="#sample-2c" data-toggle="tab">수원/경기</a>
@@ -119,11 +129,13 @@
                                                                         	<tr>
                                                                         		<td>${ b.rbId }</td>
                                                                         		<td>${ b.rLocation }</td>
-                                                                        		<td>
                                                                         			<c:url var="bdetail" value="bdetail.rm">
                                                                         				<c:param name="rbId" value="${ b.rbId }"></c:param>
                                                                         			</c:url>
-                                                                        				<a href="${ bdetail }">${ b.rbTitle }</a></td>
+                                                                        		<td onClick="location.href='${ bdetail }'">
+                                                                        				<%-- <a href="${ bdetail }">${ b.rbTitle }</a></td> --%>
+                                                                        				${ b.rbTitle }
+                                                                     			</td>
                                                                         		<td>${ b.rbWriter }</td>
                                                                         		
                                                                         		
@@ -135,7 +147,6 @@
                                                                         	</tr>
                                                                         
                                                                         </c:forEach>
-                                                                        
                                                                         
                                                                             <!-- <tr>
                                                                                 <td>1</td>
@@ -646,6 +657,19 @@
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
+
+	<script type="text/javascript">
+			
+		$('.ploc').click(function(){
+			
+			var active = $('.active');
+			active.removeClass('active');
+			this.addClass('active');
+			
+			
+		})	;
+	
+	</script>
 
 </body>
 </html>

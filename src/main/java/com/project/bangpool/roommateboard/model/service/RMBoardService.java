@@ -10,7 +10,7 @@ public interface RMBoardService {
 	
 	int insertBoard(RMBoard b);
 	
-	ArrayList<RMBoard> selectList(PageInfo pi);
+	ArrayList<RMBoard> selectList(PageInfo pi, String loc);
 	
 	RMBoard selectBoard(int rbId);
 	
