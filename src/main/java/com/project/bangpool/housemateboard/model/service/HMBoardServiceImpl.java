@@ -21,8 +21,8 @@ public class HMBoardServiceImpl implements HMBoardService {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public ArrayList<HMBoard> selectList(PageInfo pi) {
-		return hbDAO.selectList(sqlSession, pi);
+	public ArrayList<HMBoard> selectList(PageInfo pi, String hLoc) {
+		return hbDAO.selectList(sqlSession, pi, hLoc);
 
 	}
 
@@ -87,9 +87,9 @@ public class HMBoardServiceImpl implements HMBoardService {
 	}
 
 	@Override
-	public int getListCount() {
+	public int getListCount(String hLoc) {
 		// TODO Auto-generated method stub
-		return hbDAO.getListCount(sqlSession);
+		return hbDAO.getListCount(sqlSession, hLoc);
 	}
 	
 	
