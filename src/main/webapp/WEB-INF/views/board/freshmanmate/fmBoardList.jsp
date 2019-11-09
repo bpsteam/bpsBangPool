@@ -77,29 +77,29 @@
                                             </div>
                                         <div class="tabs alternative" >
                                                 <ul class="nav nav-tabs" id="tabs">
-                                                    <li class="active">
+                                                    <li class="active" id="jeon">
                                                         <a href="#all" data-toggle="tab">전체 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" data-toggle="tab">서울 </a>
+                                                    <li id="seoul">
+                                                        <a href="#all"  data-toggle="tab">서울 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" data-toggle="tab">인천/부천 </a>
+                                                    <li id="inc">
+                                                        <a href="#all"  data-toggle="tab">인천/부천 </a>
                                                     </li>
-                                                    <li>
+                                                    <li id="su">
                                                         <a href="#all" data-toggle="tab">수원/경기 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" data-toggle="tab">대구/경북 </a>
+                                                    <li id="dae">
+                                                        <a href="#all"  data-toggle="tab">대구/경북 </a>
                                                     </li>
-                                                    <li>
+                                                    <li id="bu">
                                                         <a href="#all" data-toggle="tab">부산/경남 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" data-toggle="tab">충청/강원 </a>
+                                                    <li id="kang">
+                                                        <a href="#all"  data-toggle="tab">충청/강원 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" data-toggle="tab">광주/전라</a>
+                                                    <li id="kwang">
+                                                        <a href="#all"  data-toggle="tab">광주/전라</a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">
@@ -234,25 +234,20 @@
                                     <div class="text-center">
                                         <h4 id="myModalLabel" style="font-weight: 500; font-family: 'Roboto', sans-serif; color:unset; line-height:1.1"><i class="fa fa-search fa-lg" ></i> Search</h4>
                                     </div>
-                                    <form name="fsearch" method="get" role="form" class="form" style="margin-top:20px;">
-                                        <input type="hidden" name="bo_table" value="roomate">
-                                        <input type="hidden" name="sca" value="">
-                                        <input type="hidden" name="sop" value="and">
+                                    <form name="fsearch" action="bsearch.fm" method="get" role="form" class="form" style="margin-top:20px;">
                                         <div class="form-group">
                                             <label for="sfl" class="sound_only">검색대상</label>
-                                            <select name="sfl" id="sfl" class="form-control input-sm">
-                                                <option value="wr_subject">제목</option>
-                                                <option value="wr_content">내용</option>
-                                                <option value="wr_subject||wr_content">제목+내용</option>
-                                                <option value="mb_id,1">회원아이디</option>
-                                                <option value="mb_id,0">회원아이디(코)</option>
-                                                <option value="wr_name,1">글쓴이</option>
-                                                <option value="wr_name,0">글쓴이(코)</option>
+                                            <select name="searchMethod" id="searchMethod" class="form-control input-sm">
+                                                <option value="fbTitle">제목</option>
+                                                <option value="fbContent">내용</option>
+                                                <option value="titleNcontent">제목+내용</option>
+                                                <option value="email">회원아이디</option>
+                                                <option value="fbWriter">글쓴이</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                                            <input type="text" name="stx" value="" required id="stx" class="form-control input-sm" maxlength="20" placeholder="검색어">
+                                            <input type="text" name="searchword" required class="form-control input-sm" maxlength="20" placeholder="검색어">
                                         </div>
             
                                         <div class="btn-group btn-group-justified">
@@ -398,68 +393,106 @@
 
 <!--  SCRIPT  -->
 <script>
-
-// 탭 액티브처리하는 코드 진행중
+// 탭 액티브 처리하는 코드
 	$(function(){
-		var location = "${ list[0].fLocation }";
-		console.log(location);
-		
-		if(location != null){
-			var val = $("#tabs a").text().split(" ");
-			console.log(val);
-			for(var i; i<val.length; i++){
-				if(val[i]==location){
-					console.log(val[i]);
-				}
-			}
-			//$("#tabs li").attr('class','active');
+		var location = "${ location }";
+		if(location=="서울"){
+		$("#tabs li").removeClass("active");
+		$("#seoul").addClass("active");
+		}else if(location=="인천/부천"){
+		$("#tabs li").removeClass("active");
+		$("#inc").addClass("active");
+		}else if(location=="수원/경기"){
+		$("#tabs li").removeClass("active");
+		$("#su").addClass("active");
+		}else if(location=="대구/경북"){
+		$("#tabs li").removeClass("active");
+		$("#dae").addClass("active");
+		}else if(location=="부산/경남"){
+		$("#tabs li").removeClass("active");
+		$("#bu").addClass("active");
+		}else if(location=="충청/강원"){
+		$("#tabs li").removeClass("active");
+		$("#kang").addClass("active");
+		}else if(location=="광주/전라"){
+		$("#tabs li").removeClass("active");
+		$("#kwang").addClass("active");
+		}else{
+		$("#tabs li").removeClass("active");
+		$("#jeon").addClass("active");
 		}
 	});
 
 
+// 에이작스로 게시판 리스트 불러오기
 	$("#tabs a").on("click",function(){
 		var location =$(this).text();
-
+		console.log(location);
+		
+		// paging 
+		var currentPage="${ pi.currentPage }";
+		var listCount="${ pi.listCount }";  
+		var pageLimit="${ pi.pageLimit }";  
+		var maxPage="${ pi.maxPage }";    
+		var startPage="${ pi.startPage }";  
+		var endPage="${ pi.endPage }";    
+		
+		var boardLimit="${ pi.boardLimit }";
+		
+		console.log("ajax전: " +currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
+		
 			$.ajax({
 	   			url: "tablist.fm",
-	   			data: {location:location},
+	   			data: {fLocation:location, currentPage:currentPage, listCount:listCount,
+	   					pageLimit:pageLimit, maxPage:maxPage, startPage:startPage, 
+	   					endPage:endPage, boardLimit:boardLimit
+	   					},
 	   			type: "post",
+	   			dataType: "json",
 	   			success: function(data){
-	   					console.log(data);
-	   					var $tbody;
-	   					var $tr;
-   						var $fbid;
-   						var $flocation;
-   						var $fbtitle;
-   						var $atag;
-   						var $fbWriter;
-   						var $fbCount;
-   						
-   						var loginUser = "${ loginUser }";
-   						
+   					console.log(data);
+   					console.log(data.pi);
+   				//	console.log("${pi}");
+   				//	console.log("list 출력 : " +data);
+   					
+   					var $tbody;
+   					var $tr;
+					var $fbid;
+					var $flocation;
+					var $fbtitle;
+					var $atag;
+					var $fbWriter;
+					var $fbCount;
+					
+					var loginUser = "${ loginUser }";
+   					console.log(loginUser);
+   					
 	   				
 	   				$tbody = $("#tbody");
 	   				$tbody.html("");
-	   					for(var i in data){
-   						fbId = data[i].fbId;
-	   						
-	   						console.log(data);
+	   					for(var i in data.list){
+   				
+	   					/* 	console.log(data.list[i]); */
+   						fbId = data.list[i].fbId;
+	   						/* console.log(data.list[0].currentPage); */
+	   					//	console.log(data);
 	   					
 		   					$tr = $("<tr>");
-		   					$fbid=$("<td text-align:'center'>").text(data[i].fbId);
-		   					$flocation=$("<td>").text(data[i].fLocation);
+		   					$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);
+		   					$flocation=$("<td>").text(data.list[i].fLocation);
 		   					
 		   					$fbtitle = $("<td align='left'>");
-		   					if(loginUser != null){
+		   					if(loginUser != ""){
+		   						console.log("왜 여기 타?");
 		   						$atag=$("<a>").attr('href','bdetail.fm?fbId='+fbId);
-		   						$atag.text(data[i].fbTitle);
+		   						$atag.text(data.list[i].fbTitle);
 		   						$fbtitle.append($atag);
 		   					}else{
-		   						$fbtitle.text(data[i].fbTitle);
+		   						$fbtitle.text(data.list[i].fbTitle);
 		   					}
 		   					
-		   					$fbWriter=$("<td>").text(data[i].fbWriter);
-		   					$fbCount=$("<td text-align:'center'>").text(data[i].fbCount);
+		   					$fbWriter=$("<td>").text(data.list[i].fbWriter);
+		   					$fbCount=$("<td text-align:'center'>").text(data.list[i].fbCount);
 		   					
 		   					$tr.append($fbid);
 		   					$tr.append($flocation);
@@ -469,6 +502,122 @@
 	   					
 		   					$tbody.append($tr);
 	   					 }
+	   					
+	   				// 페이징
+	   				$pagingul = $("#paging");
+	   				$pagingul.html("");
+	   				
+	   				var tt = data.pi;
+	   				console.log("data.list[0] : "+tt);
+	   				
+	   				startPage=data.pi.startPage;
+	   				currentPage=data.pi.currentPage;
+	   				listCount=data.pi.listCount;  
+	   				pageLimit=data.pi.pageLimit;  
+	   				maxPage=data.pi.maxPage;    
+	   				endPage=data.pi.endPage;    
+	   				
+	   				boardLimit=data.pi.boardLimit;
+	   				
+	   				console.log("ajax : "+currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
+	   				
+	   			
+	   				$previousli = $("<li>");
+	   				if(currentPage <= 1){
+	   					$least=$("<a>").text("«");
+	   					$previousli.append($least);
+	   				}else{
+	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)+'&fLocation='+location).text("«");
+	   					$previousli.append($previousatag);
+	   				}
+	   				$pagingul.append($previousli);
+	   				
+	   				$numliactive=$("<li>").addClass("active");
+	   				$numli=$("<li>");
+	   			   for (var startPage ; startPage<=endPage ; startPage++){
+                  	 if(startPage==currentPage){
+                  		 $activepagenum = $("<a>").text(startPage);
+                  		 $numliactive.append($activepagenum);
+                  		 $pagingul.append($numliactive);
+                  		 
+                  	 }else{
+                  		 $pagenum=$("<a>").attr('href','blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
+                  		 $numli.append($pagenum);
+                  		 $pagingul.append($numli);
+                  	 }
+                   }
+                              
+             	  $nextli=$("<li>");
+				  if(currentPage>=maxPage){
+					  $nextatag=$("<a>").text("»");
+					  $nextli.append($nextatag);
+				  }else{
+					  $maxatag=$("<a>").attr('href','blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
+					  $nextli.append($maxatag);
+				  }
+				  
+				  $pagingul.append($nextli);
+				  
+	   				   /* <!--페이징처리와 버튼-->
+                        <div class="text-center">
+                            <ul class="pagination" id="paging">
+                             <!-- [이전] -->
+                                <li>
+					            <c:if test="${ pi.currentPage <= 1 }">
+					              <a> « </a>
+					            </c:if>
+					            <c:if test="${ pi.currentPage > 1 }">
+					               <c:url var="before" value="blist.fm">
+					                  <c:param name="page" value="${ pi.currentPage - 1 }"/>
+					                  <c:param name="fLocation" value="전체"/>
+					               </c:url>
+                                    <a href="${ before }">«</a>
+					            </c:if>
+                                </li>*/
+                                
+                  
+                                 
+					    /*         <c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					               <c:if test="${ p eq pi.currentPage }">
+                                        <li class="active">
+                                            <a >${ p }</a>
+                                        </li>
+					               </c:if>
+					               
+					               <c:if test="${ p ne pi.currentPage }">
+					                  <c:url var="pagination" value="blist.fm">
+					                     <c:param name="page" value="${ p }"/>
+					                  <c:param name="fLocation" value="전체"/>
+					                  </c:url>
+                                        <li>
+                                            <a href="${ pagination }">${ p }</a>
+                                        </li>
+					               </c:if>
+					            </c:forEach>*/
+                       
+				
+		            
+					 
+                             /*   <li>
+						            <c:if test="${ pi.currentPage >= pi.maxPage }">
+						               <a>»</a>
+						            </c:if>
+						            <c:if test="${ pi.currentPage < pi.maxPage }">
+						               <c:url var="after" value="blist.fm">
+						                  <c:param name="page" value="${ pi.currentPage + 1 }"/>
+					                  <c:param name="fLocation" value="전체"/>
+						               </c:url> 
+                                   		 <a href="${ after }">»</a>
+						            </c:if>
+                                </li>
+                               
+                            </ul> */
+                            
+                            
+	   				},
+	   				error: function(data){
+	   					console.log('dpfjekdpfj!!!');
+	   					console.log(data);
 	   				}
 	   			
 	   		}); 

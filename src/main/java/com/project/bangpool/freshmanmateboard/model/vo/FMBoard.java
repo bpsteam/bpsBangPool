@@ -29,7 +29,7 @@ public class FMBoard {
 //	private Attachment att; 
 	
 	
-	
+//	private PageInfo pi;
 	
 
 	public FMBoard() {
@@ -38,7 +38,13 @@ public class FMBoard {
 	}
 
 	
-	
+//	
+//public FMBoard(PageInfo pi) {
+//		super();
+//		this.pi = pi;
+//	}
+
+
 
 public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String fbContent, String originalFileName,
 		String renameFileName, int fbCount, Date fbCreateDate, Date fbModifyDate, String fbStatus, String fLocation,
@@ -78,6 +84,16 @@ public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String f
 //	public void setAtt(Attachment att) {
 //		this.att = att;
 //	}
+
+//	public PageInfo getPi() {
+//	return pi;
+//}
+//
+//
+//public void setPi(PageInfo pi) {
+//	this.pi = pi;
+//}
+
 
 	public String getCollege() {
 		return college;

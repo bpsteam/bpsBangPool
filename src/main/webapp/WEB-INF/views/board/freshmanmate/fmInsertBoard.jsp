@@ -76,7 +76,14 @@
                                                <div class="form-group has-feedback">
 	                                               <label class="col-sm-2 control-label" >작성자</label>
 	                                               <div class="col-sm-3">
-	                                                   <input type="text" name="fbWriter"  id="fbWriter" value="작성자닉네임" readonly class="form-control input-sm" size="10" maxlength="20">
+	                                                 <c:if test="${ !empty loginUser }">
+	                                                   <input type="text" name="fbWriter"  id="fbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
+	                                               </c:if>
+	                                               
+	                                               <c:if test="${ empty loginUser}">
+	                                                   <input type="text" name="fbWriter"  id="fbWriter" value="로그인안함" readonly class="form-control input-sm" size="10" maxlength="20">
+	                                               </c:if>
+	                                               
 	                                               </div>
 	                                           </div>
 										       <!-- ==== EMAIL AUTHORIZATION START ==== -->                                         
@@ -286,7 +293,10 @@
                                                 <div class="write-btn pull-center">
                                                     <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button>
                                                     <!-- <a href="bdetail.fm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a> -->
-                                                    <a href="blist.fm" class="btn btn-danger btn-sm" role="button">취소</a>
+                                                   <c:url var="blist" value="blist.fm">
+                                                   	<c:param name="fLocation" value="전체"/>
+                                                   </c:url>
+                                                    <a href="${ blist }" class="btn btn-danger btn-sm" role="button">취소</a>
                                                 </div>
                                             
                                             

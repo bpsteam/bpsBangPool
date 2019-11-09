@@ -208,13 +208,13 @@
                                         <span class="glyphicon glyphicon-book"> 신입생메이트</span>
                                         <ul>
                                             <li>
-                                                <a href="blist.fm?fLocation=전체">전체</a>
+                                                <a href="blist.fm?fLocation=전체" >전체</a>
                                             </li>
                                             <li>
-                                                <a href="blist.fm?fLocation=서울">서울</a>
+                                                <a href="blist.fm?fLocation=서울" >서울</a>
                                             </li>
                                             <li>
-                                                <a href="blist.fm?fLocation=인천/부천">인천/부천</a>
+                                                <a href="blist.fm?fLocation=인천/부천"  >인천/부천</a>
                                             </li>                                
                                             <li>                                 
                                                 <a href="blist.fm?fLocation=수원/경기">수원/경기</a>
@@ -223,10 +223,10 @@
                                                 <a href="blist.fm?fLocation=대구/경북">대구/경북</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.fm?fLocation=부산/경남">부산/경남</a>
+                                                <a href="blist.fm?fLocation=부산/경남" >부산/경남</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.fm?fLocation=충청/강원">충청/강원</a>
+                                                <a href="blist.fm?fLocation=충청/강원" >충청/강원</a>
                                             </li>                                
                                             <li>                                 
                                                 <a href="blist.fm?fLocation=광주/전라">광주/전라</a>

@@ -11,8 +11,17 @@
 				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
 	
-	<select id="selectList" resultType="FMBoard" parameterType="String">
+	<!-- <select id="selectPiList" resultType="PiBoard" parameterType="string">
 		select*from freshman_board
+		where fbstatus='Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
+		order by fbid desc
+	</select> -->
+	
+	<select id="selectList" resultType="FMBoard" parameterType="string">
+		select fbid, fbtitle, fbwriter, fbcount, flocation from freshman_board
 		where fbstatus='Y'
 		<if test="location!=null">
 		and flocation=#{location}
@@ -20,9 +29,12 @@
 		order by fbid desc
 	</select>
 	
-	<select id="getListCount" resultType="_int">
+	<select id="getListCount" resultType="_int" parameterType="string">
 		select count(*) from freshman_board
 		where fbstatus = 'Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
 	</select>
 	
 	<update id="addReadCount" parameterType="_int">
@@ -119,6 +131,48 @@
 		and r.refbid = f.fbid
 		where refbid=${fbId}
 		
+	</select>
+	
+	<select id="getSearchListCount" parameterType="hashmap" resultType="_int">
+		select count(*) from freshman_board
+		join member on (nickname = fbwriter)
+		where fbstatus = 'Y'
+		<if test="smethod eq 'fbTitle'">
+		and fbTitle like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbContent'">
+		and fbContent like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'titleNcontent'">
+		and (fbTitle like '%' || #{sword} || '%' or fbContent like '%' || #{sword} || '%')
+		</if>
+		<if test="smethod eq 'email'">
+		and email like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbWriter'">
+		and fbWriter like '%' || #{sword} || '%'
+		</if>
+	</select>
+	
+	<select id="getSearchList" parameterType="hashmap" resultType="FMBoard">
+		select * from freshman_board
+		join member on (nickname = fbwriter)
+		where fbstatus = 'Y'
+		<if test="smethod eq 'fbTitle'">
+		and fbTitle like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbContent'">
+		and fbContent like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'titleNcontent'">
+		and (fbTitle like '%' || #{sword} || '%' or fbContent like '%' || #{sword} || '%')
+		</if>
+		<if test="smethod eq 'email'">
+		and email like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbWriter'">
+		and fbWriter like '%' || #{sword} || '%'
+		</if>
 	</select>
 	
 </mapper>

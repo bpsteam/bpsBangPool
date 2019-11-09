@@ -1,6 +1,7 @@
 package com.project.bangpool.freshmanmateboard.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 
 @Repository("fbDAO")
 public class FMBoardDAO {
@@ -17,11 +19,17 @@ public class FMBoardDAO {
 		return sqlSession.insert("fmboardMapper.insertBoard",b);
 	}
 
+//	public ArrayList<PiBoard> selectPiList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
+//		
+//		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+//		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+//		System.out.println(offset + " rowBounds: " + rowBounds);
+//		return (ArrayList)sqlSession.selectList("fmboardMapper.selectPiList", location, rowBounds);
+//	}
 	public ArrayList<FMBoard> selectList(SqlSessionTemplate sqlSession, String location, PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectList", location, rowBounds);
 	}
 
@@ -61,8 +69,21 @@ public class FMBoardDAO {
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectReplyList",fbId);
 	}
 
-	public int getListCount(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("fmboardMapper.getListCount");
+	public int getListCount(SqlSessionTemplate sqlSession, String location) {
+		return sqlSession.selectOne("fmboardMapper.getListCount", location);
+	}
+
+	public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap) {
+		return sqlSession.selectOne("fmboardMapper.getSearchListCount", searchMap);
+	}
+
+	public ArrayList<FMBoard> getSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap, PageInfo pi) {
+	
+
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("fmboardMapper.getSearchList", searchMap, rowBounds);
 	}
 
 

@@ -1,6 +1,7 @@
 package com.project.bangpool.freshmanmateboard.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.freshmanmateboard.model.dao.FMBoardDAO;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 
 @Service("fbService")
 public class FMBoardServiceImpl implements FMBoardService {
@@ -46,15 +48,18 @@ public class FMBoardServiceImpl implements FMBoardService {
 //		return  bDAO.insertBoard(sqlSession, b);
 	}
 
-	@Override
-	public int getListCount() {
-		return fbDAO.getListCount(sqlSession);
-	}
+	
 
+//	@Override
+//	public ArrayList<PiBoard> selectPiList(String location, PageInfo pi) {
+//		return fbDAO.selectList(sqlSession, location, pi);
+//	}
+//	
 	@Override
 	public ArrayList<FMBoard> selectList(String location, PageInfo pi) {
 		return fbDAO.selectList(sqlSession, location, pi);
 	}
+	
 
 
 	@Override
@@ -103,6 +108,30 @@ public class FMBoardServiceImpl implements FMBoardService {
 	public ArrayList<Reply> selectReplyList(int fbId) {
 		return fbDAO.selectReplyList(sqlSession, fbId);
 	}
+
+
+
+	@Override
+	public int getListCount(String location) {
+		return fbDAO.getListCount(sqlSession, location);
+	}
+
+
+
+	@Override
+	public int getSearchListCount(HashMap<String, String> searchMap) {
+		return fbDAO.getSearchListCount(sqlSession, searchMap);
+	}
+
+
+
+	@Override
+	public ArrayList<FMBoard> searchList(HashMap<String, String> searchMap, PageInfo pi) {
+		return fbDAO.getSearchList(sqlSession, searchMap, pi);
+	}
+
+
+
 
 
 
