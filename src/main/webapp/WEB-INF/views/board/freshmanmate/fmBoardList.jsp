@@ -77,29 +77,29 @@
                                             </div>
                                         <div class="tabs alternative" >
                                                 <ul class="nav nav-tabs" id="tabs">
-                                                    <li class="active">
-                                                        <a href="#all" id="all" data-toggle="tab">전체 </a>
+                                                    <li class="active" id="jeon">
+                                                        <a href="#all" data-toggle="tab">전체 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" id="서울" data-toggle="tab">서울 </a>
+                                                    <li id="seoul">
+                                                        <a href="#all"  data-toggle="tab">서울 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" id="인천/부천" data-toggle="tab">인천/부천 </a>
+                                                    <li id="inc">
+                                                        <a href="#all"  data-toggle="tab">인천/부천 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" id="수원/경기" data-toggle="tab">수원/경기 </a>
+                                                    <li id="su">
+                                                        <a href="#all" data-toggle="tab">수원/경기 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" id="대구/경북" data-toggle="tab">대구/경북 </a>
+                                                    <li id="dae">
+                                                        <a href="#all"  data-toggle="tab">대구/경북 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" id="부산/경남" data-toggle="tab">부산/경남 </a>
+                                                    <li id="bu">
+                                                        <a href="#all" data-toggle="tab">부산/경남 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" id="충청/강원" data-toggle="tab">충청/강원 </a>
+                                                    <li id="kang">
+                                                        <a href="#all"  data-toggle="tab">충청/강원 </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#all" id="광주/전라" data-toggle="tab">광주/전라</a>
+                                                    <li id="kwang">
+                                                        <a href="#all"  data-toggle="tab">광주/전라</a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">
@@ -234,25 +234,20 @@
                                     <div class="text-center">
                                         <h4 id="myModalLabel" style="font-weight: 500; font-family: 'Roboto', sans-serif; color:unset; line-height:1.1"><i class="fa fa-search fa-lg" ></i> Search</h4>
                                     </div>
-                                    <form name="fsearch" method="get" role="form" class="form" style="margin-top:20px;">
-                                        <input type="hidden" name="bo_table" value="roomate">
-                                        <input type="hidden" name="sca" value="">
-                                        <input type="hidden" name="sop" value="and">
+                                    <form name="fsearch" action="bsearch.fm" method="get" role="form" class="form" style="margin-top:20px;">
                                         <div class="form-group">
                                             <label for="sfl" class="sound_only">검색대상</label>
-                                            <select name="sfl" id="sfl" class="form-control input-sm">
-                                                <option value="wr_subject">제목</option>
-                                                <option value="wr_content">내용</option>
-                                                <option value="wr_subject||wr_content">제목+내용</option>
-                                                <option value="mb_id,1">회원아이디</option>
-                                                <option value="mb_id,0">회원아이디(코)</option>
-                                                <option value="wr_name,1">글쓴이</option>
-                                                <option value="wr_name,0">글쓴이(코)</option>
+                                            <select name="searchMethod" id="searchMethod" class="form-control input-sm">
+                                                <option value="fbTitle">제목</option>
+                                                <option value="fbContent">내용</option>
+                                                <option value="titleNcontent">제목+내용</option>
+                                                <option value="email">회원아이디</option>
+                                                <option value="fbWriter">글쓴이</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                                            <input type="text" name="stx" value="" required id="stx" class="form-control input-sm" maxlength="20" placeholder="검색어">
+                                            <input type="text" name="searchword" required class="form-control input-sm" maxlength="20" placeholder="검색어">
                                         </div>
             
                                         <div class="btn-group btn-group-justified">
@@ -398,30 +393,38 @@
 
 <!--  SCRIPT  -->
 <script>
-
-// 탭 액티브처리하는 코드 진행중
+// 탭 액티브 처리하는 코드
 	$(function(){
 		var location = "${ location }";
-		console.log("나와? " + location);
-		
-		if(location != ""){
-			var val = $("#tabs a").text().split(" ");
-			console.log("location is not null");
-			for(var i in val){
-				if(val[i]==location){
-					console.log(val[i]);
-					var idval=val[i];
-					
-				}
-			}
-			//$("#tabs li").attr('class','active');
+		if(location=="서울"){
+		$("#tabs li").removeClass("active");
+		$("#seoul").addClass("active");
+		}else if(location=="인천/부천"){
+		$("#tabs li").removeClass("active");
+		$("#inc").addClass("active");
+		}else if(location=="수원/경기"){
+		$("#tabs li").removeClass("active");
+		$("#su").addClass("active");
+		}else if(location=="대구/경북"){
+		$("#tabs li").removeClass("active");
+		$("#dae").addClass("active");
+		}else if(location=="부산/경남"){
+		$("#tabs li").removeClass("active");
+		$("#bu").addClass("active");
+		}else if(location=="충청/강원"){
+		$("#tabs li").removeClass("active");
+		$("#kang").addClass("active");
+		}else if(location=="광주/전라"){
+		$("#tabs li").removeClass("active");
+		$("#kwang").addClass("active");
 		}else{
-			console.log("location is null");
+		$("#tabs li").removeClass("active");
+		$("#jeon").addClass("active");
 		}
 	});
 
 
-
+// 에이작스로 게시판 리스트 불러오기
 	$("#tabs a").on("click",function(){
 		var location =$(this).text();
 		console.log(location);

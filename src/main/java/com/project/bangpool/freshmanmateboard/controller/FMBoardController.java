@@ -376,6 +376,38 @@ public class FMBoardController {
 		
 	}
 	
+	@RequestMapping("bsearch.fm")
+	public ModelAndView searchList(@RequestParam(value="page", required=false) Integer page,
+								@RequestParam("searchMethod") String smethod,
+								@RequestParam("searchword") String sword, ModelAndView mv) {
+
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		HashMap<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("smethod", smethod);
+		searchMap.put("sword", sword);
+		
+		
+		int listCount = fbService.getSearchListCount(searchMap);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+//		System.out.println("리스트카운트 받아왔어? "+listCount); // 됐어
+		
+		ArrayList<FMBoard> list = fbService.searchList(searchMap, pi);
+		
+		if(list != null ) {
+			mv.addObject("list", list);
+			mv.addObject("pi", pi);
+			mv.setViewName("fmBoardList");
+		}else {
+			throw new FMBoardException("검색 전체 조회 실패");
+		}
+		
+		return mv;
+	}
 	
 }
 

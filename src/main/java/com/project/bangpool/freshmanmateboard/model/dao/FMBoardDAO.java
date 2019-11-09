@@ -1,6 +1,7 @@
 package com.project.bangpool.freshmanmateboard.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,7 +30,6 @@ public class FMBoardDAO {
 		
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		System.out.println(offset + " rowBounds: " + rowBounds);
 		return (ArrayList)sqlSession.selectList("fmboardMapper.selectList", location, rowBounds);
 	}
 
@@ -71,6 +71,19 @@ public class FMBoardDAO {
 
 	public int getListCount(SqlSessionTemplate sqlSession, String location) {
 		return sqlSession.selectOne("fmboardMapper.getListCount", location);
+	}
+
+	public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap) {
+		return sqlSession.selectOne("fmboardMapper.getSearchListCount", searchMap);
+	}
+
+	public ArrayList<FMBoard> getSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap, PageInfo pi) {
+	
+
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("fmboardMapper.getSearchList", searchMap, rowBounds);
 	}
 
 

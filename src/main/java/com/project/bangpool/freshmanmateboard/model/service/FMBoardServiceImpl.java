@@ -1,6 +1,7 @@
 package com.project.bangpool.freshmanmateboard.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,6 +115,22 @@ public class FMBoardServiceImpl implements FMBoardService {
 	public int getListCount(String location) {
 		return fbDAO.getListCount(sqlSession, location);
 	}
+
+
+
+	@Override
+	public int getSearchListCount(HashMap<String, String> searchMap) {
+		return fbDAO.getSearchListCount(sqlSession, searchMap);
+	}
+
+
+
+	@Override
+	public ArrayList<FMBoard> searchList(HashMap<String, String> searchMap, PageInfo pi) {
+		return fbDAO.getSearchList(sqlSession, searchMap, pi);
+	}
+
+
 
 
 

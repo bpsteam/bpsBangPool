@@ -499,9 +499,9 @@
 	$(function(){
    		getReplyList();
    		
-   		setInterval(function(){
+   		/* setInterval(function(){
    			getReplyList();
-   		}, 10000);
+   		}, 10000); */
    	});
 	
 		$("#rSubmit").on("click",function(){
@@ -552,10 +552,13 @@
 	   						$infodiv = $("<div>").addClass("testimonial-info");
 	   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').attr('width','80px');
 	   						$nameNtime =$("<span>").addClass("testimonial-author").text(data[i].rWriter);
-	   						$time = $("<em>").text(data[i].rCreateDate);
+	   						$deleteitag=$("<i>").addClass("fa fa-times");
+	   						$deletebutton=$("<a>").addClass("btn btn-danger btn-xs").append($deleteitag).css('float','right').css('width', '22px');
+	   						$time = $("<em>").text(data[i].rCreateDate).append($deletebutton);
 	   						
 	   						$oneCommentdiv.append($rContent);
-	   						$oneCommentdiv.append($infodiv.append($img).append($nameNtime.append($time)).append("<br>"));
+	   						$oneCommentdiv.append($infodiv.append($img).append($nameNtime.append($time))
+	   														.append("<br>"));
 	   						
 	   						$allCommentdiv.append($oneCommentdiv);
 	   						
@@ -576,6 +579,9 @@
                                          2019년 07월 21일 12시 43분 12초
                                      </em>
                                  </span>
+                                 <a href="rdelete.fm?fbid= rid" class="btn btn-danger btn-sm" >
+                                 <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
+                             </a>
                              </div>
                              <br>
                          </div> */
