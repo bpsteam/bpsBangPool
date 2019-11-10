@@ -32,4 +32,6 @@ public interface FMBoardService {
 
 	ArrayList<FMBoard> searchList(HashMap<String, String> searchMap, PageInfo pi);
 
+	int deleteReply(int rId);
+
 }

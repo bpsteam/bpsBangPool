@@ -86,5 +86,9 @@ public class FMBoardDAO {
 		return (ArrayList)sqlSession.selectList("fmboardMapper.getSearchList", searchMap, rowBounds);
 	}
 
+	public int deleteReply(SqlSessionTemplate sqlSession, int rId) {
+		return sqlSession.update("fmboardMapper.deleteReply", rId);
+	}
+
 
 }
