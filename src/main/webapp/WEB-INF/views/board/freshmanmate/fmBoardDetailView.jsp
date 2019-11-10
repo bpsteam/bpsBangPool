@@ -189,8 +189,14 @@
                                       ${ board.fbContent }
                                       
                                       <br><br><br><br><br><br>
-                                      <c:if test="${ !empty board.renameFileName }">
-                                      <br> <img src="${contextPath}/resources/fmboarduploads/${board.renameFileName}">
+                                      <c:if test="${ !empty rename0 }">
+                                      <br> <img src="${contextPath}/resources/fmboarduploads/${rename0}">
+                                    	</c:if>
+                                      <c:if test="${ !empty rename1 }">
+                                      <br><br><br> <img src="${contextPath}/resources/fmboarduploads/${rename1}">
+                                    	</c:if>
+                                      <c:if test="${ !empty rename2 }">
+                                      <br><br><br> <img src="${contextPath}/resources/fmboarduploads/${rename2}">
                                     	</c:if>
                                     </div>
 

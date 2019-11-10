@@ -458,8 +458,8 @@
 	
 				objContent = "<div class='row'>";
 				objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
-						+ objNum
-						+ "</span>	<input type='file' class='input-sm' name='uploadFile'></div></div></div>";
+						+ (objNum+1)
+						+ "</span>	<input type='file' class='input-sm' name='uploadFile"+(objNum+1)+"'></div></div></div>";
 				if (delete_code) {
 					objContent += delete_code;
 				} else {

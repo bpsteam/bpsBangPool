@@ -178,22 +178,53 @@ public class FMBoardController {
 	@RequestMapping("binsert.fm")
 	public ModelAndView insertBoard(@ModelAttribute FMBoard b, @RequestParam("phone1")String phone1,
 							@RequestParam("phone2")String phone2, @RequestParam("phone3")String phone3,
-							@RequestParam("uploadFile") MultipartFile uploadFile, HttpServletRequest request,ModelAndView mv) {
+							@RequestParam(value="uploadFile1", required=false) MultipartFile uploadFile1, 
+							@RequestParam(value="uploadFile2", required=false) MultipartFile uploadFile2, 
+							@RequestParam(value="uploadFile3", required=false) MultipartFile uploadFile3, 
+							HttpServletRequest request,ModelAndView mv) {
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
 
-		System.out.println(uploadFile);
-		System.out.println(uploadFile.getOriginalFilename());
+//		System.out.println(uploadFile1 +"/"+ uploadFile2+"/"+uploadFile3);
+//		System.out.println(uploadFile1.getOriginalFilename());
+//		System.out.println(uploadFile2.getOriginalFilename());
+//		System.out.println(uploadFile3.getOriginalFilename());
+//		
+		String uploadFileName="";
+		String rename="";
 		
-		if(uploadFile != null && !uploadFile.isEmpty()) { // 로 쓸 수 있다. 
-			String renameFileName = saveFile(uploadFile, request); // saveFile 메소드로 넘어가서 반환값 받아오기
+		if(uploadFile1 != null && !uploadFile1.isEmpty()) { 
+			String renameFileName = saveFile(uploadFile1, request); // saveFile 메소드로 넘어가서 반환값 받아오기
 			
 			if(renameFileName != null) {
-				b.setOriginalFileName(uploadFile.getOriginalFilename());
-				b.setRenameFileName(renameFileName);
-				// System.out.println("인서트정보 파일이랑 같이 들어오는지? "+ b); // 들어온다 
+//				b.setOriginalFileName(uploadFile1.getOriginalFilename());
+//				b.setRenameFileName(renameFileName);
+//				// System.out.println("인서트정보 파일이랑 같이 들어오는지? "+ b); // 들어온다 
+				uploadFileName += uploadFile1.getOriginalFilename();
+				rename += renameFileName;
 			}
 		}
+		if(uploadFile2 != null && !uploadFile2.isEmpty()) { 
+			String renameFileName = saveFile(uploadFile2, request); 
+			
+			if(renameFileName != null) {
+				uploadFileName += ";"+uploadFile2.getOriginalFilename();
+				rename += ";"+renameFileName;
+			}
+		}
+		if(uploadFile3 != null && !uploadFile3.isEmpty()) { 
+			String renameFileName = saveFile(uploadFile3, request); 
+			
+			if(renameFileName != null) {
+				uploadFileName += ";"+uploadFile3.getOriginalFilename();
+				rename += ";"+renameFileName;
+			}
+		}
+		
+		b.setOriginalFileName(uploadFileName);
+		b.setRenameFileName(rename);
+		
+		System.out.println("인서트 전 출력 : "+b);
 
 		int result = fbService.insertBoard(b);
 	
@@ -219,7 +250,7 @@ public class FMBoardController {
 			folder.mkdirs(); // buploadFiles folder가없으면 만들어준다. 
 		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss"); // millisecond -> yyyyMMddHHmmssSSS
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); // millisecond -> yyyyMMddHHmmssSSS
 		String originFileName = file.getOriginalFilename();
 		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))
 								+"."
@@ -247,10 +278,17 @@ public class FMBoardController {
 
 		if(board != null) {
 			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
-			//System.out.println("세션은 들어오나? "+session.getAttribute("loginUser"));
-			// board, page --> boardDetailView
-			mv.addObject("board", board)
-			.setViewName("fmBoardDetailView"); // method chaining 
+			
+			if(board.getRenameFileName()!=null) {
+				String[] original=board.getOriginalFileName().split(";");
+				String[] rename=board.getRenameFileName().split(";");
+				for(int i=0; i<rename.length; i++) {
+					mv.addObject("rename"+i, rename[i]);
+					System.out.println(rename[i]);
+				}
+			}
+			
+			mv.addObject("board", board).setViewName("fmBoardDetailView"); // method chaining 
 		}else {
 			throw new FMBoardException("게시글 상세보기를 실패하였습니다.");
 		}
