@@ -254,7 +254,7 @@
 										<div class="col-sm-10 col-sm-offset-2">
 											<table id="variableFiles">
 												<tbody>
-													<tr>
+													<!-- <tr>
 														<td>
 															<div class="row">
 																<div class="col-sm-7">
@@ -267,7 +267,7 @@
 																</div>
 															</div>
 														</td>
-													</tr>
+													</tr> -->
 												</tbody>
 											</table>
 										</div>
@@ -429,7 +429,7 @@
         <script>
 			var flen = 0;
 			function add_file(delete_code) {
-				var upload_count = 2;
+				var upload_count = 3;
 				if (upload_count && flen >= upload_count) {
 					alert("이 게시판은 " + upload_count
 							+ "개 까지만 파일 업로드가 가능합니다.");
