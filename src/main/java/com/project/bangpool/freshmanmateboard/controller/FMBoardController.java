@@ -409,6 +409,20 @@ public class FMBoardController {
 		return mv;
 	}
 	
+	@RequestMapping("rdelete.fm")
+	public ModelAndView deleteReply(Reply r, ModelAndView mv) {
+		
+		int result = fbService.deleteReply(r.getrId());
+		
+		if(result>0) {
+			mv.addObject("fbId", r.getRefbId()).setViewName("redirect:bdetail.fm");
+		}else {
+			throw new FMBoardException("댓글 삭제 실패");
+		}
+		
+		return mv;
+	}
+	
 }
 
 

@@ -130,6 +130,7 @@
 		join freshman_board f on f.bcode=r.bcode
 		and r.refbid = f.fbid
 		where refbid=${fbId}
+		and rstatus='Y'
 		
 	</select>
 	
@@ -174,5 +175,11 @@
 		and fbWriter like '%' || #{sword} || '%'
 		</if>
 	</select>
+	
+	<update id="deleteReply" parameterType="_int">
+		update reply
+		set rStatus='N'
+		where rid=#{rId}
+	</update>
 	
 </mapper>

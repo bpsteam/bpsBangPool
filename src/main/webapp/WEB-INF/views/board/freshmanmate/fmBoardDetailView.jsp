@@ -297,7 +297,7 @@
  --%>
                                                 <!-- </div> -->
                                             </div>
-                                            <div class="testimonials-arrows pull-right">
+                                         <!--    <div class="testimonials-arrows pull-right">
                                                 <a class="left" href="#testimonials1" data-slide="prev">
                                                     <span class="fa fa-arrow-left"></span>
                                                 </a>
@@ -305,7 +305,7 @@
                                                     <span class="fa fa-arrow-right"></span>
                                                 </a>
                                                 <div class="clearfix"></div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <!-- End Testimonials - default full width -->
                                     </div>
@@ -525,6 +525,7 @@
 		
 		function getReplyList(){
 	   		var fbId = ${ board.fbId };
+	   		var nickname = "${ loginUser.nickname }";
 	   		
 	   		$.ajax({
 	   			url: "rList.fm",
@@ -550,16 +551,20 @@
 	   						$oneCommentdiv = $("<div>").addClass("col-md-12");
 	   						$rContent = $("<p>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
 	   						$infodiv = $("<div>").addClass("testimonial-info");
-	   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').attr('width','80px');
+	   						$img = $("<img>").addClass("img-circle img-responsive").attr('src','${contextPath}/resources/assets/img/profiles/userimg.jpg').attr('width','80px');
 	   						$nameNtime =$("<span>").addClass("testimonial-author").text(data[i].rWriter);
 	   						$deleteitag=$("<i>").addClass("fa fa-times");
-	   						$deletebutton=$("<a>").addClass("btn btn-danger btn-xs").append($deleteitag).css('float','right').css('width', '22px');
-	   						$time = $("<em>").text(data[i].rCreateDate).append($deletebutton);
+	   						$deletebutton=$("<a>").addClass("btn btn-danger btn-xs").append($deleteitag)
+	   										.css('float','right').css('width', '22px')
+	   										.attr('href','rdelete.fm?rId='+data[i].rId+"&refbId="+data[i].refbId);
+	   						$time = $("<em>").text(data[i].rCreateDate);
 	   						
+	   						if(nickname == data[i].rWriter ){
+		   						$time.append($deletebutton);	
+	   						}
 	   						$oneCommentdiv.append($rContent);
 	   						$oneCommentdiv.append($infodiv.append($img).append($nameNtime.append($time))
 	   														.append("<br>"));
-	   						
 	   						$allCommentdiv.append($oneCommentdiv);
 	   						
 	   						

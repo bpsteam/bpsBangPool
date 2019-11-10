@@ -132,6 +132,13 @@ public class FMBoardServiceImpl implements FMBoardService {
 
 
 
+	@Override
+	public int deleteReply(int rId) {
+		return fbDAO.deleteReply(sqlSession, rId);
+	}
+
+
+
 
 
 
