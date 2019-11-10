@@ -84,4 +84,9 @@ public class MemberController {
 		return "myPage";
 	}
 	
+	@RequestMapping("naverlogin.me")
+	public String naverloginView() {
+		return "naverlogin";
+	}
+	
 }
