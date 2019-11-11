@@ -2,7 +2,6 @@ package com.project.bangpool.freshmanmateboard.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,11 +26,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.common.PageInfo;
 import com.project.bangpool.common.Pagination;
 import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
-import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
 
 

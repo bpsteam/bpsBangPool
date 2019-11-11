@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.bangpool.comment.model.vo.Reply;
-import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.common.PageInfo;
 import com.project.bangpool.roommateboard.model.dao.RMBoardDAO;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
