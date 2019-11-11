@@ -23,6 +23,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.common.Pagination;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.RMBoardException;
 import com.project.bangpool.roommateboard.model.service.RMBoardService;
@@ -35,13 +37,28 @@ public class RMBoardController {
 	private RMBoardService rbService;
 
 	@RequestMapping("blist.rm")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, 
+								  @RequestParam(value="loc", required=false) String loc,
+								  ModelAndView mv) {
+		System.out.println("loc:"+loc);
+		int currentPage = 1;
 		
-		ArrayList<RMBoard> list = rbService.selectList();
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		// 총 게시글 개수
+		int listCount = rbService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		System.out.println("selectList loc: "+loc);
+		ArrayList<RMBoard> list = rbService.selectList(pi, loc);
 		
 		if(list != null) {
 			System.out.println("rbService list : "+list);
 			mv.addObject("list", list);
+			mv.addObject("pi", pi);
 			mv.setViewName("rmboardList");
 		}else {
 			throw new RMBoardException("게시글 전체 조회 실패");
@@ -151,21 +168,21 @@ public class RMBoardController {
 	@RequestMapping("bupdate.rm")
 	public ModelAndView boardUpdate(@ModelAttribute RMBoard b,
 //									@RequestParam("page") Integer page,
-//									@RequestParam("reloadFile") MultipartFile reloadFile,
+									@RequestParam("reloadFile") MultipartFile reloadFile,
 									HttpServletRequest request,
 									ModelAndView mv) {
 		
-//		if(reloadFile != null && !reloadFile.isEmpty()) {
-//			// 기존 필요없는 파일 지우기
-//			deleteFile(b.getRenameFileName(), request);
-//		}
-//		
-//		String renameFileName = saveFile(reloadFile, request);
-//		
-//		if(renameFileName != null) {
-//			b.setOriginalFileName(reloadFile.getOriginalFilename());;
-//			b.setRenameFileName(renameFileName);
-//		}
+		if(reloadFile != null && !reloadFile.isEmpty()) {
+			// 기존 필요없는 파일 지우기
+			deleteFile(b.getRenameFileName(), request);
+		}
+		
+		String renameFileName = saveFile(reloadFile, request);
+		
+		if(renameFileName != null) {
+			b.setOriginalFileName(reloadFile.getOriginalFilename());
+			b.setRenameFileName(renameFileName);
+		}
 		
 		int result = rbService.updateBoard(b);
 		
@@ -180,9 +197,27 @@ public class RMBoardController {
 		return mv;
 	}
 	
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\rmboarduploads";
+		
+		File f = new File(savePath + "\\" + fileName);
+		
+		// 파일 존재하면 삭제
+		if(f.exists()) {
+			f.delete();
+		}
+		
+		
+	}
+	
 	@RequestMapping("rList.rm")
 	public void getReplyList(HttpServletResponse response, int rbId) throws JsonIOException, IOException {
+		response.setContentType("application/json; charset=utf-8");
 		ArrayList<Reply> list = rbService.selectReplyList(rbId);
+		
+		System.out.println("Controller"+rbId);
+		System.out.println("Controller list"+list);
 		
 		for(Reply r : list) {
 			r.setrContent(URLEncoder.encode(r.getrContent(), "utf-8"));
@@ -210,4 +245,22 @@ public class RMBoardController {
 			throw new RMBoardException("댓글 등록에 실패");
 		}
 	}
+	
+	// 게시글 삭제
+	@RequestMapping("bdelete.rm")
+	public String deleteBoard(@RequestParam("rbId") int rbId) {
+		int result = rbService.deleteBoard(rbId);
+		
+		if(result > 0) {
+			return "redirect:blist.rm";
+		}else {
+			throw new RMBoardException("게시글 삭제 실패");
+		}
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.roommateboard.model.dao.RMBoardDAO;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
@@ -25,8 +26,8 @@ public class RMBoardServiceImpl implements RMBoardService{
 	}
 
 	@Override
-	public ArrayList<RMBoard> selectList() {
-		return rbDAO.selectList(sqlSession);
+	public ArrayList<RMBoard> selectList(PageInfo pi, String loc) {
+		return rbDAO.selectList(sqlSession, pi, loc);
 	}
 
 	@Override
@@ -45,8 +46,18 @@ public class RMBoardServiceImpl implements RMBoardService{
 
 	@Override
 	public int updateBoard(RMBoard b) {
+		// 첨부파일 attachment 테이블
+		
 		System.out.println("update?");
-		return rbDAO.updateBoard(sqlSession, b);
+		
+		int result1 = rbDAO.updateBoard(sqlSession, b);
+		int result2 = 0;
+		
+		if(result1 > 0) {
+			b.setBcode("RMBCODE");
+			result2 = rbDAO.updateFile(sqlSession, b);
+		}
+		return result2;
 	}
 
 	@Override
@@ -57,6 +68,16 @@ public class RMBoardServiceImpl implements RMBoardService{
 	@Override
 	public int insertReply(Reply r) {
 		return rbDAO.insertReply(sqlSession, r);
+	}
+
+	@Override
+	public int deleteBoard(int rbId) {
+		return rbDAO.deleteBoard(sqlSession, rbId);
+	}
+
+	@Override
+	public int getListCount() {
+		return rbDAO.getListCount(sqlSession);
 	}
 	
 

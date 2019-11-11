@@ -14,6 +14,21 @@
 		select * 
 		from ROOMATE_BOARD
 		where RBSTATUS = 'Y'
+		<!-- <choose>
+			<when test="loc != null"> and loc = #{rLocation} </when>
+			<when test="writer != null"> and nickName = #{writer} </when>
+		</choose> -->
+		<if test="loc != null and !loc.equals('')">
+		<choose>
+			<when test="loc.equals('SEOUL')"> and rlocation='서울' </when>
+			<when test="loc.equals('INCHEON')"> and rlocation='인천/부천' </when>
+			<when test="loc.equals('SUWON')"> and rlocation='수원/경기' </when>
+			<when test="loc.equals('DAEGU')"> and rlocation='대구/경북' </when>
+			<when test="loc.equals('BUSAN')"> and rlocation='부산/경남' </when>
+			<when test="loc.equals('CHUNGCHEONG')"> and rlocation='충청/강원' </when>
+			<when test="loc.equals('GWANGJU')"> and rlocation='광주/전라' </when>
+		</choose>
+		 </if>
 		order by RBID desc
 	</select>
 	
@@ -55,30 +70,55 @@
 	<update id="updateBoard" parameterType="RMBoard">
 		update ROOMATE_BOARD
 		set rLocation=#{rLocation}, rbTitle=#{rbTitle}, rbContent=#{rbContent}, 
-			rbWriter=#{rbWriter}, rRentType=#{rRentType}, rLivingType=#{rLivingType}, rRoomCount=#{rRoomCount},
+			 rRentType=#{rRentType}, rLivingType=#{rLivingType}, rRoomCount=#{rRoomCount},
 			rFloor=#{rFloor}, rPrice=#{rPrice}, rParking=#{rParking}, rReqGender=#{rReqGender}
 		where rbId = #{rbId} 	
 	<!-- 생성/수정 날짜 -->		
 	</update>
 	
-	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+	<update id="updateFile" parameterType="RMBoard">
+		update attachment
+		set originalFilename = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where bcode = #{bcode}
+			  and refbid = #{rbId}
+	</update>
+	
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+	<!-- resultMap="replyResultSet" -->
 		select *
 		from reply r
-			join ROOMATE_BOARD b on(refbId = rbId)
-		where refbId = #{rbId}	
-		order by rid desc
+			join ROOMATE_BOARD b on r.bcode=b.bcode
+		and r.refbid = b.rbid
+		where refbid = #{rbId}	
+		
 	</select>
 	
-	<resultMap id="replyResultSet" type="Reply">
+	<!-- <resultMap id="replyResultSet" type="Reply">
 		<result property="refbId" column="REFBID"/>
 		<result property="rCreateDate" column="RCREATEDATE"/>
 		<result property="rModifyDate" column="RMODIFYDATE"/>
 		<result property="rStatus" column="RSTATUS"/>
-	</resultMap>
+	</resultMap> -->
 	
 	<insert id="insertReply" parameterType="Reply">
 		insert into reply
 		values (REPLY_SEQ.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter},sysdate, sysdate, default)
 	</insert>
 	
+	<update id="deleteBoard">
+		update ROOMATE_BOARD
+		set RBSTATUS='N'
+		where rbId = #{rbId}
+	</update>
+	
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from ROOMATE_BOARD
+		where RBSTATUS='Y'
+	</select>
+	
+	
+	
 </mapper>
+

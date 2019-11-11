@@ -75,29 +75,59 @@
                                             </div>
                                         <div class="tabs alternative" >
                                                 <ul class="nav nav-tabs">
-                                                    <li class="active">
-                                                        <a href="#sample-2a" data-toggle="tab">전체</a>
+                                                    <li class="active" >
+                                                   		<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value=""/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">전체</a>
+                                                    </li>
+                                                    <li class="ploc">
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="SEOUL"/>
+                                                   		</c:url>
+                                                       	<a href="${ ploc }" >서울</a>
+                                                        <!-- <a href="#sample-2a" data-toggle="tab">서울</a -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2a" data-toggle="tab">서울</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="INCHEON"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">인천/부천</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2b" data-toggle="tab">인천/부천</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="SUWON"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">수원/경기</a>
+                                                        <!-- <a href="#sample-2c" data-toggle="tab">수원/경기</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2c" data-toggle="tab">수원/경기</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="DAEGU"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">대구/경북</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">대구/경북</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2d" data-toggle="tab">대구/경북</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="BUSAN"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">부산/경남</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">부산/경남</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2d" data-toggle="tab">부산/경남</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="CHUNGCHEONG"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">충청/강원</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">충청/강원</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2d" data-toggle="tab">충청/강원</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#sample-2d" data-toggle="tab">광주/전라</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="GWANGJU"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">광주/전라</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">광주/전라</a> -->
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">
@@ -119,11 +149,13 @@
                                                                         	<tr>
                                                                         		<td>${ b.rbId }</td>
                                                                         		<td>${ b.rLocation }</td>
-                                                                        		<td>
                                                                         			<c:url var="bdetail" value="bdetail.rm">
                                                                         				<c:param name="rbId" value="${ b.rbId }"></c:param>
                                                                         			</c:url>
-                                                                        				<a href="${ bdetail }">${ b.rbTitle }</a></td>
+                                                                        		<td onClick="location.href='${ bdetail }'">
+                                                                        				<%-- <a href="${ bdetail }">${ b.rbTitle }</a></td> --%>
+                                                                        				${ b.rbTitle }
+                                                                     			</td>
                                                                         		<td>${ b.rbWriter }</td>
                                                                         		
                                                                         		
@@ -135,7 +167,6 @@
                                                                         	</tr>
                                                                         
                                                                         </c:forEach>
-                                                                        
                                                                         
                                                                             <!-- <tr>
                                                                                 <td>1</td>
@@ -390,9 +421,56 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
+                                                    <!-- 페이징 처리  -->
                                                     <div class="text-center">
                                                         <ul class="pagination">
-                                                            <li>
+                                                        	<!-- [이전]-->
+                                                        	<li>
+	                                                        	<c:if test="${ pi.currentPage <= 1 }">
+	                                                        		<a>«</a>
+	                                                        	</c:if>
+	                                                        	<c:if test="${ pi.currentPage > 1 }">
+	                                                        		<c:url var="before" value="blist.rm">
+	                                                        			<c:param name="page" value="${ pi.currentPage -1 }"/>
+	                                                        		</c:url>
+	                                                        		<a href="${ before }">«</a>
+	                                                        	</c:if>
+                                                        	</li>
+                                                        	
+                                                        	<!-- 페이지 -->
+                                                        	<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+                                                        		<c:if test="${ p eq pi.currentPage }">
+                                                        			<li class="active">
+                                                        				<a>${ p }</a>
+                                                        			</li>
+                                                        		</c:if>
+                                                        			
+                                                        		<c:if test="${ p ne pi.currentPage }">
+                                                        			<li>
+	                                                        			<c:url var="pg" value="blist.rm">
+	                                                        				<c:param name="page" value="${ p }"/>
+	                                                        			</c:url>
+	                                                        			<a href="${ pg }">${ p }</a>
+                                                        			</li>
+                                                        		</c:if> 
+                                                        	</c:forEach>
+                                                        	
+                                                        	<!-- [다음] -->
+                                                        	<li>
+	                                                        	<c:if test="${ pi.currentPage >= pi.maxPage }">
+	                                                        		<a>»</a>
+	                                                        	</c:if>
+	                                                        	<c:if test="${ pi.currentPage < pi.maxPage }">
+	                                                        		<c:url var="after" value="blist.rm">
+	                                                        			<c:param name="page" value="${ pi.currentPage +1 }"/>
+	                                                        		</c:url>
+	                                                        		<a href="${ after }">»</a>
+	                                                        	</c:if>
+                                                        	</li>
+                                                        	
+                                                        
+                                                            <!-- <li>
                                                                 <a href="#">«</a>
                                                             </li>
                                                             <li>
@@ -412,7 +490,7 @@
                                                             </li>
                                                             <li>
                                                                 <a href="#">»</a>
-                                                            </li>
+                                                            </li> -->
                                                         </ul>
                                                         <a href="#" style="float:left" class="btn btn-aqua btn-sm" data-toggle="modal" data-target="#searchModal" onclick="return false;"><i class="fa fa-search"></i></a>
                                                         <a href="binsertview.rm" type="button" class="btn btn-red" style="float: right;">글쓰기</a>
@@ -599,6 +677,19 @@
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
+
+	<script type="text/javascript">
+			
+		$('.ploc').click(function(){
+			
+			var active = $('.active');
+			active.removeClass('active');
+			this.addClass('active');
+			
+			
+		})	;
+	
+	</script>
 
 </body>
 </html>

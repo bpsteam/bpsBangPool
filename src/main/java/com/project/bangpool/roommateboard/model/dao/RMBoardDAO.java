@@ -2,10 +2,12 @@ package com.project.bangpool.roommateboard.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Repository("rbDAO")
@@ -16,8 +18,12 @@ public class RMBoardDAO {
 		return sqlSession.insert("rmboardMapper.insertBoard", b);
 	}
 
-	public ArrayList<RMBoard> selectList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("rmboardMapper.selectList");
+	public ArrayList<RMBoard> selectList(SqlSessionTemplate sqlSession, PageInfo pi, String loc) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("rmboardMapper.selectList", loc, rowBounds);
 	}
 
 	public int addReadCount(SqlSessionTemplate sqlSession, int rbId) {
@@ -39,6 +45,18 @@ public class RMBoardDAO {
 
 	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
 		return sqlSession.insert("rmboardMapper.insertReply", r);
+	}
+
+	public int deleteBoard(SqlSessionTemplate sqlSession, int rbId) {
+		return sqlSession.update("rmboardMapper.deleteBoard", rbId);
+	}
+
+	public int getListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("rmboardMapper.getListCount");
+	}
+
+	public int updateFile(SqlSessionTemplate sqlSession, RMBoard b) {
+		return sqlSession.update("rmboardMapper.updateFile", b);
 	}
 	
 
