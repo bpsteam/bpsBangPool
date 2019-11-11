@@ -87,11 +87,10 @@
                                         <i class="fa fa-comment"></i>
                                         <b style="color:red">4</b>
                                         <span class="sp"></span>
-                                        <i class="fa fa-eye"></i>
-                                        118
+                                        <i class="fa fa-eye"></i>118
                                         <span class="pull-right">
                                             <i class="fa fa-clock-o"></i>
-                                            09.23 23:49 </span>
+                                         09.23 23:49 </span>
                                     </div>
                                 </div>
                             </div>

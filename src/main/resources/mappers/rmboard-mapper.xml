@@ -21,7 +21,12 @@
 		<if test="loc != null and !loc.equals('')">
 		<choose>
 			<when test="loc.equals('SEOUL')"> and rlocation='서울' </when>
-			<when test="loc.equals('INCHEON')"> and rlocation='충청/강원' </when>
+			<when test="loc.equals('INCHEON')"> and rlocation='인천/부천' </when>
+			<when test="loc.equals('SUWON')"> and rlocation='수원/경기' </when>
+			<when test="loc.equals('DAEGU')"> and rlocation='대구/경북' </when>
+			<when test="loc.equals('BUSAN')"> and rlocation='부산/경남' </when>
+			<when test="loc.equals('CHUNGCHEONG')"> and rlocation='충청/강원' </when>
+			<when test="loc.equals('GWANGJU')"> and rlocation='광주/전라' </when>
 		</choose>
 		 </if>
 		order by RBID desc
@@ -65,10 +70,18 @@
 	<update id="updateBoard" parameterType="RMBoard">
 		update ROOMATE_BOARD
 		set rLocation=#{rLocation}, rbTitle=#{rbTitle}, rbContent=#{rbContent}, 
-			rbWriter=#{rbWriter}, rRentType=#{rRentType}, rLivingType=#{rLivingType}, rRoomCount=#{rRoomCount},
+			 rRentType=#{rRentType}, rLivingType=#{rLivingType}, rRoomCount=#{rRoomCount},
 			rFloor=#{rFloor}, rPrice=#{rPrice}, rParking=#{rParking}, rReqGender=#{rReqGender}
 		where rbId = #{rbId} 	
 	<!-- 생성/수정 날짜 -->		
+	</update>
+	
+	<update id="updateFile" parameterType="RMBoard">
+		update attachment
+		set originalFilename = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where bcode = #{bcode}
+			  and refbid = #{rbId}
 	</update>
 	
 	<select id="selectReplyList" parameterType="_int" resultType="Reply">
@@ -104,6 +117,8 @@
 		from ROOMATE_BOARD
 		where RBSTATUS='Y'
 	</select>
+	
+	
 	
 </mapper>
 

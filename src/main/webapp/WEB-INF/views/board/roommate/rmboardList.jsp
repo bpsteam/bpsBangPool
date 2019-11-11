@@ -95,19 +95,39 @@
                                                         <a class="ploc" href="${ ploc }">인천/부천</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2c" data-toggle="tab">수원/경기</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="SUWON"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">수원/경기</a>
+                                                        <!-- <a href="#sample-2c" data-toggle="tab">수원/경기</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2d" data-toggle="tab">대구/경북</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="DAEGU"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">대구/경북</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">대구/경북</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2d" data-toggle="tab">부산/경남</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="BUSAN"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">부산/경남</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">부산/경남</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2d" data-toggle="tab">충청/강원</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="CHUNGCHEONG"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">충청/강원</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">충청/강원</a> -->
                                                     </li>
                                                     <li>
-                                                        <a href="#sample-2d" data-toggle="tab">광주/전라</a>
+                                                    	<c:url var="ploc" value="blist.rm">
+                                                   			<c:param name="loc" value="GWANGJU"/>
+                                                   		</c:url>
+                                                        <a class="ploc" href="${ ploc }">광주/전라</a>
+                                                        <!-- <a href="#sample-2d" data-toggle="tab">광주/전라</a> -->
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">

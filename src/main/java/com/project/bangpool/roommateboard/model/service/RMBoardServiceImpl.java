@@ -46,8 +46,18 @@ public class RMBoardServiceImpl implements RMBoardService{
 
 	@Override
 	public int updateBoard(RMBoard b) {
+		// 첨부파일 attachment 테이블
+		
 		System.out.println("update?");
-		return rbDAO.updateBoard(sqlSession, b);
+		
+		int result1 = rbDAO.updateBoard(sqlSession, b);
+		int result2 = 0;
+		
+		if(result1 > 0) {
+			b.setBcode("RMBCODE");
+			result2 = rbDAO.updateFile(sqlSession, b);
+		}
+		return result2;
 	}
 
 	@Override
