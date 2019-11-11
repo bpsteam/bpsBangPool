@@ -10,6 +10,12 @@
 		<choose>
 			<when test="hLoc.equals('SEOUL')"> and HLOCATION = '서울' </when>
 			<when test="hLoc.equals('INCHEON')"> and HLOCATION = '인천/부천' </when>
+			<when test="hLoc.equals('SU')"> and HLOCATION = '수원/경기' </when>
+			<when test="hLoc.equals('DAE')"> and HLOCATION = '대구/경북' </when>
+			<when test="hLoc.equals('BU')"> and HLOCATION = '부산/경남' </when>
+			<when test="hLoc.equals('CHUNG')"> and HLOCATION = '충청/강원' </when>
+			<when test="hLoc.equals('GWANG')"> and HLOCATION = '광주/전라' </when>
+			<otherwise> </otherwise>
 		</choose>
 		</if>
 	</select>
@@ -22,6 +28,12 @@
 		<choose>
 			<when test="hLoc.equals('SEOUL')"> and HLOCATION = '서울' </when>
 			<when test="hLoc.equals('INCHEON')"> and HLOCATION = '인천/부천' </when>
+			<when test="hLoc.equals('SU')"> and HLOCATION = '수원/경기' </when>
+			<when test="hLoc.equals('DAE')"> and HLOCATION = '대구/경북' </when>
+			<when test="hLoc.equals('BU')"> and HLOCATION = '부산/경남' </when>
+			<when test="hLoc.equals('CHUNG')"> and HLOCATION = '충청/강원' </when>
+			<when test="hLoc.equals('GWANG')"> and HLOCATION = '광주/전라' </when>
+			<otherwise> </otherwise>
 		</choose>
 		</if>
 		order by HBID desc
@@ -112,5 +124,50 @@
 		insert into Reply
 		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
 	</insert>
+	
+	<select id="getSearchListCount" parameterType="hashmap" resultType="_int">
+		select count(*)
+		from HOUSEMATE_BOARD
+		join member on(nickname = hbwriter)
+		where HBstatus = 'Y'
+		<if test="sCondition eq 'wr_subject'">
+			and hbtitle like '%' || #{sValue} || '%'
+		</if>
+		<if test="sCondition eq 'wr_content'">
+			and hbcontent like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'titleNcontent'">
+			and (hbtitle like '%' || #{sValue} || '%' or hbcontent like '%' || #{sValue} || '%')
+		</if> 
+		<if test="sCondition eq 'email'">
+			and email like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'hbwriter'">
+			and hbwriter like '%' || #{sValue} || '%'
+		</if> 
+	</select>
+	
+	<select id="selectSearchList" parameterType="hashmap" resultType="HMBoard">
+		select *
+		from HOUSEMATE_BOARD
+		join member on(nickname = hbwriter)
+		where HBstatus = 'Y'
+		<if test="sCondition eq 'wr_subject'">
+			and hbtitle like '%' || #{sValue} || '%'
+		</if>
+		<if test="sCondition eq 'wr_content'">
+			and hbcontent like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'titleNcontent'">
+			and (hbtitle like '%' || #{sValue} || '%' or hbcontent like '%' || #{sValue} || '%')
+		</if> 
+		<if test="sCondition eq 'email'">
+			and email like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'hbwriter'">
+			and hbwriter like '%' || #{sValue} || '%'
+		</if> 
+		order by HBMODIFYDATE desc
+	</select>
 	
 </mapper>

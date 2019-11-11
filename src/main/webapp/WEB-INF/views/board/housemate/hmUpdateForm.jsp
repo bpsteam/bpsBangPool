@@ -97,11 +97,11 @@
 									class="form-horizontal">
 								<input type="hidden" name="hbId" value="${ hboard.hbId }">
 									<div class="form-group has-feedback">
-										<label class="col-sm-2 control-label">이름</label>
+										<label class="col-sm-2 control-label">작성자</label>
 										<div class="col-sm-3">
-											<input type="text" name="hb_writer" readonly
-												value="${ hboard.hbWriter }" 
-												class="form-control input-sm" size="10" maxlength="20">
+											<c:if test="${ !empty loginUser }">
+                                                  <input type="text" name="hbWriter"  id="hbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
+	                                         </c:if>
 										</div>
 									</div>
 
@@ -117,7 +117,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="ca_name">
-											지역분류 <strong class="sound_only">필수</strong>
+											지역분류 <strong class="sound_only">*</strong>
 										</label>
 										<div class="col-sm-3">
 											<select name="hLocation" id="hlocation" required
@@ -136,7 +136,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="wr_subject">제목<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-10">
 											<div class="input-group">
 												<input type="text" name="hbTitle" value="${ hboard.hbTitle }" required
@@ -150,7 +150,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">매물구분<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 
 											<select name="hRentType" required 
@@ -165,7 +165,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">매물종류<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 											<select name="hLivingType"  required
 												class="form-control input-sm">
@@ -182,7 +182,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">방갯수<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 
 											<select name="hRoom" required
@@ -200,7 +200,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">해당층수<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 											<select name="hFloor" required 
 												class="form-control input-sm">

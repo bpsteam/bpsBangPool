@@ -1,6 +1,7 @@
 package com.project.bangpool.housemateboard.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.common.PageInfo;
@@ -23,5 +24,9 @@ public interface HMBoardService {
 	int insertReply(Reply r);
 
 	int getListCount(String hLoc);
+
+	int getSearchListCount(HashMap<String, String> searchMap);
+
+	ArrayList<HMBoard> selectSearchList(HashMap<String, String> searchMap,  PageInfo pi);
 
 }

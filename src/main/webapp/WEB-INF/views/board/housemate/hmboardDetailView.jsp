@@ -310,7 +310,7 @@
                                             <i class="fa fa-bars"></i><span class="hidden-xs"> 목록</span>
                                         </a>
                                         
-                                        <a href="binsert.hm" class="btn btn-info btn-sm">
+                                        <a href="binsertView.hm" class="btn btn-info btn-sm">
                                            <i class="fa fa-pencil"></i><span class="hidden-xs"> 글쓰기</span>
                                         </a>
 
