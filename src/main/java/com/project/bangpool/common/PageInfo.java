@@ -1,4 +1,4 @@
-package com.project.bangpool.freshmanmateboard.model.vo;
+package com.project.bangpool.common;
 
 public class PageInfo {
 	 private int currentPage;

@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.common.PageInfo;
 import com.project.bangpool.freshmanmateboard.model.dao.FMBoardDAO;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
-import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
-import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 
 @Service("fbService")
 public class FMBoardServiceImpl implements FMBoardService {

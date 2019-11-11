@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.project.bangpool.comment.model.vo.Reply;
+import com.project.bangpool.common.PageInfo;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
-import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
-import com.project.bangpool.freshmanmateboard.model.vo.PiBoard;
 
 public interface FMBoardService {
 	

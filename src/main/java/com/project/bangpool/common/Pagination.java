@@ -1,6 +1,6 @@
 package com.project.bangpool.common;
 
-import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.common.PageInfo;
 
 public class Pagination {
 	

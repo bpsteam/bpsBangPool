@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.comment.model.vo.Reply;
-import com.project.bangpool.freshmanmateboard.model.vo.PageInfo;
+import com.project.bangpool.common.PageInfo;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Repository("rbDAO")
