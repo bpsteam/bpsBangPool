@@ -99,7 +99,7 @@ public class FMBoardController {
 		ArrayList<FMBoard> list = fbService.selectList(location, pi);
 		System.out.println(list);
 		
-		JSONArray jArr = new JSONArray();
+//		JSONArray jArr = new JSONArray();
 //		for(PiBoard b : list) {
 //			
 //			b.setBoardLimit(pi.getBoardLimit());
@@ -111,14 +111,14 @@ public class FMBoardController {
 //			b.setPageLimit(pi.getPageLimit());
 //		}
 		
-		for(FMBoard b : list) {
-			JSONObject board = new JSONObject();
-			
-			board.put("fbId", b.getFbId());
-			board.put("fLocation", b.getfLocation());
-			board.put("fbTitle", b.getFbTitle());
-			board.put("fbCount", b.getFbCount());
-			board.put("fbWriter", b.getFbWriter());
+//		for(FMBoard b : list) {
+//			JSONObject board = new JSONObject();
+//			
+//			board.put("fbId", b.getFbId());
+//			board.put("fLocation", b.getfLocation());
+//			board.put("fbTitle", b.getFbTitle());
+//			board.put("fbCount", b.getFbCount());
+//			board.put("fbWriter", b.getFbWriter());
 			
 //			board.put("boardLimit", b.getBoardLimit());
 //			board.put("endPage", b.getEndPage());
@@ -128,10 +128,10 @@ public class FMBoardController {
 //			board.put("startPage", b.getStartPage());
 //			board.put("pageLimit", b.getPageLimit());
 	        
-	        jArr.add(board);
+//	        jArr.add(board);
 	        
 	  //      System.out.println("jsonarray: "+board);
-		}
+//		}
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);

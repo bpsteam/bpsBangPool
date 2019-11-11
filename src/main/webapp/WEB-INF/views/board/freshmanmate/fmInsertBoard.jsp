@@ -280,11 +280,11 @@
 
 									<div class="well well-sm text-center">
 
-										<script> var
-											g5_captcha_url = "https://openapi.naver.com/v1/captcha/nkey";
+										<script> 
+											var g5_captcha_url = "https://openapi.naver.com/v1/captcha/nkey";
 										</script>
 										<script
-											src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha.js"></script>
+											src="https://openapi.naver.com/v1/captcha/nkey"></script>
 										<fieldset id="captcha" class="captcha">
 											<legend>
 												<label for="captcha_key">자동등록방지</label>
@@ -299,7 +299,7 @@
 												<span></span>새로고침
 											</button>
 											<input type="text" name="captcha_key" id="captcha_key"
-												required="" class="captcha_box required" size="6"
+												required class="captcha_box required" size="6"
 												maxlength="6"> <span id="captcha_info">자동등록방지
 												숫자를 순서대로 입력하세요.</span>
 										</fieldset>
