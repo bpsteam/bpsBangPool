@@ -97,11 +97,11 @@
 									class="form-horizontal">
 
 									<div class="form-group has-feedback">
-										<label class="col-sm-2 control-label">이름</label>
+										<label class="col-sm-2 control-label">작성자</label>
 										<div class="col-sm-3">
-											<input type="text" name="hb_writer" readonly
-												value="작성자" 
-												class="form-control input-sm" size="10" maxlength="20">
+											 <c:if test="${ !empty loginUser }">
+                                                   <input type="text" name="hbWriter"  id="hbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
+	                                         </c:if>
 										</div>
 									</div>
 
@@ -117,7 +117,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="ca_name">
-											지역분류 <strong class="sound_only">필수</strong>
+											지역분류 <strong class="sound_only">*</strong>
 										</label>
 										<div class="col-sm-3">
 											<select name="hLocation" required
@@ -136,7 +136,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="wr_subject">제목<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-10">
 											<div class="input-group">
 												<input type="text" name="hbTitle" required
@@ -150,7 +150,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">매물구분<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 
 											<select name="hRentType" required 
@@ -165,7 +165,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">매물종류<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 											<select name="hLivingType"  required
 												class="form-control input-sm">
@@ -182,7 +182,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">방갯수<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 
 											<select name="hRoom" required
@@ -200,7 +200,7 @@
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">해당층수<strong
-											class="sound_only">필수</strong></label>
+											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 											<select name="hFloor" required 
 												class="form-control input-sm">
@@ -318,7 +318,7 @@
 										<div class="col-sm-10 col-sm-offset-2">
 											<table id="variableFiles">
 												<tbody>
-													<tr>
+													<!-- <tr>
 														<td><div class="row">
 																<div class="col-sm-7">
 																	<div class="form-group">
@@ -329,7 +329,7 @@
 																	</div>
 																</div>
 															</div></td>
-													</tr>
+													</tr> -->
 												</tbody>
 											</table>
 										</div>
@@ -337,7 +337,7 @@
 									<script>
                                                     var flen = 0;
                                                     function add_file(delete_code) {
-                                                        var upload_count = 2;
+                                                        var upload_count = 3;
                                                         if (upload_count && flen >= upload_count) {
                                                             alert("이 게시판은 "+upload_count+"개 까지만 파일 업로드가 가능합니다.");
                                                             return;
@@ -358,7 +358,7 @@
                                                         objCell = objRow.insertCell(0);
                                             
                                                         objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+objNum+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
                                                         if (delete_code) {
                                                             objContent += delete_code;
                                                         } else {

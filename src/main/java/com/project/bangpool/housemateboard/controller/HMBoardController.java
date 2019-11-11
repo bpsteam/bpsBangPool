@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -53,8 +54,9 @@ public class HMBoardController {
 		System.out.println("pi" + pi);
 		
 		ArrayList<HMBoard> list = hbService.selectList(pi, hLoc);
+		System.out.println("blist에서 sql다녀온후 hLoc: " + hLoc);
 		if(list != null) {
-			mv.addObject("list", list).addObject("pi", pi);
+			mv.addObject("list", list).addObject("pi", pi).addObject("hLoc", hLoc);
 			mv.setViewName("hmboardList");
 		} else {
 			throw new HMBoardException("게시글 전체 조회 실패하였습니다.");
@@ -264,6 +266,44 @@ public class HMBoardController {
 		}
 				
 	}
+	
+	
+	//검색 기능
+	@RequestMapping("hserach.hm")
+	public ModelAndView searchList(ModelAndView mv, 
+								@RequestParam(value="page", required=false) Integer page, 
+								@RequestParam("searchCondition") String sCondition,
+								@RequestParam("searchValue") String sValue) {
+		
+		HashMap<String, String> searchMap = new HashMap<String, String>();
+		searchMap.put("sCondition", sCondition);
+		searchMap.put("sValue", sValue);
+		System.out.println(searchMap);
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int listCount = hbService.getSearchListCount(searchMap);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		System.out.println("controller에서 다녀온 listCount"+listCount);
+		
+		ArrayList<HMBoard> list = hbService.selectSearchList(searchMap, pi);
+		System.out.println("controller에서 다녀온 list"+list);
+		
+		if(list != null) {
+			mv.addObject("list",list)
+			.addObject("pi", pi)
+			.setViewName("hmboardList");
+		}else {
+			throw new HMBoardException("검색 조회 실패");
+		}
+		
+		return mv;
+	}
+	
+	
 	
 	
 }

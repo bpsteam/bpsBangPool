@@ -76,25 +76,49 @@
 
 							<form action="blist.hm">
 								<div class="tabs alternative">
-									<ul class="nav nav-tabs">
-										<li class="active">
-											<a href="#integrate" data-toggle="tab">전체</a>
+									<ul class="nav nav-tabs" id="tabs">
+										<li id="all">
+											<c:url var="loc" value="blist.hm">
+												<c:param name="hLocation" value="ALL"/>
+											</c:url>
+											<a href="${ loc }">전체</a>
 										</li>
-										<li>
+										<li id="seoul">
 											<c:url var="loc" value="blist.hm">
 												<c:param name="hLocation" value="SEOUL"/>
 											</c:url> 
 											<a href="${ loc }" >서울</a> 
 										</li>
-										<li><c:url var="loc" value="blist.hm">
+										<li id="inc">
+											<c:url var="loc" value="blist.hm">
 												<c:param name="hLocation" value="INCHEON"/>
 											</c:url> 
 											<a href="${ loc }" >인천/부천</a></li>
-										<li><a href="#수원" data-toggle="tab">수원/경기</a></li>
-										<li><a href="#대구" data-toggle="tab">대구/경북</a></li>
-										<li><a href="#부산" data-toggle="tab">부산/경남</a></li>
-										<li><a href="#충청" data-toggle="tab">충청/강원</a></li>
-										<li><a href="#광주" data-toggle="tab">광주/전라</a></li>
+										<li id="su">
+											<c:url var="loc" value="blist.hm">
+												<c:param name="hLocation" value="SU"/>
+											</c:url> 
+											<a href="${ loc }" >수원/경기</a></li>
+										<li id="dae">
+											<c:url var="loc" value="blist.hm">
+												<c:param name="hLocation" value="DAE"/>
+											</c:url> 
+											<a href="${ loc }" >대구/경북</a></li>
+										<li id="bu">
+											<c:url var="loc" value="blist.hm">
+												<c:param name="hLocation" value="BU"/>
+											</c:url> 
+											<a href="${ loc }" >부산/경남</a></li>
+										<li id="chung">
+											<c:url var="loc" value="blist.hm">
+												<c:param name="hLocation" value="CHUNG"/>
+											</c:url> 
+											<a href="${ loc }" >충청/강원</a></li>
+										<li id="kwang">
+											<c:url var="loc" value="blist.hm">
+												<c:param name="hLocation" value="GWANG"/>
+											</c:url> 
+											<a href="${ loc }" >광주/전라</a></li>
 									</ul>
 									<div class="tab-content">
 										<div class="tab-pane fade in active" id="integrate">
@@ -137,42 +161,6 @@
 											</div>
 										</div>
 
-										<div class="tab-pane fade in" id="sample">
-											<div class="row">
-												<div class="col-md-12">
-													<div class="table-responsive">
-														<table class="table table-hover">
-															<thead>
-																<tr>
-																	<th>No.</th>
-																	<th>지역분류</th>
-																	<th>제목</th>
-																	<th>작성자</th>
-																	<th>날짜</th>
-																	<th>조회수</th>
-																</tr>
-															</thead>
-															<tbody>
-
-																<c:forEach var="b" items="${ list }">
-																	<tr>
-																		<td>${ b.hbId }</td>
-																		<td>${ b.hLocation }</td>
-																		<td><c:url var="hbdetail" value="bdetail.hm">
-																				<c:param name="hbId" value="${ b.hbId }" />
-																			</c:url> <a href="${ hbdetail }">${ b.hbTitle }</a></td>
-																		<td>${ b.hbWriter }</td>
-																		<td>${ b.hbCreateDate }</td>
-																		<td>${ b.hbCount }</td>
-																	</tr>
-
-																</c:forEach>
-															</tbody>
-														</table>
-													</div>
-												</div>
-											</div>
-										</div>
 
 
 
@@ -229,16 +217,13 @@
 							</form>
 
 						</div>
-                               
-                                
                                 
                             </div>
                         </div>
-                        
                     <!-- End Main Column -->
 
 
-<!-- 검색 모달창 시작 -->
+					<!-- 검색 모달창 시작 -->
                     <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
@@ -246,25 +231,23 @@
                                     <div class="text-center">
                                         <h4 id="myModalLabel" style="font-weight: 500; font-family: 'Roboto', sans-serif; color:unset; line-height:1.1"><i class="fa fa-search fa-lg" ></i> Search</h4>
                                     </div>
-                                    <form name="fsearch" method="get" role="form" class="form" style="margin-top:20px;">
+                                    <form action="hserach.hm" name="hsearch" method="get" role="form" class="form" style="margin-top:20px;">
                                         <input type="hidden" name="bo_table" value="roomate">
                                         <input type="hidden" name="sca" value="">
                                         <input type="hidden" name="sop" value="and">
                                         <div class="form-group">
                                             <label for="sfl" class="sound_only">검색대상</label>
-                                            <select name="sfl" id="sfl" class="form-control input-sm">
+                                            <select name="searchCondition" id="searchCondition" class="form-control input-sm">
                                                 <option value="wr_subject">제목</option>
                                                 <option value="wr_content">내용</option>
-                                                <option value="wr_subject||wr_content">제목+내용</option>
-                                                <option value="mb_id,1">회원아이디</option>
-                                                <option value="mb_id,0">회원아이디(코)</option>
-                                                <option value="wr_name,1">글쓴이</option>
-                                                <option value="wr_name,0">글쓴이(코)</option>
+                                                <option value="titleNcontent">제목+내용</option>
+                                                <option value="email">회원아이디</option>
+                                                <option value="hbwriter">글쓴이</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                                            <input type="text" name="stx" value="" required="" id="stx" class="form-control input-sm" maxlength="20" placeholder="검색어">
+                                            <input type="text" name="searchValue" required id="searchValue" class="form-control input-sm" maxlength="20" placeholder="검색어">
                                         </div>
             
                                         <div class="btn-group btn-group-justified">
@@ -406,6 +389,51 @@
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
+
+<script>
+// 탭 액티브 처리
+	$(function(){
+		var location= "${ hLoc }";
+		console.log(location);
+		
+		switch(location) {
+		case "SEOUL" : 
+			$("#tabs li").removeClass("active");
+			$("#seoul").addClass("active");
+			break;
+		case "INCHEON" : 
+			$("#tabs li").removeClass("active");
+			$("#inc").addClass("active");
+			break;
+		case "SU" : 
+			$("#tabs li").removeClass("active");
+			$("#su").addClass("active");
+			break;
+		case "DAE" : 
+			$("#tabs li").removeClass("active");
+			$("#dae").addClass("active");
+			break;
+		case "BU" : 
+			$("#tabs li").removeClass("active");
+			$("#bu").addClass("active");
+			break;
+		case "CHUNG" : 
+			$("#tabs li").removeClass("active");
+			$("#chung").addClass("active");
+			break;
+		case "GWANG" : 
+			$("#tabs li").removeClass("active");
+			$("#gwang").addClass("active");
+			break;
+		default :
+			$("#tabs li").removeClass("active");
+			$("#all").addClass("active");
+			break;
+		}
+	});
+	
+</script>
+
 
 </body>
 </html>

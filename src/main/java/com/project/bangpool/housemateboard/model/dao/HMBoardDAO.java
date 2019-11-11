@@ -1,6 +1,7 @@
 package com.project.bangpool.housemateboard.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -63,6 +64,17 @@ public class HMBoardDAO {
 
 	public int getListCount(SqlSessionTemplate sqlSession, String hLoc) {
 		return sqlSession.selectOne("hmboardMapper.getListCount", hLoc);
+	}
+
+	public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap) {
+		return sqlSession.selectOne("hmboardMapper.getSearchListCount", searchMap);
+	}
+
+	public ArrayList<HMBoard> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap,  PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("hmboardMapper.selectSearchList", searchMap, rowBounds);
 	}
 
 }

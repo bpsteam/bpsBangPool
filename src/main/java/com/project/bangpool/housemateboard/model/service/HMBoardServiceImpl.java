@@ -1,6 +1,7 @@
 package com.project.bangpool.housemateboard.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,8 +89,17 @@ public class HMBoardServiceImpl implements HMBoardService {
 
 	@Override
 	public int getListCount(String hLoc) {
-		// TODO Auto-generated method stub
 		return hbDAO.getListCount(sqlSession, hLoc);
+	}
+
+	@Override
+	public int getSearchListCount(HashMap<String, String> searchMap) {
+		return hbDAO.getSearchListCount(sqlSession, searchMap);
+	}
+
+	@Override
+	public ArrayList<HMBoard> selectSearchList(HashMap<String, String> searchMap, PageInfo pi) {
+		return hbDAO.selectSearchList(sqlSession, searchMap, pi);
 	}
 	
 	
