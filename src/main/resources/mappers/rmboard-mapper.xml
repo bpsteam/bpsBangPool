@@ -116,9 +116,54 @@
 		select count(*)
 		from ROOMATE_BOARD
 		where RBSTATUS='Y'
+		<if test="loc != null and !loc.equals('')">
+		<choose>
+			<when test="loc.equals('SEOUL')"> and rlocation='서울' </when>
+			<when test="loc.equals('INCHEON')"> and rlocation='인천/부천' </when>
+			<when test="loc.equals('SUWON')"> and rlocation='수원/경기' </when>
+			<when test="loc.equals('DAEGU')"> and rlocation='대구/경북' </when>
+			<when test="loc.equals('BUSAN')"> and rlocation='부산/경남' </when>
+			<when test="loc.equals('CHUNGCHEONG')"> and rlocation='충청/강원' </when>
+			<when test="loc.equals('GWANGJU')"> and rlocation='광주/전라' </when>
+		</choose>
+		 </if>
+		order by RBID desc
 	</select>
 	
-	
+	<select id="selectSearchResultCount" resultType="_int">
+ 		select count(*)
+ 		from ROOMATE_BOARD
+ 			join member on(rbWriter = NICKNAME)
+ 		where RBSTATUS = 'Y'
+ 		<if test="writer != null">
+ 			and rbWriter = #{rbWriter}
+ 		</if>	
+ 		<if test="title != null">
+ 			and rbTitle like '%' || #{rbTitle} || '%'
+ 		</if>	
+ 		<if test="content != null">
+ 			and rbContent like '%' || #{rbContent} || '%'
+ 		</if>	
+ 	</select>
+ 	
+ 	<select id="selectSearchResultList" resultMap="rmboardResultSet">
+ 		select *
+ 		from ROOMATE_BOARD
+ 			join member on(rbWriter = NICKNAME)
+ 		where RBSTATUS = 'Y'
+ 		<choose>
+ 			<when test="writer != null">
+ 				and nickName = #{rbWriter}
+ 			</when>
+ 			<when test="title != null">
+ 				and rbTitle like '%' || #{rbTitle} || '%'
+ 			</when>
+ 			<otherwise>
+ 				and rbContent like '%' || #{rbContent} || '%'
+ 			</otherwise>
+ 		</choose>
+ 		order by RBID desc	
+ 	</select>
 	
 </mapper>
 

@@ -141,7 +141,9 @@
                                                                                 <th>No.</th>
                                                                                 <th>분류</th>
                                                                                 <th>제목</th>
-                                                                                <th>작성자</th>
+                                                                                <th>글쓴이</th>
+                                                                                <th>날짜</th>
+                                                                                <th>조회</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -157,6 +159,8 @@
                                                                         				${ b.rbTitle }
                                                                      			</td>
                                                                         		<td>${ b.rbWriter }</td>
+                                                                        		<td>${ b.rbCreateDate }</td>
+                                                                        		<td>${ b.rbCount }</td>
                                                                         		
                                                                         		
                                                                        			<%-- <c:param name="rbId" value="${ b.rbId }"></c:param>
@@ -432,6 +436,12 @@
 	                                                        	</c:if>
 	                                                        	<c:if test="${ pi.currentPage > 1 }">
 	                                                        		<c:url var="before" value="blist.rm">
+	                                                        			
+	                                                        			<!-- 검색창 관련 -->
+	                                                        			<c:if test="${ searchValue ne null }">
+		                                                        			<c:param name="searchCondition" value="${ searchCondition }"/>
+																			<c:param name="searchValue" value="${ searchValue }"/>
+																		</c:if>	
 	                                                        			<c:param name="page" value="${ pi.currentPage -1 }"/>
 	                                                        		</c:url>
 	                                                        		<a href="${ before }">«</a>
@@ -449,6 +459,11 @@
                                                         		<c:if test="${ p ne pi.currentPage }">
                                                         			<li>
 	                                                        			<c:url var="pg" value="blist.rm">
+	                                                        				<!-- 검색창 관련 -->
+	                                                        				<c:if test="${ searchValue ne null }">
+			                                                        			<c:param name="searchCondition" value="${ searchCondition }"/>
+																				<c:param name="searchValue" value="${ searchValue }"/>
+																			</c:if>
 	                                                        				<c:param name="page" value="${ p }"/>
 	                                                        			</c:url>
 	                                                        			<a href="${ pg }">${ p }</a>
@@ -463,6 +478,12 @@
 	                                                        	</c:if>
 	                                                        	<c:if test="${ pi.currentPage < pi.maxPage }">
 	                                                        		<c:url var="after" value="blist.rm">
+	                                                        			
+	                                                        			<!-- 검색창 관련 -->
+                                                        				<c:if test="${ searchValue ne null }">
+		                                                        			<c:param name="searchCondition" value="${ searchCondition }"/>
+																			<c:param name="searchValue" value="${ searchValue }"/>
+																		</c:if>
 	                                                        			<c:param name="page" value="${ pi.currentPage +1 }"/>
 	                                                        		</c:url>
 	                                                        		<a href="${ after }">»</a>
@@ -517,25 +538,25 @@
                                     <div class="text-center">
                                         <h4 id="myModalLabel" style="font-weight: 500; font-family: 'Roboto', sans-serif; color:unset; line-height:1.1"><i class="fa fa-search fa-lg" ></i> Search</h4>
                                     </div>
-                                    <form name="fsearch" method="get" role="form" class="form" style="margin-top:20px;">
+                                    <form name="fsearch" action="bsearch.rm" method="get" role="form" class="form" style="margin-top:20px;">
                                         <input type="hidden" name="bo_table" value="roomate">
                                         <input type="hidden" name="sca" value="">
                                         <input type="hidden" name="sop" value="and">
                                         <div class="form-group">
                                             <label for="sfl" class="sound_only">검색대상</label>
-                                            <select name="sfl" id="sfl" class="form-control input-sm">
-                                                <option value="wr_subject">제목</option>
-                                                <option value="wr_content">내용</option>
-                                                <option value="wr_subject||wr_content">제목+내용</option>
-                                                <option value="mb_id,1">회원아이디</option>
-                                                <option value="mb_id,0">회원아이디(코)</option>
-                                                <option value="wr_name,1">글쓴이</option>
-                                                <option value="wr_name,0">글쓴이(코)</option>
+                                            <!-- <select name="sfl" id="sfl" class="form-control input-sm"> -->
+                                            <select id="searchCondition" name="searchCondition" class="form-control input-sm">
+                                                <option value="stitle">제목</option>
+                                                <option value="scontent">내용</option>
+                                                <!-- <option value="wr_subject||wr_content">제목+내용</option> -->
+                                                <!-- <option value="mb_id,1">회원아이디</option> -->
+                                                <!-- <option value="wr_name,1">글쓴이</option> -->
+                                                <option value="swriter">글쓴이</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                                            <input type="text" name="stx" value="" required="" id="stx" class="form-control input-sm" maxlength="20" placeholder="검색어">
+                                            <input type="text" name="searchValue" required="" id="stx" class="form-control input-sm" maxlength="20" placeholder="검색어">
                                         </div>
             
                                         <div class="btn-group btn-group-justified">
@@ -685,9 +706,17 @@
 			var active = $('.active');
 			active.removeClass('active');
 			this.addClass('active');
-			
-			
 		})	;
+		
+		/* <button onclick="searchBoard();">검색하기</button>
+		</div>
+		<script type="text/javascript">
+			function searchBoard(){
+				var searchCondition = $("#searchCondition").val(); // searchCondition:  작성자, 제목, 내용
+				var searchValue = $("#searchValue").val(); // searchValue : 검색한 내용
+				
+				location.href="search.bo?searchCondition="+searchCondition+"&searchValue="+searchValue;
+			} */
 	
 	</script>
 

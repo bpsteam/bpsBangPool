@@ -85,12 +85,13 @@
 
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
+                                        <!-- 댓글count -->
                                         <b style="color:red">4</b>
                                         <span class="sp"></span>
-                                        <i class="fa fa-eye"></i>118
+                                        <i class="fa fa-eye"></i>${ rboard.rbCount}
                                         <span class="pull-right">
                                             <i class="fa fa-clock-o"></i>
-                                         09.23 23:49 </span>
+                                         ${ rboard.rbCreateDate} </span>
                                     </div>
                                 </div>
                             </div>
@@ -154,6 +155,7 @@
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>게시자 성별</b>
                                         </div>
+                                        <!-- 여기 -->
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             	여자 </div>
@@ -163,7 +165,7 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            	무관 </div>
+                                            	${ rboard.rReqGender } </div>
                                         <div style="both:clear;">
                                         </div>
 
@@ -372,7 +374,7 @@
                                             <i class="fa fa-bars"></i><span class="hidden-xs"> 목록</span>
                                         </a>
                                         
-                                        <a href="binsert.rm" class="btn btn-info btn-sm">
+                                        <a href="binsertview.rm" class="btn btn-info btn-sm">
                                            <i class="fa fa-pencil"></i><span class="hidden-xs"> 글쓰기</span>
                                         </a>
 

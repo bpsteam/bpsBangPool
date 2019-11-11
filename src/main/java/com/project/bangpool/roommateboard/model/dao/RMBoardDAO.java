@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Repository("rbDAO")
@@ -51,13 +52,39 @@ public class RMBoardDAO {
 		return sqlSession.update("rmboardMapper.deleteBoard", rbId);
 	}
 
-	public int getListCount(SqlSessionTemplate sqlSession) {
+	public int getListCount(SqlSessionTemplate sqlSession, String loc) {
 		return sqlSession.selectOne("rmboardMapper.getListCount");
 	}
 
 	public int updateFile(SqlSessionTemplate sqlSession, RMBoard b) {
 		return sqlSession.update("rmboardMapper.updateFile", b);
 	}
+
+	public int getSearchResultListCount(SqlSessionTemplate sqlSession, SearchCondition sc) {
+		return sqlSession.selectOne("rmboardMapper.selectSearchResultCount", sc);
+	}
+
+	public ArrayList<RMBoard> selectSearchResultList(SqlSessionTemplate sqlSession, SearchCondition sc, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("rmboardMapper.selectSearchResultList", sc, rowBounds);
+	}
+	
+//	return (ArrayList)sqlSession.selectList("rmboardMapper.selectList", loc, rowBounds);
+	
+//		ArrayList<Board> list = (ArrayList)session.selectList(
+//				"boardMapper.selectSearchResultList",sc, rowBounds);
+//		
+//		if(list == null) {
+//			session.close();
+//			throw new BoardException("검색 결과 리스트 조회에 실패하였습니다.");
+//		}
+//		
+//		return list;
+	
+	
 	
 
 }

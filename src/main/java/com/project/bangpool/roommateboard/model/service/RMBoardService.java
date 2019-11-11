@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 public interface RMBoardService {
@@ -22,6 +23,10 @@ public interface RMBoardService {
 	
 	int deleteBoard(int rbId);
 
-	int getListCount();
+	int getListCount(String loc);
+
+	int getSearchResultListCount(SearchCondition sc);
+
+	ArrayList<RMBoard> selectSearchResultList(SearchCondition sc, PageInfo pi);
 
 }
