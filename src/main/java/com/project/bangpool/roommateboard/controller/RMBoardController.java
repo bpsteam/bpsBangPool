@@ -168,21 +168,21 @@ public class RMBoardController {
 	@RequestMapping("bupdate.rm")
 	public ModelAndView boardUpdate(@ModelAttribute RMBoard b,
 //									@RequestParam("page") Integer page,
-//									@RequestParam("reloadFile") MultipartFile reloadFile,
+									@RequestParam("reloadFile") MultipartFile reloadFile,
 									HttpServletRequest request,
 									ModelAndView mv) {
 		
-//		if(reloadFile != null && !reloadFile.isEmpty()) {
-//			// 기존 필요없는 파일 지우기
-//			deleteFile(b.getRenameFileName(), request);
-//		}
-//		
-//		String renameFileName = saveFile(reloadFile, request);
-//		
-//		if(renameFileName != null) {
-//			b.setOriginalFileName(reloadFile.getOriginalFilename());;
-//			b.setRenameFileName(renameFileName);
-//		}
+		if(reloadFile != null && !reloadFile.isEmpty()) {
+			// 기존 필요없는 파일 지우기
+			deleteFile(b.getRenameFileName(), request);
+		}
+		
+		String renameFileName = saveFile(reloadFile, request);
+		
+		if(renameFileName != null) {
+			b.setOriginalFileName(reloadFile.getOriginalFilename());
+			b.setRenameFileName(renameFileName);
+		}
 		
 		int result = rbService.updateBoard(b);
 		
@@ -195,6 +195,20 @@ public class RMBoardController {
 		}
 		
 		return mv;
+	}
+	
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\rmboarduploads";
+		
+		File f = new File(savePath + "\\" + fileName);
+		
+		// 파일 존재하면 삭제
+		if(f.exists()) {
+			f.delete();
+		}
+		
+		
 	}
 	
 	@RequestMapping("rList.rm")

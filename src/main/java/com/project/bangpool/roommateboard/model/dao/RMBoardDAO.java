@@ -54,6 +54,10 @@ public class RMBoardDAO {
 	public int getListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("rmboardMapper.getListCount");
 	}
+
+	public int updateFile(SqlSessionTemplate sqlSession, RMBoard b) {
+		return sqlSession.update("rmboardMapper.updateFile", b);
+	}
 	
 
 }
