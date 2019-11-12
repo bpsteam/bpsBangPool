@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="secondHandBoardMapper">
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from secondhand_board
+		where shbstatus='Y'
+	</select>
+	<select id="selectList" resultType="SecondHandBoard">
+		select *
+		from secondhand_board
+		where shbstatus='Y'
+		order by shbid desc
+	</select>
+	<insert id="insertBoard" parameterType="SecondHandBoard">
+		<!-- insert into secondhand_board
+		values (shbid_seq.nextval,#{bCode}, #{shbTitle}, #{shbWriter}, #{shbContent}, #{shbCategory},
+				#{shbPrice}, #{shbLocation}, #{shbCount}, #{shbOrgFileName}, #{shbRenameFileName}, sysdate, sysdate, default) -->
+		insert into secondhand_board
+		values (shbid_seq.nextval, 6, #{shbTitle}, #{shbWriter}, #{shbContent}, #{shbCategory},
+				#{shbPrice}, #{shbLocation}, #{shbCount}, #{shbOrgFileName}, #{shbRenameFileName}, sysdate, sysdate, default)
+	</insert>
+	<select id="selectBoard" parameterType="_int" resultType="SecondHandBoard">
+		select *
+		from secondhand_board b
+		where shbId = #{shbId}
+			and shbstatus='Y'
+	</select>
+	<update id="addReadCount" parameterType="_int">
+		update secondhand_board
+		set shbcount = shbcount +1
+		where shbId = #{shbId}
+	</update>
+	<update id="updateBoard" parameterType="SecondHandBoard">
+		update secondhand_board
+		set shbtitle = #{shbTitle}, shbcontent=#{shbContent}, shbcategory=#{shbCategory}, 
+			shbprice = #{shbPrice}, shbLocation=#{shbLocation},
+			shborgfilename=#{shbOrgFileName},
+			shbrenamefilename=#{shbRenameFileName}, shbmodifydate=sysdate
+		where shbid=#{shbId}
+	</update>
+	<update id="deleteBoard" parameterType="_int">
+		update secondhand_board
+		set shbstatus='N'
+		where shbid=#{shbId}
+	</update>
+	<select id="replyList" parameterType="_int" resultType="Reply">
+		select *
+		from reply r
+		where bcode = 6
+		and refbid = #{refbId}
+		and rStatus = 'Y'
+		order by rid desc
+	</select>
+	<insert id="insertReply" parameterType="Reply">
+		insert into reply
+		values(rid_seq.nextval, 6, #{rContent}, #{refbId}, #{rWriter}, sysdate, sysdate, 'Y')
+	</insert>
+	<update id="deleteReply" parameterType="_int">
+		update Reply
+		set rstatus='N'
+		where rid=#{rId}
+	</update>
+	<select id="sofaList" resultType="SecondHandBoard">
+		select *
+		from secondhand_board
+		where shbstatus='Y'
+		and shbcategory='소파'
+		order by shbid desc
+	</select>
+	<select id="makeupList" resultType="SecondHandBoard">
+		select *
+		from secondhand_board
+		where shbstatus='Y'
+		and shbcategory='화장대'
+		order by shbid desc
+	</select>
+	<select id="deskList" resultType="SecondHandBoard">
+		select *
+		from secondhand_board
+		where shbstatus='Y'
+		and shbcategory='책상'
+		order by shbid desc
+	</select>
+	<select id="tableList" resultType="SecondHandBoard">
+		select *
+		from secondhand_board
+		where shbstatus='Y'
+		and shbcategory='식탁'
+		order by shbid desc
+	</select>
+	<select id="displayList" resultType="SecondHandBoard">
+		select *
+		from secondhand_board
+		where shbstatus='Y'
+		and shbcategory='장식장'
+		order by shbid desc
+	</select>
+	
+	
+</mapper>
