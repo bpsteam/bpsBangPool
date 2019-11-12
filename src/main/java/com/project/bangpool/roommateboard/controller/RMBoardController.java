@@ -185,6 +185,7 @@ public class RMBoardController {
 			b.setRenameFileName(renameFileName);
 		}
 		
+		
 		int result = rbService.updateBoard(b);
 		
 		if(result > 0) {
@@ -276,29 +277,42 @@ public class RMBoardController {
 //		if(sc.equals("writer")) sc.setWriter(swriter);
 //		else if(sc.equals("title")) sc.setTitle(stitle);
 //		else if(sc.equals("content")) sc.setContent(scontent);
-		System.out.println("sc!"+sc);
+		System.out.println("condition 값???"+condition);
+		System.out.println("searchValue값 ???"+value);
+		
+		System.out.println("sc 값 들어오니????"+sc);
+		
 		int currentPage = 1;
 		if(page != null) {
 			currentPage = page;
+		}
 			
 		/*if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}*/
 			
-		}
 		
-		try {
+//		try {
 			int listCount = rbService.getSearchResultListCount(sc);
+			
+			System.out.println("listCount???"+listCount);
 			
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			
 			ArrayList<RMBoard> list = rbService.selectSearchResultList(sc,pi);
 			
-			mv.addObject("list", list);
-			mv.addObject("pi", pi);
-			mv.addObject("searchCondition", condition);
-			mv.addObject("searchValue", value);
-			mv.setViewName("rmboardList");
+			System.out.println("searchController 값 오나????"+list);
+			
+			if(list != null) {
+				mv.addObject("list", list);
+				mv.addObject("pi", pi);
+				mv.addObject("searchCondition", condition);
+				mv.addObject("searchValue", value);
+				mv.setViewName("rmboardList");
+				
+			}else {
+				throw new RMBoardException("검색 결과 리스트 조회 실패");
+			}
 			
 //			request.setAttribute("list", list);
 //			request.setAttribute("pi", pi);
@@ -306,9 +320,9 @@ public class RMBoardController {
 //			request.setAttribute("searchValue", value);
 			// 페이지 넘어가도 검색결과 계속 나오게
 			
-		} catch (RMBoardException e) {
-			e.printStackTrace();
-		}
+//		} catch (RMBoardException e) {
+//			e.printStackTrace();
+//		}
 		
 		return mv;
 	}

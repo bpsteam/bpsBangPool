@@ -556,12 +556,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
-                                            <input type="text" name="searchValue" required="" id="stx" class="form-control input-sm" maxlength="20" placeholder="검색어">
+                                            <input id="searchValue" type="text" name="searchValue" required="" id="stx" class="form-control input-sm" maxlength="20" placeholder="검색어">
                                         </div>
             
                                         <div class="btn-group btn-group-justified">
                                             <div class="btn-group">
-                                                <button type="submit" class="btn btn-danger"><i class="fa fa-check"></i></button>
+                                                <button type="submit" class="btn btn-danger" onclick="searchBoard();"><i class="fa fa-check"></i></button>
                                             </div>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-aqua" data-dismiss="modal"><i class="fa fa-times"></i></button>
@@ -709,15 +709,14 @@
 		})	;
 		
 		/* <button onclick="searchBoard();">검색하기</button>
-		</div>
-		<script type="text/javascript">
-			function searchBoard(){
-				var searchCondition = $("#searchCondition").val(); // searchCondition:  작성자, 제목, 내용
-				var searchValue = $("#searchValue").val(); // searchValue : 검색한 내용
-				
-				location.href="search.bo?searchCondition="+searchCondition+"&searchValue="+searchValue;
-			} */
-	
+		<script type="text/javascript"> */
+		function searchBoard(){
+			var searchCondition = $("#searchCondition").val(); // searchCondition:  작성자, 제목, 내용
+			var searchValue = $("#searchValue").val(); 		   // searchValue : 검색한 내용
+			
+			location.href="bsearch.rm?searchCondition="+searchCondition+"&searchValue="+searchValue;
+		} 
+
 	</script>
 
 </body>

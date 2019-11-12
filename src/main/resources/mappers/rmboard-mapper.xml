@@ -135,14 +135,14 @@
  		from ROOMATE_BOARD
  			join member on(rbWriter = NICKNAME)
  		where RBSTATUS = 'Y'
- 		<if test="writer != null">
- 			and rbWriter = #{rbWriter}
+ 		<if test="swriter != null">
+ 			and rbWriter = #{swriter}
  		</if>	
- 		<if test="title != null">
- 			and rbTitle like '%' || #{rbTitle} || '%'
+ 		<if test="stitle != null">
+ 			and rbTitle like '%' || #{stitle} || '%'
  		</if>	
- 		<if test="content != null">
- 			and rbContent like '%' || #{rbContent} || '%'
+ 		<if test="scontent != null">
+ 			and rbContent like '%' || #{scontent} || '%'
  		</if>	
  	</select>
  	
@@ -152,14 +152,14 @@
  			join member on(rbWriter = NICKNAME)
  		where RBSTATUS = 'Y'
  		<choose>
- 			<when test="writer != null">
- 				and nickName = #{rbWriter}
+ 			<when test="swriter != null">
+ 				and nickName = #{swriter}
  			</when>
- 			<when test="title != null">
- 				and rbTitle like '%' || #{rbTitle} || '%'
+ 			<when test="stitle != null">
+ 				and rbTitle like '%' || #{stitle} || '%'
  			</when>
  			<otherwise>
- 				and rbContent like '%' || #{rbContent} || '%'
+ 				and rbContent like '%' || #{scontent} || '%'
  			</otherwise>
  		</choose>
  		order by RBID desc	
