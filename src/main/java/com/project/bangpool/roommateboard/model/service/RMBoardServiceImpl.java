@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.roommateboard.model.dao.RMBoardDAO;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
@@ -76,9 +77,40 @@ public class RMBoardServiceImpl implements RMBoardService{
 	}
 
 	@Override
-	public int getListCount() {
-		return rbDAO.getListCount(sqlSession);
+	public int getListCount(String loc) {
+		return rbDAO.getListCount(sqlSession, loc);
+	}
+
+	@Override
+	public int getSearchResultListCount(SearchCondition sc) {
+		return rbDAO.getSearchResultListCount(sqlSession, sc);
+	}
+
+	@Override
+	public ArrayList<RMBoard> selectSearchResultList(SearchCondition sc, PageInfo pi) {
+		return rbDAO.selectSearchResultList(sqlSession, sc, pi);
 	}
 	
+	
+	////////////
+//	public int getSearchResultListCount(SearchCondition sc) throws BoardException {
+//		SqlSession session = getSqlSession();
+//		
+//		int listCount = new BoardDao().getSearchResultListCount(session, sc);
+//		
+//		session.close();
+//		
+//		return listCount;
+//	}
+//
+//	public ArrayList<Board> selectSearchResultList(SearchCondition sc, PageInfo pi) throws BoardException {
+//		SqlSession session = getSqlSession();
+//		
+//		ArrayList<Board> list = new BoardDao().selectSearchResultList(session, sc, pi);
+//		
+//		session.close();
+//		
+//		return list;
+//	}
 
 }

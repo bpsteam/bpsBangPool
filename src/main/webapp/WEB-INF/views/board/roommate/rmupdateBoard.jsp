@@ -227,6 +227,18 @@
                                                         </tr></tbody></table>
                                                         </div>
                                                     </div> -->
+                                                    
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label " for="RGENDER">상대 성별</label>
+															<div class="col-sm-3">
+																<select name="rReqGender" required class="form-control input-sm">
+		                                                            <option value="" selected >원하는 상대 성별</option>
+		                                                            <option value="무관">무관</option>
+		                                                            <option value="여성">여성</option>
+		                                                            <option value="남성">남성</option>
+	                                                        	</select>
+                                                      	  </div>
+                                                    </div>
                                             
                                             
                                                     <div class="form-group">
@@ -297,7 +309,8 @@
 					                                                            <div class="form-group">
 					                                                            <div class="input-group input-group-sm">
 					                                                            <span class="input-group-addon">파일 0</span>
-					                                                            <input type="file" class="form-control input-sm" name="uploadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
+					                                                            <input type="file" class="form-control input-sm" name="reloadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
+					                                                            <!-- <input type="file" class="form-control input-sm" name="reloadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능"> -->
 						                                                            <c:if test="${ !empty rboard.originalFileName }">
 																						<br>현재 업로드한 파일 : 
 																						<a href="${ contextPath }/resources/rmboarduploads/${ rboard.renameFileName }" download="${ rboard.originalFileName }">
@@ -338,7 +351,9 @@
                                                         objCell = objRow.insertCell(0);
                                             
                                                         objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+objNum+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
+                                                        		   +objNum+"</span><input type='file' class='form-control input-sm' name='reloadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                                        		   /* +objNum+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>"; */
                                                         if (delete_code) {
                                                             objContent += delete_code;
                                                         } else {

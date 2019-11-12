@@ -25,6 +25,7 @@ import com.google.gson.JsonIOException;
 import com.project.bangpool.comment.model.vo.Reply;
 import com.project.bangpool.common.PageInfo;
 import com.project.bangpool.common.Pagination;
+import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.RMBoardException;
 import com.project.bangpool.roommateboard.model.service.RMBoardService;
@@ -48,7 +49,7 @@ public class RMBoardController {
 		}
 		
 		// 총 게시글 개수
-		int listCount = rbService.getListCount();
+		int listCount = rbService.getListCount(loc);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
@@ -184,6 +185,7 @@ public class RMBoardController {
 			b.setRenameFileName(renameFileName);
 		}
 		
+		
 		int result = rbService.updateBoard(b);
 		
 		if(result > 0) {
@@ -258,9 +260,71 @@ public class RMBoardController {
 		}
 	}
 	
-	
-	
-	
-	
+	@RequestMapping("bsearch.rm")
+	public ModelAndView searchBoard(
+							  @RequestParam("searchCondition") String condition,
+							  @RequestParam("searchValue") String value,
+							  @RequestParam(value="page", required=false) Integer page,
+							  @ModelAttribute SearchCondition sc,
+							  ModelAndView mv,
+							  HttpServletRequest request) {
+		
+//		SearchCondition sc = new SearchCondition();
+		if(condition.equals("swriter")) sc.setSwriter(value);
+		else if(condition.equals("stitle")) sc.setStitle(value);
+		else if(condition.equals("scontent")) sc.setScontent(value);
+		
+//		if(sc.equals("writer")) sc.setWriter(swriter);
+//		else if(sc.equals("title")) sc.setTitle(stitle);
+//		else if(sc.equals("content")) sc.setContent(scontent);
+//		System.out.println("condition 값???"+condition);
+		System.out.println("searchValue값 ???"+value);
+		
+		System.out.println("sc 값 들어오니????"+sc);
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+			
+		/*if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}*/
+			
+		
+//		try {
+			int listCount = rbService.getSearchResultListCount(sc);
+			
+			System.out.println("listCount???"+listCount);
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
+			ArrayList<RMBoard> list = rbService.selectSearchResultList(sc,pi);
+			
+			System.out.println("searchController 값 오나????"+list);
+			
+			if(list != null) {
+				mv.addObject("list", list);
+				mv.addObject("pi", pi);
+				mv.addObject("searchCondition", condition);
+				mv.addObject("searchValue", value);
+				mv.setViewName("rmboardList");
+				
+			}else {
+				throw new RMBoardException("검색 결과 리스트 조회 실패");
+			}
+			
+//			request.setAttribute("list", list);
+//			request.setAttribute("pi", pi);
+//			request.setAttribute("searchCondition", condition);
+//			request.setAttribute("searchValue", value);
+			// 페이지 넘어가도 검색결과 계속 나오게
+			
+//		} catch (RMBoardException e) {
+//			e.printStackTrace();
+//		}
+		
+		return mv;
+	}
 	
 }

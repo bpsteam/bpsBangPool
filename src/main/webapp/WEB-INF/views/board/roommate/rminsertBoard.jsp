@@ -63,6 +63,7 @@
                                                         <div class="form-group has-feedback">
                                                         <label class="col-sm-2 control-label" for="wr_name">이름<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
+                                                        <!-- name="rbWriter" value="{ 닉네임}"  -->
                                                             <input type="text" name="rbWriter" value="" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20">
                                                             <span class="fa fa-check form-control-feedback"></span>
                                                         </div>
@@ -225,6 +226,17 @@
                                                         </div>
                                                     </div> -->
                                             
+                                                    <div class="form-group">
+														<label class="col-sm-2 control-label " for="RGENDER">상대 성별</label>
+														<div class="col-sm-3">
+															<select name="rReqGender" required class="form-control input-sm">
+				                                                <option value="" selected >원하는 상대 성별</option>
+				                                                <option value="무관">무관</option>
+				                                                <option value="여성">여성</option>
+				                                                <option value="남성">남성</option>
+				                                            </select>	
+														</div>
+													</div>
                                             
                                                     <div class="form-group">
                                                         <!-- <label class="col-sm-2 control-label " for="RPRICE">거래금액</label> -->
@@ -234,6 +246,7 @@
                                                         <input type="text" name="rPrice" size="50" value="" class="form-control input-sm">
                                                         </div>
                                                     </div>
+                                                    
                                             
                                             
                                                     <div class="form-group">
