@@ -19,6 +19,8 @@
 	    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
     	
     	<typeAlias type="com.project.bangpool.common.Reply" alias="Reply"/>
+    	
+    	<typeAlias type="com.project.bangpool.secondHandBoard.model.vo.SecondHandBoard" alias="SecondHandBoard"/>
 	</typeAliases>
 	
 	<mappers>
@@ -29,6 +31,8 @@
 		<mapper resource="mappers/fmboard-mapper.xml"/>
     
   	 	<mapper resource="mappers/rmboard-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/secondHandBoard-mapper.xml"/>
 
 	</mappers>
 	

@@ -60,7 +60,7 @@
 </head>
 
 <body>
-    <c:import url="../common/header.jsp"/>
+    <c:import url="../../common/header.jsp"/>
         <!-- === BEGIN CONTENT === -->
 
 
@@ -438,7 +438,7 @@
     </div>
     <!-- === END CONTENT === -->
     <!-- === BEGIN FOOTER === -->
-    <c:import url ="../common/footer.jsp"/>
+    <c:import url ="../../common/footer.jsp"/>
     <!-- End Footer -->
     <!-- JS -->
     <script type="text/javascript" src="assets/js/jquery.min.js" type="text/javascript"></script>

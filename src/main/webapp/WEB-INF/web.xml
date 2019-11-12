@@ -128,6 +128,22 @@
 		<servlet-name>shoppingServlet</servlet-name>
 		<url-pattern>*.sh</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 중고나라 관련 -->
+	<servlet>
+		<servlet-name>secondHandServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/secondHand-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>secondHandServlet</servlet-name>
+		<url-pattern>*.se</url-pattern>
+	</servlet-mapping>
 
 
 	<!-- 공용에러페이지 등록 -->
