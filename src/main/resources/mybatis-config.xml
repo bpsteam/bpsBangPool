@@ -24,6 +24,8 @@
     	
     	<typeAlias type="com.project.bangpool.showing.model.vo.Showing" alias="Showing"/>
     	
+    	<typeAlias type="com.project.bangpool.notice.model.vo.Notice" alias="Notice"/>
+    	
 	</typeAliases>
 	
 	<mappers>
@@ -38,6 +40,8 @@
   	 	<mapper resource="mappers/secondHandBoard-mapper.xml"/>
   	 	
   	 	<mapper resource="mappers/showing-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/notice-mapper.xml"/>
 
 	</mappers>
 	
