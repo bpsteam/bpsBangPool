@@ -270,14 +270,14 @@ public class RMBoardController {
 							  HttpServletRequest request) {
 		
 //		SearchCondition sc = new SearchCondition();
-//		if(condition.equals("writer")) sc.setWriter(value);
-//		else if(condition.equals("title")) sc.setTitle(value);
-//		else if(condition.equals("content")) sc.setContent(value);
+		if(condition.equals("swriter")) sc.setSwriter(value);
+		else if(condition.equals("stitle")) sc.setStitle(value);
+		else if(condition.equals("scontent")) sc.setScontent(value);
 		
 //		if(sc.equals("writer")) sc.setWriter(swriter);
 //		else if(sc.equals("title")) sc.setTitle(stitle);
 //		else if(sc.equals("content")) sc.setContent(scontent);
-		System.out.println("condition 값???"+condition);
+//		System.out.println("condition 값???"+condition);
 		System.out.println("searchValue값 ???"+value);
 		
 		System.out.println("sc 값 들어오니????"+sc);

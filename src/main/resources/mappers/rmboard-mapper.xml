@@ -133,10 +133,10 @@
 	<select id="selectSearchResultCount" resultType="_int">
  		select count(*)
  		from ROOMATE_BOARD
- 			join member on(rbWriter = NICKNAME)
+ 			<!-- join member on(rbWriter = NICKNAME) -->
  		where RBSTATUS = 'Y'
  		<if test="swriter != null">
- 			and rbWriter = #{swriter}
+ 			and rbWriter like '%' ||  #{swriter} || '%'
  		</if>	
  		<if test="stitle != null">
  			and rbTitle like '%' || #{stitle} || '%'
@@ -149,11 +149,11 @@
  	<select id="selectSearchResultList" resultMap="rmboardResultSet">
  		select *
  		from ROOMATE_BOARD
- 			join member on(rbWriter = NICKNAME)
+ 			<!-- join member on(rbWriter = NICKNAME) -->
  		where RBSTATUS = 'Y'
  		<choose>
  			<when test="swriter != null">
- 				and nickName = #{swriter}
+ 				and rbWriter like '%' ||  #{swriter} || '%'
  			</when>
  			<when test="stitle != null">
  				and rbTitle like '%' || #{stitle} || '%'
