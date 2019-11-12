@@ -4,7 +4,7 @@
 <html lang="ko">
     <body>
         <!-- ==== HEADER START ==== -->
-	    <c:import url ="../common/header.jsp"/>
+	    <c:import url ="../../common/header.jsp"/>
 	    <!-- ==== HEADER END ==== -->
             <!-- === BEGIN CONTENT === -->
             <div id="content">
@@ -121,7 +121,7 @@
             </script>
             <!-- === END CONTENT === -->
             <!-- === BEGIN FOOTER === -->
-            <c:import url ="../common/footer.jsp"/>
+            <c:import url ="../../common/footer.jsp"/>
             <!-- === END FOOTER === -->
     </body>
 </html>

@@ -240,7 +240,7 @@ public class ShowingBoardController {
 	public String addReply(Reply r, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String rWriter = loginUser.getName();
-		
+		System.out.println("reply" + r);
 		r.setrWriter(rWriter);
 		int result = sService.insertReply(r);
 		if(result>0) {
@@ -252,11 +252,12 @@ public class ShowingBoardController {
 	
 	@RequestMapping("rList.sb")
 	public void getReplyList(HttpServletResponse response, int sbId) throws JsonIOException, IOException {
+		System.out.println("sbId : " + sbId );
 		ArrayList<Reply> list = sService.selectReplyList(sbId);
 		for(Reply r : list) {
+			System.out.println("list : " + r );
 			r.setrWriter(URLEncoder.encode(r.getrWriter(),"utf-8"));
 			r.setrContent(URLEncoder.encode(r.getrContent(),"utf-8"));
-			
 		}
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(list, response.getWriter());
