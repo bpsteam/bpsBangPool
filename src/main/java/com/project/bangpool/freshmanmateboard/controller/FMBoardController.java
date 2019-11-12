@@ -6,17 +6,19 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,6 +32,7 @@ import com.project.bangpool.common.PageInfo;
 import com.project.bangpool.common.Pagination;
 import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
+import com.project.bangpool.freshmanmateboard.model.service.MailService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.member.model.vo.Member;
 
@@ -40,6 +43,8 @@ public class FMBoardController {
 
 	@Autowired // boardservice에 알아서 객체만들어서 쏴준다. 
 	private FMBoardService fbService;
+	@Autowired 
+	private MailService mailService;
 
 	@RequestMapping("blist.fm")
 	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, 
@@ -168,8 +173,11 @@ public class FMBoardController {
 
 	
 	@RequestMapping("insertview.fm")
-	public String boardInsertView() {
-		return "fmInsertBoard";
+	public ModelAndView boardInsertView(ModelAndView mv) {
+		// email 인증을 위한 랜덤 넘버 보내기
+		int ran = new Random().nextInt(900000) + 100000;
+		mv.addObject("random", ran).setViewName("fmInsertBoard");
+		return mv;
 		
 	}
 	
@@ -458,6 +466,41 @@ public class FMBoardController {
 		
 		return mv;
 	}
+
+	@RequestMapping("emailcheck.fm")
+	@ResponseBody
+	public String createEmailCheck(@RequestParam("schoolemail") String userEmail, 
+									@RequestParam int random, HttpServletRequest request){
+		System.out.println(random);
+		
+		//이메일 인증
+		int ran = new Random().nextInt(900000) + 100000;
+		HttpSession session = request.getSession(true);
+		String authCode = String.valueOf(ran);
+		session.setAttribute("authCode", authCode);
+		session.setAttribute("random", random);
+		String subject = "이메일 인증 코드 발급 안내 입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 인증 코드는 " + authCode + "입니다.");
+		String sendEmailId = "bangpool.kh@gmail.com";
+		
+		String result = mailService.send(subject, sb.toString(), sendEmailId, userEmail, null) + "";
+		return result;
+	}
+
+	@RequestMapping(value="emailAutho.fm", method=RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<String> emailAuth(@RequestParam String authCode, 
+											@RequestParam String random, HttpSession session){
+		String originalJoinCode = (String) session.getAttribute("authCode");
+		String originalRandom = Integer.toString((int) session.getAttribute("random"));
+		System.out.println("authCode="+originalJoinCode);
+		if(originalJoinCode.equals(authCode) && originalRandom.equals(random))
+			return new ResponseEntity<String>("complete", HttpStatus.OK);
+		else return new ResponseEntity<String>("false", HttpStatus.OK);
+	}
+
+
 	
 }
 
