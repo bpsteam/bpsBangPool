@@ -82,7 +82,7 @@
 	           getReplyList();
 	        }, 10000);
 	     });
-		// insert reply baord ajax   a
+		// insert reply baord ajax 
         function comment(t){
 			// enterkey javascrpt
             if(window.event.keyCode == 13){
