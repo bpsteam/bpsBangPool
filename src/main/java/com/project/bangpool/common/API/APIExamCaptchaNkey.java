@@ -1,4 +1,4 @@
-package com.project.bangpool.common;
+package com.project.bangpool.common.API;
 
 //네이버 캡차 API 예제 - 키발급
 import java.io.BufferedReader;

@@ -7,8 +7,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.project.bangpool.comment.model.vo.Reply;
-import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.Reply;
+import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
 
 @Repository("hbDAO")

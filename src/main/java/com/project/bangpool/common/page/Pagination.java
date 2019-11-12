@@ -1,6 +1,6 @@
-package com.project.bangpool.common;
+package com.project.bangpool.common.page;
 
-import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.page.PageInfo;
 
 public class Pagination {
 	

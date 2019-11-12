@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.bangpool.comment.model.vo.Reply;
-import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.SearchCondition;
+import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.roommateboard.model.dao.RMBoardDAO;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 

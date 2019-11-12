@@ -18,7 +18,7 @@
 
 	    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
     	
-    	<typeAlias type="com.project.bangpool.comment.model.vo.Reply" alias="Reply"/>
+    	<typeAlias type="com.project.bangpool.common.Reply" alias="Reply"/>
 	</typeAliases>
 	
 	<mappers>

@@ -1,4 +1,4 @@
-package com.project.bangpool.common;
+package com.project.bangpool.common.API;
 
 //네이버 캡차 API 예제 - 캡차 이미지 수신
 import java.io.*;

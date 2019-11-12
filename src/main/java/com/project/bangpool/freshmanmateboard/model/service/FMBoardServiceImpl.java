@@ -3,15 +3,12 @@ package com.project.bangpool.freshmanmateboard.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.mail.internet.MimeMessage;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.project.bangpool.comment.model.vo.Reply;
-import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.Reply;
+import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freshmanmateboard.model.dao.FMBoardDAO;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 

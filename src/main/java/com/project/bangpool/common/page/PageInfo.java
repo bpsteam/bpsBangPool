@@ -1,4 +1,4 @@
-package com.project.bangpool.common;
+package com.project.bangpool.common.page;
 
 public class PageInfo {
 	 private int currentPage;

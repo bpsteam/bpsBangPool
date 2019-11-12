@@ -3,8 +3,8 @@ package com.project.bangpool.housemateboard.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.project.bangpool.comment.model.vo.Reply;
-import com.project.bangpool.common.PageInfo;
+import com.project.bangpool.common.Reply;
+import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
 
 public interface HMBoardService {

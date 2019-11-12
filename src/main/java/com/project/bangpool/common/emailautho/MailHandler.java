@@ -1,4 +1,4 @@
-package com.project.bangpool.common;
+package com.project.bangpool.common.emailautho;
 
 import java.io.UnsupportedEncodingException;
 
