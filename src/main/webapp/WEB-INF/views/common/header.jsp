@@ -240,7 +240,7 @@
                                                 <a href="cart.sh">장바구니</a>
                                             </li>
                                             <li>
-                                                <a href="blog-single.html">Blog Single Item</a>
+                                                <a href="shblistView.se">중고 이케요</a>
                                             </li>
                                         </ul>
                                     </li>
