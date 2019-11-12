@@ -38,7 +38,7 @@ public class SecondHandBoardController {
 		}
 		
 		int listCount = shbService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo9(currentPage, listCount);
 		
 		ArrayList<SecondHandBoard> list = shbService.SelectList(pi);
 		
@@ -272,7 +272,7 @@ public class SecondHandBoardController {
 		}
 		
 		int listCount = shbService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo9(currentPage, listCount);
 		
 		ArrayList<SecondHandBoard> list = shbService.sofaList(pi);
 		
@@ -298,7 +298,7 @@ public class SecondHandBoardController {
 		}
 		
 		int listCount = shbService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo9(currentPage, listCount);
 		
 		ArrayList<SecondHandBoard> list = shbService.makeupList(pi);
 		
@@ -324,7 +324,7 @@ public class SecondHandBoardController {
 		}
 		
 		int listCount = shbService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo9(currentPage, listCount);
 		
 		ArrayList<SecondHandBoard> list = shbService.deskList(pi);
 		
@@ -350,7 +350,7 @@ public class SecondHandBoardController {
 		}
 		
 		int listCount = shbService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo9(currentPage, listCount);
 		
 		ArrayList<SecondHandBoard> list = shbService.tableList(pi);
 		
@@ -376,7 +376,7 @@ public class SecondHandBoardController {
 		}
 		
 		int listCount = shbService.getListCount();
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo9(currentPage, listCount);
 		
 		ArrayList<SecondHandBoard> list = shbService.displayList(pi);
 		
