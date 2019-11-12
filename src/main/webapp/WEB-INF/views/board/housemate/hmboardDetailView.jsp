@@ -182,18 +182,20 @@
                                         
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>파일첨부</b>
+                                            <b>첨부파일</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                          	  ${ hboard.originalFileName } </div>
+                                          	  <a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" download="${ hboard.originalFileName }">${ hboard.originalFileName } </a>
+                                          	  </div>
                                         <div style="both:clear;">
                                         </div>
 
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
-                                       	 ${ hboard.hbContent }
+                                       	 ${ hboard.hbContent } <br><br>
+                                       	 <img src="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" alt="image1" style="width: 100%; height: 100%;">
                                     </div>
 
                                     <div class="print-hide view-icon">
@@ -260,15 +262,7 @@
 
                                                 <!-- </div> -->
                                             </div>
-                                            <div class="testimonials-arrows pull-right">
-                                                <a class="left" href="#testimonials1" data-slide="prev">
-                                                    <span class="fa fa-arrow-left"></span>
-                                                </a>
-                                                <a class="right" href="#testimonials1" data-slide="next">
-                                                    <span class="fa fa-arrow-right"></span>
-                                                </a>
-                                                <div class="clearfix"></div>
-                                            </div>
+                                            
                                         </div>
                                         <!-- End Testimonials - default full width -->
                                     </div>

@@ -122,7 +122,7 @@
 										<div class="col-sm-3">
 											<select name="hLocation" id="hlocation" required
 												class="form-control input-sm">
-												<option value="${ hboard.hLocation }">${ hboard.hLocation }</option>
+												<option value="">선택하세요</option>
 												<option value="서울">서울</option>
 												<option value="인천/부천">인천/부천</option>
 												<option value="수원/경기">수원/경기</option>
@@ -153,9 +153,9 @@
 											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 
-											<select name="hRentType" required 
+											<select name="hRentType" required id="hrenttype"
 												class="form-control input-sm">
-												<option value="" selected="">매물구분 선택</option>
+												<option value="">매물구분 선택</option>
 												<option value="전세">전세</option>
 												<option value="월세">월세</option>
 												<option value="매매">매매</option>
@@ -167,7 +167,7 @@
 										<label class="col-sm-2 control-label " for="ca_name">매물종류<strong
 											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
-											<select name="hLivingType"  required
+											<select name="hLivingType"  required id="hlivingtype"
 												class="form-control input-sm">
 												<option value="">매물종류 선택</option>
 												<option value="오피스텔">오피스텔</option>
@@ -185,9 +185,9 @@
 											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
 
-											<select name="hRoom" required
+											<select name="hRoom" required  id="hroom"
 												class="form-control input-sm">
-												<option value="" selected="">방갯수를 선택해주세요.</option>
+												<option value="">방갯수를 선택해주세요.</option>
 												<option value="원룸">원룸</option>
 												<option value="투룸">투룸</option>
 												<option value="쓰리룸">쓰리룸</option>
@@ -202,7 +202,7 @@
 										<label class="col-sm-2 control-label " for="ca_name">해당층수<strong
 											class="sound_only">*</strong></label>
 										<div class="col-sm-3">
-											<select name="hFloor" required 
+											<select name="hFloor" required id="hfloor"
 												class="form-control input-sm">
 												<option value="" selected="">층수를 선택해주세요.</option>
 												<option value="지하">지하</option>
@@ -257,7 +257,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
 										<div class="col-sm-3">
-											<select name="hreqgender" required class="form-control input-sm">
+											<select name="hreqgender" required class="form-control input-sm" id="hreqgender">
                                                 <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
                                                 <option value="N">무관</option>
                                                 <option value="F">여성</option>
@@ -278,7 +278,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">주차가능여부</label>
 										<div class="col-sm-3">
-											<select name="hParking" 
+											<select name="hParking" id="hparking"
 													class="form-control input-sm" style="width: 100px;">
 															<option value="" selected>선택</option>
 															<option value="Y">주차가능</option>
@@ -323,10 +323,10 @@
 																<div class="col-sm-7">
 																	<div class="form-group">
 																		<div class="input-group input-group-sm">
-																			<span class="input-group-addon">파일 0</span>
-																			<input type="file" class="input-sm" name="reloadFile">
+																			<span class="input-group-addon">파일 1</span>
+																			<input type="hidden" class="input-sm" name="reloadFile">
 																			<c:if test="${ !empty hboard.originalFileName }">
-																			<br>현재 업로드한 파일 : 
+																			<input type="text"class="input-sm" value="현재 업로드한 파일 :"> 
 																			<a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" download="${ hboard.originalFileName }">
 																				${ hboard.originalFileName }
 																			</a>
@@ -340,10 +340,8 @@
 											</table>
 										</div>
 									</div>
+									
 									<script>
-									
-									
-									
                                      var flen = 0;
                                      function add_file(delete_code) {
                                          var upload_count = 2;
@@ -366,8 +364,23 @@
                                          objRow = objTbl.insertRow(objNum);
                                          objCell = objRow.insertCell(0);
                              
-                                         objContent = "<div class='row'>";
-                                         objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+objNum+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                         
+                                         var hFileName = ${ hboard.originalFileName };
+                                         if( hFileName != null ) {
+                                        	 objContent = "<div class='row'>";
+                                             objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)
+                                             			+"</span><input type='file' class='form-control input-sm' name='reloadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)
+                                             			+"<a href='"+${ contextPath }+"/resources/hmBoardUploadFiles/"+${ hboard.renameFileName }+"' download='"+${ hboard.originalFileName }+"'>"
+                                             			+ hFileName + "</a>"
+                                             			+"></div></div></div>";
+                                         }else {
+                                        	 objContent = "<div class='row'>";
+                                             objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)
+                                             			+"</span><input type='file' class='form-control input-sm' name='reloadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)
+                                             			+"></div></div></div>";
+                                         }
+                                         
+                                         
                                          if (delete_code) {
                                              objContent += delete_code;
                                          } else {
@@ -555,7 +568,18 @@
 	</div>
 	<!-- === END CONTENT === -->
 
-
+<script type="text/javascript" src="${contextPath}/resources/assets/js/jquery.min.js" type="text/javascript"></script>
+<script>
+	
+	$("#hlocation").val("${ hboard.hLocation }").attr("selected", "selected");
+	$("#hrenttype").val("${ hboard.hRentType }").attr("selected", true);
+	$("#hlivingtype").val("${ hboard.hLivingType }").attr("selected", "selected");
+	$("#hroom").val("${ hboard.hRoom }").attr("selected", "selected");
+	$("#hfloor").val("${ hboard.hFloor }").attr("selected", "selected");
+	$("#hparking").val("${ hboard.hParking }").attr("selected", "selected");
+	$("#hreqgender").val("${ hboard.hreqgender }").attr("selected", "selected");
+	 
+</script>
 
 
 	<!-- ==== FOOTER START ==== -->

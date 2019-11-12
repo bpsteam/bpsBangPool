@@ -358,7 +358,8 @@
                                                         objCell = objRow.insertCell(0);
                                             
                                                         objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
+                                                        		+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='uploadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)+"></div></div></div>";
                                                         if (delete_code) {
                                                             objContent += delete_code;
                                                         } else {
