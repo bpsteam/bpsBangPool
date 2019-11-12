@@ -11,7 +11,7 @@
 <html lang="ko">
     <body>
         <!-- ==== HEADER START ==== -->
-    	<c:import url ="../common/header.jsp"/>
+    	<c:import url ="../../common/header.jsp"/>
     	<!-- ==== HEADER END ==== -->
             <!-- === BEGIN CONTENT === -->
             <div id="content">
@@ -71,7 +71,7 @@
             </div>
             <!-- === END CONTENT === -->
             <!-- === BEGIN FOOTER === -->
-            <c:import url ="../common/footer.jsp"/>
+            <c:import url ="../../common/footer.jsp"/>
             <!-- === END FOOTER === -->
     </body>
     <script>
@@ -82,7 +82,7 @@
 	           getReplyList();
 	        }, 10000);
 	     });
-		// insert reply baord ajax    
+		// insert reply baord ajax   a
         function comment(t){
 			// enterkey javascrpt
             if(window.event.keyCode == 13){
@@ -90,7 +90,7 @@
             	var rContent = t.value;
             	$.ajax({
             		url: "addReply.sb",
-            		data: {rContent:rContent, refBid:refBid},
+            		data: {rContent:rContent, refbId:refBid},
             		type: "post",
             		success: function(data){
             			console.log(data);
@@ -119,7 +119,9 @@
         			var $span2;
         			var $p;
         			var $img;
+        			console.log(data);
         			if(data.length > 0){
+        				console.log("안뇽~");
         				for (var i in data){
         					$div1 =  $("<div style='padding-top: 10px;  background-color: #f4f4f4; margin-top: 10px; border-radius: 0.5em;'>");
         					$div2 =  $("<div style='display: flex; padding-left:10px;'>");
