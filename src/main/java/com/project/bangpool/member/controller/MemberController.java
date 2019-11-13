@@ -101,11 +101,20 @@ public class MemberController {
 		return "myPage";
 	}
 	
+
+	// 회원 정보 수정
+	@RequestMapping("mupdateView.me")
+	public String updateFormView() {
+		return "memberUpdateForm";
+	}
+	
+
 	@RequestMapping("loginView.me")
 	public String naverloginView() {
 		return "naverlogin";
 	}
 	
+
 	@RequestMapping("mdelete.me")
 	public String memberDelete(Model model, SessionStatus status) {
 		
@@ -123,5 +132,6 @@ public class MemberController {
 		}
 		
 	}
+
 	
 }

@@ -72,21 +72,20 @@ public class RMBoardDAO {
 		return (ArrayList)sqlSession.selectList("rmboardMapper.selectSearchResultList", sc, rowBounds);
 	}
 
+
+	public int selectBno(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("rmboardMapper.selectBno");
+	}
+
+	public int insertFile(SqlSessionTemplate sqlSession, RMBoard b) {
+		return sqlSession.insert("rmboardMapper.insertFile", b);
+	}
+
 	public ArrayList<RMBoard> selectTopList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("rmboardMapper.selectTopList");
 	}
 	
-//	return (ArrayList)sqlSession.selectList("rmboardMapper.selectList", loc, rowBounds);
-	
-//		ArrayList<Board> list = (ArrayList)session.selectList(
-//				"boardMapper.selectSearchResultList",sc, rowBounds);
-//		
-//		if(list == null) {
-//			session.close();
-//			throw new BoardException("검색 결과 리스트 조회에 실패하였습니다.");
-//		}
-//		
-//		return list;
+
 	
 	
 	

@@ -23,7 +23,21 @@ public class RMBoardServiceImpl implements RMBoardService{
 
 	@Override
 	public int insertBoard(RMBoard b) {
-		return rbDAO.insertBoard(sqlSession, b);
+		// attachment 저장
+		int result1 = rbDAO.insertBoard(sqlSession, b);
+		int result2 = 0;
+		
+		if(result1 > 0) {
+			int rbId = rbDAO.selectBno(sqlSession);
+			
+			b.setRbId(rbId);
+			b.setBcode("RMBCODE");
+			
+			result2 = rbDAO.insertFile(sqlSession, b);
+		}
+		
+		return result2;
+		//return rbDAO.insertBoard(sqlSession, b);
 	}
 
 	@Override
