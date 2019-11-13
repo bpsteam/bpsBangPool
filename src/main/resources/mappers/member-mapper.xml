@@ -17,5 +17,10 @@
   				#{gender}, #{birth}, #{address}, #{phone}, default, sysdate, sysdate )
   	</insert>
 
+	<update id="deleteMember" parameterType="Member">
+		update Member
+		set mstatus='N'
+		where mNo=#{mNo}
+	</update>
 
 </mapper>
