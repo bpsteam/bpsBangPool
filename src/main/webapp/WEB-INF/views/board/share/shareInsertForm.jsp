@@ -8,56 +8,43 @@
 <title>Insert title here</title>
 
 <style>
-/*     #ultag li {
-            display: inline;
-            padding: 0 30px;
-        }
 
-        #table th {
-            width: 150px;
-
-        }
-
-        #table td {
-            width: 150px;
-            
-        } */
-.table tbody tr {
-	border-bottom: 1px solid #dddddd;
-}
-
-#form label {
-	margin-top: 5px;
-}
-
-
-#variableFiles {
-	width: 100%;
-	margin: 0;
-	border: 0;
-}
-
-#variableFiles td {
-	padding: 0px 0px 7px;
-	border: 0;
-}
-
-#variableFiles input[type=file] {
-	box-shadow: none;
-	border: 1px solid #ccc !important;
-	outline: none;
-}
-
-#variableFiles .form-group {
-	margin-left: 0;
-	margin-right: 0;
-	margin-bottom: 7px;
-}
-
-#variableFiles .checkbox-inline {
-	padding-top: 0px;
-	font-weight: normal;
-}
+	.table tbody tr {
+		border-bottom: 1px solid #dddddd;
+	}
+	
+	#form label {
+		margin-top: 5px;
+	}
+	
+	
+	#variableFiles {
+		width: 100%;
+		margin: 0;
+		border: 0;
+	}
+	
+	#variableFiles td {
+		padding: 0px 0px 7px;
+		border: 0;
+	}
+	
+	#variableFiles input[type=file] {
+		box-shadow: none;
+		border: 1px solid #ccc !important;
+		outline: none;
+	}
+	
+	#variableFiles .form-group {
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 7px;
+	}
+	
+	#variableFiles .checkbox-inline {
+		padding-top: 0px;
+		font-weight: normal;
+	}
 
 </style>
 
@@ -139,84 +126,51 @@
 											class="sound_only">*</strong></label>
 										<div class="col-sm-10">
 											<div class="input-group">
-												<input type="text" name="hbTitle" required
+												<input type="text" name="srTitle" required
 													class="form-control input-sm" size="50" maxlength="255">
 													
 											</div>
 										</div>
 									</div>
-
-
-
+						
+						
 									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">매물구분<strong
-											class="sound_only">*</strong></label>
-										<div class="col-sm-3">
-
-											<select name="hRentType" required 
-												class="form-control input-sm">
-												<option value="" selected="">매물구분 선택</option>
-												<option value="전세">전세</option>
-												<option value="월세">월세</option>
-												<option value="매매">매매</option>
-											</select>
-										</div>
+										<label class="col-sm-2 control-label">당첨 인원
+											<strong class="sound_only">*</strong>
+										</label>
+										
+											<input type="number" placeholder="숫자만 입력">
+											<span>명 당첨</span>
 									</div>
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">매물종류<strong
-											class="sound_only">*</strong></label>
+										<label class="col-sm-2 control-label">추첨방법
+											<strong class="sound_only">*</strong>
+										</label>
 										<div class="col-sm-3">
-											<select name="hLivingType"  required
+											<select name="trade" required 
 												class="form-control input-sm">
-												<option value="">매물종류 선택</option>
-												<option value="오피스텔">오피스텔</option>
-												<option value="아파트">아파트</option>
-												<option value="빌라">빌라</option>
-												<option value="단독주택">단독주택</option>
+												<option value="" selected="">거래 방법</option>
+												<option value="랜덤">랜덤당첨</option>
+												<option value="직접">직접추첨</option>
 											</select>
 										</div>
 									</div>
-
-
-
+									
 									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">방갯수<strong
-											class="sound_only">*</strong></label>
+										<label class="col-sm-2 control-label">해당층수
+											<strong class="sound_only">*</strong>
+										</label>
 										<div class="col-sm-3">
-
-											<select name="hRoom" required
+											<select name="trade" required 
 												class="form-control input-sm">
-												<option value="" selected="">방갯수를 선택해주세요.</option>
-												<option value="원룸">원룸</option>
-												<option value="투룸">투룸</option>
-												<option value="쓰리룸">쓰리룸</option>
-												<option value="포룸">포룸</option>
+												<option value="" selected="">거래 방법</option>
+												<option value="무료">무료</option>
+												<option value="착불">착불</option>
+												<option value="직거래">직거래</option>
 											</select>
 										</div>
 									</div>
-
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">해당층수<strong
-											class="sound_only">*</strong></label>
-										<div class="col-sm-3">
-											<select name="hFloor" required 
-												class="form-control input-sm">
-												<option value="" selected="">층수를 선택해주세요.</option>
-												<option value="지하">지하</option>
-												<option value="반지하">반지하</option>
-												<option value="1층">1층</option>
-												<option value="2층">2층</option>
-												<option value="3층">3층</option>
-												<option value="4층">4층</option>
-												<option value="5층">5층</option>
-												<option value="6층이상">6층이상</option>
-											</select>
-										</div>
-									</div>
-
 
 
 									<div class="form-group">
@@ -257,11 +211,11 @@
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
 										<div class="col-sm-3">
-											<select name="hReqgender" required class="form-control input-sm">
+											<select name="hreqgender" required class="form-control input-sm">
                                                 <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
-                                                <option value="무관">무관</option>
-                                                <option value="여성">여성</option>
-                                                <option value="남성">남성</option>
+                                                <option value="N">무관</option>
+                                                <option value="F">여성</option>
+                                                <option value="M">남성</option>
                                             </select>	
 										</div>
 									</div>
@@ -281,8 +235,8 @@
 											<select name="hParking" 
 													class="form-control input-sm" style="width: 100px;">
 															<option value="" selected="">선택</option>
-															<option value="주차가능">주차가능</option>
-															<option value="주차불가">주차불가</option>
+															<option value="Y">주차가능</option>
+															<option value="N">주차불가</option>
 											</select>
 										</div>
 									</div>
@@ -358,8 +312,7 @@
                                                         objCell = objRow.insertCell(0);
                                             
                                                         objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
-                                                        		+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='uploadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)+"></div></div></div>";
+                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
                                                         if (delete_code) {
                                                             objContent += delete_code;
                                                         } else {

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+
+	<insert id="insertNotice">
+		
+		INSERT ALL
+		WHEN 1=1 THEN
+		INTO NOTICE_BOARD
+		VALUES(
+			NOTICE_SEQ.NEXTVAL,
+			DEFAULT,
+			#{nTitle},
+			#{nWriter},
+			#{nContent},
+			DEFAULT,
+			SYSDATE,
+			SYSDATE,    
+			DEFAULT    
+		)  
+		WHEN #{renameFileName} IS NOT NULL THEN
+		INTO ATTACHMENT
+		VALUES(
+			ATTACHMENT_SEQ.NEXTVAL,
+			'NCODE',
+			NOTICE_SEQ.CURRVAL,
+			#{originalFileName},
+			#{renameFileName}
+		)
+		SELECT *
+		FROM DUAL
+		
+		
+	</insert>
+	
+	<select id="getListcount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE_BOARD  
+		WHERE NSTATUS = 'Y'
+	</select>
+	
+	<select id="selectList" resultType="Notice">
+	
+		SELECT
+		NB.*,A.ORIGINALFILENAME,A.RENAMEFILENAME
+		FROM NOTICE_BOARD NB  LEFT JOIN ATTACHMENT A
+            ON (NB.BCODE = A.BCODE AND NB.NID = A.REFBID)
+		WHERE 
+        NB.NSTATUS ='Y'
+		ORDER BY NID DESC
+		
+	</select>
+	
+	<select id="detailNotice" parameterType="_int" resultType="Notice">
+
+		SELECT
+		NB.*,
+		A.ORIGINALFILENAME,
+		A.RENAMEFILENAME
+		FROM NOTICE_BOARD NB  LEFT JOIN ATTACHMENT A
+    	ON (NB.BCODE = A.BCODE AND NB.NID = A.REFBID)
+  		WHERE NID = #{nId} AND NSTATUS = 'Y'
+  		
+	</select>
+	
+	<update id="deleteNotice" parameterType="_int">
+		UPDATE NOTICE_BOARD
+  			SET NSTATUS = 'N'
+  		WHERE NID = #{nId}
+	</update>
+	
+	<update id="addReadCount" parameterType="_int">
+		UPDATE NOTICE_BOARD
+			SET NCOUNT = NCOUNT + 1
+		WHERE NID = #{nId}
+	</update>
+	
+	<select id="selectSearchNotice" resultType="Notice">
+		SELECT *
+		FROM NOTICE_BOARD
+		WHERE NSTATUS = 'Y'
+			<choose>
+				<when test="stitle != null">
+					and ntitle like '%' || #{stitle} || '%'
+				</when>
+				<otherwise>
+					and ncontent like '%' || #{scontent} || '%'
+				</otherwise>	
+			</choose>
+			order by nid desc
+	</select>
+	
+	<select id="getSearchListCount" parameterType="Notice" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE_BOARD
+		WHERE NSTATUS='Y'
+			<choose>
+				<when test="stitle != null">
+					and ntitle like '%' || #{stitle} || '%'
+				</when>
+				<otherwise>
+					and ncontent like '%' || #{scontent} || '%'
+				</otherwise>
+			</choose>
+	</select>
+	
+	
+	<update id="updateNotice" parameterType="Notice">
+		
+		UPDATE NOTICE_BOARD
+		SET
+		  ntitle = #{nTitle}
+		, ncontent=#{nContent}
+		, nmodifydate=sysdate
+		WHERE nId=#{nId}
+		
+	</update>
+	
+	<insert id="insertAttachment" parameterType="Notice"> 
+		
+		INSERT INTO ATTACHMENT
+		VALUES(
+			ATTACHMENT_SEQ.NEXTVAL,
+			'NCODE',
+		    #{nId},
+			#{originalFileName},
+			#{renameFileName}
+		)
+	
+	</insert>
+	
+	<delete id="deleteAttachment" parameterType="Notice">
+		
+		DELETE FROM ATTACHMENT
+		WHERE 
+		BCODE = 'NCODE'
+		AND
+		REFBID = #{nId}
+	
+	</delete>
+	
+	<update id="updateAttachment" parameterType="Notice">
+		UPDATE ATTACHMENT
+		SET
+		ORIGINALFILENAME = #{originalFileName},
+		RENAMEFILENAME = #{renameFileName}
+		WHERE
+		 BCODE = 'NCODE'
+		 AND
+		 REFBID = #{nId}
+	</update>
+	
+	<!-- ***************************** REPLY ***************************** -->
+	
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY
+			VALUES
+			(
+			    REPLY_SEQ.NEXTVAL,
+			    'NCODE',
+			    #{rContent},
+			    #{refBid},
+			    #{rWriter},
+			    SYSDATE,
+			    SYSDATE,
+			    'Y'
+			)
+	</insert>
+	    
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+		
+		SELECT *
+		FROM REPLY
+		WHERE
+			REFBID = #{ refBid } AND
+		    RSTATUS ='Y' AND
+		    BCODE ='NCODE'
+		ORDER BY RID ASC
+		
+	</select>
+	
+	<update id="deleteReply" parameterType="_int">
+		
+		UPDATE REPLY
+		SET 
+		  RSTATUS ='N',
+		  rModifyDate = SYSDATE
+	    WHERE
+	      BCODE ='NCODE'
+	      AND
+	      RID = #{ rId }
+	
+	</update>
+
+
+
+
+</mapper>

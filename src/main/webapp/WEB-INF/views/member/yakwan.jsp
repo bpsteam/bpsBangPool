@@ -104,7 +104,7 @@
                 <strong><i class="fa fa-exclamation-circle fa-lg"></i> 회원가입약관 및 개인정보처리방침안내의 내용에 동의하셔야 회원가입 하실 수 있습니다.</strong>
             </div>
             
-            <form name="fregister" id="fregister" action="http://myroom.oceanmate.co.kr/bbs/register_form.php" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off" class="form" role="form">
+            <form name="fregister" id="fregister" action="mInsertView.me" onsubmit="return fregister_submit(this);" method="POST" class="form">
             <input type="hidden" name="pim" value="">
                 <div class="panel panel-default">
                     <div class="panel-heading"><strong><i class="fa fa-file-text-o fa-lg"></i> 회원가입약관</strong></div>
@@ -365,7 +365,7 @@
             <div class="h30"></div>				</div>
                                 </div>
                     <div class="panel-footer">
-                        <label><input type="checkbox" name="agree" value="1" id="agree11"> 회원가입약관의 내용에 동의합니다.</label>
+                        <label><input type="checkbox" name="agree" id="agree"> 회원가입약관의 내용에 동의합니다.</label>
                     </div>
                 </div>
             
@@ -563,17 +563,31 @@
                         </tbody>
                     </table>
                     <div class="panel-footer">
-                        <label><input type="checkbox" name="agree2" value="1" id="agree21"> 개인정보처리방침안내의 내용에 동의합니다.</label>
+                        <label><input type="checkbox" name="agree2" value="1" id="agree2"> 개인정보처리방침안내의 내용에 동의합니다.</label>
                     </div>
                 </div>
             
                 <div class="text-center">
                     <!-- <button type="submit" class="btn btn-color">회원가입</button> -->
-                    <a href="mInsertView.me" class="btn btn-aqua">회원가입</a>
+                    <button type="submit" class="btn btn-aqua">회원가입</button>
                 </div>
             </form>
             
-            <script>
+    
+                                                </div><!-- .at-content -->
+                                    </div><!-- .at-container -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- === END CONTENT === -->
+
+
+<!-- ==== FOOTER START ==== -->
+	<c:import url ="../common/footer.jsp"/>
+<!-- ==== FOOTER END ==== -->
+        <script>
                 function fregister_submit(f) {
                     if (!f.agree.checked) {
                         alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
@@ -590,18 +604,7 @@
                     return true;
                 }
             </script>
-                                                </div><!-- .at-content -->
-                                    </div><!-- .at-container -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- === END CONTENT === -->
 
 
-<!-- ==== FOOTER START ==== -->
-	<c:import url ="../common/footer.jsp"/>
-<!-- ==== FOOTER END ==== -->
 </body>
 </html>

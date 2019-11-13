@@ -10,23 +10,11 @@
 
 
     <style>
-      /*   #ultag li {
-            display: inline;
-            padding: 0 30px;
-        }
 
-        #table th {
-            width: 150px;
-
-        }
-
-        #table td {
-            width: 150px;
-            
-        } */
         .table tbody tr {
             border-bottom: 1px solid #dddddd ;
         }
+        
     </style>
 
 
@@ -137,15 +125,15 @@
 																</tr>
 															</thead>
 															<tbody>
-																<c:forEach var="b" items="${ list }">
+				<%-- 												<c:forEach var="b" items="${ list }">
 																	<tr>
 																		<td>${ b.hbId }</td>
 																		<td>${ b.hLocation }</td>
 																		<c:url var="hbdetail" value="bdetail.hm">
 																			<c:param name="hbId" value="${ b.hbId }" />
 																		</c:url>
-																		<td onclick="location.href='${ hbdetail }'" style="width:220px;">
-																			<%-- <a href="${ hbdetail }">${ b.hbTitle }</a></td> --%>
+																		<td onclick="location.href='${ hbdetail }'">
+																			<a href="${ hbdetail }">${ b.hbTitle }</a></td>
 																			${ b.hbTitle }
 																		</td>
 																		<td>${ b.hbWriter }</td>
@@ -153,7 +141,7 @@
 																		<td>${ b.hbCount }</td>
 																	</tr>
 
-																</c:forEach>
+																</c:forEach> --%>
 															</tbody>
 														</table>
 													</div>
@@ -271,11 +259,11 @@
                         <div class="margin-bottom-10">
                             <hr>
                         </div>
-                        <div class="panel panel-success">
+<!--                         <div class="panel panel-success">
                             <div class="panel-body" style="background-color: white;">
-                                <!-- <a href="#"><b>룸메이트</b></a> <br>
+                                <a href="#"><b>룸메이트</b></a> <br>
                                 <a href="#">하우스메이트</a> <br>
-                                <a href="#">신입생메이트</a> -->
+                                <a href="#">신입생메이트</a>
                                 <ul class="nav nav-pills nav-stacked">
                                         <li>
                                             <a href="#sample-3a" data-toggle="tab">
@@ -292,7 +280,7 @@
                                         
                                     </ul>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="margin-bottom-10">
                             <hr>
                         </div>

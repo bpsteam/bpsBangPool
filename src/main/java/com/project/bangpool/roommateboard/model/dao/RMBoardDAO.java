@@ -72,6 +72,7 @@ public class RMBoardDAO {
 		return (ArrayList)sqlSession.selectList("rmboardMapper.selectSearchResultList", sc, rowBounds);
 	}
 
+
 	public int selectBno(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("rmboardMapper.selectBno");
 	}
@@ -79,6 +80,12 @@ public class RMBoardDAO {
 	public int insertFile(SqlSessionTemplate sqlSession, RMBoard b) {
 		return sqlSession.insert("rmboardMapper.insertFile", b);
 	}
+
+	public ArrayList<RMBoard> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("rmboardMapper.selectTopList");
+	}
+	
+
 	
 	
 	
