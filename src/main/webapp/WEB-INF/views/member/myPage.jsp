@@ -259,7 +259,7 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/member_confirm.php?url=member_leave.php" class="btn btn-lightgray btn-sm btn-block leave-me">
+                                                        <a href="mdelete.me" class="btn btn-lightgray btn-sm btn-block leave-me">
                                                             탈퇴하기
                                                         </a>
                                                     </div>

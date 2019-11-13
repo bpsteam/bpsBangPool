@@ -9,5 +9,7 @@ public interface MemberService {
 	Member memberLogin(Member m);
 
 	int insertMember(Member m);
+
+	int deleteMember(Member m);
 	
 }
