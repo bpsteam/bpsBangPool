@@ -25,7 +25,7 @@ public class FMBoard {
 	private String fParking;		// 주차가능여부
 	private String fReqGender;		// required gender 원하는 상대성별
 	private String contactInfo; 	// 연락가능번호
-	private String college;
+	private String schoolemail;
 //	private Attachment att; 
 	
 	
@@ -49,7 +49,7 @@ public class FMBoard {
 public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String fbContent, String originalFileName,
 		String renameFileName, int fbCount, Date fbCreateDate, Date fbModifyDate, String fbStatus, String fLocation,
 		String fRentType, String fLivingType, String fRoomCount, String fFloor, String fPrice, String fParking,
-		String fReqGender, String contactInfo, String college) {
+		String fReqGender, String contactInfo, String schoolemail) {
 	super();
 	this.fbId = fbId;
 	this.bcode = bcode;
@@ -71,36 +71,16 @@ public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String f
 	this.fParking = fParking;
 	this.fReqGender = fReqGender;
 	this.contactInfo = contactInfo;
-	this.college = college;
+	this.schoolemail = schoolemail;
 }
 
 
-
-
-//	public Attachment getAtt() {
-//		return att;
-//	}
-//
-//	public void setAtt(Attachment att) {
-//		this.att = att;
-//	}
-
-//	public PageInfo getPi() {
-//	return pi;
-//}
-//
-//
-//public void setPi(PageInfo pi) {
-//	this.pi = pi;
-//}
-
-
-	public String getCollege() {
-		return college;
+	public String getSchoolemail() {
+		return schoolemail;
 	}
 	
-	public void setCollege(String college) {
-		this.college = college;
+	public void setSchoolemail(String schoolemail) {
+		this.schoolemail = schoolemail;
 	}
 
 	public int getFbId() {
@@ -274,7 +254,7 @@ public FMBoard(int fbId, String bcode, String fbTitle, String fbWriter, String f
 				+ fbModifyDate + ", fbStatus=" + fbStatus + ", fLocation=" + fLocation + ", fRentType=" + fRentType
 				+ ", fLivingType=" + fLivingType + ", fRoomCount=" + fRoomCount + ", fFloor=" + fFloor + ", fPrice="
 				+ fPrice + ", fParking=" + fParking + ", fReqGender=" + fReqGender + ", contactInfo=" + contactInfo
-				+ ", college=" + college + "]";
+				+ ", schoolemail=" + schoolemail + "]";
 	}
 
 	
