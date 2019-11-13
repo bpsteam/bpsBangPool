@@ -86,7 +86,8 @@
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
                                         <!-- 댓글count -->
-                                        <b style="color:red">4</b>
+                                        <!-- <b style="color:red">4</b> -->
+                                        <b style="color:red" id="rCount"></b>
                                         <span class="sp"></span>
                                         <i class="fa fa-eye"></i>${ rboard.rbCount}
                                         <span class="pull-right">
@@ -220,8 +221,9 @@
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
-                                    ${ rboard.rbContent}
-                                        <!-- 이사가려고 집 알아보다가 글올립니다. -->
+                                    	${ rboard.rbContent} 
+                                    	<br><br><br>
+                                    	<img src="${ contextPath }/resources/rmboarduploads/${ rboard.renameFileName }">
                                     </div>
 
                                     <div class="print-hide view-icon">
@@ -555,6 +557,8 @@
 					var $replyContent;
 					
 					//$("#rCount").text("댓글 ("+data.length + ")");
+					$("#rCount").text(data.length);
+					
 					console.log(data);
 					console.log(data.length);
 					if(data.length > 0){
