@@ -251,7 +251,7 @@
 	                                    <a href="bShowing.sb">자랑하기 게시판</a>
 	                                </li>
 	                                <li>
-	                                    <a href="portfolio-3-column.html">공지사항</a>
+	                                    <a href="nList.no">공지사항</a>
 	                                </li>
 	                                <li>
 	                                    <a href="portfolio-4-column.html">4 Column</a>
