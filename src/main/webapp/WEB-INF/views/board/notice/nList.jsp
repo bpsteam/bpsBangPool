@@ -81,17 +81,28 @@
 							<div style="display:none;">
 								<span style="margin:0px 20px 0px 20px">${ n.nContent }</span>
 							</div>
+							
+			                <form action="notice_insert.no">
+                                  <div class="col-md-3">
+                                  	<c:if test="${ !empty sessionScope.loginUser }">
+                                  		<input type="submit" class="btn btn-primary btn-sm" style="margin-bottom: 3px;" value="글쓰기"></input>
+                                  	</c:if>
+                                  	<c:if test="${  empty sessionScope.loginUser }">
+                                  		<input type="button" class="btn btn-primary btn-sm needLogin" style="margin-bottom: 3px;" value="글쓰기"></input>
+                                  	</c:if>
+                                  </div>
+                             </form>
                         </div>
                     </c:forEach>
                      
                     
-
+				
                             <%-- <div class="panel panel-default">
                                 <div class="panel-heading">
                                    	 게시판
                                 </div>
             					
-                               
+                               	
                                 <div class="panel-body" style="background-color: white;">
                                     <div class="table-responsive">
                                         <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline" role="grid">

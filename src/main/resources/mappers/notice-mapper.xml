@@ -16,7 +16,7 @@
 			DEFAULT,
 			SYSDATE,
 			SYSDATE,
-			DEFAULT
+			DEFAULT    
 		)
 		WHEN #{renameFileName} IS NOT NULL THEN
 		INTO ATTACHMENT
