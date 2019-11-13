@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/custom.css" rel="stylesheet">
     <!-- Google Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style>
 	    #ultag li {
 	        display:inline;

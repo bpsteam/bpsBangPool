@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -325,6 +326,29 @@ public class RMBoardController {
 //		}
 		
 		return mv;
+	}
+	
+	
+	// 여기부터 김상욱 꺼
+	
+	@RequestMapping("topList.rm")
+	public void boardTopList(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<RMBoard> list = rbService.selectTopList();
+		
+		JSONArray jArr = new JSONArray();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(list);
+		
+		for(RMBoard b : list) {
+			b.setRbTitle(URLEncoder.encode(b.getRbTitle(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
 	}
 	
 }

@@ -71,6 +71,10 @@ public class RMBoardDAO {
 		
 		return (ArrayList)sqlSession.selectList("rmboardMapper.selectSearchResultList", sc, rowBounds);
 	}
+
+	public ArrayList<RMBoard> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("rmboardMapper.selectTopList");
+	}
 	
 //	return (ArrayList)sqlSession.selectList("rmboardMapper.selectList", loc, rowBounds);
 	

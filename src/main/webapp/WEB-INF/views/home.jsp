@@ -6,7 +6,12 @@
 <head>
 	     <!-- Title -->
   <title>방풀-홈</title>
-   
+
+<style>
+	#tb{width: 200px;}
+	.hahaha{float: right;}
+	.hohoho{width: 180px;}
+</style>
 </head>
 <body>
 <!-- ==== HEADER START ==== -->
@@ -30,7 +35,7 @@
                         <div class="panel panel-aqua">
                             <!-- 이슈 시작-->
                            <div class="panel-heading">
-                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate" style="color:white">
+                                <a href="blist.rm" style="color:white">
                                     <span class="pull-right lightgray font-16 en">+</span>
                                     <span class="div-title-underbar-bold border-navy font-16 en" >
                                         <b>룸메이트</b>
@@ -39,89 +44,81 @@
                             </div>
                             <div class="widget-box panel-body">
                                 <div class="basic-post-list ">
-                        
-                                    <ul class="post-list" style ="padding-left: 15px;" >
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=134">
-                        
-                                                <span class="pull-right gray font-12">
-                                                    &nbsp;7시간전 </span>
-                                                <span class="wr-icon wr-new"></span> <span class="subject_title"><b>같이 지낼 분 구해요.</b></span>
+                        			
+                                    <ul class="post-list" style ="padding-left: 15px; width: 100%;" id="tb">
+                                        <!-- <li class="ellipsis">
+                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=134" id="tb">
+                                                <span class="pull-right gray font-12">안중식안중식안중식안중식안중식안중식</span>
+                                                <span class="wr-icon wr-new"><span class="subject_title">안중식안중식</span>
                                             </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=133">
-                        
-                                                <span class="pull-right gray font-12">
-                                                    &nbsp;22시간전 </span>
-                                                <span class="wr-icon wr-new"></span> <span class="subject_title"><b>서울 아파트 룸메 여자분 구해요</b></span>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=132">
-                        
-                                                <span class="pull-right gray font-12">
-                                                    &nbsp;1일전 </span>
-                                                <span class="wr-icon wr-new"></span> <span class="subject_title">[서울] 룸메 구해요 </span>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=131">
-                        
-                                                <span class="pull-right gray font-12">
-                                                    &nbsp;6일전 </span>
-                                                <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span class="subject_title">서울 
-                                                    룸메이트 구해요
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=129">
-                        
-                                                <span class="pull-right gray font-12">
-                                                    &nbsp;10일전 </span>
-                                                <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                    class="subject_title">룸메이트 구합니다</span>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=127">
-                        
-                                              
-                                                    <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                            <span class="pull-right gray font-12" style="float: right">
-                                                                    &nbsp;10.08 </span>
-                                                            <span class="subject_title" style="width:180px">서울
-                                                                    아파트에서 지내실 룸메 구합니다 (서울/수유역근처/월세/관리비 없음)</span> </div>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=125">
-                        
-                                                
-                                                
-                                                    <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                            <span class="pull-right gray font-12" style="float: right">
-                                                                    &nbsp;10.06  </span>
-                                                            <span class="subject_title" style="width:180px">부산
-                                                                    덕천동 쓰리룸 하우스메이트 여성분 구합니다</span> </div>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=127">
-                        
-                                              
-                                                    <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                            <span class="pull-right gray font-12" style="float: right">
-                                                                    &nbsp;10.08 </span>
-                                                            <span class="subject_title" style="width:180px">서울
-                                                                    아파트에서 지내실 룸메 구합니다 (서울/수유역근처/월세/관리비 없음)</span> </div>
-                                            </a>
-                                        </li>
-                                
+                                        </li> -->
                                     </ul>
+                                    
+                                                                                                   
                                 </div>
                             </div>
+                            
+                            <script>
+						        function topList(){
+									$.ajax({
+										url: "topList.rm",
+										dataType: "json",
+										success: function(data){
+											$ul = $("#tb");
+											$ul.html("");
+											
+											var rbWriter;
+											var rbTitle;
+											
+											
+											
+											for(var i in data){
+												
+												$li = $('<li class="ellipsis">');
+												$a = $('<a>').attr('href',"bdetail.rm?rbId="+data[i].rbId);
+												$span = $('<span class="gray font-12 hahaha">');
+												$span2 = $('<span class="subject_title hohoho">');
+												
+												
+												$rbWriter = $("<b>").text(data[i].rbWriter);
+												$rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+												
+												$li.append($a);
+												$span.append($rbWriter);
+												$span2.append($rbTitle);
+												$a.append($span);
+												$a.append($span2);
+												/* $li.append($span);
+												$li.append($span2); */
+												$ul.append($li);
+												
+												
+												/* var $tr = $('<span class="pull-right gray font-12">');
+												var $tr2 = $('<span class="subject_title">');
+												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+												var $rbWriter = $("<b>").text(data[i].rbWriter); */
+												
+												/* $tr.append($rbTitle); */
+												
+												/* $tr.append($rbWriter);
+												$tr2.append($rbTitle);
+												
+												$tableBody.append($tr);
+												$tableBody.append($tr2); */
+											}
+										}
+									});
+								}
+								
+								$(function(){
+									topList();
+									
+									setInterval(function(){
+										topList();
+									}, 10000);
+								});
+							</script>
+                            
                             <!-- 이슈 끝-->
                         </div>
                         </div>
@@ -159,12 +156,12 @@
                                         <li class="ellipsis">
                                             <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7185">
                         
-                                                <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
+                                                <!-- <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;"> -->
                                                 <span class="gray font-12"  style="float: right">
                                                     &nbsp;6일전 </span>
                                                   
                                                  <span class="subject_title" style="width:180px">부산
-                                                    덕천동 쓰리룸 하우스메이트 여성분 구합니다</span></div>
+                                                    덕천동 쓰리룸 하우스메이트 여성분 구합니다</span><!-- </div> -->
                                             </a>
                                         </li>
                                         <li class="ellipsis"  >
@@ -1047,7 +1044,6 @@
                         </div>
                     </div>
 	</div>
-    
     
 <!-- carousels 마지막 끝-->
 
