@@ -29,4 +29,6 @@ public interface RMBoardService {
 
 	ArrayList<RMBoard> selectSearchResultList(SearchCondition sc, PageInfo pi);
 
+	ArrayList<RMBoard> selectTopList();
+
 }

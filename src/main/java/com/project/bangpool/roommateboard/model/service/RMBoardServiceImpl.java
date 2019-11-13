@@ -90,6 +90,11 @@ public class RMBoardServiceImpl implements RMBoardService{
 	public ArrayList<RMBoard> selectSearchResultList(SearchCondition sc, PageInfo pi) {
 		return rbDAO.selectSearchResultList(sqlSession, sc, pi);
 	}
+
+	@Override
+	public ArrayList<RMBoard> selectTopList() {
+		return rbDAO.selectTopList(sqlSession);
+	}
 	
 	
 	////////////

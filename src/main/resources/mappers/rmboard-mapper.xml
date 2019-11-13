@@ -164,6 +164,17 @@
  		</choose>
  		order by RBID desc	
  	</select>
-	
+ 	
+ 	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultMap="rmboardResultSet">
+		<![CDATA[
+			select *
+			from (select *
+				  from roomate_board
+				  where rbstatus = 'Y'
+				  order by rbcreatedate desc)
+			where rownum <= 8
+		]]>
+	</select>
 </mapper>
 
