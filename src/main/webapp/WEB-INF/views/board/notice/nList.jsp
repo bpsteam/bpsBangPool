@@ -59,7 +59,7 @@
                         <h1>공지사항</h1>
                         <hr>
                         
-                        
+                         
 					 <div id="search" style="text-align: center; margin-top: 18px;">
 		                 <form action="search.no">
 						      <span class="fa-search"></span>
