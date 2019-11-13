@@ -25,6 +25,8 @@
     	<typeAlias type="com.project.bangpool.showing.model.vo.Showing" alias="Showing"/>
     	
     	<typeAlias type="com.project.bangpool.notice.model.vo.Notice" alias="Notice"/>
+
+    	<typeAlias type="com.project.bangpool.share.model.vo.Share" alias="Share"/>
     	
 	</typeAliases>
 	
@@ -43,6 +45,7 @@
   	 	
   	 	<mapper resource="mappers/notice-mapper.xml"/>
 
+  	 	<mapper resource="mappers/share-mapper.xml"/>
 	</mappers>
 	
 </configuration>
