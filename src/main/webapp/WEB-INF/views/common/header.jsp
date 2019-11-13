@@ -245,21 +245,21 @@
                                         </ul>
                                     </li>
                                     <li>
-                                <span class="glyphicon glyphicon-book"> 커뮤니티</span>
-                            	<ul>
-	                                <li>
-	                                    <a href="bShowing.sb">자랑하기 게시판</a>
-	                                </li>
-	                                <li>
-	                                    <a href="portfolio-3-column.html">공지사항</a>
-	                                </li>
-	                                <li>
-	                                    <a href="portfolio-4-column.html">4 Column</a>
-	                                </li>
-	                                <li>
-	                                    <a href="portfolio-6-column.html">6 Column</a>
-	                                </li>
-                           		 </ul>
+                                        <span class="glyphicon glyphicon-book"> 커뮤니티</span>
+			                           	 <ul>
+			                                <li>
+			                                    <a href="bShowing.sb">자랑하기 게시판</a>
+			                                </li>
+			                                <li>
+			                                    <a href="nLlist.no">공지사항</a>
+			                                </li>
+			                                <li>
+			                                    <a href="portfolio-4-column.html">4 Column</a>
+			                                </li>
+			                                <li>
+			                                    <a href="portfolio-6-column.html">6 Column</a>
+			                                </li>
+			                            </ul>
                                     </li>
                                 </ul>
                             </div>
