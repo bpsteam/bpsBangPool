@@ -84,9 +84,17 @@ public class MemberController {
 		return "myPage";
 	}
 	
+	// 회원 정보 수정
+	@RequestMapping("mupdateView.me")
+	public String updateFormView() {
+		return "memberUpdateForm";
+	}
+	
 	@RequestMapping("naverlogin.me")
 	public String naverloginView() {
 		return "naverlogin";
 	}
+	
+	
 	
 }

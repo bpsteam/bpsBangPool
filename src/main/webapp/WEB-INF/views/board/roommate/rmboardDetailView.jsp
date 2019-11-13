@@ -76,11 +76,9 @@
                                 <div class="panel-heading" style="border-bottom: none;">
                                     <div class="font-12 text-muted">
                                         <i class="fa fa-user"></i>
-                                        <!-- <span class="sv_member">송다혜</span> --> 
                                         <span class="sv_member">${ rboard.rbWriter}</span> 
                                         <span class="hidden-xs">
                                             <span class="sp"></span>
-                                            <!-- <i class="fa fa-tag"></i> 부산/경남 </span> -->
                                             <i class="fa fa-tag"></i> ${ rboard.rLocation} </span>
 
                                         <span class="sp"></span>
@@ -116,7 +114,6 @@
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>작성자</b>
-                                            <%-- <b>${ rboard.rbWriter}</b> --%>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
