@@ -237,7 +237,7 @@
                                                     </div>
                                                 </div>
                                                                 <div class="col-xs-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group">   
                                                         <a href="http://myroom.oceanmate.co.kr/bbs/mypost.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
                                                             내글관리
                                                         </a>
@@ -277,6 +277,8 @@
                     <!-- End Main Column -->
                     <!-- Side Column -->
                     <div class="col-md-3">
+                    
+                    
                         <!-- Recent Posts -->
                         <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 방 찾기</button>
                         <div id="matching_form" class="section_matching">
@@ -292,31 +294,23 @@
                                             <div class="col-sm-6">
                                                 <label>지역</label>
                                                     <select class="form-control margin-bottom-20">
-                                                        <option value="">전체</option>
-                                                        <option value="서울">서울특별시</option>
-                                                        <option value="인천">인천광역시</option>
-                                                        <option value="대전">대전광역시</option>
-                                                        <option value="대구">대구광역시</option>
-                                                        <option value="광주">광주광역시</option>
-                                                        <option value="울산">울산광역시</option>
-                                                        <option value="부산">부산광역시</option>
-                                                        <option value="경기도">경기도</option>
-                                                        <option value="강원도">강원도</option>
-                                                        <option value="충북">충청북도</option>
-                                                        <option value="충남">충청남도</option>
-                                                        <option value="경북">경상북도</option>
-                                                        <option value="경남">경상남도</option>
-                                                        <option value="전북">전라북도</option>
-                                                        <option value="전남">전라남도</option>
-                                                        <option value="제주도">귤</option>
+                                                        <option value="">선택하세요</option>
+														<option value="서울">서울</option>
+														<option value="인천/부천">인천/부천</option>
+														<option value="수원/경기">수원/경기</option>
+														<option value="대구/경북">대구/경북</option>
+														<option value="부산/경남">부산/경남</option>
+														<option value="충청/강원">충청/강원</option>
+														<option value="광주/전라">광주/전라</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label>성별</label>
                                                         <select class="form-control margin-bottom-20">
-                                                            <option value="">전체</option>
-                                                            <option value="남">남</option>
-                                                            <option value="여">여</option>
+                                                            <option value="">선택하세요</option>
+                                                            <option value="무관">무관</option>
+                                                            <option value="남성">남성</option>
+                                                            <option value="여성">여성</option>
                                                         </select>
                                                 </div>
                                             </div>
@@ -332,7 +326,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label>주거종류</label>
+                                                <label>주거형태</label>
                                                 <select class="form-control margin-bottom-20">
                                                     <option value="">전체</option>
                                                     <option value="아파트">아파트</option>
@@ -343,6 +337,20 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>반려동물 유무</label>
+                                                <select class="form-control margin-bottom-20">
+                                                    <option value="">전체</option>
+                                                    <option value="10p">무관</option>
+                                                    <option value="11p">반려견 OK</option>
+                                                    <option value="11p">반려묘 OK</option>
+                                                    <option value="11p">그 외 OK</option>
+                                                </select>
+                                            </div>
+                                         </div>
+                                         
+                                        
                                         <hr>
                                         <div class="row">
                                             <div class="col-lg-8">
@@ -350,6 +358,14 @@
                                             <div class="col-lg-4 text-right">
                                                 <button class="btn btn-primary" type="submit">매칭하기</button>
                                             </div>
+                                        </div>
+                                        
+                                        <!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
+                                        <div class="row">
+                                           <div class="col-sm-6">
+                                              
+                                              
+                                           </div>
                                         </div>
                                     </form>
                                 </div>

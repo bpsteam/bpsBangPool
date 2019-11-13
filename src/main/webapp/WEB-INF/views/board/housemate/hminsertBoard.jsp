@@ -257,11 +257,11 @@
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
 										<div class="col-sm-3">
-											<select name="hreqgender" required class="form-control input-sm">
+											<select name="hReqgender" required class="form-control input-sm">
                                                 <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
-                                                <option value="N">무관</option>
-                                                <option value="F">여성</option>
-                                                <option value="M">남성</option>
+                                                <option value="무관">무관</option>
+                                                <option value="여성">여성</option>
+                                                <option value="남성">남성</option>
                                             </select>	
 										</div>
 									</div>
@@ -281,8 +281,8 @@
 											<select name="hParking" 
 													class="form-control input-sm" style="width: 100px;">
 															<option value="" selected="">선택</option>
-															<option value="Y">주차가능</option>
-															<option value="N">주차불가</option>
+															<option value="주차가능">주차가능</option>
+															<option value="주차불가">주차불가</option>
 											</select>
 										</div>
 									</div>
