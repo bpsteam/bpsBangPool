@@ -10,6 +10,12 @@
   		and mstatus='Y'
   		
   	</select>
+  	
+  	<insert id="insertMember" parameterType="Member" >
+  		insert into member 
+  		values (member_seq.nextval, default, #{email}, #{pwd}, #{name}, #{nickname},
+  				#{gender}, #{birth}, #{address}, #{phone}, default, sysdate, sysdate )
+  	</insert>
 
 
 </mapper>

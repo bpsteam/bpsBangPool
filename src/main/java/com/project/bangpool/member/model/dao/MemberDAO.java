@@ -12,4 +12,8 @@ public class MemberDAO {
 		return (Member)sqlSession.selectOne("memberMapper.selectOne", m);
 	}
 
+	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.insertMember",m);
+	}
+
 }

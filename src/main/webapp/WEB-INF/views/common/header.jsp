@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-sm-6 text-right padding-vert-5">
                             <c:if test="${ empty sessionScope.loginUser }">
-                            <a href="naverlogin.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
+                            <a href="loginView.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginUser }">
                             <a href="logout.me" style="color:black">로그아웃</a>&nbsp;&nbsp;&nbsp;

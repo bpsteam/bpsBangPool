@@ -6,7 +6,7 @@
 		insert into freshman_board
 		values (FRESHMAN_BOARD_SEQ.nextval, default, #{fbTitle}, #{fbWriter}, 
 				#{fbContent}, default, sysdate, sysdate, 
-				default, #{fLocation}, default, #{fRentType}, 
+				default, #{fLocation}, #{schoolemail}, #{fRentType}, 
 				#{fLivingType}, #{fRoomCount}, #{fFloor}, #{fPrice}, 
 				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
