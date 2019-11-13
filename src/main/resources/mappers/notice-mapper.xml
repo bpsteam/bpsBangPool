@@ -42,8 +42,7 @@
 	<select id="selectList" resultType="Notice">
 	
 		SELECT
-		NB.NID,NB.BCODE,NB.NTITLE,NB.NWRITER,NB.NCONTENT,NB.NCOUNT,NB.NCREATEDATE,
-		NB.NMODIFYDATE,NB.NSTATUS,A.ORIGINALFILENAME,A.RENAMEFILENAME
+		NB.*,A.ORIGINALFILENAME,A.RENAMEFILENAME
 		FROM NOTICE_BOARD NB  LEFT JOIN ATTACHMENT A
             ON (NB.BCODE = A.BCODE AND NB.NID = A.REFBID)
 		WHERE 
@@ -53,7 +52,6 @@
 	</select>
 	
 	<select id="detailNotice" parameterType="_int" resultType="Notice">
-  		
 
 		SELECT
 		NB.*,
