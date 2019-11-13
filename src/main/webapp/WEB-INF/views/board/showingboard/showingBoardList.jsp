@@ -12,7 +12,7 @@
                 <div class="container background-white">
                     <div class="row margin-vert-30">
                         <div class="col-md-12">
-                            <h2>자랑하기 게시판</h2>
+                            <h2><b>자랑하기 게시판</b></h2>
                         </div>
                     </div>
                     <div class="row">
@@ -45,7 +45,6 @@
                             </c:forEach>
                             <!-- End showing board -->
                         </div>
-                        <button type="button" class="btn btn-primary btn-lg pull-left">검색</button>
                       	<button class="btn btn-primary btn-lg pull-right" onclick="location.href='binsertShowing.sb'">글쓰기</button>
                     </div>
                     <!-- start paging part -->
@@ -54,13 +53,13 @@
                             <li>
                             <!-- [이전] -->
 								<c:if test="${ pi.currentPage <= 1 }">
-									<a style="cursor:pointer">&laquo; &nbsp;</a>
+									<a style="cursor:pointer">&laquo;</a>
 								</c:if>
 								<c:if test="${ pi.currentPage > 1 }">
 									<c:url var="before" value="bShowing.sb">
 										<c:param name="page" value="${ pi.currentPage - 1 }"/>
 									</c:url>
-									<a href="${ before }">&laquo;</a> &nbsp;
+									<a href="${ before }">&laquo;</a>
 								</c:if>
 							</li>
 							<!-- page -->
@@ -72,13 +71,13 @@
 									<c:url var="pagination" value="bShowing.sb">
 										<c:param name="page" value="${ p }"/>
 									</c:url>
-									<li><a href="${ pagination }">${ p }</a> &nbsp;</li>
+									<li><a href="${ pagination }">${ p }</a></li>
 								</c:if>
 							</c:forEach>
                            	<li>
 							<!-- [다음] -->                          
 							   	<c:if test="${ pi.currentPage >= pi.maxPage }">
-								<a  style="cursor:pointer">&raquo; &nbsp;</a>
+								<a  style="cursor:pointer">&raquo;</a>
 								</c:if>
 								<c:if test="${ pi.currentPage < pi.maxPage }">
 									<c:url var="after" value="bShowing.sb">

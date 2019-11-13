@@ -14,6 +14,7 @@ public class Showing{
 	private String sbstatus;
 	private String originalFileName;
 	private String renameFileName;
+	
 	public Showing() {
 		super();
 		// TODO Auto-generated constructor stub
