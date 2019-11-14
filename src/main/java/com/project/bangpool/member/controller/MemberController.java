@@ -101,6 +101,11 @@ public class MemberController {
 		return "myPage";
 	}
 	
+	// 회원정보 수정 시 비밀번호 재확인
+		@RequestMapping("mConfirm.me")
+		public String memberConfirm() {
+			return "memberConfirm";
+		}
 
 	// 회원 정보 수정
 	@RequestMapping("mupdateView.me")
@@ -113,6 +118,8 @@ public class MemberController {
 	public String naverloginView() {
 		return "naverlogin";
 	}
+	
+	
 	
 
 	@RequestMapping("mdelete.me")
@@ -131,6 +138,12 @@ public class MemberController {
 			throw new MemberException("탈퇴 실패.");
 		}
 		
+	}
+	
+	@RequestMapping("mlevel.me")
+	public String memberLevel() {
+		
+		return null;
 	}
 
 	
