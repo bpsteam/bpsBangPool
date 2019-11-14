@@ -255,7 +255,7 @@
 	                                    <a href="nList.no">공지사항</a>
 	                                </li>
 	                                <li>
-	                                    <a href="portfolio-4-column.html">4 Column</a>
+	                                    <a href="frblist.fr">자유게시판</a>
 	                                </li>
 	                                <li>
 	                                    <a href="portfolio-6-column.html">6 Column</a>
