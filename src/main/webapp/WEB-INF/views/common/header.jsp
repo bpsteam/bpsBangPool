@@ -254,7 +254,7 @@
 			                                    <a href="nLlist.no">공지사항</a>
 			                                </li>
 			                                <li>
-			                                    <a href="portfolio-4-column.html">4 Column</a>
+			                                    <a href="mapView.map">지도</a>
 			                                </li>
 			                                <li>
 			                                    <a href="portfolio-6-column.html">6 Column</a>
