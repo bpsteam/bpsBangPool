@@ -144,8 +144,56 @@
 		<servlet-name>secondHandServlet</servlet-name>
 		<url-pattern>*.se</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 자랑하기 관련 -->
+	<servlet>
+		<servlet-name>showingServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/showing-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>showingServlet</servlet-name>
+		<url-pattern>*.sb</url-pattern>
+	</servlet-mapping>
 
-
+	<!-- 공지사항 -->
+	<servlet>
+		<servlet-name>noticeServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/notice-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>noticeServlet</servlet-name>
+		<url-pattern>*.no</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 공지사항 -->
+	<servlet>
+		<servlet-name>shareServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/share-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>shareServlet</servlet-name>
+		<url-pattern>*.sr</url-pattern>
+	</servlet-mapping>
+	
 	<!-- 공용에러페이지 등록 -->
 	<!-- <error-page>
 		<exception-type>java.lang.Exception</exception-type>

@@ -38,7 +38,7 @@
                         
                             <!-- Login Box -->
                             <div class="col-md-6 col-md-offset-3 col-sm-offset-3" >
-                                <form class="login-page">
+                                <form class="login-page" action="login.me" method="post" id="loginForm">
                                     <div class="login-header margin-bottom-30">
                                         <h2>Login to your account</h2>
                                     </div>
@@ -46,13 +46,13 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-user"></i>
                                         </span>
-                                        <input placeholder="Username" class="form-control" type="text">
+                                        <input placeholder="Username" name="email" class="form-control" type="text">
                                     </div>
                                     <div class="input-group margin-bottom-20">
                                         <span class="input-group-addon">
                                             <i class="fa fa-lock"></i>
                                         </span>
-                                        <input placeholder="Password" class="form-control" type="password">
+                                        <input placeholder="Password" name="pwd" class="form-control" type="password">
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">

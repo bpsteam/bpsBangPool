@@ -149,51 +149,49 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                     	       ${ hboard.hreqgender } </div>
+                                     	       ${ hboard.hReqgender } </div>
                                         <div style="both:clear;">
                                         </div>
 
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                        <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>핸드폰번호</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             010-000-0000 </div>
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                        <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>지역구분</b>
                                         </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                        <div  style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                           	  ${ hboard.hLocation } </div>
                                         <div style="both:clear;">
                                         </div>
 
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                        <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>거주지구분</b>
                                         </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                        <div style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             ${ hboard.hLivingType } </div>
                                         <div style="both:clear;">
                                         </div>
                                         
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>파일첨부</b>
+                                        <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>첨부파일</b>
                                         </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                          	  ${ hboard.originalFileName } </div>
+                                        <div style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                          	  <a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" download="${ hboard.originalFileName }">${ hboard.originalFileName } </a>
+                                          	  <c:if test="${ hboard.renameFileName eq null }"> 첨부파일없음 </c:if>
+                                         </div>
                                         <div style="both:clear;">
                                         </div>
 
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
-                                       	 ${ hboard.hbContent }
+                                       	 ${ hboard.hbContent } <br><br>
+                                       	 <c:if test="${ hboard.renameFileName ne null }">
+                                       	 	<img src="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" alt="image1" style="width: 100%; height: 100%;">
+                                       	 </c:if>
                                     </div>
 
                                     <div class="print-hide view-icon">
@@ -224,7 +222,7 @@
                                         <div class="col-md-12">
                                             <div class="carousel slide testimonials" id="replyDiv">
 
-                                                <div class=" col-md-12">
+                                                <%--<div class=" col-md-12">
                                                     <p> 댓글입력하면 보여주기</p>
                                                     <div class="testimonial-info">
                                                         <img alt="" src="${contextPath}/resources/assets/img/profiles/53.jpg"
@@ -238,7 +236,7 @@
                                                     <br>
                                                 </div>
 
-                                               <%--  <div class="col-md-1"></div>
+                                                 <div class="col-md-1"></div>
                                                 <div class="testimonials-bg-primary col-md-11">
                                                     <p>
                                                         댓글의 댓글 입력하면 보여주기
@@ -258,17 +256,8 @@
 
                                                  --%>
 
-                                                <!-- </div> -->
                                             </div>
-                                            <div class="testimonials-arrows pull-right">
-                                                <a class="left" href="#testimonials1" data-slide="prev">
-                                                    <span class="fa fa-arrow-left"></span>
-                                                </a>
-                                                <a class="right" href="#testimonials1" data-slide="next">
-                                                    <span class="fa fa-arrow-right"></span>
-                                                </a>
-                                                <div class="clearfix"></div>
-                                            </div>
+                                            
                                         </div>
                                         <!-- End Testimonials - default full width -->
                                     </div>

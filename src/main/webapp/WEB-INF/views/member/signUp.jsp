@@ -27,7 +27,7 @@
                                 <div class="signup-header">
                                     <h2>회원 가입</h2>
                                     <p>이미 회원이신가요?
-                                        <a href="#">여기</a>를 눌러 로그인하세요!</p>
+                                        <a href="loginView.me">여기</a>를 눌러 로그인하세요!</p>
                                 </div>
                                 
                                 <label>회원ID(E-Mail)
@@ -56,18 +56,45 @@
                                     <span class="color-red">*</span>
                                 </label>
                                 <input class="form-control margin-bottom-20" type="text" name="nickname">
-                                <label>생년월일
-                                    <!-- <span class="color-red">*</span> -->
-                                </label>
-                                <input class="form-control margin-bottom-20" type="text" name="birth">
+                               
                                 <label>성별
-                                    <!-- <span class="color-red">*</span> -->
+                                     <span class="color-red">*</span> 
                                 </label>
                                 <!-- <input class="form-control margin-bottom-20" type="text"> -->
                                 <select class="form-control margin-bottom-20" name="gender">
-                                	<option value="M">남성</option>
-                                	<option value="F">여성</option>
+                                	<option value="남성">남성</option>
+                                	<option value="여성">여성</option>
                                 </select>
+                                
+                                <label>생년월일
+                                    <!-- <span class="color-red">*</span> -->
+                                </label>
+                              <!--   <input class="form-control margin-bottom-20" type="text" name="birth"> -->
+                              <div class="row">
+                             	 <div class="col-sm-2">
+	                                <select class="form-control margin-bottom-20" style="width:60px" name="year" >
+	                                <% for(int i=1970; i<2001; i++) {%>
+	                                	<option value="<%=i %>"><%=i %>년</option>
+	                                <%} %>
+	                                </select>
+	                          	 </div>
+	                     	 	<div class="col-sm-2">
+	                                <select class="form-control margin-bottom-20" style="width:60px" name="month">
+	                                <% for(int i=1; i<13; i++) {%>
+	                                	<option value="<%=i %>"><%=i %>월</option>
+	                                <%} %>
+	                                </select>
+	                               </div>
+	         			
+	         					 <div class="col-sm-2">
+	                                <select class="form-control margin-bottom-20" style="width:60px" name="date">
+	                                <% for(int i=1; i<32; i++) {%>
+	                                	<option value="<%=i %>"><%=i %>일</option>
+	                                <%} %>
+	                                </select>
+                                </div>
+                                
+                               </div> 
                                 <label>전화번호
                                    <!--  <span class="color-red">*</span> -->
                                 </label>
@@ -98,7 +125,6 @@
                                         </label> -->
                                     </div>
                                     <div class="col-lg-4 text-right">
-                                        <!-- <button class="btn btn-primary" type="submit">Register</button> -->
                                         <button type="submit" class="btn btn-primary" >Register</button>
                                     </div>
                                 </div>

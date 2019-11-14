@@ -46,6 +46,7 @@ public class MemberController {
 		return "redirect:home.do";
 	}
 	
+	
 	//로그아웃 용 컨트롤러 2
 		@RequestMapping("logout.me")
 		public String logout(SessionStatus status) {
@@ -70,13 +71,29 @@ public class MemberController {
 	public String memberInsert(@ModelAttribute Member m,
 			   @RequestParam("post") String post,
 			   @RequestParam("address1") String address1,
-			   @RequestParam("address2") String address2) {
+			   @RequestParam("address2") String address2,
+			   @RequestParam("year") String year, 
+			   @RequestParam("month") String month,
+			   @RequestParam("date") String date) {
 		
+		if(month.length()<2) month = "0"+month;
+		if(date.length()<2) date = "0"+date;
 		
+		m.setBirth(year+"-"+month+"-"+date);
 		m.setAddress(post+"/"+address1+"/"+address2);
 		System.out.println(m);
 		
-		return "redirect:home.do";
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+		m.setPwd(encPwd);
+		
+		int result = mService.insertMember(m);
+		
+		if(result>0) {
+			return "redirect:home.do";
+		}else {
+			throw new MemberException("회원가입 실패!");
+		}
+		
 	}
 	
 	@RequestMapping("mypage.me")
@@ -84,9 +101,37 @@ public class MemberController {
 		return "myPage";
 	}
 	
-	@RequestMapping("naverlogin.me")
+
+	// 회원 정보 수정
+	@RequestMapping("mupdateView.me")
+	public String updateFormView() {
+		return "memberUpdateForm";
+	}
+	
+
+	@RequestMapping("loginView.me")
 	public String naverloginView() {
 		return "naverlogin";
 	}
+	
+
+	@RequestMapping("mdelete.me")
+	public String memberDelete(Model model, SessionStatus status) {
+		
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		System.out.println("탈퇴 : "+m);
+		
+		int result = mService.deleteMember(m);
+		
+		if(result>0) {
+			status.setComplete();
+			return "redirect:home.do";
+		}else {
+			throw new MemberException("탈퇴 실패.");
+		}
+		
+	}
+
 	
 }

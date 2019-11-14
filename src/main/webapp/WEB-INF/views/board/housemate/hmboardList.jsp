@@ -144,7 +144,7 @@
 																		<c:url var="hbdetail" value="bdetail.hm">
 																			<c:param name="hbId" value="${ b.hbId }" />
 																		</c:url>
-																		<td onclick="location.href='${ hbdetail }'">
+																		<td onclick="location.href='${ hbdetail }'" style="width:220px;">
 																			<%-- <a href="${ hbdetail }">${ b.hbTitle }</a></td> --%>
 																			${ b.hbTitle }
 																		</td>

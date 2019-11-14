@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/custom.css" rel="stylesheet">
     <!-- Google Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style>
 	    #ultag li {
 	        display:inline;
@@ -52,7 +53,7 @@
                         </div>
                         <div class="col-sm-6 text-right padding-vert-5">
                             <c:if test="${ empty sessionScope.loginUser }">
-                            <a href="naverlogin.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
+                            <a href="loginView.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginUser }">
                             <a href="logout.me" style="color:black">로그아웃</a>&nbsp;&nbsp;&nbsp;
@@ -245,8 +246,21 @@
                                         </ul>
                                     </li>
                                     <li>
-                                    
-                                        <a href="contact.html" class="fa fa-comments "> 커뮤니티</a>
+                                <span class="glyphicon glyphicon-book"> 커뮤니티</span>
+                            	<ul>
+	                                <li>
+	                                    <a href="bShowing.sb">자랑하기 게시판</a>
+	                                </li>
+	                                <li>
+	                                    <a href="nList.no">공지사항</a>
+	                                </li>
+	                                <li>
+	                                    <a href="portfolio-4-column.html">4 Column</a>
+	                                </li>
+	                                <li>
+	                                    <a href="portfolio-6-column.html">6 Column</a>
+	                                </li>
+                           		 </ul>
                                     </li>
                                 </ul>
                             </div>
