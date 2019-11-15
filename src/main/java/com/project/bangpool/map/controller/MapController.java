@@ -20,4 +20,14 @@ public class MapController {
 	public String mapKeyWordSC() {
 		return "mapKeyWordSC";
 	}
+	
+	@RequestMapping("mapMultiMark.map")
+	public String mapMultiMark() {
+		return "mapMultiMark";
+	}
+	
+	@RequestMapping("mapKeyAndList.map")
+	public String mapKeyAndList() {
+		return "mapKeyAndList";
+	}
 }

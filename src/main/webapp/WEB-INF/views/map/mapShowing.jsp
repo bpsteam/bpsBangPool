@@ -10,10 +10,10 @@
 	<div id="map" style="width:500px;height:400px;"></div>
 	<br><a href="mapAddress.map">주소로 좌표 얻어내는 Page</a>
 	<br><a href="mapKeyWordSC.map">키워드로 주소검색 Page</a>
+	<br><a href="mapMultiMark.map">마크 여러개 보여주기</a>
+	<br><a href="mapKeyAndList.map">키워드 검색후 리스트 출력</a>
 	<br><a href="#">미정</a>
-	<br><a href="#">미정</a>
-	<br><a href="#">미정</a>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637&libraries=services,clusterer,drawing""></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637&libraries=services,clusterer,drawing"></script>
 	<script>
 		// start 지도 생성
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
