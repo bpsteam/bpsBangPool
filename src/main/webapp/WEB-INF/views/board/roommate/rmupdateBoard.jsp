@@ -253,11 +253,14 @@
                                             
                                             
                                                     <div class="form-group">
-                                                        <!-- <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label> -->
                                                         <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label>
                                                         <div class="col-sm-3">
-                                                        
-                                                        <input type="text" name="rParking" size="50" value="${ rboard.rParking}" class="form-control input-sm">
+                                                        <%-- <input type="text" name="rParking" size="50" value="${ rboard.rParking}" class="form-control input-sm"> --%>
+                                                        <select name="rParking" id="selectParking" class="form-control input-sm" required="required">
+                                                        	<option value="" selected="">주차 가능여부</option>
+                                                        	<option value="가능">가능</option>
+                                                        	<option value="불가능">불가능</option>
+                                                        </select>
                                                         </div>
                                                     </div>
                                             
@@ -265,7 +268,7 @@
                                                     <label class="col-sm-2 control-label">내용</label>
                                                     <div class="col-sm-12">
                                                                     <span class="sound_only"></span>
-                                            <textarea id="wr_content" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px">${ rboard.rbContent }</textarea>
+                                            <textarea id="rbContent" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px">${ rboard.rbContent }</textarea>
                                             <span class="sound_only"></span>		</div>
                                                 </div>
                                             
@@ -311,7 +314,6 @@
 					                                                            <div class="input-group input-group-sm">
 					                                                            <span class="input-group-addon">파일 0</span>
 					                                                            <input type="file" class="form-control input-sm" name="reloadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
-					                                                            <!-- <input type="file" class="form-control input-sm" name="reloadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능"> -->
 						                                                            <c:if test="${ !empty rboard.originalFileName }">
 																						<br>현재 업로드한 파일 : 
 																						<a href="${ contextPath }/resources/rmboarduploads/${ rboard.renameFileName }" download="${ rboard.originalFileName }">
@@ -559,6 +561,7 @@
 		$("#selectRoomCount").val("${ rboard.rRoomCount}").attr("selected", true);
 		$("#selectFloor").val("${ rboard.rFloor}").attr("selected", true);
 		$("#selectReqGender").val("${ rboard.rReqGender}").attr("selected", true);
+		$("#selectParking").val("${ rboard.rParking}").attr("selected", true);
 		
 	</script>
 

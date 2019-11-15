@@ -185,7 +185,7 @@ public class NoticeController {
 									  ModelAndView mv) {
 		
 		Notice notice = nService.detail_Notice(nId);
-		
+
 		if(notice != null) {
 			mv.addObject("notice",notice)
 			   .addObject("page",page)
@@ -199,12 +199,11 @@ public class NoticeController {
 	
 	@RequestMapping("nupdate.no")
 	public ModelAndView notice_update(@ModelAttribute Notice n,
-								      @RequestParam("page") Integer page,
+									  @RequestParam(value="page",required=false) Integer page,
 								      @RequestParam("reloadFile") MultipartFile reloadFile,
 								      HttpServletRequest request,
 								      ModelAndView mv) {
 
-		System.out.println("page : " + page);
 		if(reloadFile != null && !reloadFile.isEmpty()) {
 			deleteFile(n.getRenameFileName(),request);
 		}
@@ -225,7 +224,8 @@ public class NoticeController {
 			
 			if(result > 0) {
 				mv.addObject("page",page)
-				  .setViewName("redirect:ndetail.no?nId="+n.getnId());
+				  //.setViewName("redirect:ndetail.no?nId="+n.getnId());
+				.setViewName("redirect:nList.no");
 			}
 			
 		}else {
@@ -234,7 +234,8 @@ public class NoticeController {
 			
 			if(result > 0) {
 				mv.addObject("page",page)
-				  .setViewName("redirect:ndetail.no?nId="+n.getnId());
+				  //.setViewName("redirect:ndetail.no?nId="+n.getnId());
+				.setViewName("redirect:nList.no");
 			}
 		}
 		

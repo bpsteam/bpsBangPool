@@ -61,10 +61,12 @@
                                     <div class="panel-body" style="background-color: white;">
                                             <form action="binsert.rm" method="post" enctype="Multipart/form-data" class="form-horizontal">
                                                         <div class="form-group has-feedback">
-                                                        <label class="col-sm-2 control-label" for="wr_name">이름<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label">작성자</label>
                                                         <div class="col-sm-3">
                                                         <!-- name="rbWriter" value="{ 닉네임}"  -->
-                                                            <input type="text" name="rbWriter" value="" id="wr_name" required="" class="form-control input-sm" size="10" maxlength="20">
+                                                        	<c:if test="${ !empty loginUser }">
+			                                                   <input type="text" name="rbWriter"  id="rbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
+				                                         	</c:if>	
                                                             <span class="fa fa-check form-control-feedback"></span>
                                                         </div>
                                                     </div>
@@ -92,7 +94,7 @@
                                                    		 </div> -->
                                                    		 
                                                    		 <div class="form-group">
-		                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">필수</strong></label>
+		                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">*</strong></label>
 		                                                    <div class="col-sm-10">
 		                                                        <div class="input-group">
 		                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
@@ -106,7 +108,7 @@
 		                                                </div>
                                                 
                                                         <div class="form-group">
-	                                                        <label class="col-sm-2 control-label" for="RLOCATION">지역분류<strong class="sound_only">필수</strong></label>
+	                                                        <label class="col-sm-2 control-label" for="RLOCATION">지역분류<strong class="sound_only">*</strong></label>
 	                                                        <div class="col-sm-3">
 	                                                            <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
 	                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
@@ -125,7 +127,7 @@
                                             
                                             
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for=RRENTTYPE>매물구분<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label " for=RRENTTYPE>매물구분<strong class="sound_only">*</strong></label>
                                                         <div class="col-sm-3">
                                             
                                                             <!-- <select name="wr_1" id="wr_1" required="" itemname="게시물분류" class="form-control input-sm"> -->
@@ -139,8 +141,7 @@
                                                     </div>
                                             
                                                     <div class="form-group">
-                                                        <!-- <label class="col-sm-2 control-label " for="RLIVINGTYPE">매물종류<strong class="sound_only">필수</strong></label> -->
-                                                        <label class="col-sm-2 control-label " for="RLIVINGTYPE">매물종류<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label " for="RLIVINGTYPE">매물종류<strong class="sound_only">*</strong></label>
                                                         <div class="col-sm-3">
                                                             <select name="rLivingType" id="wr_7" required="" itemname="매물종류" class="form-control input-sm">
                                                                 <option value="">매물종류 선택</option>
@@ -158,8 +159,7 @@
                                                 
                                                 
                                                     <div class="form-group">
-                                                        <!-- <label class="col-sm-2 control-label " for="RROOMCOUNT">방갯수<strong class="sound_only">필수</strong></label> -->
-                                                        <label class="col-sm-2 control-label " for="RROOMCOUNT">방갯수<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label " for="RROOMCOUNT">방갯수<strong class="sound_only">*</strong></label>
                                                         <div class="col-sm-3">
                                                         
                                                         <select name="rRoomCount" required="" itemname="방갯수" class="form-control input-sm">
@@ -175,7 +175,7 @@
                                                 
                                                 
                                                     <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="RFLOOR">해당층수<strong class="sound_only">필수</strong></label>
+                                                        <label class="col-sm-2 control-label " for="RFLOOR">해당층수<strong class="sound_only">*</strong></label>
                                                         <div class="col-sm-3">
                                                         <select name="rFloor" required="" itemname="해당층수" class="form-control input-sm">
                                                             <option value="" selected="">층수를 선택해주세요.</option>
@@ -227,7 +227,7 @@
                                                     </div> -->
                                             
                                                     <div class="form-group">
-														<label class="col-sm-2 control-label " for="RGENDER">상대 성별</label>
+														<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
 														<div class="col-sm-3">
 															<select name="rReqGender" required class="form-control input-sm">
 				                                                <option value="" selected >원하는 상대 성별</option>
@@ -240,7 +240,7 @@
                                             
                                                     <div class="form-group">
                                                         <!-- <label class="col-sm-2 control-label " for="RPRICE">거래금액</label> -->
-                                                        <label class="col-sm-2 control-label " for="RPRICE">거래금액</label>
+                                                        <label class="col-sm-2 control-label " for="ca_name">거래금액</label>
                                                         <div class="col-sm-3">
                                                         
                                                         <input type="text" name="rPrice" size="50" value="" class="form-control input-sm">
@@ -250,11 +250,15 @@
                                             
                                             
                                                     <div class="form-group">
-                                                        <!-- <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label> -->
-                                                        <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label>
+                                                        <label class="col-sm-2 control-label " for="ca_name">주차가능여부</label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <input type="text" name="rParking" size="50" value="" class="form-control input-sm">
+                                                        <!-- <input type="text" name="rParking" size="50" value="" class="form-control input-sm"> -->
+                                                        <select name="rParking" class="form-control input-sm" required="required">
+                                                        	<option value="" selected="">주차 가능여부</option>
+                                                        	<option value="가능">가능</option>
+                                                        	<option value="불가능">불가능</option>
+                                                        </select>
                                                         </div>
                                                     </div>
                                             

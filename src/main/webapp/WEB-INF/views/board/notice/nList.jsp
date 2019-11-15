@@ -27,9 +27,9 @@
 	
 	.rBoard_Form{
 	
-		border:1px solid black;
+		/* border:1px solid black; */
 	    color: #333333;
-    	background-color: #f4f4f4;
+    	/* background-color: #f4f4f4; */
    	 	border-color: #d8d8d8;
 		border-bottom: 1px solid #d8d8d8;
 		border-top-right-radius: 4px;
@@ -71,30 +71,104 @@
 						      <input id="search_text" name="search" id="searchValue" type="search" placeholder="도움말을 검색해 보세요.">
 						      <!-- <button type="submit">검색하기</button> -->
 		                  </form>
-                     </div>	
+                     </div>
+                     
+                    
+                   <div style="text-align: end;">
+		               <form action="notice_insert.no">
+	                          	<c:if test="${ !empty sessionScope.loginUser && loginUser.nickname == '관리자닉네임'}">
+	                          		<input type="submit" class="btn btn-primary btn-sm" style="margin-bottom: 3px;" value="글쓰기"></input>
+	                          	</c:if>
+	                          	
+						   <%-- <c:if test="${  empty sessionScope.loginUser }">
+	                          		<input type="button" class="btn btn-primary btn-sm needLogin" style="margin-bottom: 3px;" value="글쓰기"></input>
+	                          	</c:if> --%>
+	                   </form>	
+                   </div> 							
+                      
                         
                     <c:forEach var="n" items="${ list }">
+                    
+                        <c:url var="ndelete" value="ndelete.no">
+						     <c:param name="nId" value="${ n.nId }"/>
+						</c:url>
+                     	<c:url var="nupView" value="nupView.no">
+					         <c:param name="nId" value="${ n.nId }"/>
+					         <c:param name="page" value="${ pi.currentPage }"/>
+					    </c:url>
+
                         <div class="rBoard_Form">
                         	<a class="rBoard" style="display:flex; justify-content: space-between; padding: 10px; cursor: pointer;">
                         		<h3>${ n.nTitle }</h3><span class="fa-sort-desc" style="margin-bottom: 10px;"></span>
                         	</a>
-							<div style="display:none;">
-								<span style="margin:0px 20px 0px 20px">${ n.nContent }</span>
-							</div>
+                        	
+							<div class="rBoard_Content" style="display:none; margin:0px 20px 0px 20px;">
 							
-			                <form action="notice_insert.no">
-                                  <div class="col-md-3">
-                                  	<c:if test="${ !empty sessionScope.loginUser }">
-                                  		<input type="submit" class="btn btn-primary btn-sm" style="margin-bottom: 3px;" value="글쓰기"></input>
-                                  	</c:if>
-                                  	<c:if test="${  empty sessionScope.loginUser }">
-                                  		<input type="button" class="btn btn-primary btn-sm needLogin" style="margin-bottom: 3px;" value="글쓰기"></input>
-                                  	</c:if>
-                                  </div>
-                             </form>
+								<c:if test="${ n.originalFileName ne null}">
+	                            	<div>첨부파일 : &nbsp;
+										<a href="${ contextPath }/resources/nuploadFiles/${ n.renameFileName }" download="${ n.originalFileName }">${ n.originalFileName }</a>
+									</div>
+	                            </c:if>
+	                            
+								<p>${ n.nContent }</p>
+								
+								<p style="text-align:center;">
+								
+									<c:if test="${ !empty sessionScope.loginUser && loginUser.nickname == '관리자닉네임' }">
+				                    	<button type="button" class="btn btn-red btn-sm" onclick="location.href='${ nupView }'">수정</button>
+				                    	<button type="button" class="btn btn-red btn-sm" onclick="location.href='${ ndelete }'">삭제</button>
+								    </c:if>
+								</p>
+							
+							</div>
                         </div>
                     </c:forEach>
-                     
+                    <br>
+                    
+					<table style="margin-left: 40%;">
+						<tr align="center" height="20" id="buttonTab">
+							<td colspan="6">
+							
+								<!-- [이전] -->
+								<c:if test="${ pi.currentPage <= 1 }">
+									[이전] &nbsp;
+								</c:if>
+								
+								<c:if test="${ pi.currentPage > 1 }">
+									<c:url var="before" value="nList.no">
+										<c:param name="page" value="${ pi.currentPage - 1 }"/>
+									</c:url>
+									<a href="${ before }">[이전]</a> &nbsp;
+								</c:if>
+								
+								<!-- 페이지 -->
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<font color="red" size="4"><b>[${ p }]</b></font>
+									</c:if>
+									
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="pagination" value="nList.no">
+											<c:param name="page" value="${ p }"/>
+										</c:url>
+										<a href="${ pagination }">${ p }</a> &nbsp;
+									</c:if>
+								</c:forEach>
+								
+			                                   			<!-- [다음] -->
+								<c:if test="${ pi.currentPage >= pi.maxPage }">
+									[다음]
+								</c:if>
+								<c:if test="${ pi.currentPage < pi.maxPage }">
+								
+								<c:url var="after" value="nList.no">
+									<c:param name="page" value="${ pi.currentPage + 1 }"/>
+								</c:url> 
+								<a href="${ after }">[다음]</a>
+								</c:if>
+			                                    	</td>
+						</tr>
+					</table>         
                     
 				
                             <%-- <div class="panel panel-default">
@@ -306,17 +380,17 @@
 	<c:import url ="../../common/footer.jsp"/>
   <!-- ==== FOOTER END ==== -->
          <script type="text/javascript">
-			$(function(){
 
 				$('.needLogin').click(function(){
 					  alert("로그인이 필요한 서비스입니다.");
 				});
 				
-				$('.rBoard').click(function(){
-					$(this).next().toggle();
+				$(function(){
+					$('.rBoard').click(function(){
+					   $('.rBoard').next().hide();
+					   $(this).next().toggle(175);
+					});
 				});
-
-			});
 		</script>
 
 

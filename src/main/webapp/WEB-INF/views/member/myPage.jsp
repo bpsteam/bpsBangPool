@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <style>
+ /* 1114test */
         #ultag li {
             display: inline;
             padding: 0 30px;
@@ -141,7 +142,7 @@
                                                         <div class="panel-heading">
                                                             <h3 class="panel-title">My Profile</h3>
                                                         </div>
-                                                        <div class="panel-body">
+                                                        <div class="panel-body" style="background-color:white;">
                                                             <!-- <div class="pull-left text-center auth-photo">
                                                                 <div class="img-photo">
                                                                     <i class="fa fa-user"></i>				</div>
@@ -154,16 +155,80 @@
                                                                     </button>
                                                                 </div>
                                                             </div> -->
+                                                            
+                                                            <!-- 여기 -->
+                                                            <!-- <div class="panel-body">
+																<div class="pull-left text-center auth-photo">
+																	<div class="img-photo">
+																		<i class="fa fa-user" >
+																			<img src="/img/456.jpg">
+																		</i>				
+																	</div>
+																	<div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
+																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'like', 'it_like'); return false;" title="Like">
+																			<i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
+																		</button>
+																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'follow', 'it_follow'); return false;" title="Follow">
+																			<i class="fa fa-users"></i> <span id="it_follow">0</span>
+																		</button>
+																	</div>
+																</div>
+																<div class="auth-info">
+																	<div class="en font-14" style="margin-bottom:6px;">
+																		<span class="pull-right font-12">Lv.1</span>
+																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 중중식</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
+																	</div>
+																	<div class="div-progress progress progress-striped no-margin">
+																		<div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+																			<span class="sr-only">0 (0%)</span>
+																		</div>
+																	</div>
+																	<p style="margin-top:6px;">
+																		등록된 서명이 없습니다.				</p>
+																</div>
+																<div class="clearfix"></div>
+															</div> -->
+                                                            
+                                                            <!-- 끝 -->
+                                                            
+                                                            <!-- 잠시 주석  -->
                                                             <div class="auth-info">
                                                                 <div class="en font-14" style="margin-bottom:6px;">
                                                                     <span class="pull-right font-12">Lv.1</span>
-                                                                    <b><a href="javascript:;" onclick="showSideView(this, 'ch93ksw', 'wbgg', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> wbgg</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
+                                                                    <b><a href="javascript:;" onclick="showSideView(this, 'ch93ksw', 'wbgg', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 
+                                                                    ${ loginUser.nickname }</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
                                                                 </div>
-                                                                <div class="div-progress progress progress-striped no-margin">
+                                                                
+                                                                <div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+							                                            <span class="sr-only">90% Complete (Sucess)</span>
+							                                        </div>
+							                                    </div>
+							
+																<!-- <div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+							                                            <span class="sr-only">30% Complete (info)</span>
+							                                        </div>
+							                                    </div> -->
+							
+																<div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+							                                            <span class="sr-only">20%Complete (warning)</span>
+							                                        </div>
+							                                    </div>
+							
+																<div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+							                                            <span class="sr-only">10% Complete (danger)</span>
+							                                        </div>
+							                                    </div>
+							                                    
+                                                                <!-- 기존 -->
+                                                                <!-- <div class="div-progress progress progress-striped no-margin">
                                                                     <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                                                                         <span class="sr-only">0 (0%)</span>
                                                                     </div>
-                                                                </div>
+                                                                </div> -->
                                                                 <p style="margin-top:6px;">
                                                                     등록된 서명이 없습니다.				</p>
                                                             </div>
@@ -181,7 +246,7 @@
                                                 <div class="panel-heading">
                                                     <h3 class="panel-title">My Info</h3>
                                                 </div>
-                                                <ul class="list-group">
+                                                <ul class="list-group" style="background-color:white;">
                                                     <li class="list-group-item">
                                                         <a href="http://myroom.oceanmate.co.kr/bbs/point.php" target="_blank" class="win_point">
                                                             <span class="pull-right">0점</span>
@@ -237,7 +302,7 @@
                                                     </div>
                                                 </div>
                                                                 <div class="col-xs-6">
-                                                    <div class="form-group">
+                                                    <div class="form-group">   
                                                         <a href="http://myroom.oceanmate.co.kr/bbs/mypost.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
                                                             내글관리
                                                         </a>
@@ -277,6 +342,8 @@
                     <!-- End Main Column -->
                     <!-- Side Column -->
                     <div class="col-md-3">
+                    
+                    
                         <!-- Recent Posts -->
                         <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 방 찾기</button>
                         <div id="matching_form" class="section_matching">
@@ -292,31 +359,23 @@
                                             <div class="col-sm-6">
                                                 <label>지역</label>
                                                     <select class="form-control margin-bottom-20">
-                                                        <option value="">전체</option>
-                                                        <option value="서울">서울특별시</option>
-                                                        <option value="인천">인천광역시</option>
-                                                        <option value="대전">대전광역시</option>
-                                                        <option value="대구">대구광역시</option>
-                                                        <option value="광주">광주광역시</option>
-                                                        <option value="울산">울산광역시</option>
-                                                        <option value="부산">부산광역시</option>
-                                                        <option value="경기도">경기도</option>
-                                                        <option value="강원도">강원도</option>
-                                                        <option value="충북">충청북도</option>
-                                                        <option value="충남">충청남도</option>
-                                                        <option value="경북">경상북도</option>
-                                                        <option value="경남">경상남도</option>
-                                                        <option value="전북">전라북도</option>
-                                                        <option value="전남">전라남도</option>
-                                                        <option value="제주도">귤</option>
+                                                        <option value="">선택하세요</option>
+														<option value="서울">서울</option>
+														<option value="인천/부천">인천/부천</option>
+														<option value="수원/경기">수원/경기</option>
+														<option value="대구/경북">대구/경북</option>
+														<option value="부산/경남">부산/경남</option>
+														<option value="충청/강원">충청/강원</option>
+														<option value="광주/전라">광주/전라</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label>성별</label>
                                                         <select class="form-control margin-bottom-20">
-                                                            <option value="">전체</option>
-                                                            <option value="남">남</option>
-                                                            <option value="여">여</option>
+                                                            <option value="">선택하세요</option>
+                                                            <option value="무관">무관</option>
+                                                            <option value="남성">남성</option>
+                                                            <option value="여성">여성</option>
                                                         </select>
                                                 </div>
                                             </div>
@@ -332,7 +391,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
-                                                <label>주거종류</label>
+                                                <label>주거형태</label>
                                                 <select class="form-control margin-bottom-20">
                                                     <option value="">전체</option>
                                                     <option value="아파트">아파트</option>
@@ -343,6 +402,20 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>반려동물 유무</label>
+                                                <select class="form-control margin-bottom-20">
+                                                    <option value="">전체</option>
+                                                    <option value="10p">무관</option>
+                                                    <option value="11p">반려견 OK</option>
+                                                    <option value="11p">반려묘 OK</option>
+                                                    <option value="11p">그 외 OK</option>
+                                                </select>
+                                            </div>
+                                         </div>
+                                         
+                                        
                                         <hr>
                                         <div class="row">
                                             <div class="col-lg-8">
@@ -350,6 +423,14 @@
                                             <div class="col-lg-4 text-right">
                                                 <button class="btn btn-primary" type="submit">매칭하기</button>
                                             </div>
+                                        </div>
+                                        
+                                        <!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
+                                        <div class="row">
+                                           <div class="col-sm-6">
+                                              
+                                              
+                                           </div>
                                         </div>
                                     </form>
                                 </div>
@@ -398,9 +479,12 @@
                                                         <img src="http://myroom.oceanmate.co.kr/thema/Basic/widget/basic-outlogin/img/photo.png">
                                                     </div>
                                                 </a>
-                                                <h3>wbgg</h3>
-                                                <div class="font-12 text-muted" style="letter-spacing:-1px;">
-                                                    실버											</div>
+                                                <h4>${ loginUser.nickname }
+                                                	<%-- <c:if test="${ !empty loginUser }">
+	                                                   <input type="text" name="rbWriter"  id="rbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
+		                                         	</c:if>	 --%>
+                                                </h4>
+                                                <div class="font-12 text-muted" style="letter-spacing:-1px;">실버</div>
                                                 <div class="clearfix"></div>
                                             </div>
                                     

@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/custom.css" rel="stylesheet">
     <!-- Google Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <style>
 	    #ultag li {
 	        display:inline;
@@ -254,7 +255,7 @@
 	                                    <a href="nList.no">공지사항</a>
 	                                </li>
 	                                <li>
-	                                    <a href="portfolio-4-column.html">4 Column</a>
+	                                    <a href="frblist.fr">자유게시판</a>
 	                                </li>
 	                                <li>
 	                                    <a href="portfolio-6-column.html">6 Column</a>
