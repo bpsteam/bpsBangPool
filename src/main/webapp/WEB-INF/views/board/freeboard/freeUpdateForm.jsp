@@ -92,15 +92,15 @@
 
 						<div class="panel panel-blue">
 							<div class="panel-body" style="background-color: white;">
-								<form action="bupdate.hm" method="post"
+								<form action="frbupdate.fr" method="post"
 									enctype="multipart/form-data"
 									class="form-horizontal">
-								<input type="hidden" name="hbId" value="${ hboard.hbId }">
+								<input type="hidden" name="frbId" value="${ frboard.frbId }">
 									<div class="form-group has-feedback">
 										<label class="col-sm-2 control-label">작성자</label>
 										<div class="col-sm-3">
 											<c:if test="${ !empty loginUser }">
-                                                  <input type="text" name="hbWriter"  id="hbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
+                                                  <input type="text" name="frbWriter"  id="frbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
 	                                         </c:if>
 										</div>
 									</div>
@@ -116,30 +116,11 @@
 									</div> -->
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label" for="ca_name">
-											지역분류 <strong class="sound_only">*</strong>
-										</label>
-										<div class="col-sm-3">
-											<select name="hLocation" id="hlocation" required
-												class="form-control input-sm">
-												<option value="">선택하세요</option>
-												<option value="서울">서울</option>
-												<option value="인천/부천">인천/부천</option>
-												<option value="수원/경기">수원/경기</option>
-												<option value="대구/경북">대구/경북</option>
-												<option value="부산/경남">부산/경남</option>
-												<option value="충청/강원">충청/강원</option>
-												<option value="광주/전라">광주/전라</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="form-group">
 										<label class="col-sm-2 control-label" for="wr_subject">제목<strong
 											class="sound_only">*</strong></label>
 										<div class="col-sm-10">
 											<div class="input-group">
-												<input type="text" name="hbTitle" value="${ hboard.hbTitle }" required
+												<input type="text" name="frbTitle" value="${ frboard.frbTitle }" required
 													class="form-control input-sm" size="50" maxlength="255">
 													
 											</div>
@@ -147,155 +128,13 @@
 									</div>
 
 
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">매물구분<strong
-											class="sound_only">*</strong></label>
-										<div class="col-sm-3">
-
-											<select name="hRentType" required id="hrenttype"
-												class="form-control input-sm">
-												<option value="">매물구분 선택</option>
-												<option value="전세">전세</option>
-												<option value="월세">월세</option>
-												<option value="매매">매매</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">매물종류<strong
-											class="sound_only">*</strong></label>
-										<div class="col-sm-3">
-											<select name="hLivingType"  required id="hlivingtype"
-												class="form-control input-sm">
-												<option value="">매물종류 선택</option>
-												<option value="오피스텔">오피스텔</option>
-												<option value="아파트">아파트</option>
-												<option value="빌라">빌라</option>
-												<option value="단독주택">단독주택</option>
-											</select>
-										</div>
-									</div>
-
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">방갯수<strong
-											class="sound_only">*</strong></label>
-										<div class="col-sm-3">
-
-											<select name="hRoom" required  id="hroom"
-												class="form-control input-sm">
-												<option value="">방갯수를 선택해주세요.</option>
-												<option value="원룸">원룸</option>
-												<option value="투룸">투룸</option>
-												<option value="쓰리룸">쓰리룸</option>
-												<option value="포룸">포룸</option>
-											</select>
-										</div>
-									</div>
-
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">해당층수<strong
-											class="sound_only">*</strong></label>
-										<div class="col-sm-3">
-											<select name="hFloor" required id="hfloor"
-												class="form-control input-sm">
-												<option value="" selected="">층수를 선택해주세요.</option>
-												<option value="지하">지하</option>
-												<option value="반지하">반지하</option>
-												<option value="1층">1층</option>
-												<option value="2층">2층</option>
-												<option value="3층">3층</option>
-												<option value="4층">4층</option>
-												<option value="5층">5층</option>
-												<option value="6층이상">6층이상</option>
-											</select>
-										</div>
-									</div>
-
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">핸드폰</label>
-										<div class="col-sm-7">
-											<input type="text" name="wr_phone" readonly
-												value="" id="wr_name"
-												class="form-control input-sm" size="10" maxlength="20">
-				
-											<!-- <table>
-												<tbody>
-													<tr>
-														<td><select name="wr_4" itemname="핸드폰 국번"
-															class="form-control input-sm" style="width: 100px;">
-																<option value="" selected="">국번</option>
-																<option value="010">010</option>
-																<option value="011">011</option>
-																<option value="016">016</option>
-																<option value="017">017</option>
-																<option value="018">018</option>
-																<option value="019">019</option>
-														</select></td>
-														<td>-</td>
-														<td><input type="text" name="wr_5" size="4"
-															maxlength="4" itemname="핸드폰 앞자리" value=""
-															class="form-control input-sm"></td>
-														<td>-</td>
-														<td><input type="text" name="wr_6" size="4"
-															maxlength="4" itemname="핸드폰 뒷자리" value=""
-															class="form-control input-sm"></td>
-													</tr>
-												</tbody>
-											</table> -->
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
-										<div class="col-sm-3">
-											<select name="hReqgender" required class="form-control input-sm" id="hReqgender">
-                                                <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
-                                                <option value="무관">무관</option>
-                                                <option value="여성">여성</option>
-                                                <option value="남성">남성</option>
-                                            </select>	
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">거래금액</label>
-										<div class="col-sm-3">
-											<input type="text" name="hPrice" size="50" value="${ hboard.hPrice }"
-												class="form-control input-sm">
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">주차가능여부</label>
-										<div class="col-sm-3">
-											<select name="hParking" id="hparking"
-													class="form-control input-sm" style="width: 100px;">
-															<option value="" selected>선택</option>
-															<option value="주차가능">주차가능</option>
-															<option value="주차불가">주차불가</option>
-											</select>
-										</div>
-									</div>
-
-
-
 									<div class="form-group">
 										<label class="col-sm-2 control-label">내용</label>
 										<div class="col-sm-12">
 											<span class="sound_only"></span>
-											<textarea id="wr_content" name="hbContent" 
+											<textarea id="wr_content" name="frbContent" 
 												class="form-control input-sm write-content"
-												maxlength="65536" style="width: 100%; height: 300px">${ hboard.hbContent }</textarea>
+												maxlength="65536" style="width: 100%; height: 300px">${ frboard.frbContent }</textarea>
 											<span class="sound_only"></span>
 										</div>
 									</div>
@@ -325,10 +164,10 @@
 																		<div class="input-group input-group-sm">
 																			<span class="input-group-addon">파일 1</span>
 																			<input type="hidden" class="input-sm" name="reloadFile">
-																			<c:if test="${ !empty hboard.originalFileName }">
+																			<c:if test="${ !empty frboard.originalFileName }">
 																			<input type="text"class="input-sm" value="현재 업로드한 파일 :"> 
-																			<a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" download="${ hboard.originalFileName }">
-																				${ hboard.originalFileName }
+																			<a href="${ contextPath }/resources/freeBoardUploadFiles/${ frboard.renameFileName }" download="${ frboard.originalFileName }">
+																				${ frboard.originalFileName }
 																			</a>
 																		</c:if>
 																		</div>
@@ -365,12 +204,12 @@
                                          objCell = objRow.insertCell(0);
                              
                                          
-                                         var hFileName = ${ hboard.originalFileName };
+                                         var hFileName = ${ frboard.originalFileName };
                                          if( hFileName != null ) {
                                         	 objContent = "<div class='row'>";
                                              objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)
                                              			+"</span><input type='file' class='form-control input-sm' name='reloadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)
-                                             			+"<a href='"+${ contextPath }+"/resources/hmBoardUploadFiles/"+${ hboard.renameFileName }+"' download='"+${ hboard.originalFileName }+"'>"
+                                             			+"<a href='"+${ contextPath }+"/resources/freeBoardUploadFiles/"+${ frboard.renameFileName }+"' download='"+${ frboard.originalFileName }+"'>"
                                              			+ hFileName + "</a>"
                                              			+"></div></div></div>";
                                          }else {

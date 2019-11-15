@@ -101,7 +101,7 @@
 																	<tr>
 																		<td>${ b.frbId }</td>
 																		<c:url var="hbdetail" value="frbdetail.fr">
-																			<c:param name="hbId" value="${ b.frbId }" />
+																			<c:param name="frbId" value="${ b.frbId }" />
 																		</c:url>
 																		<td onclick="location.href='${ hbdetail }'" style="width:220px;">
 																			<%-- <a href="${ hbdetail }">${ b.hbTitle }</a></td> --%>
