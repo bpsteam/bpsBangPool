@@ -24,4 +24,8 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.checkIdDup", email);
 	}
 
+	public int checkNickDup(SqlSessionTemplate sqlSession, String nickname) {
+		return sqlSession.selectOne("memberMapper.checkNickDup", nickname);
+	}
+
 }

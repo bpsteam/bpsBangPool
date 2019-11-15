@@ -37,6 +37,8 @@
                                   <span class="guide ok margin-bottom-0" style="color:blue">이 아이디는 사용 가능합니다.</span>
                  				 <span class="guide error margin-bottom-0" style="color:red">이 아이디는 사용할 수 없습니다.</span>
                  				 <input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
+                 				 
+                 				 
                                 <div class="row margin-top-20" id="topmarginid">
                                     <div class="col-sm-6">
                                         <label>비밀번호
@@ -54,16 +56,22 @@
                                     <span id="pwdResult"></span>
                                     </div>
                                 </div>
+                                
                                 <label class="margin-top-20" id="topmarginpwd">이름
                                     <span class="color-red">*</span>
                                 </label>
                                 <input class="form-control margin-bottom-20" type="text" name="name">
+                                
                                 <label>닉네임
                                     <span class="color-red">*</span>
                                 </label>
-                                <input class="form-control margin-bottom-20" type="text" name="nickname">
-                               
-                                <label>성별
+                                <input class="form-control margin-bottom-0" type="text" name="nickname" id="nickname">
+                                  <span class="nickguide ok margin-bottom-0" style="color:blue">사용 가능한 닉네임입니다.</span>
+                 				 <span class="nickguide error margin-bottom-0" style="color:red">사용 불가능한 닉네임입니다.</span>
+                 				 <input type="hidden" name="nicknameDuplicateCheck" id="nicknameDuplicateCheck" value="0">
+                 				 
+                               <div class="margin-top-20" id="topmarginnick" ></div>
+                                <label >성별
                                      <span class="color-red">*</span> 
                                 </label>
                                 <!-- <input class="form-control margin-bottom-20" type="text"> -->
@@ -155,8 +163,38 @@
     $(function(){
        $("#postcodify_search_button").postcodifyPopUp();
    		$(".guide").hide();
+   		$(".nickguide").hide();
     });
     
+    $("#nickname").on("keyup", function(){
+			var nickname = $(this).val().trim();
+			console.log(nickname);
+			if(nickname.length < 2){
+				$("#nicknameDuplicateCheck").val(0);
+				$("#topmarginnick").attr('class','row margin-top-20');
+				return;
+			}
+			
+			$.ajax({
+				url  : "dupnick.me",
+				data : {nickname:nickname},
+				success : function(data){
+					console.log(data);
+					if(data == "true"){
+						$(".nickguide.error").hide();
+						$(".nickguide.ok").show();
+						$("#nicknameDuplicateCheck").val(1);
+						$("#topmarginnick").attr('class','row margin-top-10');
+					}else{
+						$(".nickguide.error").show();
+						$(".nickguide.ok").hide();
+						$("#nicknameDuplicateCheck").val(0);
+						$("#topmarginnick").attr('class','row margin-top-10');
+
+					}
+				}
+			});
+		});	
     $("#email").on("keyup", function(){
 			var email = $(this).val().trim();
 			

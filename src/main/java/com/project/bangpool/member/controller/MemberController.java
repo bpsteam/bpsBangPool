@@ -102,6 +102,9 @@ public class MemberController {
 	
 	@RequestMapping("mypage.me")
 	public String myPageView() {
+		
+		
+		
 		return "myPage";
 	}
 	
@@ -134,8 +137,25 @@ public class MemberController {
 		boolean isUsable = mService.checkIdDup(email) == 0 ? true : false;
 		
 		response.getWriter().print(isUsable);
+	}
+	
+	@RequestMapping("dupnick.me")
+	public void nicknameDuplicateCheck(HttpServletResponse response, @RequestParam("nickname") String nickname) throws IOException {
 		
+		boolean isUsable = mService.checkNickDup(nickname) == 0? true:false;
 		
+		response.getWriter().print(isUsable);
+	}
+	
+	@RequestMapping("mupConfirm.me")
+	public String updateConfirm () {
+		return "mUpdateConfirm";
+	}
+	
+	@RequestMapping("pwdConfirm.me")
+	public String pwdConfirm() {
+		
+		return "mUpdateForm";
 	}
 	
 }

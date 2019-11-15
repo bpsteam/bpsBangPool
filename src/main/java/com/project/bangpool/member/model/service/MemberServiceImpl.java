@@ -37,5 +37,10 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.checkIdDup(sqlSession, email);
 	}
 
+	@Override
+	public int checkNickDup(String nickname) {
+		return mDAO.checkNickDup(sqlSession, nickname);
+	}
+
 
 }
