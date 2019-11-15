@@ -1,5 +1,9 @@
 package com.project.bangpool.member.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -121,6 +125,16 @@ public class MemberController {
 		}else {
 			throw new MemberException("탈퇴 실패.");
 		}
+		
+	}
+	
+	@RequestMapping("dupid.me")
+	public void idDuplicateCheck(HttpServletResponse response, @RequestParam("email")String email) throws IOException {
+		
+		boolean isUsable = mService.checkIdDup(email) == 0 ? true : false;
+		
+		response.getWriter().print(isUsable);
+		
 		
 	}
 	
