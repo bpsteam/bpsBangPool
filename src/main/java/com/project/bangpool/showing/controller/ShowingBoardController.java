@@ -31,8 +31,6 @@ import com.project.bangpool.showing.model.service.ShowingService;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.showing.model.vo.Showing;
 
-
-
 @SessionAttributes("loginUser")
 @Controller
 public class ShowingBoardController {
@@ -71,7 +69,7 @@ public class ShowingBoardController {
 	public String binsertShowingBoard(@ModelAttribute Showing sb,
 									  @RequestParam("uploadFile[]") ArrayList<MultipartFile> uploadFile,
 									  HttpServletRequest request) {
-		
+
 		String[] renameFileName = new String[uploadFile.size()];
 		
 		// 배열 초기화		
@@ -168,6 +166,7 @@ public class ShowingBoardController {
 	public ModelAndView showingUpdateView(@RequestParam("sbId") int sbId,
 											@RequestParam("page") int page,
 											ModelAndView mv) {
+		
 		Showing showing = sService.selectShowing(sbId);
 		mv.addObject("Showing", showing)
 		.addObject("page", page)
@@ -190,7 +189,6 @@ public class ShowingBoardController {
 		String originFileName="";
 		
 		sb.setSbid(sbId);
-		sb.setBcode("SBCODE");
 		
 		for(int i = 0 ; i < reloadFile.size(); i++) {
 			if(i < reloadFile.size()-1)
@@ -198,13 +196,16 @@ public class ShowingBoardController {
 			else
 				originFileName += String.valueOf(reloadFile.get(i).getOriginalFilename());
 		}
-		
+		// FIXME 여러게 만들어진 파일 지우기 ? ? ? ?.
 		if(reloadFile != null && reloadFile.size() > 0) {
 			deleteFile(sb.getRenameFileName(), request);
 		}
 		
 		for(int i = 0; i < reloadFile.size(); i++) {
-			renameFileName += saveFile(reloadFile.get(i) , request)+",";
+			if(i<reloadFile.size()-1)
+				renameFileName += saveFile(reloadFile.get(i) , request)+",";
+			else
+				renameFileName += saveFile(reloadFile.get(i) , request);
 		}
 		
 		if(renameFileName != null) {
@@ -213,7 +214,7 @@ public class ShowingBoardController {
 		}
 		
 		int result = sService.updateShowing(sb);
-		
+		System.out.println("sb : "+sb);
 		if(result > 0) {
 			mv.addObject("page" , page).setViewName("redirect:bShowing.sb?sbId=" + sb.getSbid());
 		}
@@ -240,7 +241,6 @@ public class ShowingBoardController {
 	public String addReply(Reply r, HttpSession session) {
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		String rWriter = loginUser.getName();
-		System.out.println("reply" + r);
 		r.setrWriter(rWriter);
 		int result = sService.insertReply(r);
 		if(result>0) {
@@ -252,10 +252,8 @@ public class ShowingBoardController {
 	
 	@RequestMapping("rList.sb")
 	public void getReplyList(HttpServletResponse response, int sbId) throws JsonIOException, IOException {
-		System.out.println("sbId : " + sbId );
 		ArrayList<Reply> list = sService.selectReplyList(sbId);
 		for(Reply r : list) {
-			System.out.println("list : " + r );
 			r.setrWriter(URLEncoder.encode(r.getrWriter(),"utf-8"));
 			r.setrContent(URLEncoder.encode(r.getrContent(),"utf-8"));
 		}
