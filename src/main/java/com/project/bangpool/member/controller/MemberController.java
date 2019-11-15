@@ -1,5 +1,7 @@
 package com.project.bangpool.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.bangpool.member.model.exception.MemberException;
 import com.project.bangpool.member.model.service.MemberService;
@@ -100,26 +103,12 @@ public class MemberController {
 	public String myPageView() {
 		return "myPage";
 	}
-	
-	// 회원정보 수정 시 비밀번호 재확인
-		@RequestMapping("mConfirm.me")
-		public String memberConfirm() {
-			return "memberConfirm";
-		}
 
-	// 회원 정보 수정
-	@RequestMapping("mupdateView.me")
-	public String updateFormView() {
-		return "memberUpdateForm";
-	}
 	
-
 	@RequestMapping("loginView.me")
 	public String naverloginView() {
 		return "naverlogin";
 	}
-	
-	
 	
 
 	@RequestMapping("mdelete.me")
@@ -140,11 +129,6 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("mlevel.me")
-	public String memberLevel() {
-		
-		return null;
-	}
 
 	
 }
