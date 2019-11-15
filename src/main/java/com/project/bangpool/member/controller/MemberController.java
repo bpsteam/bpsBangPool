@@ -1,5 +1,9 @@
 package com.project.bangpool.member.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -101,20 +105,11 @@ public class MemberController {
 		return "myPage";
 	}
 	
-
-	// 회원 정보 수정
-	@RequestMapping("mupdateView.me")
-	public String updateFormView() {
-		return "memberUpdateForm";
-	}
-	
-
 	@RequestMapping("loginView.me")
 	public String naverloginView() {
 		return "naverlogin";
 	}
 	
-
 	@RequestMapping("mdelete.me")
 	public String memberDelete(Model model, SessionStatus status) {
 		
@@ -132,6 +127,16 @@ public class MemberController {
 		}
 		
 	}
-
+	
+	@RequestMapping("dupid.me")
+	public void idDuplicateCheck(HttpServletResponse response, @RequestParam("email")String email) throws IOException {
+		
+		boolean isUsable = mService.checkIdDup(email) == 0 ? true : false;
+		
+		response.getWriter().print(isUsable);
+		
+		
+	}
 	
 }
+

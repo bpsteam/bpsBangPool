@@ -20,4 +20,8 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.deleteMember", m);
 	}
 
+	public int checkIdDup(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("memberMapper.checkIdDup", email);
+	}
+
 }

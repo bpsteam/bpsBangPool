@@ -22,5 +22,10 @@
 		set mstatus='N'
 		where mNo=#{mNo}
 	</update>
+	
+	<select id="checkIdDup" parameterType="string" resultType="_int">
+		select count(*) from member
+  		where email=#{email}
+	</select>
 
 </mapper>

@@ -32,5 +32,10 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.deleteMember(sqlSession, m);
 	}
 
+	@Override
+	public int checkIdDup(String email) {
+		return mDAO.checkIdDup(sqlSession, email);
+	}
+
 
 }
