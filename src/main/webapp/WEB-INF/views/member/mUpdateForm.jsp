@@ -61,13 +61,7 @@
 									<span class="text-muted">	영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
 									</div>
 								</div>
-						<!-- 		<div class="form-group">
-									<div class="col-sm-offset-2 col-sm-8 text-muted">
-										<div id="msg_mb_id"></div>
-										영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.
-									</div>
-								</div>
- -->
+				
 								<div class="form-group has-feedback col-sm-12">
 									<label class="col-sm-2 control-label" for="reg_mb_password"><b>비밀번호</b><strong
 										class="sound_only">*</strong></label>
