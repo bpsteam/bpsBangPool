@@ -61,7 +61,7 @@
                                 <hr style=" margin-top:0px; margin:0px 0px 0px;">
                             </div>
 
-                            <h1 style="text-align: center;"><small>${ hboard.hbTitle }</small></h1>
+                            <h1 style="text-align: center;"><small>${ frboard.frbTitle }</small></h1>
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>
@@ -69,19 +69,19 @@
                                 <div class="panel-heading" style="border-bottom: none;">
                                     <div class="font-12 text-muted">
                                         <i class="fa fa-user"></i>
-                                        <span class="sv_member">${ hboard.hbWriter }</span> 
-                                        <span class="hidden-xs">
+                                        <span class="sv_member">${ frboard.frbWriter }</span> 
+                                        <%-- <span class="hidden-xs">
                                             <span class="sp"></span>
                                             <i class="fa fa-tag"></i>
                                             ${ hboard.hLocation } 
-                                        </span>
+                                        </span> --%>
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
                                         <b style="color:red">4</b>
                                         <span class="sp"></span>
-                                        <i class="fa fa-eye"></i>${ hboard.hbCount }
+                                        <i class="fa fa-eye"></i>${ frboard.frbCount }
                                         <span class="pull-right">
-                                        	<i class="fa fa-clock-o"></i>${ hboard.hbCreateDate }</span>
+                                        	<i class="fa fa-clock-o"></i>${ frboard.frbCreateDate }</span>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
                                         </div>
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;">
-                                            <font color="006699"><b>${ hboard.hbTitle }</b></font>
+                                            <font color="006699"><b>${ frboard.frbTitle }</b></font>
                                         </div>
                                         <div style="both:clear;">
                                         </div>
@@ -107,71 +107,25 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                       		${ hboard.hbWriter }</div>
+                                       		${ frboard.frbWriter }</div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>작성일자</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            ${ hboard.hbCreateDate } </div>
+                                            ${ frboard.frbCreateDate } </div>
                                         <div style="both:clear;">
                                         </div>
-
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>게시물구분</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            	세놓아요 </div>
+                                        
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>조회건수</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            ${ hboard.hbCount }
+                                            ${ frboard.frbCount }
                                         </div>
-                                        <div style="both:clear;">
-                                        </div>
-
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>게시자 성별</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                           	 여자 </div>
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>상대 성별</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                     	       ${ hboard.hReqgender } </div>
-                                        <div style="both:clear;">
-                                        </div>
-
-                                        <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>핸드폰번호</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            010-000-0000 </div>
-                                        <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>지역구분</b>
-                                        </div>
-                                        <div  style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                          	  ${ hboard.hLocation } </div>
-                                        <div style="both:clear;">
-                                        </div>
-
-                                        <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>거주지구분</b>
-                                        </div>
-                                        <div style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            ${ hboard.hLivingType } </div>
                                         <div style="both:clear;">
                                         </div>
                                         
@@ -179,8 +133,8 @@
                                             <b>첨부파일</b>
                                         </div>
                                         <div style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                          	  <a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" download="${ hboard.originalFileName }">${ hboard.originalFileName } </a>
-                                          	  <c:if test="${ hboard.renameFileName eq null }"> 첨부파일없음 </c:if>
+                                          	  <a href="${ contextPath }/resources/freeBoardUploadFiles/${ frboard.renameFileName }" download="${ frboard.originalFileName }">${ frboard.originalFileName } </a>
+                                          	  <c:if test="${ frboard.renameFileName eq null }"> 첨부파일없음 </c:if>
                                          </div>
                                         <div style="both:clear;">
                                         </div>
@@ -188,9 +142,9 @@
                                     </div>
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
-                                       	 ${ hboard.hbContent } <br><br>
-                                       	 <c:if test="${ hboard.renameFileName ne null }">
-                                       	 	<img src="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" alt="image1" style="width: 100%; height: 100%;">
+                                       	 ${ frboard.frbContent } <br><br>
+                                       	 <c:if test="${ frboard.renameFileName ne null }">
+                                       	 	<img src="${ contextPath }/resources/freeBoardUploadFiles/${ frboard.renameFileName }" alt="image1" style="width: 100%; height: 100%;">
                                        	 </c:if>
                                     </div>
 
@@ -282,24 +236,24 @@
                                 <div class="print-hide view-btn text-right"
                                     style="background-color: white; padding-right: 15px; padding-bottom: 15px;">
                                     <div class="form-group">
-                                    	<c:url var="deleteboard" value="bdelete.hm">
-                                        	<c:param name="hbId" value="${ hboard.hbId }"/>
+                                    	<c:url var="deleteboard" value="frbdelete.fr">
+                                        	<c:param name="frbId" value="${ frboard.frbId }"/>
                                         </c:url>
                                         <a href="${ deleteboard }" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
-                                        <c:url var="hbUpdateView" value="bupView.hm">
-                                        	<c:param name="hbId" value="${ hboard.hbId }"/>
+                                        <c:url var="frbUpdateView" value="frbupView.fr">
+                                        	<c:param name="frbId" value="${ frboard.frbId }"/>
                                         </c:url>
-                                        <a href="${ hbUpdateView }" class="btn btn-warning btn-sm" >
+                                        <a href="${ frbUpdateView }" class="btn btn-warning btn-sm" >
                                             <i class="fa fa-plus"></i><span class="hidden-xs"> 수정</span>
                                         </a>
                                         
-                                        <a href="blist.hm" class="btn btn-success btn-sm">
+                                        <a href="frblist.fr" class="btn btn-success btn-sm">
                                             <i class="fa fa-bars"></i><span class="hidden-xs"> 목록</span>
                                         </a>
                                         
-                                        <a href="binsertView.hm" class="btn btn-info btn-sm">
+                                        <a href="freeinsertView.fr" class="btn btn-info btn-sm">
                                            <i class="fa fa-pencil"></i><span class="hidden-xs"> 글쓰기</span>
                                         </a>
 
@@ -449,10 +403,10 @@
 	});
 	
 	function getReplyList(){
-   		var hbId = ${ hboard.hbId };
+   		var hbId = ${ frboard.frbId };
    		
    		$.ajax({
-   			url: "rList.hm",
+   			url: "frList.fr",
    			data: {hbId:hbId},
    			dataType: "json",
    			success: function(data){
@@ -495,11 +449,11 @@
 	
 	$("#rSubmit").on("click",function(){
    		var rContent = $("#rContent").val();
-   		var refbId = ${hboard.hbId};
-   		var bCode = "${hboard.bcode}";
+   		var refbId = ${frboard.frbId};
+   		var bCode = "${frboard.bcode}";
    		console.log(bCode);
    		$.ajax({
-   			url: "addReply.hm",
+   			url: "addReply.fr",
    			data: {rContent:rContent, refbId: refbId, bCode:bCode},
    			type: "post",
    			success: function(data){
