@@ -1,5 +1,6 @@
 package com.project.bangpool.member.model.service;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,5 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.deleteMember(sqlSession, m);
 	}
 
-
+	
 }

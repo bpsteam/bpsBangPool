@@ -356,25 +356,37 @@
 										<br>
 										<br>
 										<br>
-										<br>
+										<br> 
 									</div>
 									<div class="row">
 										<div class="col-sm-6">
-											<label>지역</label> <select
+											<label>메이트</label>
+											<select id="mBcode" 
 												class="form-control margin-bottom-20">
+												<option value="">선택</option>
+												<option value="RMBCODE">룸메이트</option>
+												<option value="HMBCODE">하우스메이트</option>
+												<option value="FMBCODE">신입생메이트</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<label>지역</label> 
+											<select id="mLocation" class="form-control margin-bottom-20">
 												<option value="">선택하세요</option>
-												<option value="서울">서울</option>
-												<option value="인천/부천">인천/부천</option>
-												<option value="수원/경기">수원/경기</option>
-												<option value="대구/경북">대구/경북</option>
-												<option value="부산/경남">부산/경남</option>
-												<option value="충청/강원">충청/강원</option>
-												<option value="광주/전라">광주/전라</option>
+												<option value="SEOUL">서울</option>
+												<option value="INC">인천/부천</option>
+												<option value="SU">수원/경기</option>
+												<option value="DAE">대구/경북</option>
+												<option value="BU">부산/경남</option>
+												<option value="CHUNG">충청/강원</option>
+												<option value="GWANG">광주/전라</option>
 											</select>
 										</div>
 										<div class="col-sm-6">
-											<label>상대 성별</label> <select
-												class="form-control margin-bottom-20">
+											<label>상대 성별</label> 
+											<select id="mReqgender" class="form-control margin-bottom-20">
 												<option value="">선택하세요</option>
 												<option value="무관">무관</option>
 												<option value="남성">남성</option>
@@ -384,8 +396,8 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-6">
-											<label>주거형태</label> <select
-												class="form-control margin-bottom-20">
+											<label>주거형태</label> 
+											<select id="mLivingType"class="form-control margin-bottom-20">
 												<option value="">선택하세요</option>
 												<option value="단독주택">단독주택</option>
 												<option value="빌라">빌라</option>
@@ -394,8 +406,8 @@
 											</select>
 										</div>
 										<div class="col-sm-6">
-											<label>방갯수</label> <select
-												class="form-control margin-bottom-20">
+											<label>방갯수</label> 
+											<select id="mRoom" class="form-control margin-bottom-20">
 												<option value="">선택하세요</option>
 												<option value="원룸">원룸</option>
 												<option value="투룸">투룸</option>
@@ -404,7 +416,7 @@
 											</select>
 										</div>
 									</div>
-									<div class="row">
+									<!-- <div class="row">
 										<div class="col-sm-6">
 											<label>반려동물 유무</label> <select
 												class="form-control margin-bottom-20">
@@ -415,14 +427,14 @@
 												<option value="11p">그 외 OK</option>
 											</select>
 										</div>
-									</div>
+									</div> -->
 
 
 
 									<div class="row">
 										<div class="col-lg-8"></div>
 										<div class="col-lg-4 text-right">
-											<button class="btn btn-primary" type="submit">매칭하기</button>
+											<button class="btn btn-primary" type="submit" id="matchingBtn">매칭하기</button>
 										</div>
 									</div>
 									<hr>
@@ -556,12 +568,35 @@
 							section_matching.style.display = "none";
 						}
 
-						window.onclick = function(
-								event) {
+						window.onclick = function(event) {
 							if (event.target == section_matching) {
 								section_matching.style.display = "none";
 							}
 						}
+						
+						
+						$("#matchingBtn").on("click", function(){
+							var mBcode = $("#mBcode option:selected").val();
+							var mLocation = $("#mLocation option:selected").val();
+							/* var mReqgender = $("#mReqgender option:selected").val();
+							var mLivingType = $("#mLivingType option:selected").val();
+							var mRoom = $("#mRoom option:selected").val(); */
+							console.log(mBcode);
+							
+							$.ajax({
+								url: "matchingList.mc",
+								data: {mBcode:mBcode, mLocation:mLocation},
+								type: "post",
+								success: function(){
+									alert("ajax 갔다오기성공");
+								},
+								error: function() {
+									alert("갔다오기실패..");
+								}
+							});
+							
+						});
+						
 					</script>
                         <br><br>
                         <div class="panel panel-default">

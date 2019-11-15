@@ -1,5 +1,11 @@
 package com.project.bangpool.member.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.project.bangpool.member.model.exception.MemberException;
 import com.project.bangpool.member.model.service.MemberService;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 
 @Controller
@@ -132,6 +143,9 @@ public class MemberController {
 		}
 		
 	}
+
+	
+
 
 	
 }
