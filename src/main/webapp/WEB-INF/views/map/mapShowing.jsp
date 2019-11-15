@@ -8,22 +8,27 @@
 </head>
 <body>
 	<div id="map" style="width:500px;height:400px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637"></script>
+	<br><a href="mapAddress.map">주소로 좌표 얻어내는 Page</a>
+	<br><a href="mapKeyWordSC.map">키워드로 주소검색 Page</a>
+	<br><a href="#">미정</a>
+	<br><a href="#">미정</a>
+	<br><a href="#">미정</a>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637&libraries=services,clusterer,drawing""></script>
 	<script>
 		// start 지도 생성
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
 			center: new kakao.maps.LatLng(37.498993, 127.0307203), //지도의 중심좌표.
-			level: 3 //지도의 레벨(확대, 축소 정도)
+			level: 6 //지도의 레벨(확대, 축소 정도)
 		};
 	
 		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 		// end 지도 생성
 		
-		
+		//-----------------지도에 마커 하나를 표시하는 로직-----------------------------
 		// TODO 마커에 표시된 위치를 클릭하면 해당 게시판으로 이동하게한다.
 		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(37.498993, 127.0307203); 
+		var markerPosition = new kakao.maps.LatLng(37.498993, 127.0307203); 
 
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
@@ -36,7 +41,7 @@
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);
 		
-		
+		// ------------------------------- 지도의 원을 표시하는 로직 ------------------------------		
 		// 지도에 표시할 원을 생성합니다
 		var circle = new kakao.maps.Circle({
 		    center : new kakao.maps.LatLng(37.498993, 127.0307203),  // 원의 중심좌표 입니다 
@@ -72,7 +77,7 @@
 		
 		// 지도에 선을 표시합니다 
 		polyline.setMap(map);  
-
+		
 	</script>
 </body>
 </html>

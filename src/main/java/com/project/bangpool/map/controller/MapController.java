@@ -10,4 +10,14 @@ public class MapController {
 	public String mapShowing() {
 		return "mapShowing";
 	}
+	
+	@RequestMapping("mapAddress.map")
+	public String mapAddress() {
+		return "mapAddress";
+	}
+	
+	@RequestMapping("mapKeyWordSC.map")
+	public String mapKeyWordSC() {
+		return "mapKeyWordSC";
+	}
 }
