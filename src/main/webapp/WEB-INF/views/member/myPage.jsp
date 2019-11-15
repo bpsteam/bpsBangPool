@@ -252,7 +252,7 @@
                                                 </div> -->
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/member_confirm.php?url=register_form.php" class="btn btn-lightgray btn-sm btn-block">
+                                                        <a href="mupConfirm.me" class="btn btn-lightgray btn-sm btn-block">
                                                             정보수정
                                                         </a>
                                                     </div>
