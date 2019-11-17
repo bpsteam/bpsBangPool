@@ -53,10 +53,10 @@
 						<div class="page-content">
 
 							<div class="text-center" style="margin: 15px 0px;">
-								<h3 class="div-title-underline-bold border-color">책임의 한계와
-									법적고지</h3>
+								<h2 class="div-title-underline-bold border-color" >책임의 한계와
+									법적고지</h2>
 							</div>
-
+<br>
 							<div class="article-title" style="padding-top: 0px;">1. 책임의
 								한계</div>
 
