@@ -14,7 +14,7 @@
   	<insert id="insertMember" parameterType="Member" >
   		insert into member 
   		values (member_seq.nextval, default, #{email}, #{pwd}, #{name}, #{nickname},
-  				#{gender}, #{birth}, #{address}, #{phone}, default, sysdate, sysdate )
+  				#{gender}, #{birth}, #{address}, #{phone}, default, sysdate, sysdate, #{snsId} )
   	</insert>
 
 	<update id="deleteMember" parameterType="Member">
@@ -31,6 +31,12 @@
 	<select id="checkNickDup" parameterType="string" resultType="_int">
 		select count(*) from member
 		where nickname=#{nickname}
+	</select>
+	
+	<select id="snsLogin" parameterType="Member" resultType="Member">
+		select*from member
+		where snsid=#{snsId}
+		and mStatus='Y'
 	</select>
 
 </mapper>

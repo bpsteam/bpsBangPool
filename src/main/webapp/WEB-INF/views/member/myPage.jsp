@@ -476,7 +476,7 @@
                                             <div class="profile">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" target="_blank" class="win_memo" title="사진등록">
                                                     <div class="photo pull-left">
-                                                        <img src="http://myroom.oceanmate.co.kr/thema/Basic/widget/basic-outlogin/img/photo.png">
+                                                        <img class="img-circle" style="width:80px" src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
                                                     </div>
                                                 </a>
                                                 <h4>${ loginUser.nickname }

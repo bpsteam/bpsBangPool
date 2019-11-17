@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>정보 수정 페이지</title>
 
-  
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<script src="${contextPath}/resources/js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
@@ -55,7 +57,7 @@
 									<label class="col-sm-2 control-label" for="reg_mb_id">
 									<b>아이디</b><strong class="sound_only">*</strong></label>
 									<div class="col-sm-5" style="position:relative">
-										<input type="text" name="mb_id" value="khajsfirepunch"
+										<input type="text" name="mb_id" value="${ loginUser.email }"
 											id="reg_mb_id" readonly class="form-control input-sm"
 											 maxlength="20"> 
 									<span class="text-muted">	영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요.</span>
@@ -66,14 +68,14 @@
 									<label class="col-sm-2 control-label" for="reg_mb_password"><b>비밀번호</b><strong
 										class="sound_only">*</strong></label>
 									<div class="col-sm-3">
-										<input type="password" name="mb_password" id="reg_mb_password"
+										<input type="password" name="pwd" id="pwd"
 											class="form-control input-sm" maxlength="20">
 									</div>
 									<label class="col-sm-2 control-label" for="reg_mb_password_re"><b>비밀번호
 											확인</b><strong class="sound_only">*</strong></label>
 									<div class="col-sm-3">
-										<input type="password" name="mb_password_re"
-											id="reg_mb_password_re" class="form-control input-sm"
+										<input type="password" name="pwd2"
+											id="pwd2" class="form-control input-sm"
 											maxlength="20"> 
 									</div>
 								</div>
@@ -113,7 +115,7 @@
 								<div class="form-group has-feedback col-sm-12">
 									<label class="col-sm-2 control-label" for="reg_mb_hp"><b>휴대폰번호</b></label>
 									<div class="col-sm-3">
-										<input type="text" name="mb_hp" value="010-8787-3759"
+										<input type="tel" name="phone" value="${ loginUser.phone }"
 											id="reg_mb_hp" class="form-control input-sm" maxlength="20">
 									</div>
 								</div>
@@ -132,11 +134,14 @@
 								<div class="form-group has-feedback col-sm-12">
 									<label class="col-sm-2 control-label" for="reg_mb_email"><b>주소</b></label>
 									<div class="col-sm-5">
-										<input type="hidden" name="old_email"
-											value="ajs15010120@gmail.com"> <input type="text"
-											name="mb_email" value=""
-											id="reg_mb_email" 
-											class="form-control input-sm email" size="70" maxlength="100">
+										 <input type="search" class="form-control postcodify_postcode5" id="post" name="post" placeholder="zipCode"
+				                  style="width:50%;float:left">
+				               
+				                <button class="btn btn-sm btn-blue btn-sm" type="button" id="postcodify_search_button" style="float:left;margin-left:10px" >검색</button>
+								<br><br>
+				                <input type="text" class="form-control margin-bottom-20 postcodify_address" name="address1" id="address1" placeholder="address1">
+				                <input type="text" class="form-control margin-bottom-20 postcodify_extra_info" name="address2" id="address2" placeholder="address2">
+				                   
 									</div>
 								</div>
 
@@ -145,16 +150,36 @@
 								<div class="form-group has-feedback col-sm-12">
 									<label class="col-sm-2 control-label" for="reg_mb_hp"><b>성별</b></label>
 									<div class="col-sm-3">
-										<input type="text" name="mb_hp" value="남성"
-											id="reg_mb_hp" class="form-control input-sm" maxlength="20">
+										 <select class="form-control margin-bottom-20" name="gender">
+                                	<option value="남성">남성</option>
+                                	<option value="여성">여성</option>
+                                </select>
 									</div>
 								</div>
 								<div class="form-group has-feedback col-sm-12">
 									<label class="col-sm-2 control-label" for="reg_mb_hp"><b>생년월일</b></label>
-									<div class="col-sm-3">
-										<input type="text" name="mb_hp" value="1990-11-11"
-											id="reg_mb_hp" class="form-control input-sm" maxlength="20">
-									</div>
+									<div class="col-sm-2">
+	                                <select class="form-control margin-bottom-20" name="year" >
+	                                <% for(int i=1970; i<2001; i++) {%>
+	                                	<option value="<%=i %>"><%=i %>년</option>
+	                                <%} %>
+	                                </select>
+	                          	 </div>
+	                     	 	<div class="col-sm-2">
+	                                <select class="form-control margin-bottom-20" name="month">
+	                                <% for(int i=1; i<13; i++) {%>
+	                                	<option value="<%=i %>"><%=i %>월</option>
+	                                <%} %>
+	                                </select>
+	                               </div>
+	         			
+	         					 <div class="col-sm-2">
+	                                <select class="form-control margin-bottom-20" name="date">
+	                                <% for(int i=1; i<32; i++) {%>
+	                                	<option value="<%=i %>"><%=i %>일</option>
+	                                <%} %>
+	                                </select>
+                                </div>
 								</div>
 								
 								
@@ -184,7 +209,16 @@
         
         </div>
         <!-- === END CONTENT === -->
+         <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+        
         <script>
+        
+        // 검색 단추를 누르면 팝업 레이어가 열리도록 설정한다.
+        $(function(){
+           $("#postcodify_search_button").postcodifyPopUp();
+        });
+        
+        
 			var flen = 0;
 			function add_file(delete_code) {
 				var upload_count = 3;
@@ -236,6 +270,28 @@
 				}
 			}
 			
+			
+			   /* 비밀번호 확인 */
+		    $('#pwd2').change(function(){
+			    $('#pwd').change(function(){
+			        if($('#pwd2').val()==$(this).val()){
+			            $('#pwdResult').html("비밀번호 확인 값이 일치합니다.").css('color','green');
+
+			        }else{
+			            $('#pwdResult').html("비밀번호 확인 값이 불일치합니다.").css('color','red');
+			            $('#pwd2').select();
+
+			        }
+			    });
+		        if($('#pwd').val()==$(this).val()){
+		            $('#pwdResult').html("비밀번호 확인 값이 일치합니다.").css('color','green');
+
+		        }else{
+		            $('#pwdResult').html("비밀번호 확인 값이 불일치합니다.").css('color','red');
+		            $('#pwd2').select();
+
+		        }
+		    });
 			
 			
 		</script>

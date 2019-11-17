@@ -237,6 +237,21 @@
 		<artifactId>javax.mail</artifactId>
 		<version>1.6.1</version>
 	</dependency>
+	
+	<!-- NAVER POM -->
+	<dependency>
+		<groupId>com.github.scribejava</groupId>
+		<artifactId>scribejava-core</artifactId>
+		<version>2.8.1</version>
+	</dependency>
+	<!-- json simple -->
+<!-- https://mvnrepository.com/artifact/com.github.jsurfer/jsurfer-jsonsimple -->
+<dependency>
+  <groupId>com.github.jsurfer</groupId>
+  <artifactId>jsurfer-jsonsimple</artifactId>
+  <version>1.4.1</version>
+</dependency>
+	
 		
 		      
 	</dependencies>

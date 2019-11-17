@@ -33,7 +33,14 @@
                                 <label>회원ID(E-Mail)
                                     <span class="color-red">*</span>
                                 </label>
-                                <input class="form-control margin-bottom-0" type="text" name="email" id="email">
+                                <c:if test="${ ! empty snsMember }">
+                                <input class="form-control margin-bottom-0" type="text" name="email" value="${ snsMember.email }" id="email">
+                                <input type="hidden" name="snsId" value="${ snsMember.snsId }"/>
+                                
+                                </c:if>
+                                <c:if test="${ empty snsMember }">
+                                <input class="form-control margin-bottom-0" type="text" name="email"  id="email">
+                                </c:if>
                                   <span class="guide ok margin-bottom-0" style="color:blue">이 아이디는 사용 가능합니다.</span>
                  				 <span class="guide error margin-bottom-0" style="color:red">이 아이디는 사용할 수 없습니다.</span>
                  				 <input type="hidden" name="idDuplicateCheck" id="idDuplicateCheck" value="0">
@@ -60,12 +67,21 @@
                                 <label class="margin-top-20" id="topmarginpwd">이름
                                     <span class="color-red">*</span>
                                 </label>
+                                <c:if test="${ ! empty snsMember }">
+                                <input class="form-control margin-bottom-20" type="text" value="${snsMember.name }" name="name">
+                                </c:if>
+                                <c:if test="${ empty snsMember }">
                                 <input class="form-control margin-bottom-20" type="text" name="name">
-                                
+                                </c:if>
                                 <label>닉네임
                                     <span class="color-red">*</span>
                                 </label>
+                                <c:if test="${ ! empty snsMember }">
+                                <input class="form-control margin-bottom-0" value="${ snsMember.nickname }" type="text" name="nickname" id="nickname">
+                                </c:if>
+                                <c:if test="${ empty snsMember }">
                                 <input class="form-control margin-bottom-0" type="text" name="nickname" id="nickname">
+                                </c:if>
                                   <span class="nickguide ok margin-bottom-0" style="color:blue">사용 가능한 닉네임입니다.</span>
                  				 <span class="nickguide error margin-bottom-0" style="color:red">사용 불가능한 닉네임입니다.</span>
                  				 <input type="hidden" name="nicknameDuplicateCheck" id="nicknameDuplicateCheck" value="0">
@@ -75,7 +91,7 @@
                                      <span class="color-red">*</span> 
                                 </label>
                                 <!-- <input class="form-control margin-bottom-20" type="text"> -->
-                                <select class="form-control margin-bottom-20" name="gender">
+                                <select class="form-control margin-bottom-20" id="gender" name="gender">
                                 	<option value="남성">남성</option>
                                 	<option value="여성">여성</option>
                                 </select>
@@ -87,6 +103,7 @@
                               <div class="row">
                              	 <div class="col-sm-3">
 	                                <select class="form-control margin-bottom-20" style="width:80px" name="year" >
+	                             	<option value="">year</option>
 	                                <% for(int i=1970; i<2001; i++) {%>
 	                                	<option value="<%=i %>"><%=i %>년</option>
 	                                <%} %>
@@ -94,6 +111,7 @@
 	                          	 </div>
 	                     	 	<div class="col-sm-3">
 	                                <select class="form-control margin-bottom-20" style="width:80px" name="month">
+	                              	<option value="">month</option>
 	                                <% for(int i=1; i<13; i++) {%>
 	                                	<option value="<%=i %>"><%=i %>월</option>
 	                                <%} %>
@@ -102,6 +120,7 @@
 	         			
 	         					 <div class="col-sm-3">
 	                                <select class="form-control margin-bottom-20" style="width:80px" name="date">
+	                              	<option value="">date</option>
 	                                <% for(int i=1; i<32; i++) {%>
 	                                	<option value="<%=i %>"><%=i %>일</option>
 	                                <%} %>
@@ -164,6 +183,17 @@
        $("#postcodify_search_button").postcodifyPopUp();
    		$(".guide").hide();
    		$(".nickguide").hide();
+   		
+   		
+   		var gender = "${snsMember.gender}";
+   		console.log(gender);
+   		//$("#셀렉트ID")val("1번").attr("selected", "selected");
+   		if(gender=='여성') {
+   			$('#gender').val("여성").attr("selected", "selected");
+   		}else{
+   			$('#gender').val("남성").attr("selected", "selected");
+   		}
+   		
     });
     
     $("#nickname").on("keyup", function(){
