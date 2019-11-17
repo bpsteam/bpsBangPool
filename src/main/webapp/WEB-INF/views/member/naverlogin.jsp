@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>네이버로그인</title>
+    <title>로그인</title>
 </head>
 <body>
 
@@ -63,6 +63,12 @@
 						<div id="naver_id_login" style="text-align: center">
 							<a href="${naverUrl}"> <img width="223"
 								src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
+						</div>
+						<div class="margin-top-20" id="kakao_id_login" style="text-align: center">
+						<%-- 	<a href="${kakaoUrl}">  --%>
+							<img width="223"
+								src="${ contextPath }/resources/assets/img/bps/kakaologo.png" />
+							<!-- 	</a> -->
 						</div>
 					</form>
 				</div>
