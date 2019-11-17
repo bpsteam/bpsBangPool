@@ -229,7 +229,7 @@
                             <!-- <i class="fa-bar-chart fa-4x color-primary animate fadeIn"></i>
                             <h2 class="padding-top-10 animate fadeIn">Placerat facer possim</h2>
                             <p class="animate fadeIn">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.</p> -->
-                         <c:if test="${ empty sessionScope.loginUser }">
+                         <c:if test="${ empty sessionScope.loginUser}">
                                     <form class="login-page" action="login.me" method="post" id="loginForm">
                                         <div class="login-header margin-bottom-30">
                                             <h2>LOGIN</h2>
@@ -353,7 +353,8 @@
                         
                         
 					      </c:if>
-                        
+					      
+					    
                         </div> 
                         <!-- End Icons -->
                     </div>

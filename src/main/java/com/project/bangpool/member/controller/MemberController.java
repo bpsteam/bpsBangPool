@@ -3,7 +3,9 @@ package com.project.bangpool.member.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.project.bangpool.member.model.exception.MemberException;
 import com.project.bangpool.member.model.service.MemberService;
 import com.project.bangpool.member.model.vo.Member;
@@ -23,7 +27,15 @@ import com.project.bangpool.member.model.vo.Member;
 @Controller
 @SessionAttributes("loginUser")
 public class MemberController {
-	
+	 /* NaverLoginBO */
+    private NaverLoginBO naverLoginBO;
+    private String apiResult = null;
+    
+    @Autowired
+    private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+        this.naverLoginBO = naverLoginBO;
+    }
+    
 	@Autowired
 	private MemberService mService;
 	
@@ -50,7 +62,6 @@ public class MemberController {
 		return "redirect:home.do";
 	}
 	
-	
 	//로그아웃 용 컨트롤러 2
 		@RequestMapping("logout.me")
 		public String logout(SessionStatus status) {
@@ -67,8 +78,13 @@ public class MemberController {
 	}
 	
 	@RequestMapping("mInsertView.me")
-	public String memberInsertForm() {
-		return "signUp";
+	public ModelAndView memberInsertForm(@ModelAttribute Member snsMember) {
+		if(snsMember != null) {
+			System.out.println("약관페이지에서 넘어온 정보 : "+snsMember);
+			return new ModelAndView("signUp").addObject("snsMember", snsMember);
+		}else {
+			return new ModelAndView("signUp");
+		}		
 	}
 	
 	@RequestMapping("minsert.me")
@@ -79,9 +95,6 @@ public class MemberController {
 			   @RequestParam("year") String year, 
 			   @RequestParam("month") String month,
 			   @RequestParam("date") String date) {
-		
-		if(month.length()<2) month = "0"+month;
-		if(date.length()<2) date = "0"+date;
 		
 		m.setBirth(year+"-"+month+"-"+date);
 		m.setAddress(post+"/"+address1+"/"+address2);
@@ -102,61 +115,122 @@ public class MemberController {
 	
 	@RequestMapping("mypage.me")
 	public String myPageView() {
-		
-		
-		
 		return "myPage";
 	}
 	
-	@RequestMapping("loginView.me")
-	public String naverloginView() {
-		return "naverlogin";
-	}
+//	@RequestMapping("loginView.me")
+//	public String naverloginView() {
+//		return "naverlogin";
+//	}
 	
-	@RequestMapping("mdelete.me")
-	public String memberDelete(Model model, SessionStatus status) {
-		
-		Member m = (Member)model.getAttribute("loginUser");
-		
-		System.out.println("탈퇴 : "+m);
-		
-		int result = mService.deleteMember(m);
-		
-		if(result>0) {
-			status.setComplete();
-			return "redirect:home.do";
-		}else {
-			throw new MemberException("탈퇴 실패.");
-		}
-		
-	}
+	 //로그인 첫 화면 요청 메소드
+    @RequestMapping(value = "loginView.me", method = { RequestMethod.GET, RequestMethod.POST })
+    public String login(Model model, HttpSession session) {
+        
+        /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+    	System.out.println("???"+session);
+    	String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+        
+        //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+        //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+        System.out.println("네이버:" + naverAuthUrl);
+        
+        //네이버 
+        model.addAttribute("naverUrl", naverAuthUrl);
+
+        /* 생성한 인증 URL을 View로 전달 */
+        return "naverlogin";
+    }
+
+    //네이버 로그인 성공시 callback호출 메소드
+    @RequestMapping(value = "callback.me", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView callback(Model model, @RequestParam String code, 
+    					@RequestParam String state, HttpSession session,HttpServletResponse response)
+            throws IOException {
+    	
+		response.setContentType("application/json; charset=utf-8");
+
+        System.out.println("여기는 callback");
+        OAuth2AccessToken oauthToken;
+        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+        //로그인 사용자 정보를 읽어온다.
+        apiResult = naverLoginBO.getUserProfile(oauthToken);
+        System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+        
+        
+//        model.addAttribute("naverLoginUser", apiResult);
+        System.out.println("naverLoginUser"+apiResult);
+        /* 네이버 로그인 성공 페이지 View 호출 */
+      JsonStringParse jsonparse = new JsonStringParse(); 
+      //"response":{"id":"65345837","nickname":"eunji",
+      //"gender":"F","email":"eunjiii_@naver.com","name":"\uad8c\uc740\uc9c0"}}
+      JSONObject jsonobj = jsonparse.stringToJson(apiResult, "response");
+      String snsId = jsonparse.JsonToString(jsonobj, "id");
+      String name = jsonparse.JsonToString(jsonobj, "name");
+      String nickname = jsonparse.JsonToString(jsonobj, "nickname");
+      String gender = jsonparse.JsonToString(jsonobj, "gender");
+      String email = jsonparse.JsonToString(jsonobj, "email");
+      
+
+      Member m = new Member();
+      m.setSnsId(snsId);
+      
+//      System.out.println("이름나와 ? " +name); //나온다
+//      try {
+//          vo = service.naverLogin(vo);
+//      } catch (Exception e) {
+//          // TODO Auto-generated catch block
+//          e.printStackTrace();
+//      }
+      
+      	Member loginUser = mService.snsLogin(m);
+      	System.out.println("snslogin 디비갔다온거 : "+loginUser);
+      	
+      	if(loginUser !=null) {
+      		model.addAttribute("loginUser", loginUser);
+      		return new ModelAndView("naverSuccess");
+      	}else {
+      		// 여기서 바로 회원가입 창으로 가서 네이버정보 입력시키고 네이버 아이디는 snsid로 집어넣어 
+      		m.setName(name);
+      		m.setNickname(nickname);
+      		if(gender.equals("F"))	m.setGender("여성");
+      		else	m.setGender("남성");
+      		m.setEmail(email);
+      		
+      		System.out.println("회원가입창으로 보낼 네이버 정보 : "+m );
+      		return new ModelAndView("yakwan").addObject("snsMember", m).addObject("naverId",m.getSnsId());
+      	}
+        
+    }
+	
+	
 	
 	@RequestMapping("dupid.me")
-	public void idDuplicateCheck(HttpServletResponse response, @RequestParam("email")String email) throws IOException {
-		
+	public void idDuplicateCheck(HttpServletResponse response, 
+								@RequestParam("email") String email) throws IOException {
 		boolean isUsable = mService.checkIdDup(email) == 0 ? true : false;
-		
+
 		response.getWriter().print(isUsable);
 	}
-	
+
 	@RequestMapping("dupnick.me")
 	public void nicknameDuplicateCheck(HttpServletResponse response, @RequestParam("nickname") String nickname) throws IOException {
-		
+
 		boolean isUsable = mService.checkNickDup(nickname) == 0? true:false;
-		
+
 		response.getWriter().print(isUsable);
 	}
-	
+
 	@RequestMapping("mupConfirm.me")
 	public String updateConfirm () {
 		return "mUpdateConfirm";
 	}
-	
+
 	@RequestMapping("pwdConfirm.me")
 	public String pwdConfirm() {
-		
+
 		return "mUpdateForm";
 	}
-	
-}
 
+
+}

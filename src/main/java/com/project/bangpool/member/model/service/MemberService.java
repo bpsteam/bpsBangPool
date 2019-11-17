@@ -15,5 +15,7 @@ public interface MemberService {
 	int checkIdDup(String email);
 
 	int checkNickDup(String nickname);
+
+	Member snsLogin(Member m);
 	
 }

@@ -42,5 +42,10 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.checkNickDup(sqlSession, nickname);
 	}
 
+	@Override
+	public Member snsLogin(Member m) {
+		return mDAO.snsLogin(sqlSession, m);
+	}
+
 
 }

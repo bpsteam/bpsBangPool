@@ -28,4 +28,8 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.checkNickDup", nickname);
 	}
 
+	public Member snsLogin(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.snsLogin", m);
+	}
+
 }
