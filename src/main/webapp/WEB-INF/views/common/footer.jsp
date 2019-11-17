@@ -67,7 +67,7 @@
                         <div id="footermenu" class="col-md-8">
                             <ul class="list-unstyled list-inline">
                                 <li>
-                                    <a href="#" target="_blank">사이트 소개</a>
+                                    <a href="about.do" target="_blank">사이트 소개</a>
                                 </li>
                                 <li>
                                     <a href="#" target="_blank">이용약관</a>

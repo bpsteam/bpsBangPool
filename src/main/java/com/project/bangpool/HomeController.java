@@ -37,4 +37,8 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("about.do")
+	public String about() {
+		return "common/about";
+	}
 }
