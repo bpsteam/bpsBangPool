@@ -38,6 +38,9 @@
 	    #table td{
 	        width:150px;
 	    }
+	    .social-rss a {
+		  background: url(${contextPath}/resources/assets/img/social_icons/naver.png);
+		}
 	
 	    
     </style>
@@ -215,7 +218,7 @@
                         <div class="col-md-4 no-padding">
                             <ul class="social-icons pull-right">
                                 <li class="social-rss">
-                                    <a href="#" target="_blank" title="RSS"></a>
+                                    <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=5UBafHl3pvkxVL8nbUOG&redirect_uri=http%3A%2F%2Flocalhost%3A9879%2Fbangpool%2Fcallback.me&state=5dc672b7-1400-4338-a2d6-ae6b24257beb" ></a>
                                 </li>
                                 <li class="social-twitter">
                                         <a href="#"class="fa fa-bell-o"></a>
