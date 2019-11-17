@@ -144,7 +144,14 @@ public class MemberController {
         /* 생성한 인증 URL을 View로 전달 */
         return "loginView";
     }
-
+//    
+//    @RequestMapping(value = "naverlogin.me", method = { RequestMethod.GET, RequestMethod.POST })
+//    public String naverlogin(Model model, HttpSession session) {
+//    	String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//	   model.addAttribute("naverUrl", naverAuthUrl);
+//    	return "redirect: callback.me";
+//    }
+    
     //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "callback.me", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView callback(Model model, @RequestParam String code, 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.project.bangpool.member.controller.NaverLoginBO" %>    
+<%@ page import="com.project.bangpool.member.controller.NaverLoginBO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -27,6 +27,8 @@
     <!-- Google Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+   
     <style>
 	    #ultag li {
 	        display:inline;
@@ -223,11 +225,16 @@
                                 </ul>
                             </div>
                         </div>
+                        
+                          <%
+                          NaverLoginBO naverLoginBO = new NaverLoginBO();
+                          String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+						 %>
                        
                         <div class="col-md-4 no-padding">
                             <ul class="social-icons pull-right">
                                 <li class="social-rss">
-                                    <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=5UBafHl3pvkxVL8nbUOG&redirect_uri=http%3A%2F%2Flocalhost%3A9879%2Fbangpool%2Fcallback.me&state=66b05a08-3f12-4ef0-b893-df7109592a4a" ></a>
+                                    <a href="<%=naverAuthUrl %>"></a>
                                 </li>
                                 <li class="social-twitter">
                                         <a href="#"class="fa fa-bell-o"></a>
