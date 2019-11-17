@@ -270,7 +270,7 @@
 								<a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php"
 									target="_blank" class="win_memo" title="사진등록"> 
 									<!-- fa fa-code fa-4x -->
-									<img src="http://myroom.oceanmate.co.kr/thema/Basic/widget/basic-outlogin/img/photo.png">
+									 <img class="img-circle" style="width:80px" src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
 								</a>
 							</div>
 							<div class="login-header margin-bottom-10">
