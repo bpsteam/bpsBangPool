@@ -50,7 +50,7 @@
 						<div class="page-content">
 
 			<div class="text-center" style="margin:15px 0px;">
-			<h2 class="div-title-underline-bold border-color" style="border-bottom: 3px solid red; width:25%; margin:auto">
+			<h2 class="div-title-underline-bold border-color" >
 				서비스 이용약관
 			</h2>
 		</div>

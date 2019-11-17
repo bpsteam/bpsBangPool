@@ -46,7 +46,7 @@
 						<div class="page-content">
 
 							<div class="text-center" style="margin: 15px 0px;">
-								<h2 class="div-title-underline-bold border-color"style="border-bottom: 3px solid red; width:30%; margin:auto">이메일
+								<h2 class="div-title-underline-bold border-color">이메일
 									무단수집거부</h2>
 							</div>
 
