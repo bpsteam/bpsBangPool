@@ -41,7 +41,7 @@
                             <h3 class="margin-bottom-10">바로가기</h3>
                             <ul class="menu">
                                 <li>
-                                    <a class="fa-tasks" href="#">HOME</a>
+                                    <a class="fa-tasks" href="home.do">HOME</a>
                                 </li>
                                 <li>
                                     <a class="fa-users" href="#">ROOMMATE</a>
