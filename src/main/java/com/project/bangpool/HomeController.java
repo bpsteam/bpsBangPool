@@ -41,4 +41,19 @@ public class HomeController {
 	public String about() {
 		return "common/about";
 	}
+	
+	@RequestMapping("provision.do")
+	public String provision() {
+		return "common/provision";
+	}
+	
+	@RequestMapping("rejection.do")
+	public String rejection() {
+		return "common/rejection";
+	}
+	
+	@RequestMapping("responsibility.do")
+	public String responsibility() {
+		return "common/responsibility";
+	}
 }

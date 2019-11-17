@@ -70,13 +70,13 @@
                                     <a href="about.do" target="_blank">사이트 소개</a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">이용약관</a>
+                                    <a href="provision.do" >이용약관</a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">이메일 무단수집거부</a>
+                                    <a href="rejection.do" >이메일 무단수집거부</a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">책임의 한계와 법적고지</a>
+                                    <a href="responsibility.do" >책임의 한계와 법적고지</a>
                                 </li>
                             </ul>
                         </div>
