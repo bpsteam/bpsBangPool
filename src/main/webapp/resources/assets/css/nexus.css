@@ -2128,7 +2128,7 @@ ul.social-icons.color .social-facebook a {
   background-color: #3b5998;
 }
 ul.social-icons.color .social-twitter a {
-  background-color: #48c4d2;
+  background-color: #ffe812;
 }
 ul.social-icons.color .social-googleplus a {
   background-color: #d94a39;
@@ -2233,10 +2233,10 @@ ul.social-icons li a:hover {
   background-color: #3b5998 !important;
 }
 .social-twitter a {
-  background: url(../img/social_icons/twitter.png);
+  background: url(../img/social_icons/kakao.png);
 }
 .social-twitter a:hover {
-  background-color: #48c4d2 !important;
+  background-color: #ffe812 !important;
 }
 .social-googleplus a {
   background: url(../img/social_icons/googleplus.png);

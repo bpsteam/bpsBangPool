@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.project.bangpool.member.controller.NaverLoginBO" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -42,6 +43,13 @@
 		  background: url(${contextPath}/resources/assets/img/social_icons/naver.png);
 		}
 	
+	    .social-twitter a {
+		  background: url(${contextPath}/resources/assets/img/social_icons/kakao.png);
+		}
+		.social-twitter a:hover {
+		  background-color: #ffe812 !important;
+		}
+			
 	    
     </style>
 </head>
@@ -215,6 +223,7 @@
                                 </ul>
                             </div>
                         </div>
+                       
                         <div class="col-md-4 no-padding">
                             <ul class="social-icons pull-right">
                                 <li class="social-rss">
