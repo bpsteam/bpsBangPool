@@ -350,13 +350,16 @@
                                 <div class="print-hide view-btn text-right"
                                     style="background-color: white; padding-right: 15px; padding-bottom: 15px;">
                                     <div class="form-group">
+                                    <c:if test="${loginUser.nickname == board.fbWriter }">
                                         <a href="${ bdelete }" class="btn btn-danger btn-sm" >
                                             <i class="fa fa-times"></i><span class="hidden-xs"> 삭제</span>
                                         </a>
+                                      </c:if>
+                                      <c:if test="${loginUser.nickname == board.fbWriter }">
                                         <a href="${ bupView }" class="btn btn-warning btn-sm" >
                                             <i class="fa fa-plus"></i><span class="hidden-xs"> 수정</span>
                                         </a>
-                                        
+                                          </c:if>
                                         <a href="${ blist }" class="btn btn-success btn-sm">
                                             <i class="fa fa-bars"></i><span class="hidden-xs"> 목록</span>
                                         </a>
