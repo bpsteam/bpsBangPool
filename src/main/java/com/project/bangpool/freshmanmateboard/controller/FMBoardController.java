@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,7 @@ import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.service.MailService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 
 @Controller
@@ -535,7 +537,29 @@ public class FMBoardController {
 		else return new ResponseEntity<String>("false", HttpStatus.OK);
 	}
 
-
+	
+	// 여기부터 김상욱 꺼
+	
+	@RequestMapping("topList.fm")
+	public void boardTopList(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<FMBoard> list = fbService.selectTopList();
+		
+		JSONArray jArr = new JSONArray();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(list);
+		
+		for(FMBoard b : list) {
+			b.setFbTitle(URLEncoder.encode(b.getFbTitle(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
+	
 	
 }
 

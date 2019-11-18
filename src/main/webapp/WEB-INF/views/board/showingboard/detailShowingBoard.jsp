@@ -19,7 +19,7 @@
                     <div class="row margin-vert-30">
                         <div class="col-md-12">
                             <!-- 게시글 제목 -->
-                            <h2>${ showing.sbtitle }</h2>
+                            <h2 style="color:#33747a;"><b>${ showing.sbtitle }</b></h2>
                             <div class="row">
                                 <div class="col-md-6 animate fadeIn">
                                     <div>
@@ -34,27 +34,27 @@
 										</div>
                                     </div>
                                     <hr>
+                                    
+                                </div>
+                                <div class="col-md-6 margin-bottom-10 animate fadeInRight" style="width: 500px;">
+                                    <h3 class="padding-top-10 pull-left">${ showing.sbwriter }</h3>
+                                    <div class="clearfix"></div>
+                                    <h4 style="color:#EB9F28; font-size:x-large;"> <b>${ showing.sbtitle }</b></h4>
+                                    <span>${ showing.sbcontent }</span>
+                                    <hr>
                                     <div style="display: flex; padding-top:20px;">
-                                        <p><img src="resources/assets/img/thumbs/thumbs-up.png" style="width: 20px; height: 20px; cursor: pointer; margin-left: 5px;" alt="thumbs-up">&nbsp;&nbsp;<span>1</span></p>    
-                                        <p><img src="resources/assets/img/thumbs/thumb-down.png" style="width: 20px; height: 20px; cursor: pointer; margin-left: 5px;" alt="thumb-down">&nbsp;&nbsp;<span>2</span></p>
-                                        <p><img id="heartButton" src="resources/assets/img/thumbs/heart.png" style="width: 20px; height: 20px; cursor: pointer; margin-left: 5px;" alt="thumb-down" onclick="heartButton(this)"></p>
-                                        <p><i style="font-size:24px; color:black; cursor:pointer; margin-left: 10px;" class="fa" onclick="location.href='updateView.sb?sbId=${showing.sbid}&page=${page}'">&#xf040;</i></p>
-                                        <div class="col-md-9" ><img onclick="$('.more').css('display', 'block')"  src="resources/assets/img/thumbs/more.png" class="pull-right" style="width: 20px; height: 20px; cursor: pointer; margin-left: 5px; " alt="more" onclick="more()">
-                                            <br>
-                                            <div class="pull-right more" style="display: none; cursor:pointer;">신고하기</div><br>
-                                            <div class="pull-right more" style="display: none; cursor:pointer;" onclick="location.href='deleteShowing.sb?sbId=${ showing.sbid }'" >게시글 삭제하기</div>
+                                        <i class="fa-thumbs-o-up" style="font-size:24px; cursor: pointer; margin-left: 5px;" ></i>&nbsp;&nbsp;<span>1</span>&nbsp;&nbsp;    
+                                        <i class="fa-thumbs-o-down" style="font-size:24px;cursor: pointer; margin-left: 5px;"></i>&nbsp;&nbsp;<span>2</span>
+                                        <!-- <p><img id="heartButton" src="resources/assets/img/thumbs/heart.png" style="width: 20px; height: 20px; cursor: pointer; margin-left: 5px;" alt="thumb-down" onclick="heartButton(this)"></p> -->
+                                        
+                                        <div class="col-md-9" ><i class="fa-ellipsis-h pull-right" style="font-size: 24px; cursor: pointer; margin-left: 5px; display:flex;" onclick="$('.more').css('display', 'block')"></i>
+                                            <button type="button" class="btn btn-primary btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;"onclick="location.href='updateView.sb?sbId=${showing.sbid}&page=${page}'">수정하기</button>
+                                            <button type="button" class="btn btn-warning btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;">신고하기</button>
+                                            <button type="button" class="btn btn-danger btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;" onclick="location.href='deleteShowing.sb?sbId=${ showing.sbid }'">삭제하기</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 margin-bottom-10 animate fadeInRight" >
-                                    <h3 class="padding-top-10 pull-left">${ showing.sbwriter }</h3>
-                                    <div class="clearfix"></div>
-                                    <h4><em>${ showing.sbtitle }</em></h4>
-                                    <span>${ showing.sbcontent }</span>
-                                </div>
-                                
                             </div>
-                            <hr>
                                 <!-- 로그인 한 회원 -->
                                 <div style="display: flex;">
                                     <p style="font-size: 25px; margin-top:15px;"><b>${ loginUser.name }</b></p>
@@ -125,10 +125,9 @@
         			console.log(data);
         			if(data.length > 0){
         				for (var i in data){
-        					/* background-color: #f4f4f4; */
         					$div1 =  $("<div style='padding-top: 10px;  margin-top: 10px; border-radius: 0.5em;'>");
         					$div2 =  $("<div style='display: flex; padding-left:10px;'>");
-        					$img =   $("<img src='resources/assets/img/thumbs/user.svg' style='padding-left:10px; margin-top:0px; width 40px; height:40px;'>");
+        					$img =   $("<img src='resources/assets/img/user.png' style='padding-left:10px; margin-top:0px; width 40px; height:40px;'>");
         					$span1 = $("<span style='padding-left:5px;'>").text(decodeURIComponent(data[i].rWriter));
         					
         					$delete =$("<a location.href=''>");

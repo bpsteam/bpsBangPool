@@ -86,7 +86,8 @@
                                 |&nbsp;&nbsp;&nbsp;<a href="termsNConditions.me" style="color:black">회원가입</a>&nbsp;&nbsp;&nbsp;
                              </c:if>   
                             <c:if test="${ !empty sessionScope.loginUser }">
-                                |&nbsp;&nbsp;&nbsp;<a href="mypage.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
+                                <!-- |&nbsp;&nbsp;&nbsp;<a href="mypage.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp; -->
+                                |&nbsp;&nbsp;&nbsp;<a href="mlevel.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
                              </c:if>   
                                 
                                 |&nbsp;&nbsp;&nbsp;<a href="#" style="color:black">정보찾기</a>
@@ -217,6 +218,9 @@
                                             <li>
                                                 <a href="shblistView.se">이케요</a>
                                             </li>
+                                            <li>
+                                                <a href="srListView.sr">나눔</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
@@ -230,6 +234,9 @@
 			                                </li>
 			                                <li>
 			                                    <a href="frblist.fr">자유게시판</a>
+			                                </li>
+                                      <li>
+			                                    <a href="mapView.map">지도</a>
 			                                </li>
 		                           		 </ul>
                                     </li>

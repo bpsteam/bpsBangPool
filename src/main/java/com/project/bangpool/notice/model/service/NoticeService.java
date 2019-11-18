@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.notice.model.vo.Notice;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 public interface NoticeService {
 
@@ -26,7 +27,7 @@ public interface NoticeService {
 
 	int updateFileNotice(Notice n, Notice notice);
 
-
+	ArrayList<Notice> selectTopList();
 	
 
 }
