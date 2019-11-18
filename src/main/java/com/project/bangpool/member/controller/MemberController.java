@@ -241,6 +241,25 @@ public class MemberController {
 
 		return "mUpdateForm";
 	}
+  
+  	@RequestMapping("mdelete.me")
+	public String memberDelete(Model model, SessionStatus status) {
+		
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		System.out.println("탈퇴 : "+m);
+		
+		int result = mService.deleteMember(m);
+		
+		if(result>0) {
+			status.setComplete();
+			return "redirect:home.do";
+		}else {
+			throw new MemberException("탈퇴 실패.");
+		}
+		
+	}
 
 
 }
+

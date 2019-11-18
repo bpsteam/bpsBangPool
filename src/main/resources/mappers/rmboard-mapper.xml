@@ -193,5 +193,28 @@
 			where rownum <= 8
 		]]>
 	</select>
-</mapper>
+	
+	<!-- 매칭리스트 -->
+	<select id="selectMatching" parameterType="hashmap" resultType="RMBoard">
+		select *
+		from roomate_board
+		where rbstatus = 'Y'
+		<if test=" mLoc != null" >
+		and rLocation like '%' || #{mLoc} || '%'
+		</if>
+		<if test=" mReq != null" >
+		or rReqGender = #{mReq}
+		</if>
+		<if test=" mLiv != null">
+		or rLivingType = #{mLiv} 
+		</if>
+		<if test=" mRom != null">
+		or rRoomCount = #{mRom} 
+		</if>
+		
+		 
+		
+	</select>
+	
+	</mapper>
 
