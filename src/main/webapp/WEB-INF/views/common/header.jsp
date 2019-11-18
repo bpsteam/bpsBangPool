@@ -220,6 +220,9 @@
 			                                <li>
 			                                    <a href="frblist.fr">자유게시판</a>
 			                                </li>
+                                      <li>
+			                                    <a href="mapView.map">지도</a>
+			                                </li>
 		                           		 </ul>
                                     </li>
                                 </ul>

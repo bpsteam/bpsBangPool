@@ -36,7 +36,7 @@
 			                            </div>
 			                            <span class="pull-center" style="padding-top:10px;"><b>${ sb.sbtitle }</b></span><br>
 			                            <span>
-				                            <span class="pull-left" style="padding-left:10px;">${ sb.sbwriter }</span>
+				                            <span class="pull-left" style="padding-left:10px; color:#33747a;">${ sb.sbwriter }</span>
 				                            <span class="pull-right" style="padding-right:10px;">${ sb.sbcount }</span>
 				                            <i class="glyphicon glyphicon-eye-open pull-right" style="padding-top:4px; padding-right:4px;"></i>
 			                            </span>
