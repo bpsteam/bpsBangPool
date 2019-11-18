@@ -96,6 +96,17 @@
 		and shbcategory='장식장'
 		order by shbid desc
 	</select>
+	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultType="SecondHandBoard">
+		<![CDATA[
+			select *
+			from (select *
+				  from secondhand_board
+				  where shbstatus = 'Y'
+				  order by shbcreatedate desc)
+			where rownum <= 6
+		]]>
+	</select>
 	
 	
 </mapper>

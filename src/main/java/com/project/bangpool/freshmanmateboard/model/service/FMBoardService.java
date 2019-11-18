@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 public interface FMBoardService {
 	
@@ -32,6 +33,8 @@ public interface FMBoardService {
 	ArrayList<FMBoard> searchList(HashMap<String, String> searchMap, PageInfo pi);
 
 	int deleteReply(int rId);
+	
+	ArrayList<FMBoard> selectTopList();
 	
 
 }

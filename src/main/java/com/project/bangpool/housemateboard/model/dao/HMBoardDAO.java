@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Repository("hbDAO")
 public class HMBoardDAO {
@@ -76,5 +77,9 @@ public class HMBoardDAO {
 		
 		return (ArrayList)sqlSession.selectList("hmboardMapper.selectSearchList", searchMap, rowBounds);
 	}
-
+	
+	public ArrayList<HMBoard> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("hmboardMapper.selectTopList");
+	}
+	
 }

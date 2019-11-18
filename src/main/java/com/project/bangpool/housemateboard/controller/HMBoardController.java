@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +31,7 @@ import com.project.bangpool.housemateboard.model.exception.HMBoardException;
 import com.project.bangpool.housemateboard.model.service.HMBoardService;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Controller
 public class HMBoardController {
@@ -303,7 +305,27 @@ public class HMBoardController {
 		return mv;
 	}
 	
+	// 여기부터 김상욱 꺼
 	
+	@RequestMapping("topList.hm")
+	public void boardTopList(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<HMBoard> list = hbService.selectTopList();
+		
+		JSONArray jArr = new JSONArray();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(list);
+		
+		for(HMBoard b : list) {
+			b.setHbTitle(URLEncoder.encode(b.getHbTitle(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
 	
 	
 }

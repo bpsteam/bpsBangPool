@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Repository("fbDAO")
 public class FMBoardDAO {
@@ -89,5 +90,9 @@ public class FMBoardDAO {
 		return sqlSession.update("fmboardMapper.deleteReply", rId);
 	}
 
-
+	public ArrayList<FMBoard> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("fmboardMapper.selectTopList");
+	}
+	
+	
 }

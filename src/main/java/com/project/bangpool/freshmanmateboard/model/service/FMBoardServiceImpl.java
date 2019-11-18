@@ -11,6 +11,7 @@ import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freshmanmateboard.model.dao.FMBoardDAO;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Service("fbService")
 public class FMBoardServiceImpl implements FMBoardService {
@@ -136,7 +137,10 @@ public class FMBoardServiceImpl implements FMBoardService {
 	}
 
 
-
+	@Override
+	public ArrayList<FMBoard> selectTopList() {
+		return fbDAO.selectTopList(sqlSession);
+	}
 
 
 
