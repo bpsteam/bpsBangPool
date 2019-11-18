@@ -1,11 +1,13 @@
 package com.project.bangpool.freeboard.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freeboard.model.vo.FreeBoard;
 
@@ -36,47 +38,45 @@ public class FreeBoardDAO {
 		return sqlSession.insert("freeboardMapper.insertFile", hb);
 	}
 	
-	/*public int addReadCount(SqlSessionTemplate sqlSession, int hbId) {
+	public int addReadCount(SqlSessionTemplate sqlSession, int hbId) {
 		return sqlSession.update("freeboardMapper.addReadCount", hbId);
-	}*/
+	}
 
-	/*public HMBoard selectBoard(SqlSessionTemplate sqlSession, int hbId) {
-		return sqlSession.selectOne("hmboardMapper.selectBoard", hbId);
+	public FreeBoard selectBoard(SqlSessionTemplate sqlSession, int hbId) {
+		return sqlSession.selectOne("freeboardMapper.selectBoard", hbId);
 	}
 
 
-
-
-	public int updateBoard(SqlSessionTemplate sqlSession, HMBoard hb) {
-		return sqlSession.update("hmboardMapper.updateBoard", hb);
+	public int updateBoard(SqlSessionTemplate sqlSession, FreeBoard hb) {
+		return sqlSession.update("freeboardMapper.updateBoard", hb);
 	}
 
-	public int updateFile(SqlSessionTemplate sqlSession, HMBoard hb) {
-		return sqlSession.update("hmboardMapper.updateFile", hb);
+	public int updateFile(SqlSessionTemplate sqlSession, FreeBoard hb) {
+		return sqlSession.update("freeboardMapper.updateFile", hb);
 	}
 
 	public int deleteBoard(SqlSessionTemplate sqlSession, int hbId) {
-		return sqlSession.update("hmboardMapper.deleteBoard", hbId);
+		return sqlSession.update("freeboardMapper.deleteBoard", hbId);
 	}
 
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int hbId) {
-		return (ArrayList)sqlSession.selectList("hmboardMapper.selectReplyList", hbId);
+		return (ArrayList)sqlSession.selectList("freeboardMapper.selectReplyList", hbId);
 	}
 	
 	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
-		return sqlSession.insert("hmboardMapper.insertReply", r);
-	}*/
-
-
-	/*public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap) {
-		return sqlSession.selectOne("hmboardMapper.getSearchListCount", searchMap);
+		return sqlSession.insert("freeboardMapper.insertReply", r);
 	}
 
-	public ArrayList<HMBoard> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap,  PageInfo pi) {
+
+	public int getSearchListCount(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap) {
+		return sqlSession.selectOne("freeboardMapper.getSearchListCount", searchMap);
+	}
+
+	public ArrayList<FreeBoard> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> searchMap,  PageInfo pi) {
 		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("hmboardMapper.selectSearchList", searchMap, rowBounds);
-	}*/
+		return (ArrayList)sqlSession.selectList("freeboardMapper.selectSearchList", searchMap, rowBounds);
+	}
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.notice.model.vo.Notice;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Repository
 public class NoticeDAO {
@@ -75,7 +76,9 @@ public class NoticeDAO {
 		return sqlSession.update("noticeMapper.updateAttachment",n);
 	}
 
-
+	public ArrayList<Notice> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectTopList");
+	}
 
 
 }

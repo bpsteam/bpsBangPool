@@ -21,6 +21,7 @@
             <li data-target="#carousel-example" data-slide-to="3"></li>
             <li data-target="#carousel-example" data-slide-to="4"></li>
             <li data-target="#carousel-example" data-slide-to="5"></li>
+            <li data-target="#carousel-example" data-slide-to="6"></li>
               </ol>
          	<div class="clearfix"></div>
    		<!-- End Carousel Indicators -->
@@ -31,6 +32,10 @@
        </div>
        <div class="item">
            <!-- <img src="${contextPath}/resources/assets/img/slideshow/BPads1.png"> -->
+           <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
+       </div>
+       <div class="item">
+           <!-- <img src="${contextPath}/resources/assets/img/slideshow/BPads2.png"> -->
            <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
        </div>
       

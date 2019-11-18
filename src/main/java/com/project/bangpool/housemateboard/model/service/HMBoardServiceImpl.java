@@ -11,6 +11,7 @@ import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.housemateboard.model.dao.HMBoardDAO;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Service("hbService")
 public class HMBoardServiceImpl implements HMBoardService {
@@ -102,7 +103,10 @@ public class HMBoardServiceImpl implements HMBoardService {
 		return hbDAO.selectSearchList(sqlSession, searchMap, pi);
 	}
 	
-	
+	@Override
+	public ArrayList<HMBoard> selectTopList() {
+		return hbDAO.selectTopList(sqlSession);
+	}
 	
 
 }
