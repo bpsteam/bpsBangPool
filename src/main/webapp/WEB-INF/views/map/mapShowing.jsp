@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 페이지를 kakao api 개정에 등록 해주어야 지도가 출력이된다. https://developers.kakao.com/ -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -15,10 +16,11 @@
 	<br><a href="#">미정</a>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637&libraries=services,clusterer,drawing"></script>
 	<script>
+		///* 지도 생성 믿 지도 중심 좌표 */
 		// start 지도 생성
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(37.498993, 127.0307203), //지도의 중심좌표.
+			center: new kakao.maps.LatLng(37.5132612,127.0979449), //지도의 중심좌표.
 			level: 6 //지도의 레벨(확대, 축소 정도)
 		};
 	
@@ -28,7 +30,7 @@
 		//-----------------지도에 마커 하나를 표시하는 로직-----------------------------
 		// TODO 마커에 표시된 위치를 클릭하면 해당 게시판으로 이동하게한다.
 		// 마커가 표시될 위치입니다 
-		var markerPosition = new kakao.maps.LatLng(37.498993, 127.0307203); 
+		var markerPosition = new kakao.maps.LatLng(37.5132612,127.0979449); 
 
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
@@ -44,7 +46,7 @@
 		// ------------------------------- 지도의 원을 표시하는 로직 ------------------------------		
 		// 지도에 표시할 원을 생성합니다
 		var circle = new kakao.maps.Circle({
-		    center : new kakao.maps.LatLng(37.498993, 127.0307203),  // 원의 중심좌표 입니다 
+		    center : new kakao.maps.LatLng(37.5132612,127.0979449),  // 원의 중심좌표 입니다 
 		    radius: 1000, // 미터 단위의 원의 반지름입니다 
 		    strokeWeight: 5, // 선의 두께입니다 
 		    strokeColor: '#75B8FA', // 선의 색깔입니다

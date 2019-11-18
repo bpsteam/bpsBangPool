@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>키워드로 장소검색하기</title>
-    
+    <!-- 페이지를 kakao api 개정에 등록 해주어야 지도가 출력이된다. https://developers.kakao.com/ -->
 </head>
 <body>
 <div id="map" style="width:100%;height:350px;"></div>
