@@ -42,7 +42,7 @@ public class RMBoardController {
 	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, 
 								  @RequestParam(value="loc", required=false) String loc,
 								  ModelAndView mv) {
-		System.out.println("loc:"+loc);
+//		System.out.println("loc:"+loc);
 		int currentPage = 1;
 		
 		if(page != null) {
@@ -54,11 +54,11 @@ public class RMBoardController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		System.out.println("selectList loc: "+loc);
+//		System.out.println("selectList loc: "+loc);
 		ArrayList<RMBoard> list = rbService.selectList(pi, loc);
 		
 		if(list != null) {
-			System.out.println("rbService list : "+list);
+//			System.out.println("rbService list : "+list);
 			mv.addObject("list", list);
 			mv.addObject("pi", pi);
 			mv.setViewName("rmboardList");

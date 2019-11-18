@@ -549,7 +549,7 @@ public class FMBoardController {
 		JSONArray jArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		for(FMBoard b : list) {
 			b.setFbTitle(URLEncoder.encode(b.getFbTitle(),"utf-8"));
