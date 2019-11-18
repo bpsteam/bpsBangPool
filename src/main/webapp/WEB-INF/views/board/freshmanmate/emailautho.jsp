@@ -11,7 +11,7 @@
 		<label class="col-sm-2 control-label" for="email">대학생인증<strong class="sound_only">*</strong></label>
 		<div class="col-sm-6">
 			<input type="text" name="schoolemail" id="schoolemail"
-				placeholder="인증받을 대학교 이메일을 입력해주세요."
+				placeholder="인증받을 대학교 이메일을 입력해주세요." required
 				class="form-control input-sm email" size="50" maxlength="100">
 		</div>
 		<button type="button" class="btn btn-green btn-sm" id="emailBtn">인증번호발송</button>
