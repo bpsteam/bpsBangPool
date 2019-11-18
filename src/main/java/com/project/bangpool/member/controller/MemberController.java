@@ -1,11 +1,15 @@
 package com.project.bangpool.member.controller;
 
+
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -117,7 +121,14 @@ public class MemberController {
 	public String myPageView() {
 		return "myPage";
 	}
+
+
 	
+	@RequestMapping("loginView.me")
+	public String naverloginView() {
+		return "naverlogin";
+
+    
 //	@RequestMapping("loginView.me")
 //	public String naverloginView() {
 //		return "loginView";
@@ -221,6 +232,7 @@ public class MemberController {
 		boolean isUsable = mService.checkIdDup(email) == 0 ? true : false;
 
 		response.getWriter().print(isUsable);
+
 	}
 
 	@RequestMapping("dupnick.me")
@@ -259,6 +271,7 @@ public class MemberController {
 		}
 		
 	}
+	
 
 
 }

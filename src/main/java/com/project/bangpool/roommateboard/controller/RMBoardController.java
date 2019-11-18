@@ -338,7 +338,7 @@ public class RMBoardController {
 		JSONArray jArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		System.out.println(list);
+//		System.out.println(list);
 		
 		for(RMBoard b : list) {
 			b.setRbTitle(URLEncoder.encode(b.getRbTitle(),"utf-8"));
