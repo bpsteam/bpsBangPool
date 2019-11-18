@@ -60,11 +60,28 @@
 		<result property="renameFileName" column="RENAME_FILENAME"/>
 	</resultMap>
 	
-	<select id="selectBoard" parameterType="_int" resultMap="rmboardResultSet">
-		select *
+	<select id="selectBoard" parameterType="_int" resultType="RMBoard" >
+	<!-- resultMap="rmboardResultSet"> -->
+		<!-- select *
 		from ROOMATE_BOARD
 		where rbId = #{rbId}
-			  and RBSTATUS = 'Y'
+			  and RBSTATUS = 'Y' -->
+			  
+		select rb.*, a.ORIGINALFILENAME, a.renamefilename
+		from ROOMATE_BOARD rb
+		left join attachment a on a.bcode=rb.bcode
+		where rb.rbid = a.refbid
+		and rb.rbstatus='Y' 
+		and rb.rbid =#{rbId} 	  
+	</select>
+	
+	<insert id="insertFile">
+		insert into ATTACHMENT
+		values (attachment_seq.nextval, #{bcode}, #{rbId}, #{originalFileName}, #{renameFileName})
+	</insert>
+	
+	<select id="selectBno" resultType="_int">
+		SELECT ROOMATE_BOARD_SEQ.CURRVAL FROM DUAL
 	</select>
 	
 	<update id="updateBoard" parameterType="RMBoard">
@@ -164,6 +181,17 @@
  		</choose>
  		order by RBID desc	
  	</select>
-	
+ 	
+ 	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultMap="rmboardResultSet">
+		<![CDATA[
+			select *
+			from (select *
+				  from roomate_board
+				  where rbstatus = 'Y'
+				  order by rbcreatedate desc)
+			where rownum <= 8
+		]]>
+	</select>
 </mapper>
 

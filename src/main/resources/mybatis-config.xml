@@ -24,6 +24,12 @@
     	
     	<typeAlias type="com.project.bangpool.showing.model.vo.Showing" alias="Showing"/>
     	
+    	<typeAlias type="com.project.bangpool.notice.model.vo.Notice" alias="Notice"/>
+
+    	<typeAlias type="com.project.bangpool.share.model.vo.Share" alias="Share"/>
+    	
+    	<typeAlias type="com.project.bangpool.freeboard.model.vo.FreeBoard" alias="FreeBoard"/>
+    	
 	</typeAliases>
 	
 	<mappers>
@@ -38,7 +44,12 @@
   	 	<mapper resource="mappers/secondHandBoard-mapper.xml"/>
   	 	
   	 	<mapper resource="mappers/showing-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/notice-mapper.xml"/>
 
+  	 	<mapper resource="mappers/share-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/freeboard-mapper.xml"/>
 	</mappers>
 	
 </configuration>

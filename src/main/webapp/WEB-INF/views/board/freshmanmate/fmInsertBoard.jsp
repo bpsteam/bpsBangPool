@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>신입생 메이트 게시판</title>
 
     <style>
     /*     #ultag li {

@@ -22,5 +22,30 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.memberLogin(sqlSession, m);
 	}
 
+	@Override
+	public int insertMember(Member m) {
+		return mDAO.insertMember(sqlSession, m);
+	}
+
+	@Override
+	public int deleteMember(Member m) {
+		return mDAO.deleteMember(sqlSession, m);
+	}
+
+	@Override
+	public int checkIdDup(String email) {
+		return mDAO.checkIdDup(sqlSession, email);
+	}
+
+	@Override
+	public int checkNickDup(String nickname) {
+		return mDAO.checkNickDup(sqlSession, nickname);
+	}
+
+	@Override
+	public Member snsLogin(Member m) {
+		return mDAO.snsLogin(sqlSession, m);
+	}
+
 
 }

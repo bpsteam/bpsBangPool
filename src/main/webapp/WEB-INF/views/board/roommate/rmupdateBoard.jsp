@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,15 +114,15 @@
                                                         <label class="col-sm-2 control-label" for="RLOCATION"> 지역분류<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                                             <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
-                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
+                                                            <select name="rLocation" id="selectLoc" required="" class="form-control input-sm">
                                                                 <option value="">선택하세요</option>
-                                                                <option value="서울">서울</option>
-                                            <option value="인천/부천">인천/부천</option>
-                                            <option value="수원/경기">수원/경기</option>
-                                            <option value="대구/경북">대구/경북</option>
-                                            <option value="부산/경남">부산/경남</option>
-                                            <option value="충청/강원">충청/강원</option>
-                                            <option value="광주/전라">광주/전라</option>
+                                                               	<option value="서울">서울</option>
+					                                            <option value="인천/부천">인천/부천</option>
+					                                            <option value="수원/경기">수원/경기</option>
+					                                            <option value="대구/경북">대구/경북</option>
+					                                            <option value="부산/경남">부산/경남</option>
+					                                            <option value="충청/강원">충청/강원</option>
+					                                            <option value="광주/전라">광주/전라</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -134,7 +135,7 @@
                                                         <label class="col-sm-2 control-label " for=RRENTTYPE>매물구분<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                             
-                                                            <select name="rRentType" id="wr_1" required="" itemname="게시물분류" class="form-control input-sm">
+                                                            <select name="rRentType" id="selectRentType" required="" itemname="게시물분류" class="form-control input-sm">
                                                                 <option value="" selected="">매물구분 선택</option>
                                                                 <option value="전세">전세</option>
                                                                 <option value="월세">월세</option>
@@ -147,7 +148,7 @@
                                                         <!-- <label class="col-sm-2 control-label " for="RLIVINGTYPE">매물종류<strong class="sound_only">필수</strong></label> -->
                                                         <label class="col-sm-2 control-label " for="RLIVINGTYPE">매물종류<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
-                                                            <select name="rLivingType" id="wr_7" required="" itemname="매물종류" class="form-control input-sm">
+                                                            <select name="rLivingType" id="selectLivingType" required="" itemname="매물종류" class="form-control input-sm">
                                                                 <option value="">매물종류 선택</option>
                                                                 <option value="오피스텔">오피스텔</option>
                                                                 <option value="아파트">아파트</option>
@@ -164,7 +165,7 @@
                                                         <label class="col-sm-2 control-label " for="RROOMCOUNT">방갯수<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <select name="rRoomCount" required="" itemname="방갯수" class="form-control input-sm">
+                                                        <select name="rRoomCount" id="selectRoomCount" required="" itemname="방갯수" class="form-control input-sm">
                                                             <option value="" selected="">방갯수를 선택해주세요.</option>
                                                             <option value="원룸">원룸</option>
                                                             <option value="투룸">투룸</option>
@@ -179,7 +180,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label " for="RFLOOR">해당층수<strong class="sound_only">필수</strong></label>
                                                         <div class="col-sm-3">
-                                                        <select name="rFloor" required="" itemname="해당층수" class="form-control input-sm">
+                                                        <select name="rFloor" id="selectFloor" required="" itemname="해당층수" class="form-control input-sm">
                                                             <option value="" selected="">층수를 선택해주세요.</option>
                                                             <option value="지하">지하</option>
                                                             <option value="반지하">반지하</option>
@@ -231,7 +232,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label " for="RGENDER">상대 성별</label>
 															<div class="col-sm-3">
-																<select name="rReqGender" required class="form-control input-sm">
+																<select name="rReqGender" id="selectReqGender" required class="form-control input-sm">
 		                                                            <option value="" selected >원하는 상대 성별</option>
 		                                                            <option value="무관">무관</option>
 		                                                            <option value="여성">여성</option>
@@ -252,11 +253,14 @@
                                             
                                             
                                                     <div class="form-group">
-                                                        <!-- <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label> -->
                                                         <label class="col-sm-2 control-label " for="RPARKING">주차가능여부</label>
                                                         <div class="col-sm-3">
-                                                        
-                                                        <input type="text" name="rParking" size="50" value="${ rboard.rParking}" class="form-control input-sm">
+                                                        <%-- <input type="text" name="rParking" size="50" value="${ rboard.rParking}" class="form-control input-sm"> --%>
+                                                        <select name="rParking" id="selectParking" class="form-control input-sm" required="required">
+                                                        	<option value="" selected="">주차 가능여부</option>
+                                                        	<option value="가능">가능</option>
+                                                        	<option value="불가능">불가능</option>
+                                                        </select>
                                                         </div>
                                                     </div>
                                             
@@ -264,7 +268,7 @@
                                                     <label class="col-sm-2 control-label">내용</label>
                                                     <div class="col-sm-12">
                                                                     <span class="sound_only"></span>
-                                            <textarea id="wr_content" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px">${ rboard.rbContent }</textarea>
+                                            <textarea id="rbContent" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px">${ rboard.rbContent }</textarea>
                                             <span class="sound_only"></span>		</div>
                                                 </div>
                                             
@@ -310,7 +314,6 @@
 					                                                            <div class="input-group input-group-sm">
 					                                                            <span class="input-group-addon">파일 0</span>
 					                                                            <input type="file" class="form-control input-sm" name="reloadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
-					                                                            <!-- <input type="file" class="form-control input-sm" name="reloadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능"> -->
 						                                                            <c:if test="${ !empty rboard.originalFileName }">
 																						<br>현재 업로드한 파일 : 
 																						<a href="${ contextPath }/resources/rmboarduploads/${ rboard.renameFileName }" download="${ rboard.originalFileName }">
@@ -549,11 +552,24 @@
         </div>
         <!-- === END CONTENT === -->
 
-
+	<script type="text/javascript" src="${contextPath}/resources/assets/js/jquery.min.js" type="text/javascript"></script>
+	<script>
+	
+		$("#selectLoc").val("${ rboard.rLocation }").attr("selected", true);
+		$("#selectRentType").val("${ rboard.rRentType }").attr("selected", true);
+		$("#selectLivingType").val("${ rboard.rLivingType }").attr("selected", true);
+		$("#selectRoomCount").val("${ rboard.rRoomCount}").attr("selected", true);
+		$("#selectFloor").val("${ rboard.rFloor}").attr("selected", true);
+		$("#selectReqGender").val("${ rboard.rReqGender}").attr("selected", true);
+		$("#selectParking").val("${ rboard.rParking}").attr("selected", true);
+		
+	</script>
 
 
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../../common/footer.jsp"/>
+	
+	
 <!-- ==== FOOTER END ==== -->
 </body>
 </html>

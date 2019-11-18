@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.project.bangpool.member.controller.NaverLoginBO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -25,6 +26,9 @@
     <link rel="stylesheet" href="${contextPath}/resources/assets/css/custom.css" rel="stylesheet">
     <!-- Google Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+   
     <style>
 	    #ultag li {
 	        display:inline;
@@ -37,7 +41,17 @@
 	    #table td{
 	        width:150px;
 	    }
+	    .social-rss a {
+		  background: url(${contextPath}/resources/assets/img/social_icons/naver.png);
+		}
 	
+	    .social-twitter a {
+		  background: url(${contextPath}/resources/assets/img/social_icons/kakao.png);
+		}
+		.social-twitter a:hover {
+		  background-color: #ffe812 !important;
+		}
+			
 	    
     </style>
 </head>
@@ -52,7 +66,7 @@
                         </div>
                         <div class="col-sm-6 text-right padding-vert-5">
                             <c:if test="${ empty sessionScope.loginUser }">
-                            <a href="naverlogin.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
+                            <a href="loginView.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginUser }">
                             <a href="logout.me" style="color:black">로그아웃</a>&nbsp;&nbsp;&nbsp;
@@ -101,111 +115,64 @@
                                         glyphicon glyphicon-align-justify
                                     -->
                                     <li>
-                                        <span class="glyphicon glyphicon-user "> 룸메이트</span>  <ul>
-                                            <li class="parent">
-                                                <span>게시판</span>
-                                                <ul>
-                                                    <li>
-
-                                                        <a href="blist.rm">룸메이트</a>
-
-                                                    </li>
-                                                    <li>
-                                                        <a href="features-typo-blockquotes.html">Blockquotes</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="parent">
-                                                <span>Components</span>
-                                                <ul>
-                                                    <li>
-                                                        <a href="features-labels.html">Labels</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="features-progress-bars.html">Progress Bars</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="features-panels.html">Panels</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="features-pagination.html">Pagination</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="parent">
-                                                <span>Icons</span>
-                                                <ul>
-                                                    <li>
-                                                        <a href="features-icons.html">Icons General</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="features-icons-social.html">Social Icons</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="features-icons-font-awesome.html">Font Awesome</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="features-icons-glyphicons.html">Glyphicons</a>
-                                                    </li>
-                                                </ul>
+                                        <span class="glyphicon glyphicon-book "> 룸메이트</span>  <ul>
+                                            <li>
+                                                <a href="blist.rm?fLocation=전체" >전체</a>
                                             </li>
                                             <li>
-                                                <a href="bps_myPage.html">마이페이지</a>
+                                                <a href="blist.rm?fLocation=서울" >서울</a>
                                             </li>
                                             <li>
-                                                <a href="bps_signUp.html">회원가입</a>
-                                            </li>
-                                            <li>
-                                                <a href="bps_yakwan.html">이용약관</a>
-                                            </li>
-                                            <li>
-                                                <a href="features-carousels.html">Carousels</a>
-                                            </li>
-                                            <li>
-                                                <a href="features-grid.html">Grid System</a>
-                                            </li>
-                                            <li>
-                                                <a href="features-animate-on-scroll.html">Animate On Scroll</a>
+                                                <a href="blist.rm?fLocation=인천/부천">인천/부천</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.rm?fLocation=수원/경기">수원/경기</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.rm?fLocation=대구/경북">대구/경북</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.rm?fLocation=부산/경남" >부산/경남</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.rm?fLocation=충청/강원" >충청/강원</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.rm?fLocation=광주/전라">광주/전라</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <span class="glyphicon glyphicon-home "> 하우스메이트</span>
+                                        <span class="glyphicon glyphicon-book "> 하우스메이트</span>
                                         <ul>
                                             <li>
-                                                <a href="blist.hm">하우스메이트 게시판</a>
+                                                <a href="blist.hm?fLocation=전체" >전체</a>
                                             </li>
                                             <li>
-                                                <a href="pages-services.html">Services</a>
+                                                <a href="blist.hm?fLocation=서울" >서울</a>
                                             </li>
                                             <li>
-                                                <a href="pages-faq.html">F.A.Q.</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-about-me.html">About Me</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-full-width.html">Full Width</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-left-sidebar.html">Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="boardList.html">개시판 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-login.html">Login</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-sign-up.html">Sign-Up</a>
-                                            </li>
-                                            <li>
-                                                <a href="pages-404.html">404 Error Page</a>
+                                                <a href="blist.hm?fLocation=인천/부천">인천/부천</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.hm?fLocation=수원/경기">수원/경기</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.hm?fLocation=대구/경북">대구/경북</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.hm?fLocation=부산/경남" >부산/경남</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.hm?fLocation=충청/강원" >충청/강원</a>
+                                            </li>                                
+                                            <li>                                 
+                                                <a href="blist.hm?fLocation=광주/전라">광주/전라</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <span class="glyphicon glyphicon-book"> 신입생메이트</span>
+                                        <span class="glyphicon glyphicon-book "> 신입생메이트</span>
                                         <ul>
                                             <li>
                                                 <a href="blist.fm?fLocation=전체" >전체</a>
@@ -214,7 +181,7 @@
                                                 <a href="blist.fm?fLocation=서울" >서울</a>
                                             </li>
                                             <li>
-                                                <a href="blist.fm?fLocation=인천/부천"  >인천/부천</a>
+                                                <a href="blist.fm?fLocation=인천/부천">인천/부천</a>
                                             </li>                                
                                             <li>                                 
                                                 <a href="blist.fm?fLocation=수원/경기">수원/경기</a>
@@ -234,40 +201,43 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <span class="glyphicon glyphicon-refresh "> 중고물품</span>
+                                        <span class="glyphicon glyphicon-book "> 이케요</span>
                                         <ul>
                                             <li>
-                                                <a href="cart.sh">장바구니</a>
-                                            </li>
-                                            <li>
-                                                <a href="shblistView.se">중고 이케요</a>
+                                                <a href="shblistView.se">이케요</a>
                                             </li>
                                         </ul>
                                     </li>
                                     <li>
-                                        <span class="glyphicon glyphicon-book"> 커뮤니티</span>
-			                           	 <ul>
+		                                <span class="glyphicon glyphicon-book"> 커뮤니티</span>
+		                            	<ul>
 			                                <li>
-			                                    <a href="bShowing.sb">자랑하기 게시판</a>
+			                                    <a href="nList.no">공지사항</a>
 			                                </li>
 			                                <li>
-			                                    <a href="nLlist.no">공지사항</a>
+			                                    <a href="bShowing.sb">자랑하기</a>
 			                                </li>
 			                                <li>
+			                                    <a href="frblist.fr">자유게시판</a>
+			                                </li>
+                                      <li>
 			                                    <a href="mapView.map">지도</a>
 			                                </li>
-			                                <li>
-			                                    <a href="portfolio-6-column.html">6 Column</a>
-			                                </li>
-			                            </ul>
+		                           		 </ul>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+                        
+                          <%
+                          NaverLoginBO naverLoginBO = new NaverLoginBO();
+                          String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+						 %>
+                       
                         <div class="col-md-4 no-padding">
                             <ul class="social-icons pull-right">
                                 <li class="social-rss">
-                                    <a href="#" target="_blank" title="RSS"></a>
+                                    <a href="<%=naverAuthUrl %>"></a>
                                 </li>
                                 <li class="social-twitter">
                                         <a href="#"class="fa fa-bell-o"></a>
@@ -311,7 +281,7 @@
                                                         <th style="text-align: center;">룸메이트</th>
                                                         <th style="text-align: center;">하우스메이트</th>
                                                         <th style="text-align: center;">신입생메이트</th>
-                                                        <th style="text-align: center;">중고물품</th>
+                                                        <th style="text-align: center;">이케요</th>
                                                         <th style="text-align: center;">커뮤니티</th>
                                                    </tr>
                                                 </thead>
@@ -374,58 +344,50 @@
                                                 <tr  >
                                                         <td style="text-align: center;">
                                                             <ul style="list-style: none; padding:0px">
-                                                                <li><a href="#">서울</a></li>
-                                                                <li><a href="#">인천/부천</a></li>
-                                                                <li><a href="#">수원/경기</a></li>
-                                                                <li>대구/경북</li>
-                                                                <li>부산/경남</li>
-                                                                <li>충청/강원</li>
-                                                                <li>광주/전라</li>
+                                                            	<li><a href="blist.rm?fLocation=전체">전체</a></li>
+                                                                <li><a href="blist.rm?fLocation=서울">서울</a></li>
+                                                                <li><a href="blist.rm?fLocation=인천/부천">인천/부천</a></li>
+                                                                <li><a href="blist.rm?fLocation=수원/경기">수원/경기</a></li>
+                                                                <li><a href="blist.rm?fLocation=대구/경북">대구/경북</a></li>
+                                                                <li><a href="blist.rm?fLocation=부산/경남">부산/경남</a></li>
+                                                                <li><a href="blist.rm?fLocation=충청/강원">충청/강원</a></li>
+                                                                <li><a href="blist.rm?fLocation=광주/전라">광주/전라</a></li>
                                                             </ul>
                                                         </td>   
-                                                        <td style="text-align: center;" > 
+                                                        <td style="text-align: center;">
                                                             <ul style="list-style: none; padding:0px">
-                                                                <li><a href="#">서울</a></li>
-                                                                <li><a href="#">인천/부천</a></li>
-                                                                <li><a href="#">수원/경기</a></li>
-                                                                <li><a href="#">대구/경북</a></li>
-                                                                <li>부산/경남</li>
-                                                                <li>충청/강원</li>
-                                                                <li>광주/전라</li>
-                                                            </ul>   
+                                                            	<li><a href="blist.hm?fLocation=전체">전체</a></li>
+                                                                <li><a href="blist.hm?fLocation=서울">서울</a></li>
+                                                                <li><a href="blist.hm?fLocation=인천/부천">인천/부천</a></li>
+                                                                <li><a href="blist.hm?fLocation=수원/경기">수원/경기</a></li>
+                                                                <li><a href="blist.hm?fLocation=대구/경북">대구/경북</a></li>
+                                                                <li><a href="blist.hm?fLocation=부산/경남">부산/경남</a></li>
+                                                                <li><a href="blist.hm?fLocation=충청/강원">충청/강원</a></li>
+                                                                <li><a href="blist.hm?fLocation=광주/전라">광주/전라</a></li>
+                                                            </ul>
                                                         </td>   
                                                         <td style="text-align: center;"> 
                                                             <ul style="list-style: none; padding:0px">
+                                                            	<li><a href="blist.fm?fLocation=전체">전체</a></li>
                                                                 <li><a href="blist.fm?fLocation=서울">서울</a></li>
                                                                 <li><a href="blist.fm?fLocation=인천/부천">인천/부천</a></li>
                                                                 <li><a href="blist.fm?fLocation=수원/경기">수원/경기</a></li>
                                                                 <li><a href="blist.fm?fLocation=대구/경북">대구/경북</a></li>
                                                                 <li><a href="blist.fm?fLocation=부산/경남">부산/경남</a></li>
                                                                 <li><a href="blist.fm?fLocation=충청/강원">충청/강원</a></li>
-                                                                <li><a href="blist.fm?fLocation=대구/경북">광주/전라</a></li>
+                                                                <li><a href="blist.fm?fLocation=광주/전라">광주/전라</a></li>
                                                             </ul>
-                                                        
-                                                        
                                                         </td>   
                                                         <td style="text-align: center;" >   
                                                             <ul style="list-style: none; padding:0px">
-                                                                <li><a href="#">서울</a></li>
-                                                                <li><a href="#">인천/부천</a></li>
-                                                                <li><a href="#">수원/경기</a></li>
-                                                                <li><a href="#">대구/경북</a></li>
-                                                                <li>부산/경남</li>
-                                                                <li>충청/강원</li>
-                                                                <li>광주/전라</li>      
+                                                                <li><a href="shblistView.se">이케요</a></li>      
                                                             </ul> 
                                                         </td>
                                                         <td style="text-align: center;">  
                                                             <ul style="list-style: none; padding:0px ;"> 
-                                                                <li>회원 자유게시판</li>
-                                                                <li>친구만들기</li>
-                                                                <li>이쁜집 구경하기</li>
-                                                                <li>룸메&하메 상식</li>
-                                                                <li>회원 질문/답변</li>
-                                                                <li>공지사항&이벤트</li>
+                                                                <li><a href="nList.no">공지사항</a></li>
+                                                                <li><a href="bShowing.sb">자랑하기</a></li>
+                                                                <li><a href="frblist.fr">자유게시판</a></li>
                                                             </ul>   
                                                            
                                                         </td  >
