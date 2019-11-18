@@ -39,8 +39,8 @@ public class NaverLoginBO {
         /* 생성한 난수 값을 session에 저장 */
         setSession(session,state);     
         
-    	System.out.println("BO에서 세션 : "+session);
-    	System.out.println("BO에서 스테이트 : "+state);
+//    	System.out.println("BO에서 세션 : "+session);
+//    	System.out.println("BO에서 스테이트 : "+state);
 
 
         /* Scribe에서 제공하는 인증 URL 생성 기능을 이용하여 네아로 인증 URL 생성 */
@@ -51,7 +51,7 @@ public class NaverLoginBO {
                 .state(state) //앞서 생성한 난수값을 인증 URL생성시 사용함
                 .build(NaverLoginApi.instance());
         
-        System.out.println("BO에서 URL 출력 : "+oauthService.getAuthorizationUrl());
+//        System.out.println("BO에서 URL 출력 : "+oauthService.getAuthorizationUrl());
         session.setAttribute("naverUrl", oauthService.getAuthorizationUrl());
 
         return oauthService.getAuthorizationUrl();

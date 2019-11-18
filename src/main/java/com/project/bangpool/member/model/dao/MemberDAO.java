@@ -32,4 +32,8 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.snsLogin", m);
 	}
 
+	public int memberUpdate(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.memberUpdate", m);
+	}
+
 }
