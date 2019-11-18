@@ -10,6 +10,7 @@ import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.notice.model.dao.NoticeDAO;
 import com.project.bangpool.notice.model.vo.Notice;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService{
@@ -98,7 +99,11 @@ public class NoticeServiceImpl implements NoticeService{
 		return result;
 	}
 
-
+	
+	@Override
+	public ArrayList<Notice> selectTopList() {
+		return nDAO.selectTopList(sqlSession);
+	}
 
 
 

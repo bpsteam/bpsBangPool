@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 import com.project.bangpool.secondHandBoard.model.vo.SecondHandBoard;
 
 @Repository("shbDAO")
@@ -100,5 +101,8 @@ public class SecondHandBoardDAO {
 		return (ArrayList)sqlSession.selectList("secondHandBoardMapper.displayList", null, rowBounds);
 	}
 	
+	public ArrayList<SecondHandBoard> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("secondHandBoardMapper.selectTopList");
+	}
 	
 }

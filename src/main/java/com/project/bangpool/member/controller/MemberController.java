@@ -1,11 +1,15 @@
 package com.project.bangpool.member.controller;
 
+
+import javax.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -150,6 +154,26 @@ public class MemberController {
 		return "myPage";
 	}
 	
+   
+  	@RequestMapping("mdelete.me")
+	public String memberDelete(Model model, SessionStatus status) {
+		
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		System.out.println("탈퇴 : "+m);
+		
+		int result = mService.deleteMember(m);
+		
+		if(result>0) {
+			status.setComplete();
+			return "redirect:home.do";
+		}else {
+			throw new MemberException("탈퇴 실패.");
+		}
+		
+	}
+	
+  
 //	@RequestMapping("loginView.me")
 //	public String naverloginView() {
 //		return "loginView";
@@ -262,12 +286,15 @@ public class MemberController {
 
 		response.getWriter().print(isUsable);
 	}
-	
+  
+
 	// mypage 정보수정 버튼 -> 비밀번호 확인 페이지
 	@RequestMapping("mupConfirm.me")
 	public String updateConfirm () {
 		return "mUpdateConfirm";
 	}
+  
+  
 	// updateConfirm 페이지에서 -> 비밀번호 확인하고 정보수정페이지로 가기 
 	@RequestMapping("pwdConfirm.me")
 	public ModelAndView pwdConfirm(Model model, @RequestParam("pwd") String rawPwd, 
@@ -300,5 +327,8 @@ public class MemberController {
 		
 	}
 
+ 
+
 
 }
+

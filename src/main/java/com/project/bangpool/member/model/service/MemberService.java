@@ -1,6 +1,6 @@
 package com.project.bangpool.member.model.service;
 
-import org.springframework.stereotype.Service;
+
 
 import com.project.bangpool.member.model.vo.Member;
 
@@ -19,5 +19,5 @@ public interface MemberService {
 	Member snsLogin(Member m);
 
 	int memberUpdate(Member m);
-	
+
 }
