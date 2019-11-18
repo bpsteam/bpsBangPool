@@ -127,7 +127,7 @@ public class MemberController {
 	@RequestMapping("loginView.me")
 	public String naverloginView() {
 		return "naverlogin";
-
+	}
     
 //	@RequestMapping("loginView.me")
 //	public String naverloginView() {
