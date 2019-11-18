@@ -210,8 +210,6 @@ public class RMBoardController {
 		if(f.exists()) {
 			f.delete();
 		}
-		
-		
 	}
 	
 	@RequestMapping("rList.rm")

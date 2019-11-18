@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.project.bangpool.member.controller.NaverLoginBO" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,8 @@
     <!-- Google Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+   
     <style>
 	    #ultag li {
 	        display:inline;
@@ -38,7 +41,17 @@
 	    #table td{
 	        width:150px;
 	    }
+	    .social-rss a {
+		  background: url(${contextPath}/resources/assets/img/social_icons/naver.png);
+		}
 	
+	    .social-twitter a {
+		  background: url(${contextPath}/resources/assets/img/social_icons/kakao.png);
+		}
+		.social-twitter a:hover {
+		  background-color: #ffe812 !important;
+		}
+			
 	    
     </style>
 </head>
@@ -212,10 +225,16 @@
                                 </ul>
                             </div>
                         </div>
+                        
+                          <%
+                          NaverLoginBO naverLoginBO = new NaverLoginBO();
+                          String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+						 %>
+                       
                         <div class="col-md-4 no-padding">
                             <ul class="social-icons pull-right">
                                 <li class="social-rss">
-                                    <a href="#" target="_blank" title="RSS"></a>
+                                    <a href="<%=naverAuthUrl %>"></a>
                                 </li>
                                 <li class="social-twitter">
                                         <a href="#"class="fa fa-bell-o"></a>
