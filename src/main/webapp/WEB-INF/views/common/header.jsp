@@ -217,6 +217,9 @@
                                             <li>
                                                 <a href="shblistView.se">이케요</a>
                                             </li>
+                                            <li>
+                                                <a href="srListView.sr">나눔</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>

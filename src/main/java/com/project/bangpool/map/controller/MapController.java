@@ -30,4 +30,11 @@ public class MapController {
 	public String mapKeyAndList() {
 		return "mapKeyAndList";
 	}
+	
+	@RequestMapping("mapAddSC.map")
+	public String mapAddSC() {
+		return "mapAddSC";
+	}
+	
+	
 }
