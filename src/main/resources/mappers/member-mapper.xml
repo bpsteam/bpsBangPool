@@ -45,6 +45,16 @@
 		where snsid=#{snsId}
 		and mStatus='Y'
 	</select>
+	
+	<update id="memberUpdate" parameterType="Member">
+		update Member
+		set pwd = #{pwd}, name=#{name},
+			gender=#{gender}, birth=#{birth},
+			address=#{address}, phone=#{phone},
+			updateDate=sysdate
+		where email=#{email}
+		and mStatus='Y'
+	</update>
 
 
 </mapper>
