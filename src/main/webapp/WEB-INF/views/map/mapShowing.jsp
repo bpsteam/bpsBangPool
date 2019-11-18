@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +9,37 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="map" style="width:500px;height:400px;"></div>
-	<br><a href="mapAddress.map">주소로 좌표 얻어내는 Page</a>
-	<br><a href="mapKeyWordSC.map">키워드로 주소검색 Page</a>
-	<br><a href="mapMultiMark.map">마크 여러개 보여주기</a>
-	<br><a href="mapKeyAndList.map">키워드 검색후 리스트 출력</a>
-	<br><a href="#">미정</a>
+	
+	<!-- ==== HEADER START ==== -->
+	<c:import url ="../common/header.jsp"/>
+	<!-- ==== HEADER END ==== -->
+	<!-- start 로그인 된 상태에서만 지도가 보인다. -->
+	<c:if test="${ !empty loginUser }">
+		<div class="row">
+			<div class="container">
+				<div id="map" style="width:500px;height:400px;"></div>
+				<br><a href="mapAddress.map">주소로 좌표 얻어내는 Page</a>
+				<br><a href="mapKeyWordSC.map">키워드로 주소검색 Page</a>
+				<br><a href="mapMultiMark.map">마크 여러개 보여주기</a>
+				<br><a href="mapKeyAndList.map">키워드 검색후 리스트 출력</a>
+				<br><a href="mapAddSC.map">주소 및 마크 여러개 및 영역 표시</a>
+			</div>
+		</div>
+	</c:if>
+	<!-- end 로그인 된 상태에서만 지도가 보인다. -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637&libraries=services,clusterer,drawing"></script>
 	<script>
+		
+		console.log("${loginUser.address}"); // 로그인한 유저의 주소가 찍힌다.
+		
+		// start 로그인한 유저의 주소 잘라서 보여주기
+		var loginUseradd = "";
+		loginUseradd = ("${loginUser.address}".split('/'));
+		console.log(loginUseradd);
+		console.log(loginUseradd[1]);
+		// end 로그인한 유저의 주소 잘라서 보여주기
+		
+		
 		///* 지도 생성 믿 지도 중심 좌표 */
 		// start 지도 생성
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
@@ -63,7 +87,7 @@
 		// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 		// ?????? 찾아보기
 		var linePath = [
-		    new kakao.maps.LatLng(33.452344169439975, 126.56878163224233),
+		    new kakao.maps.LatLng(37.5132612,127.0979449),
 		    new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
 		    new kakao.maps.LatLng(33.45178067090639, 126.5726886938753) 
 		];
@@ -81,5 +105,9 @@
 		polyline.setMap(map);  
 		
 	</script>
+	
+<!-- ==== FOOTER START ==== -->
+<c:import url ="../common/footer.jsp"/>
+<!-- ==== FOOTER END ==== -->
 </body>
 </html>

@@ -18,6 +18,11 @@
 <div id="map" style="width:100%;height:350px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637&libraries=services,clusterer,drawing"></script>
+<!-- 주소를 보내주는  function -->
+<script type="text/javascript">
+	/* controller 를 통해서 member의 주소 보내기 */
+	var memberAddress = "서울특별시 송파구 올림픽로 300"; 
+</script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -33,7 +38,7 @@ var geocoder = new kakao.maps.services.Geocoder();
 
 // java 를 통해서 받아온 String 값에 넣어준다.
 // 주소로 좌표를 검색합니다
-geocoder.addressSearch('서울특별시 강남구 역삼동 강남대로 438', function(result, status) {
+geocoder.addressSearch(memberAddress, function(result, status) {
     // 정상적으로 검색이 완료됐으면 
      if (status === kakao.maps.services.Status.OK) {
 
