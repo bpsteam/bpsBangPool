@@ -131,7 +131,7 @@ public class MemberController {
     
 //	@RequestMapping("loginView.me")
 //	public String naverloginView() {
-//		return "loginView";
+//		return "loginView"; 
 //	}
 	
 	 //로그인 첫 화면 요청 메소드
