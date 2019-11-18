@@ -98,7 +98,7 @@
                                         </div>
                                         <div
                                             style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;">
-                                            <font color="006699"><b>${ board.fbTitle }</b></font>
+                                            <font color="006699"><b>${ board.schoolemail }</b></font>
                                         </div>
                                         <div style="both:clear;">
                                         </div>

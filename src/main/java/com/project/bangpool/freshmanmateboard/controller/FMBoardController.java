@@ -186,7 +186,7 @@ public class FMBoardController {
 							@RequestParam("phone2")String phone2, @RequestParam("phone3")String phone3,
 							@RequestParam(value="uploadFile1", required=false) MultipartFile uploadFile1, 
 							@RequestParam(value="uploadFile2", required=false) MultipartFile uploadFile2, 
-							@RequestParam(value="uploadFile3", required=false) MultipartFile uploadFile3, 
+							@RequestParam(value="uploadFile3", required=false) MultipartFile uploadFile3,
 							HttpServletRequest request,ModelAndView mv) {
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);

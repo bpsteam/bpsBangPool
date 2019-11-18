@@ -257,11 +257,11 @@
 									<div class="form-group">
 										<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
 										<div class="col-sm-3">
-											<select name="hreqgender" required class="form-control input-sm">
+											<select name="hReqgender" required class="form-control input-sm">
                                                 <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
-                                                <option value="N">무관</option>
-                                                <option value="F">여성</option>
-                                                <option value="M">남성</option>
+                                                <option value="무관">무관</option>
+                                                <option value="여성">여성</option>
+                                                <option value="남성">남성</option>
                                             </select>	
 										</div>
 									</div>
@@ -281,8 +281,8 @@
 											<select name="hParking" 
 													class="form-control input-sm" style="width: 100px;">
 															<option value="" selected="">선택</option>
-															<option value="Y">주차가능</option>
-															<option value="N">주차불가</option>
+															<option value="주차가능">주차가능</option>
+															<option value="주차불가">주차불가</option>
 											</select>
 										</div>
 									</div>
@@ -358,7 +358,8 @@
                                                         objCell = objRow.insertCell(0);
                                             
                                                         objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
+                                                        		+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='uploadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)+"></div></div></div>";
                                                         if (delete_code) {
                                                             objContent += delete_code;
                                                         } else {

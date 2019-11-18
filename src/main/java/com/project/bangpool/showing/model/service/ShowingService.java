@@ -55,7 +55,6 @@ public class ShowingService implements ShowingServiceImpl{
 	@Override
 	public int updateShowing(Showing sb) {
 		int resultShowing = 0; 
-		System.out.println("showingBoard : " + sb);
 		int updateSB = sbDao.updateBoard(sqlSession, sb);
 		int updateAT = sbDao.attachmentBoard(sqlSession, sb);
 		if(updateSB>0 && updateAT>0) {

@@ -56,7 +56,7 @@
 		<result property="hFloor" column="HFLOOR"/>
 		<result property="hPrice" column="HPRICE"/>
 		<result property="hParking" column="HPARKING"/>
-		<result property="hreqgender" column="HREQGENDER"/>
+		<result property="hReqgender" column="HREQGENDER"/>
 	</resultMap>
 	
 	<update id="addReadCount" parameterType="_int">
@@ -78,7 +78,7 @@
 		insert into HOUSEMATE_BOARD
 		values(HOUSEMATE_BOARD_SEQ.nextval, default , #{hbTitle}, #{hbContent}, #{hbWriter}, default,
 				sysdate, sysdate, default, #{hLocation}, #{hRentType}, #{hLivingType},
-				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hreqgender})
+				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hReqgender})
 	</insert>
 	
 	<select id="selectHbId" resultType="_int">
@@ -95,7 +95,7 @@
 		update HOUSEMATE_BOARD
 		set hbtitle=#{hbTitle}, hbcontent=#{hbContent}, hlocation=#{hLocation}, 
 			HBMODIFYDATE=sysdate, hrenttype=#{hRentType}, hlivingtype=#{hLivingType},
-			hroomcount=#{hRoom}, hfloor=#{hFloor}, hprice=#{hPrice}, hparking=#{hParking}, hreqgender=#{hreqgender}
+			hroomcount=#{hRoom}, hfloor=#{hFloor}, hprice=#{hPrice}, hparking=#{hParking}, hreqgender=#{hReqgender}
 		where hbid=#{hbId}
 	</update>
 	

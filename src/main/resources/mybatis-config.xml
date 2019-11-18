@@ -28,6 +28,8 @@
 
     	<typeAlias type="com.project.bangpool.share.model.vo.Share" alias="Share"/>
     	
+    	<typeAlias type="com.project.bangpool.freeboard.model.vo.FreeBoard" alias="FreeBoard"/>
+    	
 	</typeAliases>
 	
 	<mappers>
@@ -46,6 +48,8 @@
   	 	<mapper resource="mappers/notice-mapper.xml"/>
 
   	 	<mapper resource="mappers/share-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/freeboard-mapper.xml"/>
 	</mappers>
 	
 </configuration>
