@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -28,18 +29,18 @@ public class NaverLoginBO {
     private final static String REDIRECT_URI = "http://localhost:9879/bangpool/callback.me";
     private final static String SESSION_STATE = "oauth_state";
     /* 프로필 조회 API URL */
-    private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";/// Api 종류 기본 !!
+    private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me"; // Api 종류 기본 !!
     
     /* 네이버 아이디로 인증  URL 생성  Method */
     public String getAuthorizationUrl(HttpSession session) {
-
+    	
         /* 세션 유효성 검증을 위하여 난수를 생성 */
         String state = generateRandomString();
         /* 생성한 난수 값을 session에 저장 */
         setSession(session,state);     
         
-    	System.out.println("???"+session);
-    	System.out.println("???"+state);
+    	System.out.println("BO에서 세션 : "+session);
+    	System.out.println("BO에서 스테이트 : "+state);
 
 
         /* Scribe에서 제공하는 인증 URL 생성 기능을 이용하여 네아로 인증 URL 생성 */
@@ -50,7 +51,8 @@ public class NaverLoginBO {
                 .state(state) //앞서 생성한 난수값을 인증 URL생성시 사용함
                 .build(NaverLoginApi.instance());
         
-        System.out.println("?????"+oauthService.getAuthorizationUrl());
+        System.out.println("BO에서 URL 출력 : "+oauthService.getAuthorizationUrl());
+        session.setAttribute("naverUrl", oauthService.getAuthorizationUrl());
 
         return oauthService.getAuthorizationUrl();
     }

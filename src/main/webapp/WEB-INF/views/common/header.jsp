@@ -56,7 +56,15 @@
     </style>
 </head>
 <body>
+	<!-- NAVER LOGIN  -->
+
+	<%
+         NaverLoginBO naverLoginBO = new NaverLoginBO();
+         String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
+	 %>
 	
+	<!-- NAVER LOGIN -->
 	 <!-- Phone/Email -->
             <div id="pre-header" class="background-gray-lighter">
                 <div class="container no-padding">
@@ -66,7 +74,10 @@
                         </div>
                         <div class="col-sm-6 text-right padding-vert-5">
                             <c:if test="${ empty sessionScope.loginUser }">
-                            <a href="loginView.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
+                              <c:url var="loginView" value="loginView.me">
+	                           <c:param name="naverAuthUrl" value="<%=naverAuthUrl %>"/>
+	                           </c:url>
+                            <a href="${ loginView }" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginUser }">
                             <a href="logout.me" style="color:black">로그아웃</a>&nbsp;&nbsp;&nbsp;
@@ -226,10 +237,7 @@
                             </div>
                         </div>
                         
-                          <%
-                          NaverLoginBO naverLoginBO = new NaverLoginBO();
-                          String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-						 %>
+                          
                        
                         <div class="col-md-4 no-padding">
                             <ul class="social-icons pull-right">
