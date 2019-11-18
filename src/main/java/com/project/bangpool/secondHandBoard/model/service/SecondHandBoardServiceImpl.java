@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.secondHandBoard.model.dao.SecondHandBoardDAO;
 import com.project.bangpool.common.page.PageInfo;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 import com.project.bangpool.secondHandBoard.model.vo.SecondHandBoard;
 
 @Service("shbService")
@@ -99,7 +100,10 @@ public class SecondHandBoardServiceImpl implements SecondHandBoardService {
 		return shbDAO.displayList(sqlSession,pi);
 	}
 	
-	
+	@Override
+	public ArrayList<SecondHandBoard> selectTopList() {
+		return shbDAO.selectTopList(sqlSession);
+	}
 	
 	
 	

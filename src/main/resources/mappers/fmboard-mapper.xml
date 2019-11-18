@@ -182,4 +182,16 @@
 		where rid=#{rId}
 	</update>
 	
+	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultType="FMBoard">
+		<![CDATA[
+			select *
+			from (select *
+				  from freshman_board
+				  where fbstatus = 'Y'
+				  order by fbcreatedate desc)
+			where rownum <= 8
+		]]>
+	</select>
+	
 </mapper>

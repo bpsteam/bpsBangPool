@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,7 @@ import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.service.MailService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 
 @Controller
@@ -336,24 +338,59 @@ public class FMBoardController {
 	@RequestMapping("bupdate.fm")
 	public ModelAndView updateBoard(@ModelAttribute FMBoard b, @RequestParam("phone1")String phone1,
 			@RequestParam("phone2")String phone2, @RequestParam("phone3")String phone3,
-			@RequestParam("reloadFile") MultipartFile reloadFile, 
+			@RequestParam(value="reloadFile1", required=false) MultipartFile reloadFile1, 
+			@RequestParam(value="reloadFile2", required=false) MultipartFile reloadFile2, 
+			@RequestParam(value="reloadFile3", required=false) MultipartFile reloadFile3,
 							HttpServletRequest request, ModelAndView mv) {
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
 
 		System.out.println("bupdate.fm / b : "+b);
-		System.out.println("bupdate.fm / reloadFile : "+reloadFile);
+		System.out.println("bupdate.fm / reloadFile : "+reloadFile1+";"+reloadFile2+";"+reloadFile3);
+		String renameFileName1 =null;
+		String renameFileName2 =null;
+		String renameFileName3 =null;
 		
-		if(reloadFile != null && !reloadFile.isEmpty()) {
-			deleteFile(b.getRenameFileName(), request); // 파일삭제하는 메소드 만들기
+		String originalFile = "";
+		String renameFile = "";
+		
+		if(reloadFile1 != null && !reloadFile1.isEmpty()) {
+			String dbFile = b.getRenameFileName();
+			if(dbFile != null) {
+				String file[] = dbFile.split(";");
+				for(int i=0; i<file.length; i++) {
+					deleteFile(file[i], request); // 파일삭제하는 메소드 만들기
+				}
+			}
+			renameFileName1 = saveFile(reloadFile1, request);
+			if(renameFileName1 != null) {
+				originalFile +=reloadFile1.getOriginalFilename();
+				renameFile +=renameFileName1;
+			}
+			if(reloadFile2 != null && !reloadFile2.isEmpty()) {
+				renameFileName2 = saveFile(reloadFile1, request);
+				if(renameFileName2 != null) {
+					originalFile +=";"+reloadFile2.getOriginalFilename();
+					renameFile +=";"+renameFileName2;
+				}
+			}
+			if(reloadFile3 != null && !reloadFile3.isEmpty()) {
+				renameFileName3 = saveFile(reloadFile3, request);
+				if(renameFileName3 != null) {
+					originalFile +=";"+reloadFile3.getOriginalFilename();
+					renameFile +=";"+renameFileName3;
+				}
+			}
 		}
 		
-		String renameFileName = saveFile(reloadFile, request);
+		b.setOriginalFileName(originalFile);
+		b.setRenameFileName(renameFile);
 		
-		if(renameFileName != null) {
-			b.setOriginalFileName(reloadFile.getOriginalFilename());
-			b.setRenameFileName(renameFileName);
-		}
+//		if(renameFileName1 != null) {
+//			originalFile =reloadFile1.getOriginalFilename();
+//			b.setOriginalFileName(reloadFile1.getOriginalFilename());
+//			b.setRenameFileName(renameFileName1);
+//		}
 		
 		System.out.println("파일네임 수정 됐어? : "+b);
 		
@@ -500,7 +537,29 @@ public class FMBoardController {
 		else return new ResponseEntity<String>("false", HttpStatus.OK);
 	}
 
-
+	
+	// 여기부터 김상욱 꺼
+	
+	@RequestMapping("topList.fm")
+	public void boardTopList(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<FMBoard> list = fbService.selectTopList();
+		
+		JSONArray jArr = new JSONArray();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(list);
+		
+		for(FMBoard b : list) {
+			b.setFbTitle(URLEncoder.encode(b.getFbTitle(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
+	
 	
 }
 

@@ -317,7 +317,7 @@
                                                 </div> -->
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/member_confirm.php?url=register_form.php" class="btn btn-lightgray btn-sm btn-block">
+                                                        <a href="mupConfirm.me" class="btn btn-lightgray btn-sm btn-block">
                                                             정보수정
                                                         </a>
                                                     </div>
@@ -652,7 +652,7 @@
                                             <div class="profile">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" target="_blank" class="win_memo" title="사진등록">
                                                     <div class="photo pull-left">
-                                                        <img src="http://myroom.oceanmate.co.kr/thema/Basic/widget/basic-outlogin/img/photo.png">
+                                                        <img class="img-circle" style="width:80px" src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
                                                     </div>
                                                 </a>
                                                 <h4>${ loginUser.nickname }

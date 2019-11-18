@@ -12,6 +12,11 @@ public interface MemberService {
 
 	int deleteMember(Member m);
 
-	
+	int checkIdDup(String email);
+
+	int checkNickDup(String nickname);
+
+	Member snsLogin(Member m);
+
 	
 }

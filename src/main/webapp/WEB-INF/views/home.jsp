@@ -44,7 +44,6 @@
                             </div>
                             <div class="widget-box panel-body">
                                 <div class="basic-post-list ">
-                        			
                                     <ul class="post-list" style ="padding-left: 15px; width: 100%;" id="tb">
                                         <!-- <li class="ellipsis">
                                             <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=134" id="tb">
@@ -52,9 +51,7 @@
                                                 <span class="wr-icon wr-new"><span class="subject_title">안중식안중식</span>
                                             </a>
                                         </li> -->
-                                    </ul>
-                                    
-                                                                                                   
+                                    </ul>                                                         
                                 </div>
                             </div>
                             
@@ -122,106 +119,92 @@
                             <!-- 이슈 끝-->
                         </div>
                         </div>
+                        <!-- 하우스 메이트 -->
                         <div class="col-md-4 ">
                         <div class="panel panel-aqua">
                             <!-- 뉴스 시작 -->
                             <div class="panel-heading">
-                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house" style="color:white">
-                                    <span class="pull-right lightgray font-16 en" >+</span>
+                                <a href="blist.hm" style="color:white">
+                                    <span class="pull-right lightgray font-16 en">+</span>
                                     <span class="div-title-underbar-bold border-navy font-16 en" >
                                         <b>하우스메이트</b>
                                     </span>
                                 </a>
                             </div>
                             <div class="widget-box panel-body">
-                                    <div class="basic-post-list " >
-                            
-                                    <ul class="post-list" style ="padding-left: 15px;" >
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7187">
-                        
-                                                <span class="pull-right gray font-12">
-                                                    &nbsp;3시간전 </span>
-                                                <span class="wr-icon wr-new"></span> <span class="subject_title"><b>서울 아파트 하메 여자분 구해요</b></span>
+                                <div class="basic-post-list ">
+                                    <ul class="post-list" style ="padding-left: 15px; width: 100%;" id="tb2">
+                                        <!-- <li class="ellipsis">
+                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=134" id="tb">
+                                                <span class="pull-right gray font-12">안중식안중식안중식안중식안중식안중식</span>
+                                                <span class="wr-icon wr-new"><span class="subject_title">안중식안중식</span>
                                             </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7186">
-                        
-                                                <span class="pull-right gray font-12">
-                                                    &nbsp;1일전 </span>
-                                                <span class="wr-icon wr-new"></span> <span class="subject_title"><b>[서울] 하우스메이트 구합니다~~</b></span>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7185">
-                        
-                                                <!-- <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;"> -->
-                                                <span class="gray font-12"  style="float: right">
-                                                    &nbsp;6일전 </span>
-                                                  
-                                                 <span class="subject_title" style="width:180px">부산
-                                                    덕천동 쓰리룸 하우스메이트 여성분 구합니다</span><!-- </div> -->
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis"  >
-                                            <a href="#" >
-                        
-                                                <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                        <span class="gray font-12" style="float: right">
-                                                        &nbsp;7일전 </span>
-                                                        <span class="subject_title" style="width:180px">신축
-                                                            32평 /왕 테라스 / 풀옵션 저렴하게 방하나 하우스 메이트 구해요. (( 월세15만원))</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7180">
-                        
-                                                <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                <span class="pull-right gray font-12" style="float: right">
-                                                    &nbsp;10일전 </span>
-                                                <span class="subject_title" style="width:180px">서초동
-                                                    하메구해요(강남역 20분 이내거리)</span> </div>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7185">
-                        
-                                                <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                <span class="gray font-12"  style="float: right">
-                                                    &nbsp;6일전 </span>
-                                                  
-                                                 <span class="subject_title" style="width:180px">부산
-                                                    덕천동 쓰리룸 하우스메이트 여성분 구합니다</span></div>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis"  >
-                                            <a href="#" >
-                        
-                                                <div style="width:260px; height:25px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                        <span class="gray font-12" style="float: right">
-                                                        &nbsp;7일전 </span>
-                                                        <span class="subject_title" style="width:180px">신축
-                                                            32평 /왕 테라스 / 풀옵션 저렴하게 방하나 하우스 메이트 구해요. (( 월세15만원))</span> 
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7180">
-                        
-                                                <div style="width:260px; height:20px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
-                                                <span class="pull-right gray font-12" style="float: right">
-                                                    &nbsp;10일전 </span>
-                                                <span class="subject_title" style="width:180px">서초동
-                                                    하메구해요(강남역 20분 이내거리)</span> </div>
-                                            </a>
-                                        </li>
-                                      
-                                        
-                                    </ul>
+                                        </li> -->
+                                    </ul>                                                         
                                 </div>
                             </div>
+                            
+                            <script>
+						        function topList2(){
+									$.ajax({
+										url: "topList.hm",
+										dataType: "json",
+										success: function(data){
+											$ul = $("#tb2");
+											$ul.html("");
+											
+											var hbWriter;
+											var hbTitle;
+											
+											
+											
+											for(var i in data){
+												
+												$li = $('<li class="ellipsis">');
+												$a = $('<a>').attr('href',"bdetail.hm?hbId="+data[i].hbId);
+												$span = $('<span class="gray font-12 hahaha">');
+												$span2 = $('<span class="subject_title hohoho">');
+												
+												
+												$hbWriter = $("<b>").text(data[i].hbWriter);
+												$hbTitle = $("<b>").text(decodeURIComponent(data[i].hbTitle.replace(/\+/g," ")));
+												
+												$li.append($a);
+												$span.append($hbWriter);
+												$span2.append($hbTitle);
+												$a.append($span);
+												$a.append($span2);
+												/* $li.append($span);
+												$li.append($span2); */
+												$ul.append($li);
+												
+												
+												/* var $tr = $('<span class="pull-right gray font-12">');
+												var $tr2 = $('<span class="subject_title">');
+												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+												var $rbWriter = $("<b>").text(data[i].rbWriter); */
+												
+												/* $tr.append($rbTitle); */
+												
+												/* $tr.append($rbWriter);
+												$tr2.append($rbTitle);
+												
+												$tableBody.append($tr);
+												$tableBody.append($tr2); */
+											}
+										}
+									});
+								}
+								
+								$(function(){
+									topList2();
+									
+									setInterval(function(){
+										topList2();
+									}, 10000);
+								});
+							</script>
+                            
                             <!-- 뉴스 끝 -->
                         </div>
                         </div>
@@ -229,7 +212,7 @@
                             <!-- <i class="fa-bar-chart fa-4x color-primary animate fadeIn"></i>
                             <h2 class="padding-top-10 animate fadeIn">Placerat facer possim</h2>
                             <p class="animate fadeIn">Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.</p> -->
-                         <c:if test="${ empty sessionScope.loginUser }">
+                         <c:if test="${ empty sessionScope.loginUser}">
                                     <form class="login-page" action="login.me" method="post" id="loginForm">
                                         <div class="login-header margin-bottom-30">
                                             <h2>LOGIN</h2>
@@ -270,7 +253,7 @@
 								<a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php"
 									target="_blank" class="win_memo" title="사진등록"> 
 									<!-- fa fa-code fa-4x -->
-									<img src="http://myroom.oceanmate.co.kr/thema/Basic/widget/basic-outlogin/img/photo.png">
+									 <img class="img-circle" style="width:80px" src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
 								</a>
 							</div>
 							<div class="login-header margin-bottom-10">
@@ -353,7 +336,8 @@
                         
                         
 					      </c:if>
-                        
+					      
+					    
                         </div> 
                         <!-- End Icons -->
                     </div>
@@ -366,126 +350,94 @@
                         <div class="col-md-6" >
                         <div class="panel panel-primary">
                     
-                                <!-- 댓글 시작 -->
+                                <!-- 신입생 메이트 시작 -->
                                 <div class="div-title-underbar panel-heading">
-                                    <a href="http://myroom.oceanmate.co.kr/bbs/new.php?view=c" style="color:white">
+                                    <a href="blist.rm" style="color:white">
                                         <span class="pull-right lightgray font-16 en">+</span>
                                         <span class="div-title-underbar-bold border-navy font-16 en ">
-                                            <b>최근코멘트</b>
+                                            <b>신입생메이트</b>
                                         </span>
                                     </a>
                                 </div>
                                 <div class="widget-box panel-body">
                                     <div class="basic-post-list">
                     
-                                        <ul class="post-list">
-                                            <li class="ellipsis">
+                                        <ul class="post-list" id="tb3">
+                                            <!-- <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=109#c_123">
                     
                                                     <span class="pull-right gray font-12">
                                                         <span class="name">
-                                                            순종 </span>
+                                                            	순종 </span>
                                                         &nbsp;10.06 </span>
                                                     <span class="lightgray"><i class="fa fa-comment"></i></span> <span
                                                         class="subject_title"><b>라인ho1413연락요망</b></span>
                                                 </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=109#c_117">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            순종 </span>
-                                                        &nbsp;09.29 </span>
-                                                    <span class="wr-icon wr-secret"></span> <span
-                                                        class="subject_title"><b>비밀댓글입니다.</b></span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=6333#c_7170">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            구미방구해요 </span>
-                                                        &nbsp;09.26 </span>
-                                                    <span class="lightgray"><i class="fa fa-comment"></i></span> <span
-                                                        class="subject_title">구미쪽방있나요?</span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7156#c_7169">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            구미방구해요 </span>
-                                                        &nbsp;09.26 </span>
-                                                    <span class="wr-icon wr-secret"></span> <span class="subject_title">비밀댓글입니다.</span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=7156#c_7168">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            구미방구해요 </span>
-                                                        &nbsp;09.26 </span>
-                                                    <span class="lightgray"><i class="fa fa-comment"></i></span> <span
-                                                        class="subject_title">사람구하셨나요</span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=75#c_94">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            젊은오빠 </span>
-                                                        &nbsp;09.14 </span>
-                                                    <span class="wr-icon wr-secret"></span> <span class="subject_title">비밀댓글입니다.</span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=27#c_58">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            쭈야486 </span>
-                                                        &nbsp;08.19 </span>
-                                                    <span class="wr-icon wr-secret"></span> <span class="subject_title">비밀댓글입니다.</span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=50#c_57">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            쭈야486 </span>
-                                                        &nbsp;08.19 </span>
-                                                    <span class="wr-icon wr-secret"></span> <span class="subject_title">비밀댓글입니다.</span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=house&amp;wr_id=6573#c_7141">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            쭈야486 </span>
-                                                        &nbsp;08.19 </span>
-                                                    <span class="wr-icon wr-secret"></span> <span class="subject_title">비밀댓글입니다.</span>
-                                                </a>
-                                            </li>
-                                            <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=23#c_56">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            쭈야486 </span>
-                                                        &nbsp;08.19 </span>
-                                                    <span class="wr-icon wr-secret"></span> <span class="subject_title">비밀댓글입니다.</span>
-                                                </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </div>
+                                
+                                <script>
+						        function topList3(){
+									$.ajax({
+										url: "topList.fm",
+										dataType: "json",
+										success: function(data){
+											$ul = $("#tb3");
+											$ul.html("");
+											
+											var fbWriter;
+											var fbTitle;
+											
+											
+											
+											for(var i in data){
+												
+												$li = $('<li class="ellipsis">');
+												$a = $('<a>').attr('href',"bdetail.fm?fbId="+data[i].fbId);
+												$span = $('<span class="gray font-12 hahaha">');
+												$span2 = $('<span class="subject_title hohoho">');
+												
+												
+												$fbWriter = $("<b>").text(data[i].fbWriter);
+												$fbTitle = $("<b>").text(decodeURIComponent(data[i].fbTitle.replace(/\+/g," ")));
+												
+												$li.append($a);
+												$span.append($fbWriter);
+												$span2.append($fbTitle);
+												$a.append($span);
+												$a.append($span2);
+												/* $li.append($span);
+												$li.append($span2); */
+												$ul.append($li);
+												
+												
+												/* var $tr = $('<span class="pull-right gray font-12">');
+												var $tr2 = $('<span class="subject_title">');
+												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+												var $rbWriter = $("<b>").text(data[i].rbWriter); */
+												
+												/* $tr.append($rbTitle); */
+												
+												/* $tr.append($rbWriter);
+												$tr2.append($rbTitle);
+												
+												$tableBody.append($tr);
+												$tableBody.append($tr2); */
+											}
+										}
+									});
+								}
+								
+								$(function(){
+									topList3();
+									
+									setInterval(function(){
+										topList3();
+									}, 10000);
+								});
+							</script>
                                 <!-- 댓글 끝 -->
                     
                         </div>
@@ -494,20 +446,65 @@
                         <div class="col-md-6">
                             <h3 class="padding-vert-10">공지사항</h3>
                             <p>가장 최근에 올라온 공지사항을 보여줍니다</p>
-                            <ul class="tick animate fadeInRight">
-                                <a href="#">
-                                    <li>전세/월세/매매 직거래 메뉴가 신설되었습니다.</li>
-                                </a>
-                                <a href="#">
-                                    <li>사이트 개편이 완료되었습니다.</li>
-                                </a>
-                                <li>사이트 글쓰기 장애에 대한 사과공지</li>
-                                <li>모바일에서의 클릭시 오류 수정안내</li>
-                                <li>한글깨짐 오류 수정안내</li>
-                                <li>광고가 겹쳐서 사용이 안되시는 회원님 필독</li>
-                              
+                            <ul class="tick animate fadeInRight" id="tb4">
+                                
                             </ul>
                         </div>
+                        <script>
+						        function topList4(){
+									$.ajax({
+										url: "topList.no",
+										dataType: "json",
+										success: function(data){
+											$ul = $("#tb4");
+											$ul.html("");
+											
+											var nTitle;
+											
+											for(var i in data){
+												
+												$li = $('<li class="ellipsis">');
+												$a = $('<a>').attr('href',"ndetail2.no?nId="+data[i].nId);
+												$span = $('<span class="gray font-12 hahaha">');
+												$span2 = $('<span class="subject_title hohoho">');
+												
+												
+												$nTitle = $("<b>").text(decodeURIComponent(data[i].nTitle.replace(/\+/g," ")));
+												
+												$li.append($a);
+												$span2.append($nTitle);
+												$a.append($span);
+												$a.append($span2);
+												/* $li.append($span);
+												$li.append($span2); */
+												$ul.append($li);
+												
+												
+												/* var $tr = $('<span class="pull-right gray font-12">');
+												var $tr2 = $('<span class="subject_title">');
+												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+												var $rbWriter = $("<b>").text(data[i].rbWriter); */
+												
+												/* $tr.append($rbTitle); */
+												
+												/* $tr.append($rbWriter);
+												$tr2.append($rbTitle);
+												
+												$tableBody.append($tr);
+												$tableBody.append($tr2); */
+											}
+										}
+									});
+								}
+								
+								$(function(){
+									topList4();
+									
+									setInterval(function(){
+										topList4();
+									}, 10000);
+								});
+							</script>
                      
                 </div>
             </div>
@@ -516,9 +513,10 @@
             <div id="portfolio" class="bottom-border-shadow">
                 <div class="container bottom-border">
                     <div class="row padding-top-40">
-                        <ul class="portfolio-group ">
+                        <ul class="portfolio-group " id="tb5">
+                        	
                             <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
+                            <%-- <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
                                 <a href="#">
                                     <figure class="animate fadeInLeft">
                                         <img alt="image1" src="${contextPath}/resources/assets/img/frontpage/test1.jpg">
@@ -528,78 +526,72 @@
                                         </figcaption>
                                     </figure>
                                 </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeIn">
-                                        <img alt="image2" src="${contextPath}/resources/assets/img/frontpage/test1.jpg">
-                                        <figcaption>
-                                                <h3>내용 미리보기</h3>
-                                                <span>미리보기가 보입니다</span>
-                                            </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInRight">
-                                        <img alt="image3" src="${contextPath}/resources/assets/img/frontpage/test1.jpg">
-                                        <figcaption>
-                                                <h3>내용 미리보기</h3>
-                                                <span>미리보기가 보입니다</span>
-                                            </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInLeft">
-                                        <img alt="image4" src="${contextPath}/resources/assets/img/frontpage/test1.jpg">
-                                        <figcaption style="text-align: center;">
-                                                <h3>내용 미리보기</h3>
-                                                <span>미리보기가 보입니다</span>
-                                            </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeIn">
-                                        <img alt="image5" src="${contextPath}/resources/assets/img/frontpage/test1.jpg">
-                                        <figcaption style="text-align: center;">
-                                                <h3>내용 미리보기</h3>
-                                                <span>미리보기가 보입니다</span>
-                                            </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
-                            <!-- //Portfolio Item// -->
-                            <!-- Portfolio Item -->
-                            <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInRight">
-                                        <img alt="image6" src="${contextPath}/resources/assets/img/frontpage/test1.jpg">
-                                        <figcaption style="text-align: center;">
-                                                <h3>내용 미리보기</h3>
-                                                <span>미리보기가 보입니다</span>
-                                            </figcaption>
-                                    </figure>
-                                </a>
-                            </li>
+                            </li> --%>
                             <!-- //Portfolio Item// -->
                         </ul>
                     </div>
                 </div>
             </div>
             </div>
+            
+            <script>
+		        function topList5(){
+					$.ajax({
+						url: "topList.se",
+						dataType: "json",
+						success: function(data){
+							$ul = $("#tb5");
+							$ul.html("");
+							
+							/* var fbWriter;
+							var fbTitle; */
+							console.log(data);
+							for(var i in data){
+								
+								$li = $('<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">');
+								$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
+								$span = $('<figure class="animate fadeInLeft">');
+								$span2 = $('<img alt="image1" style="width: 400px; height: 200px;" src="resources/buploadFiles/'+data[i].shbRenameFileName+'">');
+								
+								
+								/* $fbWriter = $("<b>").text(data[i].fbWriter);
+								$fbTitle = $("<b>").text(decodeURIComponent(data[i].fbTitle.replace(/\+/g," "))); */
+								
+								$li.append($a);
+								/* $span.append($fbWriter);
+								$span2.append($fbTitle); */
+								$a.append($span);
+								$a.append($span2);
+								/* $li.append($span);
+								$li.append($span2); */
+								$ul.append($li);
+								
+								
+								/* var $tr = $('<span class="pull-right gray font-12">');
+								var $tr2 = $('<span class="subject_title">');
+								var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+								var $rbWriter = $("<b>").text(data[i].rbWriter); */
+								
+								/* $tr.append($rbTitle); */
+								
+								/* $tr.append($rbWriter);
+								$tr2.append($rbTitle);
+								
+								$tableBody.append($tr);
+								$tableBody.append($tr2); */
+							}
+						}
+					});
+				}
+				
+				$(function(){
+					topList5();
+					
+					setInterval(function(){
+						topList5();
+					}, 10000);
+				});
+			</script>
             <!-- End Portfolio -->
 
             <!-- 추가 portfolio-->

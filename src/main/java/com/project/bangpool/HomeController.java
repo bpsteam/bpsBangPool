@@ -37,4 +37,23 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("about.do")
+	public String about() {
+		return "common/about";
+	}
+	
+	@RequestMapping("provision.do")
+	public String provision() {
+		return "common/provision";
+	}
+	
+	@RequestMapping("rejection.do")
+	public String rejection() {
+		return "common/rejection";
+	}
+	
+	@RequestMapping("responsibility.do")
+	public String responsibility() {
+		return "common/responsibility";
+	}
 }
