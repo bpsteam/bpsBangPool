@@ -349,7 +349,7 @@
                         <div id="matching_form" class="section_matching">
                             <div class="matching_content">
                                 <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-								<form class="signup-page">
+								<form class="signup-page" id="mform">
 									<div class="signup-header">
 										<h2 style="display: inline;">나에게 맞는 메이트는?</h2>
 										<span class="close"><h1 style="display: inline;">&times;</h1></span>
@@ -360,7 +360,7 @@
 									</div>
 									<div class="row">
 										<div class="col-sm-6">
-											<label>메이트</label>
+											<label>메이트 *</label>
 											<select id="mBcode" 
 												class="form-control margin-bottom-20">
 												<option value="">선택</option>
@@ -375,13 +375,13 @@
 											<label>지역</label> 
 											<select id="mLocation" class="form-control margin-bottom-20">
 												<option value="">선택하세요</option>
-												<option value="SEOUL">서울</option>
-												<option value="INC">인천/부천</option>
-												<option value="SU">수원/경기</option>
-												<option value="DAE">대구/경북</option>
-												<option value="BU">부산/경남</option>
-												<option value="CHUNG">충청/강원</option>
-												<option value="GWANG">광주/전라</option>
+												<option value="서울">서울</option>
+												<option value="인천">인천/부천</option>
+												<option value="수원">수원/경기</option>
+												<option value="대구">대구/경북</option>
+												<option value="부산">부산/경남</option>
+												<option value="충청">충청/강원</option>
+												<option value="광주">광주/전라</option>
 											</select>
 										</div>
 										<div class="col-sm-6">
@@ -434,17 +434,17 @@
 									<div class="row">
 										<div class="col-lg-8"></div>
 										<div class="col-lg-4 text-right">
-											<button class="btn btn-primary" type="submit" id="matchingBtn">매칭하기</button>
+											<button class="btn btn-primary" type="button" id="matchingBtn">매칭하기</button>
 										</div>
 									</div>
 									<hr>
 
 									<!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
-									<div class="row">
-										<div class="col-md-12">
+									<div class="row" >
+										<div class="col-md-12" id="matListDiv">
 
 											<!-- Portfolio Item -->
-											<div class="col-md-4 portfolio-item margin-bottom-40 video">
+											<%-- <div class="col-md-4 portfolio-item margin-bottom-40 video"  >
 													<a href="#">
 														<figure>
 															<img
@@ -495,13 +495,8 @@
 															심플 인테리어</h6>
 														<div>
 															<div class="item_money_box">
-																<p class="item_price_consumer"
-																	style="text-decoration: line-through; display: inline-block;">
-																	<span>450,000원 </span>
-																</p>
-																&nbsp;&nbsp; <strong class="item_price"
-																	style="color: #aa6868;"> <span>379,000원
-																</span>
+																<strong class="item_price" style="color: #aa6868;"> 
+																	<span>379,000원 	</span>
 																</strong>
 															</div>
 														</div>
@@ -543,7 +538,7 @@
 														</div>
 													</a>
 												</div>
-											</div>
+											</div> --%>
 					
 										</div>
 									</div>
@@ -568,30 +563,71 @@
 							section_matching.style.display = "none";
 						}
 
-						window.onclick = function(event) {
+						/* window.onclick = function(event) {
 							if (event.target == section_matching) {
 								section_matching.style.display = "none";
 							}
-						}
+						} */
 						
 						
+						// "나에게 맞는 메이트 찾기" 버튼 눌렀을 때
 						$("#matchingBtn").on("click", function(){
 							var mBcode = $("#mBcode option:selected").val();
 							var mLocation = $("#mLocation option:selected").val();
-							/* var mReqgender = $("#mReqgender option:selected").val();
+							var mReqgender = $("#mReqgender option:selected").val();
 							var mLivingType = $("#mLivingType option:selected").val();
-							var mRoom = $("#mRoom option:selected").val(); */
+							var mRoom = $("#mRoom option:selected").val(); 
 							console.log(mBcode);
 							
 							$.ajax({
 								url: "matchingList.mc",
-								data: {mBcode:mBcode, mLocation:mLocation},
+								data: {mBcode:mBcode, mLocation:mLocation, mReqgender:mReqgender,
+									mLivingType:mLivingType, mRoom:mRoom},
 								type: "post",
-								success: function(){
-									alert("ajax 갔다오기성공");
+								success: function(data){
+									console.log("ajax 성공");
+									$(".section_matching").css('display','block');
+									console.log("display block처리");
+									
+									$matListDiv = $("#matListDiv");
+									$matListDiv.html("");
+									console.log(data);
+									
+									var $mDiv;
+									var $atag;
+									var $figuretag;
+									var $imgtag;
+									var $h6tag;
+									
+									if(data.length > 0){
+										console.log("if왔나");
+										for(var i in data){
+											$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+											$atag = $("<a>").attr('href','#');
+											$figuretag = $("<figure>");
+											$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+															  .width('400px').height('200px');
+											$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+											
+											$mDiv.append($atag);
+											$atag.append($figuretag); 
+											$figuretag.append($imgtag);
+											$atag.append($h6tag);
+											$matListDiv.append($mDiv);
+										}
+									}
+									
+									
+									$(".close").on("click", function(){
+										$matListDiv.html("");
+										$("#mform").each(function() {
+											this.reset();	
+										});
+									});
+									
 								},
 								error: function() {
-									alert("갔다오기실패..");
+									alert("필수 항목을 반드시 입력해주세요.");
 								}
 							});
 							

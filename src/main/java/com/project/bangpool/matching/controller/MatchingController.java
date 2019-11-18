@@ -25,25 +25,28 @@ public class MatchingController {
 	private MatchingService mcService;
 
 	@RequestMapping("matchingList.mc")
-	public void matchingList(HttpServletResponse response,
-							String mBcode,
-							String mLocation ) throws JsonIOException, IOException {
+	public void matchingList(HttpServletResponse response, 
+							String mBcode, String mLocation, String mReqgender, 
+							String mLivingType, String mRoom) throws JsonIOException, IOException {
 		
 		response.setContentType("application/json; charset=utf-8");
 		HashMap<String, String> matchingMap = new HashMap<String, String>();
 		matchingMap.put("mBc", mBcode);
 		matchingMap.put("mLoc", mLocation);
+		matchingMap.put("mReq", mReqgender);
+		matchingMap.put("mLiv", mLivingType);
+		matchingMap.put("mRom", mRoom);
 		
 		System.out.println(matchingMap);
 		
-		/*Gson gson = new GsonBuilder().create();
-		
+		Gson gson = new GsonBuilder().create();
+		System.out.println("gson 생성! ");
 		if( mBcode.equals("RMBCODE")) {
 			ArrayList<RMBoard> mlist = mcService.selectMatching(matchingMap);
 			gson.toJson(mlist, response.getWriter());
 			
 			System.out.println("매칭 mlist : "+ mlist);
-		}*/
+		}
 		
 		
 	}
