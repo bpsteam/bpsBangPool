@@ -316,7 +316,7 @@ public class HMBoardController {
 		JSONArray jArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		for(HMBoard b : list) {
 			b.setHbTitle(URLEncoder.encode(b.getHbTitle(),"utf-8"));
