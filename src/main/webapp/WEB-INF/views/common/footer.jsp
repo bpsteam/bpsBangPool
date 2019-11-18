@@ -41,7 +41,7 @@
                             <h3 class="margin-bottom-10">바로가기</h3>
                             <ul class="menu">
                                 <li>
-                                    <a class="fa-tasks" href="#">HOME</a>
+                                    <a class="fa-tasks" href="home.do">HOME</a>
                                 </li>
                                 <li>
                                     <a class="fa-users" href="#">ROOMMATE</a>
@@ -67,16 +67,16 @@
                         <div id="footermenu" class="col-md-8">
                             <ul class="list-unstyled list-inline">
                                 <li>
-                                    <a href="#" target="_blank">사이트 소개</a>
+                                    <a href="about.do" target="_blank">사이트 소개</a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">이용약관</a>
+                                    <a href="provision.do" >이용약관</a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">이메일 무단수집거부</a>
+                                    <a href="rejection.do" >이메일 무단수집거부</a>
                                 </li>
                                 <li>
-                                    <a href="#" target="_blank">책임의 한계와 법적고지</a>
+                                    <a href="responsibility.do" >책임의 한계와 법적고지</a>
                                 </li>
                             </ul>
                         </div>

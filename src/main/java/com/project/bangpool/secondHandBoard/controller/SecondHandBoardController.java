@@ -1,11 +1,15 @@
 package com.project.bangpool.secondHandBoard.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.bangpool.common.page.Pagination;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.secondHandBoard.model.exception.SecondHandBoardException;
 import com.project.bangpool.secondHandBoard.model.service.SecondHandBoardService;
@@ -135,6 +142,25 @@ public class SecondHandBoardController {
 			mv.addObject("board", board)
 			  .addObject("reply",reply)
 			  .addObject("page",page)
+			  .setViewName("secondHandDetail"); // 메소드 체이닝
+		} else {
+			throw new SecondHandBoardException("게시글 상세보기를 실패하였습니다.");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("shbdetail2.se")
+	public ModelAndView secondHandBoardDetail2(@RequestParam("shbId") int shbId,
+											  ModelAndView mv) {
+		
+		SecondHandBoard board = shbService.selectBoard(shbId);
+		
+		System.out.println("shbId : " + shbId );
+		
+		if(board != null) {
+			// board, page --> boardDetailView
+			mv.addObject("board", board)
 			  .setViewName("secondHandDetail"); // 메소드 체이닝
 		} else {
 			throw new SecondHandBoardException("게시글 상세보기를 실패하였습니다.");
@@ -393,7 +419,28 @@ public class SecondHandBoardController {
 	}
 	
 	
+	// 여기부터 김상욱 꺼
 	
+	@RequestMapping("topList.se")
+	public void boardTopList(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<SecondHandBoard> list = shbService.selectTopList();
+		
+		JSONArray jArr = new JSONArray();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(list);
+		
+		for(SecondHandBoard b : list) {
+			b.setShbTitle(URLEncoder.encode(b.getShbTitle(),"utf-8"));
+			b.setShbRenameFileName(URLEncoder.encode(b.getShbRenameFileName(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
 	
 	
 	

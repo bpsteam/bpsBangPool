@@ -20,8 +20,21 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.deleteMember", m);
 	}
 
+
 	public int addLoginCount(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.addLoginCount", m);
+
+	public int checkIdDup(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.selectOne("memberMapper.checkIdDup", email);
+	}
+
+	public int checkNickDup(SqlSessionTemplate sqlSession, String nickname) {
+		return sqlSession.selectOne("memberMapper.checkNickDup", nickname);
+	}
+
+	public Member snsLogin(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("memberMapper.snsLogin", m);
+
 	}
 
 }

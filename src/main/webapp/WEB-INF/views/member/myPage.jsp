@@ -316,7 +316,7 @@
                                                 </div> -->
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/member_confirm.php?url=register_form.php" class="btn btn-lightgray btn-sm btn-block">
+                                                        <a href="mupConfirm.me" class="btn btn-lightgray btn-sm btn-block">
                                                             정보수정
                                                         </a>
                                                     </div>
@@ -344,119 +344,295 @@
                     
                     
                         <!-- Recent Posts -->
-                        <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 방 찾기</button>
+                        <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
                         <div id="matching_form" class="section_matching">
                             <div class="matching_content">
                                 <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-                                    <form class="signup-page">
-                                        <div class="signup-header">
-                                                <h2 style="display: inline;">어떠한 조건이 좋으냐?</h2>
-                                                <span class="close"><h1  style="display: inline;">&times;</h1></span>
-                                            <br><br><br><br>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>지역</label>
-                                                    <select class="form-control margin-bottom-20">
-                                                        <option value="">선택하세요</option>
-														<option value="서울">서울</option>
-														<option value="인천/부천">인천/부천</option>
-														<option value="수원/경기">수원/경기</option>
-														<option value="대구/경북">대구/경북</option>
-														<option value="부산/경남">부산/경남</option>
-														<option value="충청/강원">충청/강원</option>
-														<option value="광주/전라">광주/전라</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <label>성별</label>
-                                                        <select class="form-control margin-bottom-20">
-                                                            <option value="">선택하세요</option>
-                                                            <option value="무관">무관</option>
-                                                            <option value="남성">남성</option>
-                                                            <option value="여성">여성</option>
-                                                        </select>
-                                                </div>
-                                            </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>평수</label>
-                                                <select class="form-control margin-bottom-20">
-                                                    <option value="">전체</option>
-                                                    <option value="10p">10평미만</option>
-                                                    <option value="11p">11~20평</option>
-                                                    <option value="11p">21~30평</option>
-                                                    <option value="11p">그 외</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label>주거형태</label>
-                                                <select class="form-control margin-bottom-20">
-                                                    <option value="">전체</option>
-                                                    <option value="아파트">아파트</option>
-                                                    <option value="빌라">빌라</option>
-                                                    <option value="원룸">원룸</option>
-                                                    <option value="투룸">투룸</option>
-                                                    <option value="오피스텔">오피스텔</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>반려동물 유무</label>
-                                                <select class="form-control margin-bottom-20">
-                                                    <option value="">전체</option>
-                                                    <option value="10p">무관</option>
-                                                    <option value="11p">반려견 OK</option>
-                                                    <option value="11p">반려묘 OK</option>
-                                                    <option value="11p">그 외 OK</option>
-                                                </select>
-                                            </div>
-                                         </div>
-                                         
-                                        
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-lg-8">
-                                            </div>
-                                            <div class="col-lg-4 text-right">
-                                                <button class="btn btn-primary" type="submit">매칭하기</button>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
-                                        <div class="row">
-                                           <div class="col-sm-6">
-                                              
-                                              
-                                           </div>
-                                        </div>
-                                    </form>
-                                </div>
+								<form class="signup-page" id="mform">
+									<div class="signup-header">
+										<h2 style="display: inline;">나에게 맞는 메이트는?</h2>
+										<span class="close"><h1 style="display: inline;">&times;</h1></span>
+										<br>
+										<br>
+										<br>
+										<br> 
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<label>메이트 *</label>
+											<select id="mBcode" 
+												class="form-control margin-bottom-20">
+												<option value="">선택</option>
+												<option value="RMBCODE">룸메이트</option>
+												<option value="HMBCODE">하우스메이트</option>
+												<option value="FMBCODE">신입생메이트</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<label>지역</label> 
+											<select id="mLocation" class="form-control margin-bottom-20">
+												<option value="">선택하세요</option>
+												<option value="서울">서울</option>
+												<option value="인천">인천/부천</option>
+												<option value="수원">수원/경기</option>
+												<option value="대구">대구/경북</option>
+												<option value="부산">부산/경남</option>
+												<option value="충청">충청/강원</option>
+												<option value="광주">광주/전라</option>
+											</select>
+										</div>
+										<div class="col-sm-6">
+											<label>상대 성별</label> 
+											<select id="mReqgender" class="form-control margin-bottom-20">
+												<option value="">선택하세요</option>
+												<option value="무관">무관</option>
+												<option value="남성">남성</option>
+												<option value="여성">여성</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<label>주거형태</label> 
+											<select id="mLivingType"class="form-control margin-bottom-20">
+												<option value="">선택하세요</option>
+												<option value="단독주택">단독주택</option>
+												<option value="빌라">빌라</option>
+												<option value="아파트">아파트</option>
+												<option value="오피스텔">오피스텔</option>
+											</select>
+										</div>
+										<div class="col-sm-6">
+											<label>방갯수</label> 
+											<select id="mRoom" class="form-control margin-bottom-20">
+												<option value="">선택하세요</option>
+												<option value="원룸">원룸</option>
+												<option value="투룸">투룸</option>
+												<option value="쓰리룸">쓰리룸</option>
+												<option value="포룸">포룸</option>
+											</select>
+										</div>
+									</div>
+									<!-- <div class="row">
+										<div class="col-sm-6">
+											<label>반려동물 유무</label> <select
+												class="form-control margin-bottom-20">
+												<option value="">전체</option>
+												<option value="10p">무관</option>
+												<option value="11p">반려견 OK</option>
+												<option value="11p">반려묘 OK</option>
+												<option value="11p">그 외 OK</option>
+											</select>
+										</div>
+									</div> -->
+
+
+
+									<div class="row">
+										<div class="col-lg-8"></div>
+										<div class="col-lg-4 text-right">
+											<button class="btn btn-primary" type="button" id="matchingBtn">매칭하기</button>
+										</div>
+									</div>
+									<hr>
+
+									<!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
+									<div class="row" >
+										<div class="col-md-12" id="matListDiv">
+
+											<!-- Portfolio Item -->
+											<%-- <div class="col-md-4 portfolio-item margin-bottom-40 video"  >
+													<a href="#">
+														<figure>
+															<img
+																src="${ contextPath }/resources/hmBoardUploadFiles/1.JPG"
+																alt="image1" style="width: 400px; height: 200px;">
+															<figcaption>
+																<h3 class="margin-top-20">Velit esse molestie</h3>
+																<br>
+																<div class="project-item__stats" style="align-content: right;">
+																	<span class="project-item__stats__item">스크랩 9</span>
+																	<!-- <span class="project-item__stats__dot"></span> -->
+																	<span class="project-item__stats__item">조회 521</span>
+																</div>
+															</figcaption>
+														</figure>
+														<h6 class="project-item__cover__title">바람이 솔솔 불어오는
+															화이트 인테리어</h6>
+														<div>
+															<div class="item_money_box">
+																<strong class="item_price" style="color: #aa6868;"> 
+																	<span>379,000원</span>
+																</strong>
+															</div>
+														</div>
+													</a>
+											</div>
+											<!-- End Portfolio Item -->
+											<!-- Portfolio Item -->
+											<div class="col-md-4 portfolio-item margin-bottom-40 design">
+												<div>
+													<a href="#">
+														<figure>
+															<img
+																src="${ contextPath }/resources/hmBoardUploadFiles/2.JPG"
+																alt="image2" style="width: 400px; height: 200px;">
+															<figcaption>
+																<h3 class="margin-top-20">Quam nunc putamus</h3>
+																<div class="project-item__stats"
+																	style="align-content: right;">
+																	<span class="project-item__stats__item">스크랩 9</span>
+																	<!-- <span class="project-item__stats__dot"></span> -->
+																	<span class="project-item__stats__item">조회 521</span>
+																</div>
+															</figcaption>
+														</figure>
+
+														<h6 class="project-item__cover__title">원목가구로 조화를 이룬
+															심플 인테리어</h6>
+														<div>
+															<div class="item_money_box">
+																<strong class="item_price" style="color: #aa6868;"> 
+																	<span>379,000원 	</span>
+																</strong>
+															</div>
+														</div>
+													</a>
+												</div>
+											</div>
+											<!-- End Portfolio Item -->
+											<!-- Portfolio Item -->
+											<div class="col-md-4 portfolio-item margin-bottom-40 audio">
+												<div>
+													<a href="#">
+														<figure>
+															<img
+																src="${ contextPath }/resources/hmBoardUploadFiles/3.JPG"
+																alt="image3" style="width: 400px; height: 200px;">
+															<figcaption>
+																<h3 class="margin-top-20">Placerat facer possim</h3>
+																<div class="project-item__stats"
+																	style="align-content: right;">
+																	<span class="project-item__stats__item">스크랩 9</span>
+																	<!-- <span class="project-item__stats__dot"></span> -->
+																	<span class="project-item__stats__item">조회 521</span>
+																</div>
+															</figcaption>
+														</figure>
+														<h6 class="project-item__cover__title">네추럴 모던 스타일의 취향
+															저격</h6>
+														<div>
+															<div class="item_money_box">
+																<p class="item_price_consumer"
+																	style="text-decoration: line-through; display: inline-block;">
+																	<span>450,000원 </span>
+																</p>
+																&nbsp;&nbsp; <strong class="item_price"
+																	style="color: #aa6868;"> <span>379,000원
+																</span>
+																</strong>
+															</div>
+														</div>
+													</a>
+												</div>
+											</div> --%>
+					
+										</div>
+									</div>
+								</form>
+							</div>
                             </div>
                         </div>
+                        
                         <script>
+                        
+						var section_matching = document.getElementById("matching_form");
 
-                            var section_matching = document.getElementById("matching_form");
+						var matching_btn = document.getElementById("matching_onclick");
 
-                            var matching_btn = document.getElementById("matching_onclick");
+						var span = document.getElementsByClassName("close")[0];
 
-                            var span = document.getElementsByClassName("close")[0];
+						matching_btn.onclick = function() {
+							section_matching.style.display = "block";
+						}
 
-                            matching_btn.onclick = function () {
-                                section_matching.style.display = "block";
-                            }
+						span.onclick = function() {
+							section_matching.style.display = "none";
+						}
 
-                            span.onclick = function() {
-                                section_matching.style.display = "none";
-                            }
-
-                            window.onclick = function (event) {
-                                if (event.target == section_matching) {
-                                    section_matching.style.display = "none";
-                                }
-                            }
-                        </script>
+						/* window.onclick = function(event) {
+							if (event.target == section_matching) {
+								section_matching.style.display = "none";
+							}
+						} */
+						
+						
+						// "나에게 맞는 메이트 찾기" 버튼 눌렀을 때
+						$("#matchingBtn").on("click", function(){
+							var mBcode = $("#mBcode option:selected").val();
+							var mLocation = $("#mLocation option:selected").val();
+							var mReqgender = $("#mReqgender option:selected").val();
+							var mLivingType = $("#mLivingType option:selected").val();
+							var mRoom = $("#mRoom option:selected").val(); 
+							console.log(mBcode);
+							
+							$.ajax({
+								url: "matchingList.mc",
+								data: {mBcode:mBcode, mLocation:mLocation, mReqgender:mReqgender,
+									mLivingType:mLivingType, mRoom:mRoom},
+								type: "post",
+								success: function(data){
+									console.log("ajax 성공");
+									$(".section_matching").css('display','block');
+									console.log("display block처리");
+									
+									$matListDiv = $("#matListDiv");
+									$matListDiv.html("");
+									console.log(data);
+									
+									var $mDiv;
+									var $atag;
+									var $figuretag;
+									var $imgtag;
+									var $h6tag;
+									
+									if(data.length > 0){
+										console.log("if왔나");
+										for(var i in data){
+											$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+											$atag = $("<a>").attr('href','#');
+											$figuretag = $("<figure>");
+											$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+															  .width('400px').height('200px');
+											$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+											
+											$mDiv.append($atag);
+											$atag.append($figuretag); 
+											$figuretag.append($imgtag);
+											$atag.append($h6tag);
+											$matListDiv.append($mDiv);
+										}
+									}
+									
+									
+									$(".close").on("click", function(){
+										$matListDiv.html("");
+										$("#mform").each(function() {
+											this.reset();	
+										});
+									});
+									
+								},
+								error: function() {
+									alert("필수 항목을 반드시 입력해주세요.");
+								}
+							});
+							
+						});
+						
+					</script>
                         <br><br>
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -475,7 +651,7 @@
                                             <div class="profile">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" target="_blank" class="win_memo" title="사진등록">
                                                     <div class="photo pull-left">
-                                                        <img src="http://myroom.oceanmate.co.kr/thema/Basic/widget/basic-outlogin/img/photo.png">
+                                                        <img class="img-circle" style="width:80px" src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
                                                     </div>
                                                 </a>
                                                 <h4>${ loginUser.nickname }

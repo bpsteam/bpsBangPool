@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="freeboardMapper">
+  
+  	<select id="getListCount" resultType="_int">
+		select count(*)
+		from FREEBOARD
+		where frbstatus='Y'
+	</select>
+	
+	<select id="selectList" resultType="FreeBoard">
+		select *
+		from FREEBOARD
+		where frBSTATUS='Y'
+		order by frBID desc
+	</select>
+	
+	<insert id="insertBoard" parameterType="FreeBoard">
+		insert into FREEBOARD
+		values(FREEBOARD_SEQ.nextval, default , #{frbTitle}, #{frbContent}, #{frbWriter}, default,
+				sysdate, sysdate, default)
+	</insert>
+	
+	<select id="selectHbId" resultType="_int">
+		select max(frbid)
+		from FREEBOARD
+	</select>
+	
+	<insert id="insertFile">
+		insert into ATTACHMENT
+		values (attachment_seq.nextval, #{bcode}, #{frbId}, #{originalFileName}, #{renameFileName} )
+	</insert>
+	
+	<update id="addReadCount" parameterType="_int">
+		update FREEBOARD
+		set FRBCOUNT = FRBCOUNT + 1
+		where FRBID = #{frbId}
+	</update>
+	
+	<select id="selectBoard" parameterType="_int" resultType="FreeBoard">
+		select fr.*, a.ORIGINALFILENAME, a.renamefilename
+		from FREEBOARD fr
+		left join attachment a on a.bcode=fr.bcode
+		where fr.frbid = a.refbid
+		and fr.frbstatus='Y' 
+		and fr.frbid =#{frbId} 
+	</select>
+	
+	<!-- <resultMap type="HMBoard" id="boardResultSet">
+		<id property="hbId" column="HBID"/>
+		<result property="bcode" column="BCODE"/>
+		<result property="hbTitle" column="HBTITLE"/>
+		<result property="hbWriter" column="HBWRITER"/>
+		<result property="hbContent" column="HBCONTENT"/>
+		<result property="hbCount" column="HBCOUNT"/>
+		<result property="hbCreateDate" column="HBCREATEDATE"/>
+		<result property="hbModifyDate" column="HBMODIFYDATE"/>
+		<result property="hbStatus" column="HBSTATUS"/>
+		
+		<result property="hLocation" column="HLOCATION"/>
+		<result property="hRentType" column="HRENTTYPE"/>
+		<result property="hLivingType" column="HLIVINGTYPE"/>
+		<result property="hRoom" column="HROOMCOUNT"/>
+		<result property="hFloor" column="HFLOOR"/>
+		<result property="hPrice" column="HPRICE"/>
+		<result property="hParking" column="HPARKING"/>
+		<result property="hReqgender" column="HREQGENDER"/>
+	</resultMap> -->
+	
+	
+	
+	
+	
+	<update id="updateBoard" parameterType="FreeBoard" >
+		update FREEBOARD
+		set frbtitle=#{frbTitle}, frbcontent=#{frbContent}, FRBMODIFYDATE=sysdate, 
+		where frbid=#{frbId}
+	</update>
+	
+	<update id="updateFile" parameterType="FreeBoard">
+		update attachment
+		set originalFilename = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where bcode = #{bcode}
+		and refbid = #{frbId}
+	</update>
+	
+	<update id="deleteBoard" parameterType="_int">
+		update FREEBOARD
+		set FRBSTATUS='N'
+		where frbid = #{frbId}
+	</update>
+	
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+		select * from Reply r
+		join FREEBOARD hm on hm.bcode=r.bcode
+		and r.refbid = frbid
+		where refbid=${frbId}
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		insert into Reply
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+	</insert>
+	
+	<select id="getSearchListCount" parameterType="hashmap" resultType="_int">
+		select count(*)
+		from FREEBOARD
+		join member on(nickname = frbwriter)
+		where FRBSTATUS = 'Y'
+		<if test="sCondition eq 'wr_subject'">
+			and frbtitle like '%' || #{sValue} || '%'
+		</if>
+		<if test="sCondition eq 'wr_content'">
+			and frbcontent like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'titleNcontent'">
+			and (frbtitle like '%' || #{sValue} || '%' or frbcontent like '%' || #{sValue} || '%')
+		</if> 
+		<if test="sCondition eq 'email'">
+			and email like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'hbwriter'">
+			and frbwriter like '%' || #{sValue} || '%'
+		</if> 
+	</select>
+	
+	<select id="selectSearchList" parameterType="hashmap" resultType="FreeBoard">
+		select *
+		from FREEBOARD
+		join member on(nickname = frbwriter)
+		where frBstatus = 'Y'
+		<if test="sCondition eq 'wr_subject'">
+			and frbtitle like '%' || #{sValue} || '%'
+		</if>
+		<if test="sCondition eq 'wr_content'">
+			and frbcontent like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'titleNcontent'">
+			and (frbtitle like '%' || #{sValue} || '%' or frbcontent like '%' || #{sValue} || '%')
+		</if> 
+		<if test="sCondition eq 'email'">
+			and email like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'hbwriter'">
+			and frbwriter like '%' || #{sValue} || '%'
+		</if> 
+		order by FRBMODIFYDATE desc
+	</select>
+	
+</mapper>

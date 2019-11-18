@@ -29,6 +29,9 @@
     	<typeAlias type="com.project.bangpool.share.model.vo.Share" alias="Share"/>
     	
     	<typeAlias type="com.project.bangpool.memberlevel.model.vo.ManageMember" alias="ManageMember"/>
+
+    	<typeAlias type="com.project.bangpool.freeboard.model.vo.FreeBoard" alias="FreeBoard"/>
+
     	
 	</typeAliases>
 	
@@ -50,6 +53,9 @@
   	 	<mapper resource="mappers/share-mapper.xml"/>
   	 	
   	 	<mapper resource="mappers/level-mapper.xml"/>
+
+  	 	<mapper resource="mappers/freeboard-mapper.xml"/>
+
 	</mappers>
 	
 </configuration>

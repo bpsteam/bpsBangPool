@@ -1,5 +1,6 @@
 package com.project.bangpool.member.model.service;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,21 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int deleteMember(Member m) {
 		return mDAO.deleteMember(sqlSession, m);
+	}
+
+	@Override
+	public int checkIdDup(String email) {
+		return mDAO.checkIdDup(sqlSession, email);
+	}
+
+	@Override
+	public int checkNickDup(String nickname) {
+		return mDAO.checkNickDup(sqlSession, nickname);
+	}
+
+	@Override
+	public Member snsLogin(Member m) {
+		return mDAO.snsLogin(sqlSession, m);
 	}
 
 

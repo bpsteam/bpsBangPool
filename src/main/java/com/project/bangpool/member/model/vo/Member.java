@@ -17,14 +17,17 @@ public class Member {
 	private String mStatus;
 	private Date enrollDate;
 	private Date updateDate;
+
 	private int loginCount;		// 추가
-	
+	private String snsId;
+
 	public Member() {
 		super();
 	}
 
+
 	public Member(String mNo, String mlCode, String email, String pwd, String name, String nickname, String gender,
-			String birth, String address, String phone, String mStatus, Date enrollDate, Date updateDate,
+			String birth, String address, String phone, String mStatus, Date enrollDate, Date updateDate,String snsId,
 			int loginCount) {
 		super();
 		this.mNo = mNo;
@@ -41,7 +44,10 @@ public class Member {
 		this.enrollDate = enrollDate;
 		this.updateDate = updateDate;
 		this.loginCount = loginCount;
+		this.snsId = snsId;
 	}
+
+
 
 	public String getmNo() {
 		return mNo;
@@ -147,12 +153,21 @@ public class Member {
 		this.updateDate = updateDate;
 	}
 
+
 	public int getLoginCount() {
 		return loginCount;
 	}
 
 	public void setLoginCount(int loginCount) {
 		this.loginCount = loginCount;
+
+	public String getSnsId() {
+		return snsId;
+	}
+	
+	public void setSnsId(String snsId) {
+		this.snsId = snsId;
+
 	}
 
 	@Override
@@ -160,7 +175,9 @@ public class Member {
 		return "Member [mNo=" + mNo + ", mlCode=" + mlCode + ", email=" + email + ", pwd=" + pwd + ", name=" + name
 				+ ", nickname=" + nickname + ", gender=" + gender + ", birth=" + birth + ", address=" + address
 				+ ", phone=" + phone + ", mStatus=" + mStatus + ", enrollDate=" + enrollDate + ", updateDate="
-				+ updateDate + ", loginCount=" + loginCount + "]";
+				+ updateDate + ", snsId=" + snsId + ", loginCount=" + loginCount + "]";
 	}
+
 	
+
 }

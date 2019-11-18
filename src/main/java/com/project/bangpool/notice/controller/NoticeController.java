@@ -1,11 +1,15 @@
 package com.project.bangpool.notice.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.common.page.Pagination;
 import com.project.bangpool.notice.model.exception.NoticeException;
 import com.project.bangpool.notice.model.service.NoticeService;
 import com.project.bangpool.notice.model.vo.Notice;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Controller
 public class NoticeController {
@@ -127,6 +134,23 @@ public class NoticeController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("ndetail2.no")
+	public ModelAndView detail_Notice2(@RequestParam("nId") int nId,
+        							  ModelAndView mv) {
+		
+		Notice notice = nService.detail_Notice(nId);
+		
+		if(notice != null) {
+			mv.addObject("notice",notice)
+			   .setViewName("notice_detail");
+		}else {
+			throw new NoticeException("게시글 상세보기 실패");
+		}
+		
+		return mv;
+	}
+	
 	
 	@RequestMapping("ndelete.no")
 	public String delete_Notice(@RequestParam("nId") int nId) {
@@ -252,7 +276,30 @@ public class NoticeController {
 		if(f.exists()) {
 			f.delete();
 		}
-	}	
+	}
+	
+	
+	// 여기부터 김상욱 꺼
+	
+	@RequestMapping("topList.no")
+	public void boardTopList(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Notice> list = nService.selectTopList();
+		
+		JSONArray jArr = new JSONArray();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(list);
+		
+		for(Notice b : list) {
+			b.setnTitle(URLEncoder.encode(b.getnTitle(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+	}
 		
 	
 }
