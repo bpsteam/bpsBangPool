@@ -18,7 +18,13 @@ public class LevelServiceImpl implements LevelService{
 
 	@Override
 	public ManageMember updateLevel(String mlCode) {
+		//return lvDAO.updateLevel(sqlSession, mlCode);
 		return null;
+	}
+
+	@Override
+	public int getLoginCount(String mNo) {
+		return lvDAO.getLoginCount(sqlSession, mNo);
 	}
 
 }

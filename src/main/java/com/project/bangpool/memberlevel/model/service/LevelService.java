@@ -6,4 +6,6 @@ public interface LevelService {
 
 	ManageMember updateLevel(String mlCode);
 
+	int getLoginCount(String mNo);
+
 }

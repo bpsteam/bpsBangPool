@@ -11,6 +11,7 @@
   		
   	</select>
   	
+  	<!-- MLCODE default -> 'B'수정(db) -->
   	<insert id="insertMember" parameterType="Member" >
   		insert into member 
   		values (member_seq.nextval, default, #{email}, #{pwd}, #{name}, #{nickname},
@@ -21,6 +22,12 @@
 		update Member
 		set mstatus='N'
 		where mNo=#{mNo}
+	</update>
+	
+	<update id="addLoginCount" parameterType="Member">
+		update Member
+		set logincount = logincount + 1
+		where mno = #{mNo}
 	</update>
 
 </mapper>

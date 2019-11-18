@@ -17,14 +17,15 @@ public class Member {
 	private String mStatus;
 	private Date enrollDate;
 	private Date updateDate;
+	private int loginCount;		// 추가
 	
 	public Member() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Member(String mNo, String mlCode, String email, String pwd, String name, String nickname, String gender, String birth,
-			String address, String phone, String mStatus, Date enrollDate, Date updateDate) {
+	public Member(String mNo, String mlCode, String email, String pwd, String name, String nickname, String gender,
+			String birth, String address, String phone, String mStatus, Date enrollDate, Date updateDate,
+			int loginCount) {
 		super();
 		this.mNo = mNo;
 		this.mlCode = mlCode;
@@ -39,6 +40,7 @@ public class Member {
 		this.mStatus = mStatus;
 		this.enrollDate = enrollDate;
 		this.updateDate = updateDate;
+		this.loginCount = loginCount;
 	}
 
 	public String getmNo() {
@@ -80,7 +82,7 @@ public class Member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getNickname() {
 		return nickname;
 	}
@@ -145,15 +147,20 @@ public class Member {
 		this.updateDate = updateDate;
 	}
 
+	public int getLoginCount() {
+		return loginCount;
+	}
+
+	public void setLoginCount(int loginCount) {
+		this.loginCount = loginCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [mNo=" + mNo + ", mlCode=" + mlCode + ", email=" + email + ", pwd=" + pwd + ", name=" + name
-				+ ", nickname=" + nickname + ", gender=" + gender + ", birth=" + birth + ", address=" + address + ", phone=" + phone + ", mStatus="
-				+ mStatus + ", enrollDate=" + enrollDate + ", updateDate=" + updateDate + "]";
+				+ ", nickname=" + nickname + ", gender=" + gender + ", birth=" + birth + ", address=" + address
+				+ ", phone=" + phone + ", mStatus=" + mStatus + ", enrollDate=" + enrollDate + ", updateDate="
+				+ updateDate + ", loginCount=" + loginCount + "]";
 	}
-	
-	
-	
-	
 	
 }

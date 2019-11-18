@@ -62,7 +62,8 @@
                                 |&nbsp;&nbsp;&nbsp;<a href="termsNConditions.me" style="color:black">회원가입</a>&nbsp;&nbsp;&nbsp;
                              </c:if>   
                             <c:if test="${ !empty sessionScope.loginUser }">
-                                |&nbsp;&nbsp;&nbsp;<a href="mypage.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
+                                <!-- |&nbsp;&nbsp;&nbsp;<a href="mypage.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp; -->
+                                |&nbsp;&nbsp;&nbsp;<a href="mlevel.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
                              </c:if>   
                                 
                                 |&nbsp;&nbsp;&nbsp;<a href="#" style="color:black">정보찾기</a>

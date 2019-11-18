@@ -20,4 +20,8 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.deleteMember", m);
 	}
 
+	public int addLoginCount(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.addLoginCount", m);
+	}
+
 }
