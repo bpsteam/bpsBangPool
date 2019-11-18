@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 public interface HMBoardService {
 
@@ -28,5 +29,7 @@ public interface HMBoardService {
 	int getSearchListCount(HashMap<String, String> searchMap);
 
 	ArrayList<HMBoard> selectSearchList(HashMap<String, String> searchMap,  PageInfo pi);
-
+	
+	ArrayList<HMBoard> selectTopList();
+	
 }

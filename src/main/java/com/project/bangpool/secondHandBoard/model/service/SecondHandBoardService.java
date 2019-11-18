@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 import com.project.bangpool.secondHandBoard.model.vo.SecondHandBoard;
 
 public interface SecondHandBoardService {
@@ -35,5 +36,7 @@ public interface SecondHandBoardService {
 	ArrayList<SecondHandBoard> tableList(PageInfo pi);
 
 	ArrayList<SecondHandBoard> displayList(PageInfo pi);
+	
+	ArrayList<SecondHandBoard> selectTopList();
 
 }
