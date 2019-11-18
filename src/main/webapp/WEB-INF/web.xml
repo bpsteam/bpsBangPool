@@ -178,7 +178,7 @@
 		<url-pattern>*.no</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 공지사항 -->
+	<!-- 나눔게시판 -->
 	<servlet>
 		<servlet-name>shareServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
