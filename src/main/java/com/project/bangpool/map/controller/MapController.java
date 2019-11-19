@@ -1,8 +1,13 @@
 package com.project.bangpool.map.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.project.bangpool.member.model.vo.Member;
+@SessionAttributes("loginUser")
 @Controller
 public class MapController {
 	//
@@ -32,7 +37,10 @@ public class MapController {
 	}
 	
 	@RequestMapping("mapAddSC.map")
-	public String mapAddSC() {
+	public String mapAddSC(HttpSession session) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		
+		System.out.println("loginUser : " + loginUser);
 		return "mapAddSC";
 	}
 	
