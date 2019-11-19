@@ -56,7 +56,15 @@
     </style>
 </head>
 <body>
+	<!-- NAVER LOGIN  -->
+
+	<%
+         NaverLoginBO naverLoginBO = new NaverLoginBO();
+         String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		
+	 %>
 	
+	<!-- NAVER LOGIN -->
 	 <!-- Phone/Email -->
             <div id="pre-header" class="background-gray-lighter">
                 <div class="container no-padding">
@@ -66,7 +74,10 @@
                         </div>
                         <div class="col-sm-6 text-right padding-vert-5">
                             <c:if test="${ empty sessionScope.loginUser }">
-                            <a href="loginView.me" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
+                              <c:url var="loginView" value="loginView.me">
+	                           <c:param name="naverAuthUrl" value="<%=naverAuthUrl %>"/>
+	                           </c:url>
+                            <a href="${ loginView }" style="color:black">로그인</a>&nbsp;&nbsp;&nbsp;
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginUser }">
                             <a href="logout.me" style="color:black">로그아웃</a>&nbsp;&nbsp;&nbsp;
@@ -75,7 +86,8 @@
                                 |&nbsp;&nbsp;&nbsp;<a href="termsNConditions.me" style="color:black">회원가입</a>&nbsp;&nbsp;&nbsp;
                              </c:if>   
                             <c:if test="${ !empty sessionScope.loginUser }">
-                                |&nbsp;&nbsp;&nbsp;<a href="mypage.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
+                                <!-- |&nbsp;&nbsp;&nbsp;<a href="mypage.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp; -->
+                                |&nbsp;&nbsp;&nbsp;<a href="mlevel.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
                              </c:if>   
                                 
                                 |&nbsp;&nbsp;&nbsp;<a href="#" style="color:black">정보찾기</a>
@@ -206,6 +218,9 @@
                                             <li>
                                                 <a href="shblistView.se">이케요</a>
                                             </li>
+                                            <li>
+                                                <a href="srListView.sr">나눔</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
@@ -220,16 +235,16 @@
 			                                <li>
 			                                    <a href="frblist.fr">자유게시판</a>
 			                                </li>
+                                      <li>
+			                                    <a href="mapView.map">지도</a>
+			                                </li>
 		                           		 </ul>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         
-                          <%
-                          NaverLoginBO naverLoginBO = new NaverLoginBO();
-                          String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-						 %>
+                          
                        
                         <div class="col-md-4 no-padding">
                             <ul class="social-icons pull-right">

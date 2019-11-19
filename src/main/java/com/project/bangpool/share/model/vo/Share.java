@@ -5,25 +5,34 @@ import java.sql.Date;
 public class Share {
 	
 	private int srbId;					
-	private int srbCode;					
+	private String srbCode;					
 	private String srbTitle;			
 	private String srbWriter;			
 	private String srbContent;			
 	private String srbLocation;			
 	private int srbCount;				
-	private String srOrgFileName;		
-	private String srRenameFileName;	
+	private String originalFileName;		
+	private String renameFileName;	
 	private Date srCreateDate;			
-	private Date srModifyDate;			
+	private Date srModifyDate;	
+	private Date srStartDate;			
 	private Date srEndDate;			
 	private String srStatus;
     private int srDistance;
-	
-    public Share() {}
+    private int srStartHour;
+    private int srEndHour;
+    private String srEvent;      // 추첨방법
+    private int srEventLimit;  // 추첨인원
+    private int srEventEnterCount;
+    private String srItemName; // 아이템이름
+    private String srDelivery; // 배송방법
+    
+ 	public Share() {}
 
-	public Share(int srbId, int srbCode, String srbTitle, String srbWriter, String srbContent, String srbLocation,
-			int srbCount, String srOrgFileName, String srRenameFileName, Date srCreateDate, Date srModifyDate,
-			Date srEndDate, String srStatus, int srDistance) {
+	public Share(int srbId, String srbCode, String srbTitle, String srbWriter, String srbContent, String srbLocation,
+			int srbCount, String originalFileName, String renameFileName, Date srCreateDate, Date srModifyDate,
+			Date srStartDate, Date srEndDate, String srStatus, int srDistance, int srStartHour, int srEndHour,
+			String srEvent, int srEventLimit, int srEventEnterCount, String srItemName, String srDelivery) {
 		this.srbId = srbId;
 		this.srbCode = srbCode;
 		this.srbTitle = srbTitle;
@@ -31,13 +40,21 @@ public class Share {
 		this.srbContent = srbContent;
 		this.srbLocation = srbLocation;
 		this.srbCount = srbCount;
-		this.srOrgFileName = srOrgFileName;
-		this.srRenameFileName = srRenameFileName;
+		this.originalFileName = originalFileName;
+		this.renameFileName = renameFileName;
 		this.srCreateDate = srCreateDate;
 		this.srModifyDate = srModifyDate;
+		this.srStartDate = srStartDate;
 		this.srEndDate = srEndDate;
 		this.srStatus = srStatus;
 		this.srDistance = srDistance;
+		this.srStartHour = srStartHour;
+		this.srEndHour = srEndHour;
+		this.srEvent = srEvent;
+		this.srEventLimit = srEventLimit;
+		this.srEventEnterCount = srEventEnterCount;
+		this.srItemName = srItemName;
+		this.srDelivery = srDelivery;
 	}
 
 	public int getSrbId() {
@@ -48,11 +65,11 @@ public class Share {
 		this.srbId = srbId;
 	}
 
-	public int getSrbCode() {
+	public String getSrbCode() {
 		return srbCode;
 	}
 
-	public void setSrbCode(int srbCode) {
+	public void setSrbCode(String srbCode) {
 		this.srbCode = srbCode;
 	}
 
@@ -96,20 +113,20 @@ public class Share {
 		this.srbCount = srbCount;
 	}
 
-	public String getSrOrgFileName() {
-		return srOrgFileName;
+	public String getOriginalFileName() {
+		return originalFileName;
 	}
 
-	public void setSrOrgFileName(String srOrgFileName) {
-		this.srOrgFileName = srOrgFileName;
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
 	}
 
-	public String getSrRenameFileName() {
-		return srRenameFileName;
+	public String getRenameFileName() {
+		return renameFileName;
 	}
 
-	public void setSrRenameFileName(String srRenameFileName) {
-		this.srRenameFileName = srRenameFileName;
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
 	}
 
 	public Date getSrCreateDate() {
@@ -126,6 +143,14 @@ public class Share {
 
 	public void setSrModifyDate(Date srModifyDate) {
 		this.srModifyDate = srModifyDate;
+	}
+
+	public Date getSrStartDate() {
+		return srStartDate;
+	}
+
+	public void setSrStartDate(Date srStartDate) {
+		this.srStartDate = srStartDate;
 	}
 
 	public Date getSrEndDate() {
@@ -152,15 +177,75 @@ public class Share {
 		this.srDistance = srDistance;
 	}
 
+	public int getSrStartHour() {
+		return srStartHour;
+	}
+
+	public void setSrStartHour(int srStartHour) {
+		this.srStartHour = srStartHour;
+	}
+
+	public int getSrEndHour() {
+		return srEndHour;
+	}
+
+	public void setSrEndHour(int srEndHour) {
+		this.srEndHour = srEndHour;
+	}
+
+	public String getSrEvent() {
+		return srEvent;
+	}
+
+	public void setSrEvent(String srEvent) {
+		this.srEvent = srEvent;
+	}
+
+	public int getSrEventLimit() {
+		return srEventLimit;
+	}
+
+	public void setSrEventLimit(int srEventLimit) {
+		this.srEventLimit = srEventLimit;
+	}
+
+	public int getSrEventEnterCount() {
+		return srEventEnterCount;
+	}
+
+	public void setSrEventEnterCount(int srEventEnterCount) {
+		this.srEventEnterCount = srEventEnterCount;
+	}
+
+	public String getSrItemName() {
+		return srItemName;
+	}
+
+	public void setSrItemName(String srItemName) {
+		this.srItemName = srItemName;
+	}
+
+	public String getSrDelivery() {
+		return srDelivery;
+	}
+
+	public void setSrDelivery(String srDelivery) {
+		this.srDelivery = srDelivery;
+	}
+
 	@Override
 	public String toString() {
 		return "Share [srbId=" + srbId + ", srbCode=" + srbCode + ", srbTitle=" + srbTitle + ", srbWriter=" + srbWriter
 				+ ", srbContent=" + srbContent + ", srbLocation=" + srbLocation + ", srbCount=" + srbCount
-				+ ", srOrgFileName=" + srOrgFileName + ", srRenameFileName=" + srRenameFileName + ", srCreateDate="
-				+ srCreateDate + ", srModifyDate=" + srModifyDate + ", srEndDate=" + srEndDate + ", srStatus="
-				+ srStatus + ", srDistance=" + srDistance + "]";
+				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", srCreateDate="
+				+ srCreateDate + ", srModifyDate=" + srModifyDate + ", srStartDate=" + srStartDate + ", srEndDate="
+				+ srEndDate + ", srStatus=" + srStatus + ", srDistance=" + srDistance + ", srStartHour=" + srStartHour
+				+ ", srEndHour=" + srEndHour + ", srEvent=" + srEvent + ", srEventLimit=" + srEventLimit
+				+ ", srEventEnterCount=" + srEventEnterCount + ", srItemName=" + srItemName + ", srDelivery="
+				+ srDelivery + "]";
 	}
+ 	
+
 	
-    
     
 }

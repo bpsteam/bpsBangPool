@@ -430,7 +430,7 @@ public class SecondHandBoardController {
 		JSONArray jArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		for(SecondHandBoard b : list) {
 			b.setShbTitle(URLEncoder.encode(b.getShbTitle(),"utf-8"));

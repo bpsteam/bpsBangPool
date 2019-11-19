@@ -29,7 +29,7 @@
 	
 	
 	<dependencies>
-		<!-- Spring -->
+		<!-- Spring  -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -204,57 +204,61 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency> <!-- root context 로 이동 -->
-		
-		<!-- JSON관련 라이브러리  -->       
+	
+		<!-- JSON관련 라이브러리 -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		
+	
 		<!-- GSON관련 라이브러리 -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.5</version>
 		</dependency>
-		        
+	
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib-ext-spring</artifactId>
 			<version>1.0.2</version>
 		</dependency>
-		
+	
+
 		<!-- Mail전송 관련 라이브러리 -->
-	<!-- Mail -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context-support</artifactId>
-		<version>${org.springframework-version}</version>
-	</dependency>
-	<dependency>
-		<groupId>com.sun.mail</groupId>
-		<artifactId>javax.mail</artifactId>
-		<version>1.6.1</version>
-	</dependency>
+		<!-- Mail -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
 	
-	<!-- NAVER POM -->
-	<dependency>
-		<groupId>com.github.scribejava</groupId>
-		<artifactId>scribejava-core</artifactId>
-		<version>2.8.1</version>
-	</dependency>
-	<!-- json simple --> 
-<!-- https://mvnrepository.com/artifact/com.github.jsurfer/jsurfer-jsonsimple -->
-<dependency>
-  <groupId>com.github.jsurfer</groupId>
-  <artifactId>jsurfer-jsonsimple</artifactId>
-  <version>1.4.1</version>
-</dependency>
-	
+		<!-- NAVER POM -->
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-core</artifactId>
+			<version>2.8.1</version>
+		</dependency>
+		<!-- json simple -->
+		<!-- https://mvnrepository.com/artifact/com.github.jsurfer/jsurfer-jsonsimple -->
+		<dependency>
+			<groupId>com.github.jsurfer</groupId>
+			<artifactId>jsurfer-jsonsimple</artifactId>
+			<version>1.4.1</version>
+		</dependency>
 		
-		      
+		
+		
 	</dependencies>
+	
+	
     <build>
         <plugins>
             <plugin>
