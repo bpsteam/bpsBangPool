@@ -22,7 +22,6 @@ public class Share {
     private int srStartHour;
     private int srEndHour;
     
-    
 	public Share() {
 	}
 	public Share(int srbId, String srbCode, String srbTitle, String srbWriter, String srbContent, String srbLocation,
