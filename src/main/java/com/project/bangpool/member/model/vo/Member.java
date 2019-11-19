@@ -160,7 +160,8 @@ public class Member {
 
 	public void setLoginCount(int loginCount) {
 		this.loginCount = loginCount;
-
+	}
+	
 	public String getSnsId() {
 		return snsId;
 	}

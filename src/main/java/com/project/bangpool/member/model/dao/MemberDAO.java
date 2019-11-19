@@ -23,7 +23,8 @@ public class MemberDAO {
 
 	public int addLoginCount(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.addLoginCount", m);
-
+	}
+	
 	public int checkIdDup(SqlSessionTemplate sqlSession, String email) {
 		return sqlSession.selectOne("memberMapper.checkIdDup", email);
 	}

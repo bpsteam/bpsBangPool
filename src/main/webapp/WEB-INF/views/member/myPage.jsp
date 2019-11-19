@@ -134,6 +134,8 @@
                                 </div>
                                 <br>
                                 <div class="tab-content" style="border-top: 1px;">
+                                
+                                
                                     <div class="tab-pane fade in active" id="sample-2a">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -143,26 +145,14 @@
                                                             <h3 class="panel-title">My Profile</h3>
                                                         </div>
                                                         <div class="panel-body" style="background-color:white;">
-                                                            <!-- <div class="pull-left text-center auth-photo">
-                                                                <div class="img-photo">
-                                                                    <i class="fa fa-user"></i>				</div>
-                                                                <div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
-                                                                    <button type="button" class="btn btn-color btn-sm" onclick="apms_like('ch93ksw', 'like', 'it_like'); return false;" title="Like">
-                                                                        <i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
-                                                                    </button>
-                                                                    <button type="button" class="btn btn-color btn-sm" onclick="apms_like('ch93ksw', 'follow', 'it_follow'); return false;" title="Follow">
-                                                                        <i class="fa fa-users"></i> <span id="it_follow">0</span>
-                                                                    </button>
-                                                                </div>
-                                                            </div> -->
                                                             
                                                             <!-- 여기 -->
-                                                            <!-- <div class="panel-body">
-																<div class="pull-left text-center auth-photo">
+                                                            <div class="panel-body">
+																<div class="pull-left text-center auth-photo" style="width:100px;">
 																	<div class="img-photo">
-																		<i class="fa fa-user" >
-																			<img src="/img/456.jpg">
-																		</i>				
+																		<!-- <i class="fa fa-user" > -->
+																			<img src="${ contextPath }/resources/456.jpg" style="width: 100%;">
+																		<!-- </i> -->				
 																	</div>
 																	<div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
 																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'like', 'it_like'); return false;" title="Like">
@@ -176,22 +166,33 @@
 																<div class="auth-info">
 																	<div class="en font-14" style="margin-bottom:6px;">
 																		<span class="pull-right font-12">Lv.1</span>
-																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 중중식</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
+																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
 																	</div>
-																	<div class="div-progress progress progress-striped no-margin">
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+								                                            <span class="sr-only">30% Complete (info)</span>
+								                                        </div>
+							                                    	</div>
+							                                        
+							                                        <div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+								                                            <span class="sr-only">20%Complete (warning)</span>
+								                                        </div>
+								                                    </div>
+							                                    	<!-- 기존 상태바 -->
+																	<!-- <div class="div-progress progress progress-striped no-margin">
 																		<div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 																			<span class="sr-only">0 (0%)</span>
 																		</div>
-																	</div>
-																	<p style="margin-top:6px;">
-																		등록된 서명이 없습니다.				</p>
+																	</div> -->
+																	<p style="margin-top:6px;">등록된 서명이 없습니다.</p>
 																</div>
 																<div class="clearfix"></div>
-															</div> -->
+															</div>
                                                             <!-- 끝 -->
                                                             
                                                             <!-- 잠시 주석  -->
-                                                            <div class="auth-info">
+                                                            <%-- <div class="auth-info">
                                                                 <div class="en font-14" style="margin-bottom:6px;">
                                                                     <span class="pull-right font-12">Lv.1</span>
                                                                     <b><a href="javascript:;" onclick="showSideView(this, 'ch93ksw', 'wbgg', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 
@@ -209,28 +210,27 @@
 							                                            <span class="sr-only">30% Complete (info)</span>
 							                                        </div>
 							                                    </div> -->
+							                                    
+							                                    <c:if test="${ !empty loginUser }">
 							
-																<div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-							                                            <span class="sr-only">20%Complete (warning)</span>
-							                                        </div>
-							                                    </div>
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+								                                            <span class="sr-only">20%Complete (warning)</span>
+								                                        </div>
+								                                    </div>
+							                                    
+							                                    </c:if>	
 							
-																<div class="progress progress-striped active">
+																<!-- <div class="progress progress-striped active">
 							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
 							                                            <span class="sr-only">10% Complete (danger)</span>
 							                                        </div>
-							                                    </div>
+							                                    </div> -->
 							                                    
-                                                                <!-- 기존 -->
-                                                                <!-- <div class="div-progress progress progress-striped no-margin">
-                                                                    <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                                                        <span class="sr-only">0 (0%)</span>
-                                                                    </div>
-                                                                </div> -->
-                                                                <p style="margin-top:6px;">
-                                                                    등록된 서명이 없습니다.				</p>
-                                                            </div>
+                                                            </div> --%>
+                                                            
+                                                            
+                                                            
                                                             <div class="clearfix"></div>
                                                         </div>
                                                     </div>
