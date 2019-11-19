@@ -11,6 +11,7 @@
 	#tb{width: 200px;}
 	.hahaha{float: right;}
 	.hohoho{width: 180px;}
+	.dadada{position: absolute; left: 0px; top: 0px;}
 </style>
 </head>
 <body>
@@ -395,7 +396,7 @@
 											for(var i in data){
 												
 												$li = $('<li class="ellipsis">');
-												$a = $('<a>').attr('href',"bdetail.fm?fbId="+data[i].fbId);
+												$a = $('<a>').attr('href',"bdetail2.fm?fbId="+data[i].fbId);
 												$span = $('<span class="gray font-12 hahaha">');
 												$span2 = $('<span class="subject_title hohoho">');
 												
@@ -512,6 +513,11 @@
             
             <div id="portfolio" class="bottom-border-shadow">
                 <div class="container bottom-border">
+                	<div class="col-md-12">
+                			<br>
+                            <h2>이케요</h2>
+                            <!-- Filter Buttons -->
+                        </div>
                     <div class="row padding-top-40">
                         <ul class="portfolio-group " id="tb5">
                         	
@@ -545,7 +551,6 @@
 							
 							/* var fbWriter;
 							var fbTitle; */
-							console.log(data);
 							for(var i in data){
 								
 								$li = $('<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">');
@@ -600,37 +605,17 @@
             <div class="container background-white  bottom-border">
                     <div class="row margin-vert-30">
                         <div class="col-md-12">
-                            <h2>6 Column Portfolio</h2>
+                            <h2>자랑하기</h2>
                             <!-- Filter Buttons -->
-                           <!--  <div class="portfolio-filter-container margin-top-20">
-                                <ul class="portfolio-filter">
-                                    <li class="portfolio-filter-label label label-primary">
-                                        filter by:
-                                    </li>
-                                    <li>
-                                        <a href="#" class="portfolio-selected btn btn-default" data-filter="*">All</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-default" data-filter=".code">Coding</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-default" data-filter=".design">Design</a>
-                                    </li>
-                                   <li>
-                                        <a href="#" class="btn btn-default" data-filter=".audio">Audio</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="btn btn-default" data-filter=".video">Video</a>
-                                    </li>
-                                </ul>
-                            </div> -->
-                            <!-- End Filter Buttons -->
                         </div>
+                    </div>
+                    <div id="tb6">
+                    
                     </div>
                     <div class="row">
                         <div class="col-md-12 portfolio-group no-padding" style="position: relative; width: 1039.97px; height: 264.844px;">
                             <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio" style="position: absolute; left: 0px; top: 0px;">
+                            <%-- <div class="col-md-2 portfolio-item margin-bottom-40 audio" style="position: absolute; left: 0px; top: 0px;">
                                 <div>
                                     <a href="#">
                                         <figure>
@@ -641,162 +626,76 @@
                                         </figure>
                                     </a>
                                 </div>
-                            </div>
+                            </div> --%>
                             <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 design" style="position: absolute; left: 173px; top: 0px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image2.jpg" alt="image2">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Quam</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 video" style="position: absolute; left: 346px; top: 0px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image3.jpg" alt="image3">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Place</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio" style="position: absolute; left: 519px; top: 0px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image4.jpg" alt="image4">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Nam</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio" style="position: absolute; left: 693px; top: 0px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image5.jpg" alt="image5">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Donec</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 code" style="position: absolute; left: 866px; top: 0px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image6.jpg" alt="image6">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Nulla</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 design" style="position: absolute; left: 0px; top: 130px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image7.jpg" alt="image7">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Velit</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 code" style="position: absolute; left: 173px; top: 130px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image8.jpg" alt="image8">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Quam</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 code" style="position: absolute; left: 346px; top: 130px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image9.jpg" alt="image9">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Nobis</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio" style="position: absolute; left: 519px; top: 130px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image10.jpg" alt="image10">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Solut</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 audio" style="position: absolute; left: 693px; top: 130px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image11.jpg" alt="image11">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Aenea</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
-                            <!-- Portfolio Item -->
-                            <div class="col-md-2 portfolio-item margin-bottom-40 design" style="position: absolute; left: 866px; top: 130px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image12.jpg" alt="image12">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Sed</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Portfolio Item -->
+                            
+                            <script>
+						        function topList6(){
+									$.ajax({
+										url: "topList.sb",
+										dataType: "json",
+										success: function(data){
+											$div = $("#tb6");
+											$div.html("");
+											
+											/* var fbWriter; */
+											var sbTitle;
+											console.log(data);
+											for(var i in data){
+												
+												$div2 = $('<div class="col-md-2 portfolio-item margin-bottom-40 audio dadada">');
+												$div3 = $('<div>');
+												$a = $('<a>').attr('href',"ddetailShowing2.sb?sbid="+data[i].sbid);
+												$span = $('<figure>');
+												$span2 = $('<img alt="image1" src="resources/showinguploadFiles/'+data[i].renameFileName+'">');
+												$span3 = $('<figcaption>');
+												
+												/* $div = $('<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">');
+												$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
+												$span = $('<figure class="animate fadeInLeft">');
+												$span2 = $('<img alt="image1" style="width: 400px; height: 200px;" src="resources/buploadFiles/'+data[i].shbRenameFileName+'">'); */
+												
+												
+												/* $fbWriter = $("<b>").text(data[i].fbWriter); */
+												$sbTitle = $("<b>").text(decodeURIComponent(data[i].sbtitle.replace(/\+/g," ")));
+												
+												/* $span.append($fbWriter); */
+												$span3.append($sbTitle);
+												$a.append($span);
+												$span.append($span2);
+												$span2.append($span3);
+												/* $li.append($span);
+												$li.append($span2); */
+												$div3.append($a);
+												$div2.append($div3);
+												$div.append($div2);
+												
+												
+												/* var $tr = $('<span class="pull-right gray font-12">');
+												var $tr2 = $('<span class="subject_title">');
+												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+												var $rbWriter = $("<b>").text(data[i].rbWriter); */
+												
+												/* $tr.append($rbTitle); */
+												
+												/* $tr.append($rbWriter);
+												$tr2.append($rbTitle);
+												
+												$tableBody.append($tr);
+												$tableBody.append($tr2); */
+											}
+										}
+									});
+								}
+								
+								$(function(){
+									topList6();
+									
+									setInterval(function(){
+										topList6();
+									}, 10000);
+								});
+							</script>
                         </div>
                     </div>
                 </div>
@@ -898,7 +797,7 @@
                                 <div class="panel panel-green">
                                     <!-- 뉴스 시작 -->
                                     <div class="panel-heading">
-                                        <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free" style="color:white">
+                                        <a href="frblist.fr" style="color:white">
                                             <span class="pull-right lightgray font-16 en">+</span>
                                             <span class="div-title-underbar-bold border-navy font-16 en">
                                                 <b>자유게시판</b>
@@ -908,79 +807,80 @@
                                     <div class="widget-box panel-body">
                                         <div class="basic-post-list ">
                             
-                                            <ul class="post-list">
-                                                <li class="ellipsis">
+                                            <ul class="post-list" id="tb8">
+                                                <!-- <li class="ellipsis">
                                                     <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1620">
                             
                                                         <span class="pull-right gray font-12">
-                                                            <span class="count orangered">
-                                                                +1 </span>
                                                             &nbsp;01.11 </span>
                                                         <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
                                                             class="subject_title"><b>강동구오피스텔</b></span>
                                                     </a>
-                                                </li>
-                                                <li class="ellipsis">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1616">
-                            
-                                                        <span class="pull-right gray font-12">
-                                                            <span class="count orangered">
-                                                                +1 </span>
-                                                            &nbsp;09.19 </span>
-                                                        <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                            class="subject_title"><b>신림역세권룸메구함여자로</b></span>
-                                                    </a>
-                                                </li>
-                                                <li class="ellipsis">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1615">
-                            
-                                                        <span class="pull-right gray font-12">
-                                                            <span class="count orangered">
-                                                                +1 </span>
-                                                            &nbsp;09.06 </span>
-                                                        <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                            class="subject_title">2018 도시재생 엑스포 - 기자단을 모집합니다.</span>
-                                                    </a>
-                                                </li>
-                                                <li class="ellipsis">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1614">
-                            
-                                                        <span class="pull-right gray font-12">
-                                                            &nbsp;09.06 </span>
-                                                        <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                            class="subject_title">2018 도시재생 엑스포 : 도시를 깨우는 비법에 초대합니다.</span>
-                                                    </a>
-                                                </li>
-                                                <li class="ellipsis">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1612">
-                            
-                                                        <span class="pull-right gray font-12">
-                                                            &nbsp;08.16 </span>
-                                                        <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                            class="subject_title">부산 여성룸메 모셔요 [냉]</span>
-                                                    </a>
-                                                </li>
-                                                <li class="ellipsis">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1604">
-                            
-                                                        <span class="pull-right gray font-12">
-                                                            &nbsp;07.13 </span>
-                                                        <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                            class="subject_title">13일의 금요일</span>
-                                                    </a>
-                                                </li>
-                                                <li class="ellipsis">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1603">
-                            
-                                                        <span class="pull-right gray font-12">
-                                                            &nbsp;07.11 </span>
-                                                        <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                            class="subject_title">프랑스 벨기에</span>
-                                                    </a>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                     </div>
                                 </div>
+                                
+                                <script>
+							        function topList8(){
+										$.ajax({
+											url: "topList.fr",
+											dataType: "json",
+											success: function(data){
+												$ul = $("#tb8");
+												$ul.html("");
+												
+												var frbWriter;
+												var frbTitle;
+												
+												
+												
+												for(var i in data){
+													
+													$li = $('<li class="ellipsis">');
+													$a = $('<a>').attr('href',"frbdetail.fr?frbId="+data[i].frbId);
+													$span = $('<span class="pull-right gray font-12">');
+													$span2 = $('<span class="subject_title">');
+													
+													
+													$frbWriter = $("<b>").text(data[i].frbWriter);
+													$frbTitle = $("<b>").text(decodeURIComponent(data[i].frbTitle.replace(/\+/g," ")));
+													
+													$li.append($a);
+													$span.append($frbWriter);
+													$span2.append($frbTitle);
+													$a.append($span);
+													$a.append($span2);
+													/* $li.append($span);
+													$li.append($span2); */
+													$ul.append($li);
+													
+													
+													/* var $tr = $('<span class="pull-right gray font-12">');
+													var $tr2 = $('<span class="subject_title">');
+													var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+													var $rbWriter = $("<b>").text(data[i].rbWriter); */
+													
+													/* $tr.append($rbTitle); */
+													
+													/* $tr.append($rbWriter);
+													$tr2.append($rbTitle);
+													
+													$tableBody.append($tr);
+													$tableBody.append($tr2); */
+												}
+											}
+										});
+									}
+									
+									$(function(){
+										topList8();
+										
+										setInterval(function(){
+											topList8();
+										}, 10000);
+									});
+								</script>
                                 <!-- 뉴스 끝 -->
                             </div>
                             </div>

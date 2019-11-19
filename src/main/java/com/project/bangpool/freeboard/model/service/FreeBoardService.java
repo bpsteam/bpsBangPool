@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freeboard.model.vo.FreeBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 public interface FreeBoardService {
 
@@ -29,4 +30,5 @@ public interface FreeBoardService {
 
 	ArrayList<FreeBoard> selectSearchList(HashMap<String, String> searchMap,  PageInfo pi);
 
+	ArrayList<FreeBoard> selectTopList();
 }

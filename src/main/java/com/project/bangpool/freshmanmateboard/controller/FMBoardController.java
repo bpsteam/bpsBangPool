@@ -560,6 +560,26 @@ public class FMBoardController {
 		
 	}
 	
+	// 김상욱 추가 메소드
+	@RequestMapping("bdetail2.fm")
+	public ModelAndView selectOneBoard2(@RequestParam("fbId") int fbId, ModelAndView mv) {
+
+		
+//			System.out.println("디테일뷰 보드 출력 fbId : "+fbId);
+		FMBoard board = fbService.selectBoard(fbId);
+
+		if(board != null) {
+//				System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
+			
+			mv.addObject("board", board).setViewName("fmBoardDetailView"); // method chaining 
+		}else {
+			throw new FMBoardException("게시글 상세보기를 실패하였습니다.");
+		}
+		
+		return mv;
+		
+	}
+	
 	
 }
 
