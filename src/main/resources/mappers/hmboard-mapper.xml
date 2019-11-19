@@ -182,4 +182,23 @@
 		]]>
 	</select>
 	
+	<!-- 매칭리스트 -->
+	<select id="selectHMatching" parameterType="hashmap" resultType="HMBoard">
+		select *
+		from housemate_board
+		where hbstatus = 'Y'
+		<if test=" mLoc != null" >
+		and hLocation like '%' || #{mLoc} || '%'
+		</if>
+		<if test=" mReq != null" >
+		and hReqGender = #{mReq}
+		</if>
+		<if test=" mLiv != null">
+		or hLivingType = #{mLiv} 
+		</if>
+		<if test=" mRom != null">
+		or hRoomcount = #{mRom} 
+		</if>
+	</select>
+	
 </mapper>
