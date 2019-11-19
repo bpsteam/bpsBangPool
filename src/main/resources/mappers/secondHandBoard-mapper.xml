@@ -104,7 +104,7 @@
 				  from secondhand_board
 				  where shbstatus = 'Y'
 				  order by shbcreatedate desc)
-			where rownum <= 6
+			where rownum <= 10
 		]]>
 	</select>
 	
