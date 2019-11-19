@@ -82,6 +82,7 @@
 	                                                   <input type="text" name="fbWriter"  id="fbWriter" value="${ board.fbWriter }" readonly class="form-control input-sm" size="10" maxlength="20">
 	                                               </div>
 	                                           </div>
+	                                           
 										       <!-- ==== EMAIL AUTHORIZATION START ==== -->                                         
 												<c:import url ="emailautho.jsp"/>
 										       <!-- ==== EMAIL AUTHORIZATION END ==== -->                                         
@@ -149,7 +150,7 @@
                                                         <label class="col-sm-2 control-label " for="ca_name">방갯수<strong class="sound_only">*</strong></label>
                                                         <div class="col-sm-3">
                                                         
-                                                        <select name="fRoomCount" required  class="form-control input-sm">
+                                                        <select name="fRoomCount" id="fRoomCount" required  class="form-control input-sm">
                                                             <option value="" selected>방갯수를 선택해주세요.</option>
                                                             <option value="원룸">원룸</option>
                                                             <option value="투룸">투룸</option>
@@ -164,7 +165,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label " for="ca_name">해당층수<strong class="sound_only">*</strong></label>
                                                         <div class="col-sm-3">
-                                                        <select name="fFloor" required class="form-control input-sm">
+                                                        <select name="fFloor" id="fFloor" required class="form-control input-sm">
                                                             <option value="" selected>층수를 선택해주세요.</option>
                                                             <option value="지하">지하</option>
                                                             <option value="반지하">반지하</option>
@@ -180,7 +181,7 @@
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label ">상대성별<strong class="sound_only">*</strong></label>
                                                         <div class="col-sm-4">
-                                                        <select name="fReqGender" required class="form-control input-sm">
+                                                        <select name="fReqGender" id="fReqGender" required class="form-control input-sm">
                                                             <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
                                                             <option value="무관">무관</option>
                                                             <option value="여성">여성</option>
@@ -224,7 +225,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label " for="ca_name">주차가능여부</label>
                                         <div class="col-sm-4">
-                                        <select name="fParking" required class="form-control input-sm">
+                                        <select name="fParking" id="fParking" required class="form-control input-sm">
                                             <option value="" >주차가능여부를 선택해주세요.</option>
                                             <option value="가능">가능</option>
                                             <option value="불가능">불가능</option>
@@ -477,6 +478,37 @@
 					flen--;
 				}
 			}
+			
+			$(function(){
+				var fLocation = "${board.fLocation}";
+				var fRentType = "${board.fRentType}";
+				var fLivingType = "${board.fLivingType}";
+				var fRoomCount = "${board.fRoomCount}";
+				var fFloor = "${board.fFloor}";
+				var fReqGender = "${board.fReqGender}";
+				var fParking = "${board.fParking}";
+			/* 	
+				console.log(fLocation+", "
+							+fRentType+", "	
+							+fLivingType+", "	
+							+fRoomCount+", "	
+							+fFloor+", "	
+							+fReqGender+", "	
+							+fParking); */
+			//	$("#셀렉트ID")val("1번").attr("selected", "selected");
+			
+			$("#fLocation").val(fLocation).attr("selected","selected");
+			$("#fRentType").val(fRentType).attr("selected","selected");
+			$("#fLivingType").val(fLivingType).attr("selected","selected");
+			$("#fRoomCount").val(fRoomCount).attr("selected","selected");
+			$("#fFloor").val(fFloor).attr("selected","selected");
+			$("#fReqGender").val(fReqGender).attr("selected","selected");
+			$("#fParking").val(fParking).attr("selected","selected");
+	
+			
+			});
+			
+			
 		</script>
 	    
 	

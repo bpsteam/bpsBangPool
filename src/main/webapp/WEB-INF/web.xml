@@ -162,6 +162,22 @@
 		<url-pattern>*.sb</url-pattern>
 	</servlet-mapping>
 
+	<!-- 지도 관련 -->
+	<servlet>
+		<servlet-name>mapServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/map-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>mapServlet</servlet-name>
+		<url-pattern>*.map</url-pattern>
+	</servlet-mapping>
+
 	<!-- 공지사항 -->
 	<servlet>
 		<servlet-name>noticeServlet</servlet-name>
@@ -178,7 +194,9 @@
 		<url-pattern>*.no</url-pattern>
 	</servlet-mapping>
 	
-	<!-- 공지사항 -->
+
+	<!-- 나눔게시판 -->
+
 	<servlet>
 		<servlet-name>shareServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -194,6 +212,23 @@
 		<url-pattern>*.sr</url-pattern>
 	</servlet-mapping>
 	
+
+	<!-- 메이트 매칭하기 -->
+	<servlet>
+		<servlet-name>matchingServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/matching-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>matchingServlet</servlet-name>
+		<url-pattern>*.mc</url-pattern>
+	</servlet-mapping>
+
 	<!-- 자유게사판 게시판 관련 -->
    <servlet>
       <servlet-name>freeboardServlet</servlet-name>
@@ -209,6 +244,7 @@
       <servlet-name>freeboardServlet</servlet-name>
       <url-pattern>*.fr</url-pattern>
    </servlet-mapping>
+
 	
 	<!-- 공용에러페이지 등록 -->
 	<!-- <error-page>
