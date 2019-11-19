@@ -34,9 +34,11 @@
 	<c:import url="../../common/header.jsp" />
 	<!-- ==== HEADER END ==== -->
 	<div id="content">
+	
 			<div class="margin-bottom-20">
 				<hr>
 			</div>
+			
 			<div class="container background-white ">
 				<div class="row margin-vert-30">
 					<div class="panel panel-default" style="margin-top:10px;">
