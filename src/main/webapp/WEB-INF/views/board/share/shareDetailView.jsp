@@ -75,18 +75,18 @@
 							</div>
 							<div class="col-sm-7 font-14">
 												<div class="col-sm-12 font-16">
-									<strike class="gray">배달의민족 기프티콘 2000원</strike>
+									<strike class="gray">${ srItemName }</strike>
 								</div>
 								<div class="col-sm-12">
-									<strike class="gray">배송방법: 무료배송</strike>
+									<strike class="gray">배송방법: ${ srDelivery }</strike>
 								</div>
 								<div class="col-sm-12">
-									시작일시: 2019년 11월 16일 19시 00분<br>
-									종료일시: 2019년 11월 17일 17시 59분<br>
+									시작일시: ${ srStartDate }<br>
+									종료일시: ${ srEndDate }<br>
 														남은시간: <span class="gray">종료</span><br>
-														당첨방법: 직접추첨<br>
-									당첨인원: 총 5명 (38.46%)<br>
-									현재참가: 총 13명
+														당첨방법: ${ srEvent }<br>
+									당첨인원: 총 ${ srEventLimit }명 (38.46%)<br>
+									현재참가: 총 ${ srEventEnterCount }명
 								</div>
 							</div>
 						</div>
