@@ -21,8 +21,9 @@ public class Share {
     private int srDistance;
     private int srStartHour;
     private int srEndHour;
-    private String Event;      // 추첨방법
+    private String srEvent;      // 추첨방법
     private int srEventLimit;  // 추첨인원
+    private int srEventEnterCount;
     private String srItemName; // 아이템이름
     private String srDelivery; // 배송방법
     
@@ -31,7 +32,7 @@ public class Share {
 	public Share(int srbId, String srbCode, String srbTitle, String srbWriter, String srbContent, String srbLocation,
 			int srbCount, String originalFileName, String renameFileName, Date srCreateDate, Date srModifyDate,
 			Date srStartDate, Date srEndDate, String srStatus, int srDistance, int srStartHour, int srEndHour,
-			String event, int srEventLimit, String srItemName, String srDelivery) {
+			String srEvent, int srEventLimit, int srEventEnterCount, String srItemName, String srDelivery) {
 		this.srbId = srbId;
 		this.srbCode = srbCode;
 		this.srbTitle = srbTitle;
@@ -49,8 +50,9 @@ public class Share {
 		this.srDistance = srDistance;
 		this.srStartHour = srStartHour;
 		this.srEndHour = srEndHour;
-		Event = event;
+		this.srEvent = srEvent;
 		this.srEventLimit = srEventLimit;
+		this.srEventEnterCount = srEventEnterCount;
 		this.srItemName = srItemName;
 		this.srDelivery = srDelivery;
 	}
@@ -191,12 +193,12 @@ public class Share {
 		this.srEndHour = srEndHour;
 	}
 
-	public String getEvent() {
-		return Event;
+	public String getSrEvent() {
+		return srEvent;
 	}
 
-	public void setEvent(String event) {
-		Event = event;
+	public void setSrEvent(String srEvent) {
+		this.srEvent = srEvent;
 	}
 
 	public int getSrEventLimit() {
@@ -205,6 +207,14 @@ public class Share {
 
 	public void setSrEventLimit(int srEventLimit) {
 		this.srEventLimit = srEventLimit;
+	}
+
+	public int getSrEventEnterCount() {
+		return srEventEnterCount;
+	}
+
+	public void setSrEventEnterCount(int srEventEnterCount) {
+		this.srEventEnterCount = srEventEnterCount;
 	}
 
 	public String getSrItemName() {
@@ -230,11 +240,10 @@ public class Share {
 				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + ", srCreateDate="
 				+ srCreateDate + ", srModifyDate=" + srModifyDate + ", srStartDate=" + srStartDate + ", srEndDate="
 				+ srEndDate + ", srStatus=" + srStatus + ", srDistance=" + srDistance + ", srStartHour=" + srStartHour
-				+ ", srEndHour=" + srEndHour + ", Event=" + Event + ", srEventLimit=" + srEventLimit + ", srItemName="
-				+ srItemName + ", srDelivery=" + srDelivery + "]";
+				+ ", srEndHour=" + srEndHour + ", srEvent=" + srEvent + ", srEventLimit=" + srEventLimit
+				+ ", srEventEnterCount=" + srEventEnterCount + ", srItemName=" + srItemName + ", srDelivery="
+				+ srDelivery + "]";
 	}
- 	
- 	
  	
 
 	
