@@ -84,32 +84,29 @@
 								</div>
 								
 								<div class="form-group">
-									<div class="col-sm-12">
-									
-										<label class="col-sm-2 control-label" for="ca_name">
-											지역분류 <strong class="sound_only">*</strong>
-										</label>
-										<div class="col-sm-3">
-											<select name="srbLocation" required
-												class="form-control input-sm">
-												<option value="">선택하세요</option>
-												<option value="서울">서울</option>
-												<option value="인천/부천">인천/부천</option>
-												<option value="수원/경기">수원/경기</option>
-												<option value="대구/경북">대구/경북</option>
-												<option value="부산/경남">부산/경남</option>
-												<option value="충청/강원">충청/강원</option>
-												<option value="광주/전라">광주/전라</option>
-											</select>
-										</div>
+								<br>
+								<label class="col-sm-2 control-label" for="ca_name">지역분류 <strong class="sound_only">*</strong></label>
+									<div class="col-sm-4">
+										<select name="srbLocation" required
+											class="form-control input-sm">
+											<option value="">선택하세요</option>
+											<option value="서울">서울</option>
+											<option value="인천/부천">인천/부천</option>
+											<option value="수원/경기">수원/경기</option>
+											<option value="대구/경북">대구/경북</option>
+											<option value="부산/경남">부산/경남</option>
+											<option value="충청/강원">충청/강원</option>
+											<option value="광주/전라">광주/전라</option>
+										</select>
 									</div>
 								</div>
+								<br>
 								<br>
 									<!-- start insert input date -->
 									<div class="form-group">
 										<label class="col-sm-2 col-xs-12 control-label" for="sdate">시작일시</label>
 											<div class="col-sm-5 col-xs-6">
-												<div class="control-label input-group input-group-sm">
+												<div class="control-label input-group input-group-sm col-sm-4">
 													<input type="date" id="realDate" name="srStartDate"> 
 													<span id="calendarBtn" class="input-group-addon"><i	class="fa fa-calendar"></i></span>
 												</div>
@@ -145,12 +142,13 @@
 										</div>
 									</div>
 								</div>
-								
+								<br>
+								<br>
 								<div class="form-group">
 									<label class="col-sm-2 col-xs-12 control-label" for="edate">종료일시</label>
 									<div class="col-sm-5 col-xs-6">
-										<div class="control-label input-group input-group-sm">
-											<input type="date" id="edate" name="srEndDate" > 
+										<div class="control-label input-group input-group-sm col-sm-4">
+											<input type="date" id="edate" name="srEndDate"> 
 											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 										</div>
 									</div>
@@ -187,8 +185,9 @@
 								</div>
 								<!-- end insert end date -->
 								<div class="form-group">
-									<label class="col-sm-2 col-xs-12 control-label"
-										for="nanum_type">방법</label>
+								<br>
+								<br>
+									<label class="col-sm-2 col-xs-12 control-label"	for="nanum_type">방법</label>
 									<div class="col-sm-5 col-xs-6">
 										<div class="control-label input-group input-group-sm">
 											<select id="nanum_type" class="form-control input-sm"
@@ -275,17 +274,16 @@
 										</tbody>
 									</table>
 								</div>
+								<div class="write-btn pull-right">
+									<button type="submit" id="btn_submit" accesskey="s"	class="btn btn-success btn-sm ">
+										<i class="fa fa-check"></i> <b>작성완료</b>
+									</button>
+									<a href="blist.hm" class="btn btn-danger btn-sm" role="button">취소</a>
+								</div>
 							</div>
-							<div class="write-btn pull-center">
-								<button type="submit" id="btn_submit" accesskey="s"
-									class="btn btn-success btn-sm">
-									<i class="fa fa-check"></i> <b>작성완료</b>
-								</button>
-								<a href="blist.hm" class="btn btn-danger btn-sm" role="button">취소</a>
-							</div>
+							<br>
 							</form>
 						</div>
-
 					</div>
 				</div>
 				<!-- End Main Column -->
