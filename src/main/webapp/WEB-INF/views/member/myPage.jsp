@@ -599,15 +599,14 @@
 									
 									if(data.length > 0){
 										console.log("if왔나");
-										console.log(data[0].bcode);
 										
 										switch (data[0].bcode) {
 										case "RMBCODE":
 											for(var i in data){
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-												$atag = $("<a>").attr('href','#');
+												$atag = $("<a>").attr('href','bdetail.rm?rbId='+data[i].rbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/2.JPG')
 																  .width('400px').height('200px');
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
 												
@@ -622,7 +621,7 @@
 										case "HMBCODE":
 											for(var i in data){
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-												$atag = $("<a>").attr('href','#');
+												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
 												$figuretag = $("<figure>");
 												$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
 																  .width('400px').height('200px');
@@ -638,9 +637,9 @@
 										case "FMBCODE":
 											for(var i in data){
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-												$atag = $("<a>").attr('href','#');
+												$atag = $("<a>").attr('href','bdetail.fm?fbId='+data[i].fbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/2.JPG')
 																  .width('400px').height('200px');
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
 												
