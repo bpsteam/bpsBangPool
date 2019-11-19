@@ -46,6 +46,8 @@ public class MatchingController {
 			gson.toJson(mlist, response.getWriter());
 			
 			System.out.println("매칭 mlist : "+ mlist);
+		} else {
+			System.out.println("매칭 mlist : ");
 		}
 		
 		
