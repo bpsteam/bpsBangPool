@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 import com.project.bangpool.showing.model.vo.Showing;
 
 @Repository("sbDao")
@@ -54,6 +55,9 @@ public class ShowingDao {
 	// selectList showing reply
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int sbId) {
 		return (ArrayList)sqlSession.selectList("showingMapper.selectReplyList", sbId);
+	}
+	public ArrayList<Showing> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("showingMapper.selectTopList");
 	}
 	
 }

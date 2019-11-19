@@ -8,44 +8,41 @@
 <title>Insert title here</title>
 
 <style>
+.table tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
 
-	.table tbody tr {
-		border-bottom: 1px solid #dddddd;
-	}
-	
-	#form label {
-		margin-top: 5px;
-	}
-	
-	
-	#variableFiles {
-		width: 100%;
-		margin: 0;
-		border: 0;
-	}
-	
-	#variableFiles td {
-		padding: 0px 0px 7px;
-		border: 0;
-	}
-	
-	#variableFiles input[type=file] {
-		box-shadow: none;
-		border: 1px solid #ccc !important;
-		outline: none;
-	}
-	
-	#variableFiles .form-group {
-		margin-left: 0;
-		margin-right: 0;
-		margin-bottom: 7px;
-	}
-	
-	#variableFiles .checkbox-inline {
-		padding-top: 0px;
-		font-weight: normal;
-	}
+#form label {
+	margin-top: 5px;
+}
 
+#variableFiles {
+	width: 100%;
+	margin: 0;
+	border: 0;
+}
+
+#variableFiles td {
+	padding: 0px 0px 7px;
+	border: 0;
+}
+
+#variableFiles input[type=file] {
+	box-shadow: none;
+	border: 1px solid #ccc !important;
+	outline: none;
+}
+
+#variableFiles .form-group {
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 7px;
+}
+
+#variableFiles .checkbox-inline {
+	padding-top: 0px;
+	font-weight: normal;
+}
 </style>
 
 </head>
@@ -59,326 +56,234 @@
 
 
 	<div id="content">
-
-
 		<div class="margin-bottom-20">
 			<hr>
 		</div>
 		<div class="container background-white ">
-
 			<div class="row margin-vert-30">
 				<!-- Main Column -->
 				<div class="col-sm-9">
 					<div class="tab-content">
+					<form action="srInsert.sr">
 						<h1>
 							<small>글쓰기</small>
 						</h1>
 						<div class="margin-bottom-10">
 							<hr>
 						</div>
-
+						<input type="hidden" value="${ loginUser.nickname }" name="srbWriter">
 						<div class="panel panel-blue">
-							<div class="panel-body" style="background-color: white;">
-								<form action="binsert.hm" method="post"
-									enctype="multipart/form-data"
-									class="form-horizontal">
-
-									<div class="form-group has-feedback">
-										<label class="col-sm-2 control-label">작성자</label>
-										<div class="col-sm-3">
-											 <c:if test="${ !empty loginUser }">
-                                                   <input type="text" name="hbWriter"  id="hbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
-	                                         </c:if>
+							<div class="panel-body" style="padding-bottom: 0px;">
+								<div class="form-group">
+									<label class="col-sm-2 col-xs-12 control-label" for="nanum_model">제목</label>
+									<div class="col-sm-10 col-xs-12">
+										<div class="control-label input-group input-group-sm">
+											<input id="nanum_model" class="form-control input-sm" type="text" name="srbTitle" value="" size="150" placeholder="">
 										</div>
 									</div>
-
-								<!-- 	<div class="form-group">
-										<label class="col-sm-2 control-label" for="wr_email">E-mail</label>
-										<div class="col-sm-6">
-											<input type="text" name="wr_email" id="wr_email" readonly
-												value=""
-												class="form-control input-sm email" size="50"
-												maxlength="100">
-										</div>
-									</div> -->
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label" for="ca_name">
-											지역분류 <strong class="sound_only">*</strong>
-										</label>
-										<div class="col-sm-3">
-											<select name="hLocation" required
-												class="form-control input-sm">
-												<option value="">선택하세요</option>
-												<option value="서울">서울</option>
-												<option value="인천/부천">인천/부천</option>
-												<option value="수원/경기">수원/경기</option>
-												<option value="대구/경북">대구/경북</option>
-												<option value="부산/경남">부산/경남</option>
-												<option value="충청/강원">충청/강원</option>
-												<option value="광주/전라">광주/전라</option>
-											</select>
-										</div>
+								</div>
+								
+								<div class="form-group">
+								<br>
+								<label class="col-sm-2 control-label" for="ca_name">지역분류 <strong class="sound_only">*</strong></label>
+									<div class="col-sm-4">
+										<select name="srbLocation" required
+											class="form-control input-sm">
+											<option value="">선택하세요</option>
+											<option value="서울">서울</option>
+											<option value="인천/부천">인천/부천</option>
+											<option value="수원/경기">수원/경기</option>
+											<option value="대구/경북">대구/경북</option>
+											<option value="부산/경남">부산/경남</option>
+											<option value="충청/강원">충청/강원</option>
+											<option value="광주/전라">광주/전라</option>
+										</select>
 									</div>
-
+								</div>
+								<br>
+								<br>
+									<!-- start insert input date -->
 									<div class="form-group">
-										<label class="col-sm-2 control-label" for="wr_subject">제목<strong
-											class="sound_only">*</strong></label>
-										<div class="col-sm-10">
-											<div class="input-group">
-												<input type="text" name="srTitle" required
-													class="form-control input-sm" size="50" maxlength="255">
-													
+										<label class="col-sm-2 col-xs-12 control-label" for="sdate">시작일시</label>
+											<div class="col-sm-5 col-xs-6">
+												<div class="control-label input-group input-group-sm col-sm-4">
+													<input type="date" id="realDate" name="srStartDate"> 
+													<span id="calendarBtn" class="input-group-addon"><i	class="fa fa-calendar"></i></span>
+												</div>
 											</div>
+									<div class="col-sm-5 col-xs-6">
+										<div class="control-label input-group input-group-sm">
+											<select id="shour" name="srStartHour" class="form-control input-sm">
+												<option value="00" selected="">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+											</select> <span class="input-group-addon">시 00분</span>
 										</div>
 									</div>
-						
-						
-									<div class="form-group">
-										<label class="col-sm-2 control-label">당첨 인원
-											<strong class="sound_only">*</strong>
-										</label>
-										
-											<input type="number" placeholder="숫자만 입력">
-											<span>명 당첨</span>
+								</div>
+								<br>
+								<br>
+								<div class="form-group">
+									<label class="col-sm-2 col-xs-12 control-label" for="edate">종료일시</label>
+									<div class="col-sm-5 col-xs-6">
+										<div class="control-label input-group input-group-sm col-sm-4">
+											<input type="date" id="edate" name="srEndDate"> 
+											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+										</div>
 									</div>
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label">추첨방법
-											<strong class="sound_only">*</strong>
-										</label>
-										<div class="col-sm-3">
-											<select name="trade" required 
-												class="form-control input-sm">
-												<option value="" selected="">거래 방법</option>
-												<option value="랜덤">랜덤당첨</option>
-												<option value="직접">직접추첨</option>
+									<div class="col-sm-5 col-xs-6">
+										<div class="control-label input-group input-group-sm">
+											<select id="ehour" name="srEndHour" class="form-control input-sm">
+												<option value="00">00</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23" selected="">23</option>
+											</select> <span class="input-group-addon">시 59분</span>
+										</div>
+									</div>
+								</div>
+								<!-- end insert end date -->
+								<div class="form-group">
+								<br>
+								<br>
+									<label class="col-sm-2 col-xs-12 control-label"	for="nanum_type">방법</label>
+									<div class="col-sm-5 col-xs-6">
+										<div class="control-label input-group input-group-sm">
+											<select id="nanum_type" class="form-control input-sm"
+												name="srEvent">
+												<option value="랜덤당첨">랜덤당첨</option>
+												<option value="직접추첨">직접추첨</option>
 											</select>
 										</div>
 									</div>
-									
-									<div class="form-group">
-										<label class="col-sm-2 control-label">해당층수
-											<strong class="sound_only">*</strong>
-										</label>
-										<div class="col-sm-3">
-											<select name="trade" required 
-												class="form-control input-sm">
-												<option value="" selected="">거래 방법</option>
-												<option value="무료">무료</option>
-												<option value="착불">착불</option>
-												<option value="직거래">직거래</option>
+									<div class="col-sm-5 col-xs-6">
+										<div class="control-label input-group input-group-sm">
+											<input class="form-control input-sm" type="text"
+												name="srEventLimit" value="" size="10" placeholder="숫자만 입력">
+											<span class="input-group-addon">명 당첨</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 col-xs-12 control-label"
+										for="nanum_model">제품</label>
+									<div class="col-sm-10 col-xs-12">
+										<div class="control-label input-group input-group-sm">
+											<input id="nanum_model" class="form-control input-sm"
+												type="text" name="srItemName" value="" size="150"
+												placeholder="">
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-sm-2 col-xs-12 control-label"
+										for="nanum_sent">배송방법</label>
+									<div class="col-sm-10 col-xs-6">
+										<div class="control-label" style="width: 20%">
+											<select id="nanum_sent" class="form-control input-sm"
+												name="srDelivery" style="width: 100px">
+												<option value="무료배송" selected="">무료배송</option>
+												<option value="택배선불">택배선불</option>
+												<option value="택배착불">택배착불</option>
 											</select>
 										</div>
 									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">핸드폰</label>
-										<div class="col-sm-7">
-											<input type="text" name="wr_phone" readonly
-												value="" id="wr_name"
-												class="form-control input-sm" size="10" maxlength="20">
-				
-											<!-- <table>
-												<tbody>
-													<tr>
-														<td><select name="wr_4" itemname="핸드폰 국번"
-															class="form-control input-sm" style="width: 100px;">
-																<option value="" selected="">국번</option>
-																<option value="010">010</option>
-																<option value="011">011</option>
-																<option value="016">016</option>
-																<option value="017">017</option>
-																<option value="018">018</option>
-																<option value="019">019</option>
-														</select></td>
-														<td>-</td>
-														<td><input type="text" name="wr_5" size="4"
-															maxlength="4" itemname="핸드폰 앞자리" value=""
-															class="form-control input-sm"></td>
-														<td>-</td>
-														<td><input type="text" name="wr_6" size="4"
-															maxlength="4" itemname="핸드폰 뒷자리" value=""
-															class="form-control input-sm"></td>
-													</tr>
-												</tbody>
-											</table> -->
-										</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">내용</label>
+									<div class="col-sm-12">
+										<span class="sound_only"></span>
+										<textarea id="wr_content" name="srbContent"
+											class="form-control input-sm write-content" maxlength="65536"
+											style="width: 100%; height: 300px"></textarea>
+										<span class="sound_only"></span>
 									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
-										<div class="col-sm-3">
-											<select name="hreqgender" required class="form-control input-sm">
-                                                <option value="" selected >원하는 상대 성별을 선택해주세요.</option>
-                                                <option value="N">무관</option>
-                                                <option value="F">여성</option>
-                                                <option value="M">남성</option>
-                                            </select>	
-										</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label hidden-xs">첨부파일</label>
+									<div class="col-sm-10">
+										<p class="form-control-static text-muted"
+											style="padding: 0px; padding-top: 4px;">
+											<span class="cursor" onclick="add_file();"><i
+												class="fa fa-plus-circle fa-lg"></i> 파일추가</span> &nbsp; <span
+												class="cursor" onclick="del_file();"><i
+												class="fa fa-times-circle fa-lg"></i> 파일삭제</span>
+										</p>
 									</div>
-									
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">거래금액</label>
-										<div class="col-sm-3">
-											<input type="text" name="hPrice" size="50" value=""
-												class="form-control input-sm">
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">주차가능여부</label>
-										<div class="col-sm-3">
-											<select name="hParking" 
-													class="form-control input-sm" style="width: 100px;">
-															<option value="" selected="">선택</option>
-															<option value="Y">주차가능</option>
-															<option value="N">주차불가</option>
-											</select>
-										</div>
-									</div>
-
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label">내용</label>
-										<div class="col-sm-12">
-											<span class="sound_only"></span>
-											<textarea id="wr_content" name="hbContent"
-												class="form-control input-sm write-content"
-												maxlength="65536" style="width: 100%; height: 300px"></textarea>
-											<span class="sound_only"></span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label">첨부파일</label>
-										<div class="col-sm-10">
-											<button class="btn btn-blue btn-sm" type="button"
-												onclick="add_file();">
-												<i class="fa fa-plus-circle fa-lg"></i> 추가하기
-											</button>
-											<button class="btn btn-red btn-sm" type="button"
-												onclick="del_file();">
-												<i class="fa fa-times-circle fa-lg"></i> 삭제하기
-											</button>
-										</div>
-									</div>
-									<div class="form-group" style="margin-bottom: 0;">
-										<div class="col-sm-10 col-sm-offset-2">
-											<table id="variableFiles">
-												<tbody>
-													<!-- <tr>
-														<td><div class="row">
-																<div class="col-sm-7">
-																	<div class="form-group">
-																		<div class="input-group input-group-sm">
-																			<span class="input-group-addon">파일 0</span>
-																			<input type="file" class="input-sm" name="uploadFile">
-																		</div>
-																	</div>
+								</div>
+								<div class="col-sm-10 col-sm-offset-2">
+									<table id="variableFiles">
+										<tbody>
+											<tr>
+												<td><div class="row">
+														<div class="col-sm-7">
+															<div class="form-group">
+																<div class="input-group input-group-sm">
+																	<span class="input-group-addon">파일 0</span><input
+																		type="file" class="form-control input-sm"
+																		name="bf_file[]"
+																		title="파일 용량 10,485,760 바이트 이하만 업로드 가능">
 																</div>
-															</div></td>
-													</tr> -->
-												</tbody>
-											</table>
-										</div>
-									</div>
-									<script>
-                                                    var flen = 0;
-                                                    function add_file(delete_code) {
-                                                        var upload_count = 3;
-                                                        if (upload_count && flen >= upload_count) {
-                                                            alert("이 게시판은 "+upload_count+"개 까지만 파일 업로드가 가능합니다.");
-                                                            return;
-                                                        }
-                                            
-                                                        var objTbl;
-                                                        var objNum;
-                                                        var objRow;
-                                                        var objCell;
-                                                        var objContent;
-                                                        if (document.getElementById)
-                                                            objTbl = document.getElementById("variableFiles");
-                                                        else
-                                                            objTbl = document.all["variableFiles"];
-                                            
-                                                        objNum = objTbl.rows.length;
-                                                        objRow = objTbl.insertRow(objNum);
-                                                        objCell = objRow.insertCell(0);
-                                            
-                                                        objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
-                                                        if (delete_code) {
-                                                            objContent += delete_code;
-                                                        } else {
-                                                                            ;
-                                                        }
-                                                        objContent += "</div>";
-                                            
-                                                        objCell.innerHTML = objContent;
-                                            
-                                                        flen++;
-                                                    }
-                                            
-                                                    add_file('');
-                                            
-                                                    function del_file() {
-                                                        // file_length 이하로는 필드가 삭제되지 않아야 합니다.
-                                                        var file_length = 0;
-                                                        var objTbl = document.getElementById("variableFiles");
-                                                        if (objTbl.rows.length - 1 > file_length) {
-                                                            objTbl.deleteRow(objTbl.rows.length - 1);
-                                                            flen--;
-                                                        }
-                                                    }
-                                                    </script>
-
-
-									<div class="well well-sm text-center">
-
-										<script> var g5_captcha_url  = "http://myroom.oceanmate.co.kr/plugin/kcaptcha";</script>
-										<script
-											src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha.js"></script>
-										<fieldset id="captcha" class="captcha">
-											<legend>
-												<label for="captcha_key">자동등록방지</label>
-											</legend>
-											<img
-												src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha_image.php?t=1571763466619"
-												alt="" id="captcha_img">
-											<button type="button" id="captcha_mp3">
-												<span></span>숫자음성듣기
-											</button>
-											<button type="button" id="captcha_reload">
-												<span></span>새로고침
-											</button>
-											<input type="text" name="captcha_key" id="captcha_key"
-												required="" class="captcha_box required" size="6"
-												maxlength="6"> <span id="captcha_info">자동등록방지
-												숫자를 순서대로 입력하세요.</span>
-										</fieldset>
-									</div>
-
-									<div class="write-btn pull-center">
-										<button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button>
-										<!-- <a href="bdetail.hm" id="btn_submit" accesskey="s"
-											class="btn btn-success btn-sm"><i class="fa fa-check"></i>
-											<b>작성완료</b></a>  -->
-										<a href="blist.hm" class="btn btn-danger btn-sm" role="button">취소</a>
-									</div>
-
-							
-
-								</form>
+															</div>
+														</div>
+												</div></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="write-btn pull-right">
+									<button type="submit" id="btn_submit" accesskey="s"	class="btn btn-success btn-sm ">
+										<i class="fa fa-check"></i> <b>작성완료</b>
+									</button>
+									<a href="blist.hm" class="btn btn-danger btn-sm" role="button">취소</a>
+								</div>
 							</div>
-
+							<br>
+							</form>
 						</div>
-
 					</div>
 				</div>
 				<!-- End Main Column -->
@@ -407,6 +312,7 @@
 							</ul>
 						</div>
 					</div>
+
 					<div class="margin-bottom-10">
 						<hr>
 					</div>
@@ -500,8 +406,12 @@
 	</div>
 	<!-- === END CONTENT === -->
 
-
-
+	<script type="text/javascript">
+		$(function() {
+			var today = getTodayType2();
+			console.log(today);
+		});
+	</script>
 
 	<!-- ==== FOOTER START ==== -->
 	<c:import url="../../common/footer.jsp" />

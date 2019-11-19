@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freeboard.model.vo.FreeBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Repository("frbDAO")
 public class FreeBoardDAO {
@@ -77,6 +78,10 @@ public class FreeBoardDAO {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("freeboardMapper.selectSearchList", searchMap, rowBounds);
+	}
+	
+	public ArrayList<FreeBoard> selectTopList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("freeboardMapper.selectTopList");
 	}
 
 }

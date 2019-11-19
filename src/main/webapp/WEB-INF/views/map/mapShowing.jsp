@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--  -->
 <!-- 페이지를 kakao api 개정에 등록 해주어야 지도가 출력이된다. https://developers.kakao.com/ -->
 <meta charset="UTF-8">
 <title>Insert title here</title>

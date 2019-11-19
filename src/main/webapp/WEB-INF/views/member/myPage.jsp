@@ -603,7 +603,6 @@
 								success: function(data){
 									console.log("ajax 성공");
 									$(".section_matching").css('display','block');
-									console.log("display block처리");
 									
 									$matListDiv = $("#matListDiv");
 									$matListDiv.html("");
@@ -617,23 +616,65 @@
 									
 									if(data.length > 0){
 										console.log("if왔나");
-										for(var i in data){
-											$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-											$atag = $("<a>").attr('href','#');
-											$figuretag = $("<figure>");
-											$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
-															  .width('400px').height('200px');
-											$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+										
+										switch (data[0].bcode) {
+										case "RMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.rm?rbId='+data[i].rbId);
+												$figuretag = $("<figure>");
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/2.JPG')
+																  .width('400px').height('200px');
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
 											
-											$mDiv.append($atag);
-											$atag.append($figuretag); 
-											$figuretag.append($imgtag);
-											$atag.append($h6tag);
-											$matListDiv.append($mDiv);
+										case "HMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
+												$figuretag = $("<figure>");
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+																  .width('400px').height('200px');
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
+										case "FMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.fm?fbId='+data[i].fbId);
+												$figuretag = $("<figure>");
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/2.JPG')
+																  .width('400px').height('200px');
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
+										default:
+											break;
 										}
+										
 									}
 									
 									
+									// 모달창의 x를 누를때  기존값 초기화시키기
 									$(".close").on("click", function(){
 										$matListDiv.html("");
 										$("#mform").each(function() {

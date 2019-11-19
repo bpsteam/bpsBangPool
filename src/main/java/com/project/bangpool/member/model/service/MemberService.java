@@ -18,5 +18,6 @@ public interface MemberService {
 
 	Member snsLogin(Member m);
 
-	
+	int memberUpdate(Member m);
+
 }

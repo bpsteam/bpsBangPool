@@ -11,6 +11,7 @@ import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.freeboard.model.dao.FreeBoardDAO;
 import com.project.bangpool.freeboard.model.vo.FreeBoard;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Service("frbService")
 public class FreeBoardServiceImpl implements FreeBoardService {
@@ -104,7 +105,10 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 		return frbDAO.selectSearchList(sqlSession, searchMap, pi);
 	}
 	
-	
+	@Override
+	public ArrayList<FreeBoard> selectTopList() {
+		return frbDAO.selectTopList(sqlSession);
+	}
 	
 
 }

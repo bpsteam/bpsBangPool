@@ -57,54 +57,54 @@
                     <div class="col-sm-9">
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="housemate">
-                                        <h1><small>HOUSEMATE</small></h1>
+                                        <h1><small>나눔게시판</small></h1>
                                         <div class="margin-bottom-10">
                                                 <hr>
                                          </div>
 
-							<form action="blist.hm">
+							<form action="srListView.sr">
 								<div class="tabs alternative">
 									<ul class="nav nav-tabs" id="tabs">
 										<li id="all">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="ALL"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="ALL"/>
 											</c:url>
 											<a href="${ loc }">전체</a>
 										</li>
 										<li id="seoul">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="SEOUL"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="SEOUL"/>
 											</c:url> 
 											<a href="${ loc }" >서울</a> 
 										</li>
 										<li id="inc">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="INCHEON"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="INCHEON"/>
 											</c:url> 
 											<a href="${ loc }" >인천/부천</a></li>
 										<li id="su">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="SU"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="SU"/>
 											</c:url> 
 											<a href="${ loc }" >수원/경기</a></li>
 										<li id="dae">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="DAE"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="DAE"/>
 											</c:url> 
 											<a href="${ loc }" >대구/경북</a></li>
 										<li id="bu">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="BU"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="BU"/>
 											</c:url> 
 											<a href="${ loc }" >부산/경남</a></li>
 										<li id="chung">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="CHUNG"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="CHUNG"/>
 											</c:url> 
 											<a href="${ loc }" >충청/강원</a></li>
 										<li id="kwang">
-											<c:url var="loc" value="blist.hm">
-												<c:param name="hLocation" value="GWANG"/>
+											<c:url var="loc" value="srListView.sr">
+												<c:param name="srLocation" value="GWANG"/>
 											</c:url> 
 											<a href="${ loc }" >광주/전라</a></li>
 									</ul>
@@ -125,23 +125,22 @@
 																</tr>
 															</thead>
 															<tbody>
-				<%-- 												<c:forEach var="b" items="${ list }">
+ 																<c:forEach var="s" items="${ list }">
 																	<tr>
-																		<td>${ b.hbId }</td>
-																		<td>${ b.hLocation }</td>
-																		<c:url var="hbdetail" value="bdetail.hm">
-																			<c:param name="hbId" value="${ b.hbId }" />
+																		<td>${ s.srbId }</td>
+																		<c:url var="srdetail" value="srdetail.sr">
+																			<c:param name="srbId" value="${ s.srbId }" />
 																		</c:url>
-																		<td onclick="location.href='${ hbdetail }'">
-																			<a href="${ hbdetail }">${ b.hbTitle }</a></td>
-																			${ b.hbTitle }
+																		<td>${ s.srbLocation }</td>
+																		<td onclick="location.href='${ srdetail }'">
+																			<a href="${ srdetail }">${ s.srbTitle }</a></td>
 																		</td>
-																		<td>${ b.hbWriter }</td>
-																		<td>${ b.hbCreateDate }</td>
-																		<td>${ b.hbCount }</td>
+																		<td>${ s.srbWriter }</td>
+																		<td>${ s.srCreateDate }</td>
+																		<td>${ s.srbCount }</td>
 																	</tr>
 
-																</c:forEach> --%>
+																</c:forEach> 
 															</tbody>
 														</table>
 													</div>
@@ -159,7 +158,7 @@
 												<li><c:if test="${ pi.currentPage <= 1 }">
 														<a>«</a>
 													</c:if> <c:if test="${ pi.currentPage > 1 }">
-														<c:url var="before" value="blist.hm">
+														<c:url var="before" value="srListView.sr">
 															<c:param name="page" value="${ pi.currentPage - 1 }" />
 														</c:url>
 														<a href="${ before }">«</a>
@@ -173,7 +172,7 @@
 													</c:if>
 
 													<c:if test="${ p ne pi.currentPage }">
-														<li><c:url var="pagi" value="blist.hm">
+														<li><c:url var="pagi" value="srListView.sr">
 																<c:param name="page" value="${ p }" />
 															</c:url> <a href="${ pagi }">${ p }</a></li>
 													</c:if>
@@ -183,7 +182,7 @@
 												<li><c:if test="${ pi.currentPage >= pi.maxPage }">
 														<a>»</a>
 													</c:if> <c:if test="${ pi.currentPage < pi.maxPage }">
-														<c:url var="after" value="blist.hm">
+														<c:url var="after" value="srListView.sr">
 															<c:param name="page" value="${ pi.currentPage + 1 }" />
 														</c:url>
 														<a href="${ after }">»</a>
@@ -195,7 +194,7 @@
 												data-toggle="modal" data-target="#searchModal"
 												onclick="return false;"><i class="fa fa-search"></i></a>
 											<c:if test="${ !empty loginUser }">
-												<a href="binsertView.hm" type="button" class="btn btn-red"
+												<a href="srInsertForm.sr" type="button" class="btn btn-red"
 													style="float: right;">글쓰기</a>
 											</c:if>
 										</div>
@@ -209,7 +208,6 @@
                             </div>
                         </div>
                     <!-- End Main Column -->
-
 
 					<!-- 검색 모달창 시작 -->
                     <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -381,8 +379,7 @@
 <script>
 // 탭 액티브 처리
 	$(function(){
-		var location= "${ hLoc }";
-		console.log(location);
+		var location= "${ sLoc }";
 		
 		switch(location) {
 		case "SEOUL" : 

@@ -117,18 +117,70 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("mUpdate.me")
+	public String memberUpdate(Member m,
+							   @RequestParam("post") String post,
+							   @RequestParam("address1") String address1,
+							   @RequestParam("address2") String address2,
+							   @RequestParam("year") String year,
+							   @RequestParam("month") String month,
+							   @RequestParam("date") String date,
+							   Model model) {
+		m.setAddress(post+"/"+address1+"/"+address2);
+		m.setBirth(year+"-"+month+"-"+date);
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
+		m.setPwd(encPwd);
+		
+		System.out.println("update : " + m);
+		//update : Member [mNo=null, mlCode=null, email=admin@bangpool.com, pwd=1234, 
+		// name=관리자이름, nickname=관리자닉네임, gender=여성, birth=null, 
+		// address=17017/경기도 용인시 처인구 동백죽전대로 80/123123, phone=123123, mStatus=null, enrollDate=null, updateDate=null, snsId=null]
+		int result = mService.memberUpdate(m);
+		
+		if(result>0) {
+			Member loginUser = mService.memberLogin(m);
+			System.out.println("session 에 새로올리자 "+loginUser);
+			model.addAttribute("loginUser", loginUser);
+			return "myPage";
+		}else {
+			throw new MemberException("회원정보 수정 실패");
+		}
+		
+	}
+	
 	@RequestMapping("mypage.me")
 	public String myPageView() {
 		return "myPage";
 	}
-
-
 	
-	@RequestMapping("loginView.me")
-	public String naverloginView() {
-		return "naverlogin";
-	}
+
+// 	@RequestMapping("loginView.me")
+// 	public String naverloginView() {
+// 		return "naverlogin";
+// 	}
     
+
+   
+  	@RequestMapping("mdelete.me")
+	public String memberDelete(Model model, SessionStatus status) {
+		
+		Member m = (Member)model.getAttribute("loginUser");
+		
+		System.out.println("탈퇴 : "+m);
+		
+		int result = mService.deleteMember(m);
+		
+		if(result>0) {
+			status.setComplete();
+			return "redirect:home.do";
+		}else {
+			throw new MemberException("탈퇴 실패.");
+		}
+		
+	}
+	
+
 //	@RequestMapping("loginView.me")
 //	public String naverloginView() {
 //		return "loginView";
@@ -232,7 +284,6 @@ public class MemberController {
 		boolean isUsable = mService.checkIdDup(email) == 0 ? true : false;
 
 		response.getWriter().print(isUsable);
-
 	}
 
 	@RequestMapping("dupnick.me")
@@ -242,36 +293,48 @@ public class MemberController {
 
 		response.getWriter().print(isUsable);
 	}
+  
 
+	// mypage 정보수정 버튼 -> 비밀번호 확인 페이지
 	@RequestMapping("mupConfirm.me")
 	public String updateConfirm () {
 		return "mUpdateConfirm";
 	}
-
-	@RequestMapping("pwdConfirm.me")
-	public String pwdConfirm() {
-
-		return "mUpdateForm";
-	}
   
-  	@RequestMapping("mdelete.me")
-	public String memberDelete(Model model, SessionStatus status) {
+  
+	// updateConfirm 페이지에서 -> 비밀번호 확인하고 정보수정페이지로 가기 
+	@RequestMapping("pwdConfirm.me")
+	public ModelAndView pwdConfirm(Model model, @RequestParam("pwd") String rawPwd, 
+							@RequestParam("email") String email) {
 		
-		Member m = (Member)model.getAttribute("loginUser");
+		Member m = (Member) model.getAttribute("loginUser");
 		
-		System.out.println("탈퇴 : "+m);
-		
-		int result = mService.deleteMember(m);
-		
-		if(result>0) {
-			status.setComplete();
-			return "redirect:home.do";
+//		System.out.println("pwdConfirm m: "+m);
+//		System.out.println("pwdConfirm pwd: "+rawPwd);
+//pwdConfirm m: Member [mNo=2, mlCode=TEMPMLCODE, email=admin@bangpool.com, pwd=$2a$10$uQiko/23OGXaGqiEPi3hMuW8XWLhRt7752lQTKdX16F32UurNdG2q, name=관리자, nickname=관리자닉네임, gender=여성, birth=1985-6-10, address=17017/경기도 용인시 처인구 동백죽전대로 80/(삼가동), phone=01092923838, mStatus=Y, enrollDate=2019-11-13, updateDate=2019-11-13, snsId=null]
+//pwdConfirm pwd: 1111
+
+		if(bcryptPasswordEncoder.matches(rawPwd, m.getPwd())) {
+			String post = m.getAddress().split("/")[0];
+			String address1 = m.getAddress().split("/")[1];
+			String address2 = m.getAddress().split("/")[2];
+			
+			String year = m.getBirth().split("-")[0];
+			String month = m.getBirth().split("-")[1];
+			String date = m.getBirth().split("-")[2];
+			
+			
+			return new ModelAndView("mUpdateForm")
+					.addObject("post",post).addObject("address1",address1)
+					.addObject("address2",address2).addObject("year",year)
+					.addObject("month",month).addObject("date",date);
 		}else {
-			throw new MemberException("탈퇴 실패.");
+			return new ModelAndView("mUpdateConfirm").addObject("match", "F");
 		}
 		
 	}
-	
+
+ 
 
 
 }

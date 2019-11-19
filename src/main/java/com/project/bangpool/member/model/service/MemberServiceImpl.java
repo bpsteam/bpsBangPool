@@ -63,5 +63,10 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.snsLogin(sqlSession, m);
 	}
 
+	@Override
+	public int memberUpdate(Member m) {
+		return mDAO.memberUpdate(sqlSession, m);
+	}
+
 
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,6 +27,7 @@ import com.google.gson.JsonIOException;
 import com.project.bangpool.common.page.Pagination;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 import com.project.bangpool.showing.model.exception.ShowingException;
 import com.project.bangpool.showing.model.service.ShowingService;
 import com.project.bangpool.common.page.PageInfo;
@@ -152,6 +154,21 @@ public class ShowingBoardController {
 		return mv;
 	}
 	
+	// 김상욱 메소드 추가
+	@RequestMapping("ddetailShowing2.sb")
+	public ModelAndView bdetailShowingBoard(@RequestParam("sbId") int sbId,
+										ModelAndView mv) {
+		
+		Showing showing = sService.selectShowing(sbId);
+		if(showing != null) {
+			mv.addObject("showing", showing)
+			.setViewName("detailShowingBoard");
+		}else {
+			throw new ShowingException("게시글 전체 조회에 실패하여습니다.");
+		}
+		return mv;
+	}
+	
 	@RequestMapping("deleteShowing.sb")
 	public String deleteShowing(@RequestParam("sbId") int sbId) {
 		int result = sService.deleteShowing(sbId);
@@ -259,5 +276,26 @@ public class ShowingBoardController {
 		}
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(list, response.getWriter());
+	}
+	
+	@RequestMapping("topList.sb")
+	public void boardTopList(HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Showing> list = sService.selectTopList();
+		
+		JSONArray jArr = new JSONArray();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		System.out.println(list);
+		
+		for(Showing b : list) {
+			b.setSbtitle(URLEncoder.encode(b.getSbtitle(),"utf-8"));
+			b.setRenameFileName(URLEncoder.encode(b.getRenameFileName(),"utf-8"));
+		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
 	}
 }

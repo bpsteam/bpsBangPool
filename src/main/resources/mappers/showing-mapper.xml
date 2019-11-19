@@ -109,5 +109,19 @@
   		<result property="rModifyDate" column="rmodifydate"/>
   		<result property="rStatus" column="rstatus"/>
   	</resultMap>
+  	
+  	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultMap="showingResultSet">
+		<![CDATA[
+			select *
+			from (select *
+				  from showing s
+                  join attachment a on a.bcode=s.bcode
+                  where a.refbid=s.sbid
+				  and s.sbstatus = 'Y'
+				  order by sbcreatedate desc)
+			where rownum <= 10
+		]]>
+	</select>
   	<!-- End select Reply List -->
 </mapper>
