@@ -21,9 +21,7 @@
 			<i class="fa fa-gift"></i> 나눔 제품
 		</h3>
 	</div>
-	
 	<h1 class="text-center">${ share.srbTitle }</h1>
-	
 	<div class="panel-body">
 		<div class="row">
 			<div class="col-sm-5">
@@ -62,6 +60,5 @@
 		<div class="view-line"></div>
 	</div>
 </div>
-
 </body>
 </html>
