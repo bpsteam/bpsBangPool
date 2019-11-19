@@ -62,7 +62,14 @@
 			0,
 			'Y',
 			#{srStartHour},
-			#{srEndHour}
+			#{srEndHour},
+			#{srEvent},
+			#{srEventLimit},
+			#{srEventEnterCount},
+			#{srItemName},
+			#{srDelivery},
+			#{srWinner}
+
 		)  
 		WHEN #{renameFileName} IS NOT NULL THEN
 		INTO ATTACHMENT

@@ -67,7 +67,7 @@
 									<div class="modal-dialog modal-sm">
 										<div class="modal-content">
 											<div class="modal-body">
-																				<img src="https://quasarzone.co.kr/skin/board/nanum/img/jijang.jpg">
+												<img src="https://quasarzone.co.kr/skin/board/nanum/img/jijang.jpg">
 											</div>
 										</div>
 									</div>
@@ -75,18 +75,18 @@
 							</div>
 							<div class="col-sm-7 font-14">
 												<div class="col-sm-12 font-16">
-									<strike class="gray">${ srItemName }</strike>
+									<strike class="gray">${ share.srItemName }</strike>
 								</div>
 								<div class="col-sm-12">
-									<strike class="gray">배송방법: ${ srDelivery }</strike>
+									<strike class="gray">배송방법: ${ share.srDelivery }</strike>
 								</div>
 								<div class="col-sm-12">
-									시작일시: ${ srStartDate }<br>
-									종료일시: ${ srEndDate }<br>
+									시작일시: ${ share.srStartDate }<br>
+									종료일시: ${ share.srEndDate }<br>
 														남은시간: <span class="gray">종료</span><br>
-														당첨방법: ${ srEvent }<br>
-									당첨인원: 총 ${ srEventLimit }명 (38.46%)<br>
-									현재참가: 총 ${ srEventEnterCount }명
+														당첨방법: ${ share.srEvent }<br>
+									당첨인원: 총 ${ share.srEventLimit }명 ${ chance }%<br>
+									현재참가: 총 ${ share.srEventEnterCount }명
 								</div>
 							</div>
 						</div>
@@ -97,16 +97,7 @@
 						
 						  <div class="view-padding">
 						    <div class="view-content">
-						      <p>안녕하세요.</p>
-						      <p>(오래된...)&nbsp;모니터&nbsp;나눔합니다.</p>
-						      <p><br></p>
-						      <p>삼성전자&nbsp;LS2343BWX 2개입니다.</p>
-						      <p>잠실역 혹은 광나루역으로 받으러 오셔야 합니다. 택배 포장할 박스나 뭐 그런게 전혀 없어요.<br></p>
-						      <p>멀쩡히 잘 되는데 1440p 모니터로 업그레이드 해서 .. 뭐 오래된거 팔기도 좀 그렇고.. 나눔 해요~</p>
-						      <p>(커피 한잔 사주시면 감사히 마시겠습니다 ㅋㅋㅋㅋ)</p>
-						      <p><br></p>
-						      <p>2분 추첨해요~ ( 몇분이나 원하실지는 모르겠습니다만.)</p>
-						      <p><br></p>
+								${ share.srbContent }
 						    </div>
 						  </div>
 						

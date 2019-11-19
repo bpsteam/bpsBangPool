@@ -191,16 +191,16 @@
 									<div class="col-sm-5 col-xs-6">
 										<div class="control-label input-group input-group-sm">
 											<select id="nanum_type" class="form-control input-sm"
-												name="nanum_type">
-												<option value="r">랜덤당첨</option>
-												<option value="n">직접추첨</option>
+												name="srEvent">
+												<option value="랜덤당첨">랜덤당첨</option>
+												<option value="직접추첨">직접추첨</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-sm-5 col-xs-6">
 										<div class="control-label input-group input-group-sm">
 											<input class="form-control input-sm" type="text"
-												name="nanum_num" value="" size="10" placeholder="숫자만 입력">
+												name="srEventLimit" value="" size="10" placeholder="숫자만 입력">
 											<span class="input-group-addon">명 당첨</span>
 										</div>
 									</div>
@@ -212,7 +212,7 @@
 									<div class="col-sm-10 col-xs-12">
 										<div class="control-label input-group input-group-sm">
 											<input id="nanum_model" class="form-control input-sm"
-												type="text" name="nanum_model" value="" size="150"
+												type="text" name="srItemName" value="" size="150"
 												placeholder="">
 										</div>
 									</div>
@@ -224,10 +224,10 @@
 									<div class="col-sm-10 col-xs-6">
 										<div class="control-label" style="width: 20%">
 											<select id="nanum_sent" class="form-control input-sm"
-												name="nanum_sent" style="width: 100px">
-												<option value="0" selected="">무료배송</option>
-												<option value="1">택배선불</option>
-												<option value="2">택배착불</option>
+												name="srDelivery" style="width: 100px">
+												<option value="무료배송" selected="">무료배송</option>
+												<option value="택배선불">택배선불</option>
+												<option value="택배착불">택배착불</option>
 											</select>
 										</div>
 									</div>

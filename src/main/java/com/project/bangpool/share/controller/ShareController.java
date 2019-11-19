@@ -94,9 +94,16 @@ public class ShareController {
 		
 		Share s = srService.shareDetail(srbId);
 		
+		double chance = 100;
+		
+		if(s.getSrEventEnterCount() != 0) {
+			chance = s.getSrEventLimit()/s.getSrEventEnterCount();
+		}
+		
 		if(s != null) {
 			
 			mv.addObject("share", s)
+			  .addObject("chance",chance)
 			  .setViewName("shareDetailView");
 			
 		}
