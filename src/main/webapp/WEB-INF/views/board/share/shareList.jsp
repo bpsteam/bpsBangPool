@@ -134,7 +134,6 @@
 																		<td>${ s.srbLocation }</td>
 																		<td onclick="location.href='${ srdetail }'">
 																			<a href="${ srdetail }">${ s.srbTitle }</a></td>
-																			${ s.srbTitle }
 																		</td>
 																		<td>${ s.srbWriter }</td>
 																		<td>${ s.srCreateDate }</td>
