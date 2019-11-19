@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
+import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.housemateboard.model.vo.HMBoard;
 import com.project.bangpool.matching.model.service.MatchingService;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
@@ -41,12 +43,18 @@ public class MatchingController {
 		
 		Gson gson = new GsonBuilder().create();
 		System.out.println("gson 생성! ");
+		System.out.println("mBCode: "+ mBcode);
+		
 		if( mBcode.equals("RMBCODE")) {
-			ArrayList<RMBoard> mlist = mcService.selectMatching(matchingMap);
+			ArrayList<RMBoard> mlist = mcService.selectRMatching(matchingMap);
 			gson.toJson(mlist, response.getWriter());
-			
-			System.out.println("매칭 mlist : "+ mlist);
-		}
+		} else if( mBcode.equals("HMBCODE")) {
+			ArrayList<HMBoard> mlist = mcService.selectHMatching(matchingMap);
+			gson.toJson(mlist, response.getWriter());
+		} else if( mBcode.equals("FMBCODE")) {
+			ArrayList<FMBoard> mlist = mcService.selectFMatching(matchingMap);
+			gson.toJson(mlist, response.getWriter());
+		} 
 		
 		
 	}
