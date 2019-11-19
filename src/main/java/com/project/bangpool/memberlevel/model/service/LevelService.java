@@ -8,4 +8,6 @@ public interface LevelService {
 
 	int getLoginCount(String mNo);
 
+	String selectlCode(int loginCount);
+
 }

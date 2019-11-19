@@ -35,6 +35,11 @@ public class LevelController {
 		int loginCount = lvService.getLoginCount(m.getmNo());
 		System.out.println("LevelController loginCount : "+loginCount); //  1
 		
+		String mlCode = lvService.selectlCode(loginCount);
+		System.out.println("mlCode 가져오니???"+mlCode);
+		
+		
+		
 //		mm = lvService.updateLevel(mlCode);
 		
 		mv.addObject("mm", mm)

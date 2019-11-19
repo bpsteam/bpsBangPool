@@ -154,6 +154,21 @@
 																			<img src="${ contextPath }/resources/456.jpg" style="width: 100%;">
 																		<!-- </i> -->				
 																	</div>
+																	
+																	
+																	<!-- 
+																	<  lt  <if test="logCount lt 0">
+																	>  gt <if test="logCount gt 0"> 
+																	<= (또는 =<)  lte   <if test="logCount lte 0">
+																	>= (또는 =>)  gte   <if test="logCount gte 0"> 
+																	
+																	0 ~ 3 : 베이직
+																	3 ~ 5 : 실버
+																	5 ~ 10 : 골드-->
+																	<c:if test="loginCount lte 3">
+																		
+																	</c:if>
+																	
 																	<div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
 																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'like', 'it_like'); return false;" title="Like">
 																			<i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
@@ -166,7 +181,9 @@
 																<div class="auth-info">
 																	<div class="en font-14" style="margin-bottom:6px;">
 																		<span class="pull-right font-12">Lv.1</span>
-																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
+																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');">
+																		<span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;
+																		<span class="text-muted en font-12">실버</span>
 																	</div>
 																	<div class="progress progress-striped active">
 								                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
