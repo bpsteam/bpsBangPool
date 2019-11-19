@@ -25,6 +25,28 @@
 	
 	<context:component-scan base-package="com.project.bangpool" />
 	
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
+
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"/>
+	</beans:bean>
+<!-- 이메일 관련 -->
+<!-- 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com" />
+		<beans:property name="port" value="587" />
+		<beans:property name="username" value="bangpool.kh@gmail.com" />
+		<beans:property name="password" value="bangpan_kh12" />
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+		<beans:bean id="mailService" class="com.project.bangpool.freshmanmateboard.model.service.MailServiceImpl">
+		<beans:property name="javaMailSender" ref="javaMailSender" />
+	</beans:bean> -->
 	
 	
 </beans:beans>

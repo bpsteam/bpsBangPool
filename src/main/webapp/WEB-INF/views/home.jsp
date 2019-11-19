@@ -221,13 +221,13 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-user"></i>
                                             </span>
-                                            <input placeholder="Username" class="form-control" type="text" name="email">
+                                            <input placeholder="Username" class="form-control" type="text" id="email" name="email">
                                         </div>
                                         <div class="input-group margin-bottom-20">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-lock"></i>
                                             </span>
-                                            <input placeholder="Password" class="form-control" type="password" name="pwd">
+                                            <input placeholder="Password" class="form-control" type="password" id="pwd" name="pwd">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -235,7 +235,7 @@
                                                     <input type="checkbox">Stay signed in</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <button class="btn btn-primary pull-right" type="submit">Login</button>
+                                                <button class="btn btn-primary pull-right" id="login" type="button">Login</button>
                                             </div>
                                         </div>
                                         <!-- <hr>
@@ -1044,8 +1044,60 @@
 <!-- ==== END CONTENT ==== -->
 
 
+
+ <!-- 비밀번호 불일치 모달 -->
+	<div class="modal fade" id="pwdNotMatch" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">비밀번호 불일치</h4>
+				</div>
+				<div class="modal-body">
+				가입시 입력하신 비밀번호와 일치하지 않습니다.<br>
+				비밀번호를 다시 확인해주세요.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 비밀번호 불일치 모달 끝 -->
+
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
+
+
+<script>
+	$('#login').click(function(){
+		/* event.preventDefault(); */
+		var email = $('#email').val();
+		var pwd = $('#pwd').val();
+	
+		$.ajax({
+				url: "pwdCheck.me",
+				data: {email:email,pwd:pwd},
+				type: "post",
+				dataType: "json",
+				success: function(data){
+					console.log(data);
+					/* if (data == "success") {
+						console.log("비밀번호 일치");
+						$("#login").submit();
+					} else {
+						$("#pwdNotMatch").modal();
+						console.log("비밀번호 불일치");
+					} */
+				},error: function(data){
+					console.log("에러 : "+ data);
+				}
+		});
+	});
+</script>
 </body>
 </html>
