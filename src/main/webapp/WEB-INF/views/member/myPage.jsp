@@ -870,7 +870,7 @@
         </div>
         <!-- === END CONTENT === -->
 
-<!-- ==== FOOTER START ==== -->
+<!-- ==== FOOTER START ====? -->
 	<c:import url ="../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 
