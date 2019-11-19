@@ -22,6 +22,7 @@
 		</h3>
 	</div>
 	
+	
 	<h1 class="text-center">${ share.srbTitle }</h1>
 	
 	<div class="panel-body">
