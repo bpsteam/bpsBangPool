@@ -549,7 +549,7 @@ public class FMBoardController {
 		JSONArray jArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		for(FMBoard b : list) {
 			b.setFbTitle(URLEncoder.encode(b.getFbTitle(),"utf-8"));
@@ -557,6 +557,26 @@ public class FMBoardController {
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(list, response.getWriter());
+		
+	}
+	
+	// 김상욱 추가 메소드
+	@RequestMapping("bdetail2.fm")
+	public ModelAndView selectOneBoard2(@RequestParam("fbId") int fbId, ModelAndView mv) {
+
+		
+//			System.out.println("디테일뷰 보드 출력 fbId : "+fbId);
+		FMBoard board = fbService.selectBoard(fbId);
+
+		if(board != null) {
+//				System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
+			
+			mv.addObject("board", board).setViewName("fmBoardDetailView"); // method chaining 
+		}else {
+			throw new FMBoardException("게시글 상세보기를 실패하였습니다.");
+		}
+		
+		return mv;
 		
 	}
 	

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MapController {
-	
+	//
 	@RequestMapping("mapView.map")
 	public String mapShowing() {
 		return "mapShowing";

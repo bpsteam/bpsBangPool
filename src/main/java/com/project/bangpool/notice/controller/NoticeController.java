@@ -290,7 +290,7 @@ public class NoticeController {
 		JSONArray jArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		System.out.println(list);
+		//System.out.println(list);
 		
 		for(Notice b : list) {
 			b.setnTitle(URLEncoder.encode(b.getnTitle(),"utf-8"));

@@ -1,5 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="shareMapper">
+
+	<select id="getListCount" resultType="_int">
+			
+		SELECT COUNT(*)
+		FROM SHARE_BOARD
+		WHERE SRSTATUS='Y'
+		<if test="sLoc !=null">
+			<choose>
+				<when test="sLoc.equals('SEOUL')"> and srbLocation= '서울' </when>
+				<when test="sLoc.equals('INCHEON')"> and srbLocation= '인천/부천' </when>
+				<when test="sLoc.equals('SU')"> and srbLocation= '수원/경기' </when>
+				<when test="sLoc.equals('DAE')"> and srbLocation= '대구/경북' </when>
+				<when test="sLoc.equals('BU')"> and srbLocation= '부산/경남' </when>
+				<when test="sLoc.equals('CHUNG')"> and srbLocation= '충청/강원' </when>
+				<when test="sLoc.equals('GWANG')"> and srbLocation= '광주/전라' </when>
+				<otherwise> </otherwise>
+			</choose>
+		</if>
+		
+	</select>
+	
+	<select id="selectList" parameterType="String" resultType="Share">
+	
+		SELECT *
+		FROM SHARE_BOARD
+		WHERE SRSTATUS='Y'
+		<if test="sLoc != null">
+			<choose>
+				<when test="sLoc.equals('SEOUL')"> and srbLocation= '서울' </when>
+				<when test="sLoc.equals('INCHEON')"> and srbLocation= '인천/부천' </when>
+				<when test="sLoc.equals('SU')"> and srbLocation= '수원/경기' </when>
+				<when test="sLoc.equals('DAE')"> and srbLocation= '대구/경북' </when>
+				<when test="sLoc.equals('BU')"> and srbLocation= '부산/경남' </when>
+				<when test="sLoc.equals('CHUNG')"> and srbLocation= '충청/강원' </when>
+				<when test="sLoc.equals('GWANG')"> and srbLocation= '광주/전라' </when>
+				<otherwise> </otherwise>
+			</choose>
+		</if>
+		order by srbId desc
+	</select>
+	
+	<insert id="shareInsert" parameterType="Share">
+		
+		INSERT ALL
+		WHEN 1=1 THEN
+		INTO SHARE_BOARD
+		VALUES(
+			SHARE_SEQ.NEXTVAL,
+			'SBCODE',
+			#{srbTitle},
+			#{srbWriter},
+			#{srbContent},
+			#{srbLocation},
+			0,
+			SYSDATE,
+			SYSDATE,
+			#{srStartDate},
+			#{srEndDate},
+			0,
+			'Y',
+			#{srStartHour},
+			#{srEndHour}
+		)  
+		WHEN #{renameFileName} IS NOT NULL THEN
+		INTO ATTACHMENT
+		VALUES(
+			ATTACHMENT_SEQ.NEXTVAL,
+			'SCODE',
+			SHARE_SEQ.CURRVAL,
+			#{originalFileName},
+			#{renameFileName}
+		)
+		SELECT *
+		FROM DUAL
+	
+	</insert>
+	
+	<select id="shareDetail" parameterType="_int" resultType="Share">
+	
+		SELECT
+		SR.*,
+		A.ORIGINALFILENAME,
+		A.RENAMEFILENAME
+		FROM SHARE_BOARD SR LEFT JOIN ATTACHMENT A
+    	ON (SR.SRBCODE = A.BCODE AND SR.SRBID = A.REFBID)
+  		WHERE SRBID = #{srbId} AND SRSTATUS = 'Y'
+	
+	</select>	
 	
 </mapper>

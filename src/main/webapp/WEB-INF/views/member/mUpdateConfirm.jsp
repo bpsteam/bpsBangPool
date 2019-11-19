@@ -42,6 +42,7 @@
 									</b></label> 
 									<input type="password" name="pwd" id="pwd" required
 										class="form-control input-sm" size="15" maxlength="20">
+									<input type="hidden" name="email" value="${ loginUser.email }"/>
 									<span class="fa fa-lock form-control-feedback"></span>
 								</div>
 
@@ -64,14 +65,46 @@
 
 	<!--  ==== END CONTENT ==== -->
  
- 
-
+ <!-- 비밀번호 불일치 모달 -->
+	<div class="modal fade" id="pwdNotMatch" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">비밀번호 불일치</h4>
+				</div>
+				<div class="modal-body">
+				가입시 입력하신 비밀번호와 일치하지 않습니다.<br>
+				비밀번호를 다시 입력해주세요.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 비밀번호 불일치 모달 끝 -->
 
 
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 
-
+<script>
+$(function() {
+	var match = "${match}";
+	console.log(match);
+	if (match == "F") {
+		console.log("비밀번호 불일치");
+		$("#pwdNotMatch").modal();
+	} else {
+		console.log("비밀번호 확인 전");
+		$("#pwdNotMatch").hide();
+	}
+});
+</script>
 </body>
 </html>

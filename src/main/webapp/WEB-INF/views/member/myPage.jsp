@@ -188,7 +188,6 @@
 																</div>
 																<div class="clearfix"></div>
 															</div> -->
-                                                            
                                                             <!-- 끝 -->
                                                             
                                                             <!-- 잠시 주석  -->
@@ -199,11 +198,11 @@
                                                                     ${ loginUser.nickname }</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
                                                                 </div>
                                                                 
-                                                                <div class="progress progress-striped active">
+                                                                <!-- <div class="progress progress-striped active">
 							                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
 							                                            <span class="sr-only">90% Complete (Sucess)</span>
 							                                        </div>
-							                                    </div>
+							                                    </div> -->
 							
 																<!-- <div class="progress progress-striped active">
 							                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
