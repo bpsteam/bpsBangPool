@@ -148,4 +148,16 @@
 		order by FRBMODIFYDATE desc
 	</select>
 	
+	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultType="FreeBoard">
+		<![CDATA[
+			select *
+			from (select *
+				  from freeboard
+				  where frbstatus = 'Y'
+				  order by frbcreatedate desc)
+			where rownum <= 8
+		]]>
+	</select>
+	
 </mapper>

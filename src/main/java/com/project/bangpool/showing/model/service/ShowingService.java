@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.showing.model.dao.ShowingDao;
 import com.project.bangpool.common.page.PageInfo;
+import com.project.bangpool.roommateboard.model.vo.RMBoard;
 import com.project.bangpool.showing.model.vo.Showing;
 
 @Service("sService")
@@ -71,6 +72,11 @@ public class ShowingService implements ShowingServiceImpl{
 	@Override
 	public ArrayList<Reply> selectReplyList(int sbId) {
 		return sbDao.selectReplyList(sqlSession, sbId);
+	}
+	
+	@Override
+	public ArrayList<Showing> selectTopList() {
+		return sbDao.selectTopList(sqlSession);
 	}
 	
 }
