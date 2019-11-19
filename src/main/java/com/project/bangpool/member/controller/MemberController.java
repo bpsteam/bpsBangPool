@@ -154,6 +154,13 @@ public class MemberController {
 		return "myPage";
 	}
 	
+
+// 	@RequestMapping("loginView.me")
+// 	public String naverloginView() {
+// 		return "naverlogin";
+// 	}
+    
+
    
   	@RequestMapping("mdelete.me")
 	public String memberDelete(Model model, SessionStatus status) {
@@ -173,7 +180,7 @@ public class MemberController {
 		
 	}
 	
-  
+
 //	@RequestMapping("loginView.me")
 //	public String naverloginView() {
 //		return "loginView";

@@ -12,6 +12,10 @@ public class LevelDAO {
 		return sqlSession.selectOne("levelMapper.getLoginCount", mNo);
 	}
 
+	public String selectlCode(SqlSessionTemplate sqlSession, int loginCount) {
+		return sqlSession.selectOne("levelMapper.selectlCode", loginCount);
+	}
+
 	/*public ManageMember updateLevel(SqlSessionTemplate sqlSession, String mlCode) {
 		return sqlSession.update("levelMapper.updateLevel", mlCode);
 	}*/

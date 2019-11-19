@@ -27,4 +27,9 @@ public class LevelServiceImpl implements LevelService{
 		return lvDAO.getLoginCount(sqlSession, mNo);
 	}
 
+	@Override
+	public String selectlCode(int loginCount) {
+		return lvDAO.selectlCode(sqlSession, loginCount);
+	}
+
 }

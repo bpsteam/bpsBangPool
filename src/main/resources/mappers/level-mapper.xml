@@ -6,9 +6,40 @@
 	<select id="getLoginCount" parameterType="string" resultType="_int">
 		select count(*)
 		from MEMBER
+		
+		
 		where mno = #{mNo}
 		<!-- where MSTATUS = 'Y' -->
 	</select>
+	
+	
+	<!-- 여기수정 -->
+	<!-- <select id="selectlCode" parameterType="_int" resultType="Member">
+		select MLNAME
+		from MANAGEMEMBER
+		where mlcode = 'B'
+		<if test="loginCount !=null">
+		<choose>
+			<when test=""></when>
+			
+		
+		</choose>
+		</if>
+		
+		<if (gt loginCount 4) & (lte loginCount 9) >
+		where mlcode = 'S'
+		</if>
+		<if loginCount gte 10 >
+		where mlcode = 'G'
+		</if>
+	</select> -->
+	
+	<!-- login시 -->
+	<!-- <select id="login">
+		SELECT * FROM ManageMember
+		JOIN MEMBER USING MLCODE
+		WHERE EMAIL = #{email} AND PWD = #{pwd}
+	</select> -->
 	
 </mapper>
 
