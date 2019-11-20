@@ -269,20 +269,20 @@
                                                             MP						</a>
                                                     </li>
                                                                         <li class="list-group-item">
-                                                        <span class="pull-right">미등록</span>
+                                                        <span class="pull-right">${ loginUser.phone }</span>
                                                         연락처
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">여기에 이메일 들어간다?</span>
+                                                        <span class="pull-right">${ loginUser.email }</span>
                                                         E-Mail
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">2019-10-24 16:04:29</span>
-                                                        최종접속일
+                                                        <span class="pull-right">${ loginUser.gender }</span>
+                                                       성별
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">2019-10-23 19:56:59</span>
-                                                        회원가입일
+                                                        <span class="pull-right">${ loginUser.address }</span>
+                                                        주소
                                                     </li>
                                                                     </ul>
                                                             </div>
@@ -340,9 +340,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
-                                                        <a href="mdelete.me" class="btn btn-lightgray btn-sm btn-block leave-me">
+                                                        <button id="deleteMember" class="btn btn-lightgray btn-sm btn-block leave-me">
                                                             탈퇴하기
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -870,9 +870,68 @@
         </div>
         <!-- === END CONTENT === -->
 
-<!-- ==== FOOTER START ====? -->
+ <!-- 비밀번호 불일치 모달 -->
+	<div class="modal fade" id="pwdCheck" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel"> 탈퇴회원 비밀번호 확인 </h4>
+				</div>
+				<div class="modal-body">
+				본인 확인을 위해 가입시 입력하신 비밀번호를 입력해주세요<br>
+				<div class="form-group has-feedback" >
+					<label><b>회원아이디 : 
+					<span id="mb_confirm_id" class="text-primary">${loginUser.email }</span>
+					</b></label> 
+					<input type="password" name="pwd" id="passwordCheck" required
+						class="form-control input-sm" size="15" maxlength="20">
+					<span class="fa fa-lock form-control-feedback"></span>
+				</div>
+				<span id="pwdResult"></span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="submitBtn" class="btn btn-primary" >확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 비밀번호 불일치 모달 끝 -->
+
+<!-- ==== FOOTER START ==== -->
 	<c:import url ="../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 
+
+<script>
+$('#deleteMember').click(function() {
+		console.log("비밀번호 확인");
+		$("#pwdCheck").modal();
+		$('#pwdResult').html("");
+		$('#passwordCheck').val("");
+});
+
+$('#submitBtn').click(function(){
+	var passwordCheck = $('#passwordCheck').val();
+	var emailCheck = "${loginUser.email}";
+	//console.log("머야 왜안나와 " +passwordCheck+" "+emailCheck);
+	
+	$.ajax({
+		url  : "pwdCheck.me",
+		data : {pwd: passwordCheck, email :emailCheck},
+		success : function(data){
+			console.log("전송됨");
+			if(data == "success"){
+				window.location.replace("mdelete.me");
+			}else{
+				 $('#pwdResult').html("비밀번호 확인 값이 불일치합니다.").css('color','red');
+			}
+		}
+	});
+});
+</script>
 </body>
 </html>

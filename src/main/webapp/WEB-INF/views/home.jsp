@@ -155,7 +155,7 @@
                                                     <input type="checkbox">Stay signed in</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <button class="btn btn-primary pull-right" id="login" type="button">Login</button>
+                                                <button class="btn btn-primary pull-right" id="loginBtn" type="submit">Login</button>
                                             </div>
                                         </div>
                                         <!-- <hr>
@@ -864,28 +864,24 @@
 
 
 <script>
-	$('#login').click(function(){
-		/* event.preventDefault(); */
+	$('#loginBtn').click(function(){
+		event.preventDefault();
 		var email = $('#email').val();
 		var pwd = $('#pwd').val();
-	
 		$.ajax({
-				url: "pwdCheck.me",
-				data: {email:email,pwd:pwd},
-				type: "post",
-				dataType: "json",
-				success: function(data){
-					console.log(data);
-					/* if (data == "success") {
-						console.log("비밀번호 일치");
-						$("#login").submit();
-					} else {
-						$("#pwdNotMatch").modal();
-						console.log("비밀번호 불일치");
-					} */
-				},error: function(data){
-					console.log("에러 : "+ data);
-				}
+			url: "pwdCheck.me",
+			data: {email:email,pwd:pwd},
+			success: function(data){
+				console.log(data);
+				 if (data == "success") {
+					$("#loginForm").submit();
+				} else {
+					$("#pwdNotMatch").modal();
+					$("#pwd").select();
+				} 
+			},error: function(data){
+				console.log("에러 : "+ data);
+			}
 		});
 	});
 </script>
