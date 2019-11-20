@@ -870,6 +870,7 @@
         </div>
         <!-- === END CONTENT === -->
 
+
  <!-- 비밀번호 불일치 모달 -->
 	<div class="modal fade" id="pwdCheck" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true"
