@@ -67,17 +67,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping("pwdCheck.me")
-	public String memberLogin(Member m) {
+	public void memberLogin(HttpServletResponse response, Member m) throws IOException {
+		System.out.println(m);
 		Member loginUser = mService.memberLogin(m);
+		String result = "";
 		if(bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
-			return "success";
+			result="success";
+			response.getWriter().print(result);
 		}else {
-			return "fail";
+			result="fail";
+			response.getWriter().print(result);
 		}
 		
 	}
 	
-	//로그아웃 용 컨트롤러 2
+	//로그아웃 용 컨트롤러 22
 		@RequestMapping("logout.me")
 		public String logout(SessionStatus status) {
 			
@@ -165,13 +169,6 @@ public class MemberController {
 		return "myPage";
 	}
 	
-
-// 	@RequestMapping("loginView.me")
-// 	public String naverloginView() {
-// 		return "naverlogin";
-// 	}
-    
-
    
   	@RequestMapping("mdelete.me")
 	public String memberDelete(Model model, SessionStatus status) {
@@ -191,7 +188,7 @@ public class MemberController {
 		
 	}
 	
-
+  
 //	@RequestMapping("loginView.me")
 //	public String naverloginView() {
 //		return "loginView";
