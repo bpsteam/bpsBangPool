@@ -126,7 +126,8 @@
 		            map: map,
 		            position: coords
 		        });
-	
+		        console.log("coords의 값" + coords);
+		        console.log("marker의 값" + marker);
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
 		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
@@ -178,5 +179,25 @@
 	    });
 }
 
+</script>
+
+<!-- 1km 이하 거리의 객체를 보여주기 -->
+<script type="text/javascript">
+	
+</script>
+
+<!-- ajax map -->
+<script type="text/javascript">
+	function getMap(){
+		var loginUserId = ${ loginUser };
+		$.ajax({
+			url:"mapAddSC.map", // controller 접근
+			data: {loginUserId:loginUserId}, // 왼쪽이 컨트롤러에서 받는 값
+			dataType: "json",
+			success: function(data){
+				console.log("성공");
+			}
+		});
+	}
 </script>
 </html>
