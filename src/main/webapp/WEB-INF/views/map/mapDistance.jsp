@@ -32,7 +32,7 @@
 
  function getMyLocation() {
 
-      // navigator.geolocation 없다면 null을 반환하고 조건식의 결과는 false
+     // navigator.geolocation 없다면 null을 반환하고 조건식의 결과는 false
      if (navigator.geolocation) {
          
          //getCurrentPosition(successhandler, errorHandler, option)
