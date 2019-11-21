@@ -644,7 +644,8 @@
                                             <div class="at-tip" data-original-title="1,000점 추가획득시 레벨업합니다." data-toggle="tooltip" data-placement="top" data-html="true" style="margin:10px 0px;">
                                                 <div class="div-progress progress progress-striped" style="margin:0px;">
                                                     <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                                        <span class="sr-only">Lv.1</span>
+                                                        <span class="sr-only">
+                                                            Lv.1					</span>
                                                     </div>
                                                 </div>
                                                 <div class="sr-score pull-right" style="color:#fff; margin-top:-28px;">0 (0%)</div>
