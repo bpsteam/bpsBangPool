@@ -140,8 +140,8 @@ public class ShowingBoardController {
 
 	@RequestMapping("ddetailShowing.sb")
 	public ModelAndView bdetailShowingBoard(@RequestParam("sbId") int sbId,
-										@RequestParam("page") int page,
-										ModelAndView mv) {
+											@RequestParam("page") int page,
+											ModelAndView mv) {
 		
 		Showing showing = sService.selectShowing(sbId);
 		if(showing != null) {

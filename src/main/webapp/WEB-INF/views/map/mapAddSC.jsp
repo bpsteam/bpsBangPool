@@ -63,10 +63,10 @@
 	            map: map,
 	            position: coords
 	        });
-/*  */
+
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
+	            content: '<a href="www.naver.com">네이버</a><div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
 	        });
 	        infowindow.open(map, marker);
 

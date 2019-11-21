@@ -1,5 +1,6 @@
 package com.project.bangpool.memberlevel.model.service;
 
+import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.memberlevel.model.vo.ManageMember;
 
 public interface LevelService {
@@ -8,6 +9,6 @@ public interface LevelService {
 
 	int getLoginCount(String mNo);
 
-	String selectlCode(int loginCount);
+	int updatelCode(Member m);
 
 }

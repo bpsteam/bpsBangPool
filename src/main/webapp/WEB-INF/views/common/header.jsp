@@ -87,7 +87,7 @@
                              </c:if>   
                             <c:if test="${ !empty sessionScope.loginUser }">
                                 <!-- |&nbsp;&nbsp;&nbsp;<a href="mypage.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp; -->
-                                |&nbsp;&nbsp;&nbsp;<a href="mlevel.me?mno" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
+                                |&nbsp;&nbsp;&nbsp;<a href="mlevel.me" style="color:black">회원정보</a>&nbsp;&nbsp;&nbsp;
                              </c:if>   
                                 
                                 |&nbsp;&nbsp;&nbsp;<a href="#" style="color:black">정보찾기</a>
@@ -158,28 +158,28 @@
                                         <span class="glyphicon glyphicon-book "> 하우스메이트</span>
                                         <ul>
                                             <li>
-                                                <a href="blist.hm?fLocation=전체" >전체</a>
+                                                <a href="blist.hm" >전체</a>
                                             </li>
                                             <li>
-                                                <a href="blist.hm?fLocation=서울" >서울</a>
+                                                <a href="blist.hm?hLocation=SEOUL" >서울</a>
                                             </li>
                                             <li>
-                                                <a href="blist.hm?fLocation=인천/부천">인천/부천</a>
+                                                <a href="blist.hm?hLocation=INCHEON">인천/부천</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=수원/경기">수원/경기</a>
+                                                <a href="blist.hm?hLocation=SU">수원/경기</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=대구/경북">대구/경북</a>
+                                                <a href="blist.hm?hLocation=DAE">대구/경북</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=부산/경남" >부산/경남</a>
+                                                <a href="blist.hm?hLocation=BU" >부산/경남</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=충청/강원" >충청/강원</a>
+                                                <a href="blist.hm?hLocation=CHUNG" >충청/강원</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=광주/전라">광주/전라</a>
+                                                <a href="blist.hm?hLocation=GWANG">광주/전라</a>
                                             </li>
                                         </ul>
                                     </li>
