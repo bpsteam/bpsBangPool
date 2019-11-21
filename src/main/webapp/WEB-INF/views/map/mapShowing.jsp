@@ -24,6 +24,8 @@
 				<br><a href="mapMultiMark.map">마크 여러개 보여주기</a>
 				<br><a href="mapKeyAndList.map">키워드 검색후 리스트 출력</a>
 				<br><a href="mapAddSC.map">주소 및 마크 여러개 및 영역 표시</a>
+				<br><a href="mapLineCal.map">표시 및 선의 거리 계산</a>
+				<br><a href="mapDistance.map">거리 계산</a>
 			</div>
 		</div>
 	</c:if>

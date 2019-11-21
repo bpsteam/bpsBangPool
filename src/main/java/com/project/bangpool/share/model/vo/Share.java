@@ -21,11 +21,11 @@ public class Share {
     private int srDistance;
     private int srStartHour;
     private int srEndHour;
-    private String srEvent;      // 추첨방법
-    private int srEventLimit;  // 추첨인원
+    private String srEvent;      	// 추첨방법
+    private int srEventLimit;  		// 추첨인원
     private int srEventEnterCount;
-    private String srItemName; // 아이템이름
-    private String srDelivery; // 배송방법
+    private String srItemName; 		// 아이템이름
+    private String srDelivery; 		// 배송방법
     
  	public Share() {}
 
