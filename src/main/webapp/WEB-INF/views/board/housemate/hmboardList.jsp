@@ -541,15 +541,15 @@
                                 <a href="#">신입생메이트</a> -->
                                 <ul class="nav nav-pills nav-stacked">
                                         <li>
-                                            <a href="#sample-3a" data-toggle="tab">
+                                            <a href="blist.rm" >
                                                 <i class="fa fa-cloud"></i>  룸메이트</a>
                                         </li>
                                         <li class="active">
-                                            <a href="#sample-3b" data-toggle="tab">
+                                            <a href="#housemate" data-toggle="tab">
                                                 <i class="fa fa-home"></i>  하우스메이트</a>
                                         </li>
                                         <li>
-                                            <a href="#sample-3c" data-toggle="tab">
+                                            <a href="blist.fm?fLocation=전체" >
                                                 <i class="fa fa-comments"></i>  신입생메이트</a>
                                         </li>
                                         
