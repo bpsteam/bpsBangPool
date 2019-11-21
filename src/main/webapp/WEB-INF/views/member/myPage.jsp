@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -287,8 +288,13 @@
                                                                     </ul>
                                                             </div>
                                         </div>
+                                      
                                         <div class="col-sm-5">
-                                            <div class="row">
+                                            <div class="panel panel-default">
+                                            	<!-- recentPost 최근 본 개시물 Import -->
+                                            	<c:import url="../common/recentPosts.jsp"/>
+                                            	<!-- recentPost Import -->
+                                            </div>
                                                 <!-- <div class="col-xs-6">
                                                     <div class="form-group">
                                                         <a href="http://myroom.oceanmate.co.kr/bbs/response.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
@@ -331,6 +337,8 @@
                                                         </a>
                                                     </div>
                                                 </div> -->
+                                        </div>
+                                        <div class="col-sm-12">
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
                                                         <a href="mupConfirm.me" class="btn btn-lightgray btn-sm btn-block">
@@ -345,7 +353,6 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                     
