@@ -9,10 +9,54 @@
 
 	<typeAliases>
 		<typeAlias type="com.project.bangpool.member.model.vo.Member" alias="Member"/>
+
+		<typeAlias type="com.project.bangpool.housemateboard.model.vo.HMBoard" alias="HMBoard"/>
+
+		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.FMBoard" alias="FMBoard"/>
+		
+		<!-- <typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.PiBoard" alias="PiBoard"/> -->
+
+	    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
+    	
+    	<typeAlias type="com.project.bangpool.common.Reply" alias="Reply"/>
+    	
+    	<typeAlias type="com.project.bangpool.secondHandBoard.model.vo.SecondHandBoard" alias="SecondHandBoard"/>
+    	
+    	<typeAlias type="com.project.bangpool.showing.model.vo.Showing" alias="Showing"/>
+    	
+    	<typeAlias type="com.project.bangpool.notice.model.vo.Notice" alias="Notice"/>
+
+    	<typeAlias type="com.project.bangpool.share.model.vo.Share" alias="Share"/>
+    	
+    	<typeAlias type="com.project.bangpool.memberlevel.model.vo.ManageMember" alias="ManageMember"/>
+
+    	<typeAlias type="com.project.bangpool.freeboard.model.vo.FreeBoard" alias="FreeBoard"/>
+
+    	
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+
+		<mapper resource="mappers/hmboard-mapper.xml"/>
+
+		<mapper resource="mappers/fmboard-mapper.xml"/>
+    
+  	 	<mapper resource="mappers/rmboard-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/secondHandBoard-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/showing-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/notice-mapper.xml"/>
+
+  	 	<mapper resource="mappers/share-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/level-mapper.xml"/>
+
+  	 	<mapper resource="mappers/freeboard-mapper.xml"/>
+
 	</mappers>
 	
 </configuration>
+

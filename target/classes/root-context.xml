@@ -13,7 +13,6 @@
 		<property name="username" value="BangPool"/>
 		<property name="password" value="BangPool"/>
 		<property name="defaultAutoCommit" value="false"/>
-	
 	</bean>
 	
 	<!-- 
@@ -26,11 +25,31 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	
 	<!-- DB랑 연결할 sql세션을 열건데 ref=sqlSession을 참조해서 열거다. 위에 sqlSession을 불러옴 -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSession"/>
 	</bean>
 	
-	
+	<!-- 2. 파일 업로드 시 사용(파일크기지정) -->
+	<bean id="multipartResolver"
+		class= "org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="maxInMemorySize" value="100000000"/>	
+	</bean>
+	 
+	<!--Mail 인증 관련 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="bangpool.kh@gmail.com" />
+		<property name="password" value="bangpan_kh12" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
