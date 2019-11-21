@@ -14,7 +14,6 @@ import com.project.bangpool.roommateboard.model.vo.RMBoard;
 public class MatchingDAO {
 
 	public ArrayList<RMBoard> selectRMatching(SqlSessionTemplate sqlSession, HashMap<String, String> matchingMap) {
-		System.out.println("matching dao");
 		return (ArrayList)sqlSession.selectList("rmboardMapper.selectRMatching", matchingMap);
 	}
 
