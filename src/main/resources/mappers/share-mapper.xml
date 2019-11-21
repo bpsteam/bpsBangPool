@@ -62,7 +62,14 @@
 			0,
 			'Y',
 			#{srStartHour},
-			#{srEndHour}
+			#{srEndHour},
+			#{srEvent},
+			#{srEventLimit},
+			#{srEventEnterCount},
+			#{srItemName},
+			#{srDelivery},
+			#{srWinner}
+
 		)  
 		WHEN #{renameFileName} IS NOT NULL THEN
 		INTO ATTACHMENT
@@ -89,5 +96,34 @@
   		WHERE SRBID = #{srbId} AND SRSTATUS = 'Y'
 	
 	</select>	
+	
+	<!-- ***************************** REPLY ***************************** -->
+	
+	<select id="listReply" parameterType="_int" resultType="Reply">
+		
+		SELECT *
+		FROM REPLY
+		WHERE
+			REFBID = #{ refbId } AND
+		    RSTATUS ='Y' AND
+		    BCODE ='SBCODE'
+		ORDER BY RID ASC
+	
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+				INSERT INTO REPLY
+			VALUES
+			(
+			    REPLY_SEQ.NEXTVAL,
+			    'SBCODE',
+			    #{rContent},
+			    #{refbId},
+			    #{rWriter},
+			    SYSDATE,
+			    SYSDATE,
+			    'Y'
+			)
+	</insert>
 	
 </mapper>

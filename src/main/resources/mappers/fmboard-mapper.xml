@@ -194,4 +194,23 @@
 		]]>
 	</select>
 	
+	<!-- 매칭리스트 -->
+	<select id="selectFMatching" parameterType="hashmap" resultType="FMBoard">
+		select *
+		from freshman_board
+		where fbstatus = 'Y'
+		<if test=" mLoc != null" >
+		and fLocation like '%' || #{mLoc} || '%'
+		</if>
+		<if test=" mReq != null" >
+		and fReqGender = #{mReq}
+		</if>
+		<if test=" mLiv != null">
+		or fLivingType = #{mLiv} 
+		</if>
+		<if test=" mRom != null">
+		or fRoomcount = #{mRom} 
+		</if>
+	</select>
+	
 </mapper>

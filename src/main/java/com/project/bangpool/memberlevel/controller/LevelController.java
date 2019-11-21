@@ -22,20 +22,23 @@ public class LevelController {
 	
 	@RequestMapping("mlevel.me")
 	public ModelAndView memberLevel(@ModelAttribute ManageMember mm,
-//							 	    @RequestParam("loginCount") int loginCount,
 //								    @RequestParam("recommend") int recommend,
-								    //@RequestParam("mlCode") String mlCode,
+//								    @RequestParam("mlCode") String mlCode,
 								    HttpSession session,
 								    ModelAndView mv) {
-		// header.jsp -> loginCount , recommend, mlCode 
 		
 		Member m = (Member)session.getAttribute("loginUser");
 		System.out.println("LevelController m객체 : "+m);
 		
-		int loginCount = lvService.getLoginCount(m.getmNo());
-		System.out.println("LevelController loginCount : "+loginCount); //  1
+//		int loginCount = lvService.getLoginCount(m.getmNo());
+//		System.out.println("LevelController loginCount : "+loginCount); //  1
+
+		int result = lvService.updatelCode(m);
 		
-		//mm = lvService.updateLevel(mlCode);
+		if(result > 0) {
+			System.out.println("result값???"+result);
+			m.setMlCode(m.getMlCode());
+		}
 		
 		mv.addObject("mm", mm)
 //		  .addObject("loginCount", loginCount)

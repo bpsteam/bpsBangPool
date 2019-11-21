@@ -26,13 +26,24 @@ public class Share {
     private int srEventEnterCount;
     private String srItemName; 		// 아이템이름
     private String srDelivery; 		// 배송방법
+    private String srEvent;    		// 추첨방법
+    private int srEventLimit;  		// 추첨인원
+    private int srEventEnterCount;  // 참가인원
+    private String srItemName; 		// 아이템이름
+    private String srDelivery; 		// 배송방법
+    private String srWinner;   		// 당첨자
+
     
  	public Share() {}
+ 	
+ 	
 
 	public Share(int srbId, String srbCode, String srbTitle, String srbWriter, String srbContent, String srbLocation,
 			int srbCount, String originalFileName, String renameFileName, Date srCreateDate, Date srModifyDate,
 			Date srStartDate, Date srEndDate, String srStatus, int srDistance, int srStartHour, int srEndHour,
-			String srEvent, int srEventLimit, int srEventEnterCount, String srItemName, String srDelivery) {
+			String srEvent, int srEventLimit, int srEventEnterCount, String srItemName, String srDelivery,
+			String srWinner) {
+		super();
 		this.srbId = srbId;
 		this.srbCode = srbCode;
 		this.srbTitle = srbTitle;
@@ -55,7 +66,10 @@ public class Share {
 		this.srEventEnterCount = srEventEnterCount;
 		this.srItemName = srItemName;
 		this.srDelivery = srDelivery;
+		this.srWinner = srWinner;
 	}
+
+
 
 	public int getSrbId() {
 		return srbId;
@@ -233,6 +247,16 @@ public class Share {
 		this.srDelivery = srDelivery;
 	}
 
+	public String getSrWinner() {
+		return srWinner;
+	}
+
+	public void setSrWinner(String srWinner) {
+		this.srWinner = srWinner;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Share [srbId=" + srbId + ", srbCode=" + srbCode + ", srbTitle=" + srbTitle + ", srbWriter=" + srbWriter
@@ -242,10 +266,9 @@ public class Share {
 				+ srEndDate + ", srStatus=" + srStatus + ", srDistance=" + srDistance + ", srStartHour=" + srStartHour
 				+ ", srEndHour=" + srEndHour + ", srEvent=" + srEvent + ", srEventLimit=" + srEventLimit
 				+ ", srEventEnterCount=" + srEventEnterCount + ", srItemName=" + srItemName + ", srDelivery="
-				+ srDelivery + "]";
+				+ srDelivery + ", srWinner=" + srWinner + "]";
 	}
- 	
 
-	
+ 	
     
 }

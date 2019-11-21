@@ -182,4 +182,25 @@
 		]]>
 	</select>
 	
+	<!-- 매칭리스트 -->
+	<select id="selectHMatching" parameterType="hashmap" resultType="HMBoard">
+		select hb.*, A.originalfilename, A.renamefilename
+		from housemate_board hb
+        left join attachment A on hb.bcode=A.bcode
+		where hbstatus = 'Y'
+        and hb.hbid= A.refbid
+		<if test=" mLoc != null" >
+		and hLocation like '%' || #{mLoc} || '%'
+		</if>
+		<if test=" mReq != null" >
+		and hReqGender = #{mReq}
+		</if>
+		<if test=" mLiv != null">
+		or hLivingType = #{mLiv} 
+		</if>
+		<if test=" mRom != null">
+		or hRoomcount = #{mRom} 
+		</if>
+	</select>
+	
 </mapper>

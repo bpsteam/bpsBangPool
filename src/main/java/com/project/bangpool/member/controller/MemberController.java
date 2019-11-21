@@ -50,7 +50,7 @@ public class MemberController {
 	public String memberLogin(Member m, Model model) {
 		
 		Member loginUser = mService.memberLogin(m);
-		
+		System.out.println("로그인돼? :"+loginUser);
 		if(bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
 			model.addAttribute("loginUser", loginUser);
 			System.out.println("찍혀?:"+loginUser);
@@ -59,14 +59,29 @@ public class MemberController {
 			// log기록 남기기
 			// logger.info(loginUser.getEmail());
 			// == logger.info(message); 
+			return "redirect:home.do";
 		}else {
 			throw new MemberException("로그인 실패");
 		}
-		 
-		return "redirect:home.do";
+		
 	}
 	
-	//로그아웃 용 컨트롤러 2
+	@RequestMapping("pwdCheck.me")
+	public void memberLogin(HttpServletResponse response, Member m) throws IOException {
+		System.out.println(m);
+		Member loginUser = mService.memberLogin(m);
+		String result = "";
+		if(bcryptPasswordEncoder.matches(m.getPwd(), loginUser.getPwd())) {
+			result="success";
+			response.getWriter().print(result);
+		}else {
+			result="fail";
+			response.getWriter().print(result);
+		}
+		
+	}
+	
+	//로그아웃 용 컨트롤러 22
 		@RequestMapping("logout.me")
 		public String logout(SessionStatus status) {
 			

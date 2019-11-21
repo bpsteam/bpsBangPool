@@ -134,6 +134,8 @@
                                 </div>
                                 <br>
                                 <div class="tab-content" style="border-top: 1px;">
+                                
+                                
                                     <div class="tab-pane fade in active" id="sample-2a">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -143,27 +145,30 @@
                                                             <h3 class="panel-title">My Profile</h3>
                                                         </div>
                                                         <div class="panel-body" style="background-color:white;">
-                                                            <!-- <div class="pull-left text-center auth-photo">
-                                                                <div class="img-photo">
-                                                                    <i class="fa fa-user"></i>				</div>
-                                                                <div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
-                                                                    <button type="button" class="btn btn-color btn-sm" onclick="apms_like('ch93ksw', 'like', 'it_like'); return false;" title="Like">
-                                                                        <i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
-                                                                    </button>
-                                                                    <button type="button" class="btn btn-color btn-sm" onclick="apms_like('ch93ksw', 'follow', 'it_follow'); return false;" title="Follow">
-                                                                        <i class="fa fa-users"></i> <span id="it_follow">0</span>
-                                                                    </button>
-                                                                </div>
-                                                            </div> -->
                                                             
                                                             <!-- 여기 -->
-                                                            <!-- <div class="panel-body">
-																<div class="pull-left text-center auth-photo">
+                                                            <div class="panel-body">
+																<div class="pull-left text-center auth-photo" style="width:100px;">
 																	<div class="img-photo">
-																		<i class="fa fa-user" >
-																			<img src="/img/456.jpg">
-																		</i>				
+																		<!-- <i class="fa fa-user" > -->
+																			<img src="${ contextPath }/resources/456.jpg" style="width: 100%;">
+																		<!-- </i> -->				
 																	</div>
+																	
+																	
+																	<!-- 
+																	<  lt  <if test="logCount lt 0">
+																	>  gt <if test="logCount gt 0"> 
+																	<= (또는 =<)  lte   <if test="logCount lte 0">
+																	>= (또는 =>)  gte   <if test="logCount gte 0"> 
+																	
+																	0 ~ 3 : 베이직
+																	3 ~ 5 : 실버
+																	5 ~ 10 : 골드-->
+																	<c:if test="loginCount lte 3">
+																		
+																	</c:if>
+																	
 																	<div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
 																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'like', 'it_like'); return false;" title="Like">
 																			<i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
@@ -176,22 +181,35 @@
 																<div class="auth-info">
 																	<div class="en font-14" style="margin-bottom:6px;">
 																		<span class="pull-right font-12">Lv.1</span>
-																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 중중식</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
+																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');">
+																		<span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;
+																		<span class="text-muted en font-12">실버</span>
 																	</div>
-																	<div class="div-progress progress progress-striped no-margin">
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+								                                            <span class="sr-only">30% Complete (info)</span>
+								                                        </div>
+							                                    	</div>
+							                                        
+							                                        <div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+								                                            <span class="sr-only">20%Complete (warning)</span>
+								                                        </div>
+								                                    </div>
+							                                    	<!-- 기존 상태바 -->
+																	<!-- <div class="div-progress progress progress-striped no-margin">
 																		<div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 																			<span class="sr-only">0 (0%)</span>
 																		</div>
-																	</div>
-																	<p style="margin-top:6px;">
-																		등록된 서명이 없습니다.				</p>
+																	</div> -->
+																	<p style="margin-top:6px;">등록된 서명이 없습니다.</p>
 																</div>
 																<div class="clearfix"></div>
-															</div> -->
+															</div>
                                                             <!-- 끝 -->
                                                             
                                                             <!-- 잠시 주석  -->
-                                                            <div class="auth-info">
+                                                            <%-- <div class="auth-info">
                                                                 <div class="en font-14" style="margin-bottom:6px;">
                                                                     <span class="pull-right font-12">Lv.1</span>
                                                                     <b><a href="javascript:;" onclick="showSideView(this, 'ch93ksw', 'wbgg', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 
@@ -209,28 +227,27 @@
 							                                            <span class="sr-only">30% Complete (info)</span>
 							                                        </div>
 							                                    </div> -->
+							                                    
+							                                    <c:if test="${ !empty loginUser }">
 							
-																<div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-							                                            <span class="sr-only">20%Complete (warning)</span>
-							                                        </div>
-							                                    </div>
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+								                                            <span class="sr-only">20%Complete (warning)</span>
+								                                        </div>
+								                                    </div>
+							                                    
+							                                    </c:if>	
 							
-																<div class="progress progress-striped active">
+																<!-- <div class="progress progress-striped active">
 							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
 							                                            <span class="sr-only">10% Complete (danger)</span>
 							                                        </div>
-							                                    </div>
+							                                    </div> -->
 							                                    
-                                                                <!-- 기존 -->
-                                                                <!-- <div class="div-progress progress progress-striped no-margin">
-                                                                    <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                                                        <span class="sr-only">0 (0%)</span>
-                                                                    </div>
-                                                                </div> -->
-                                                                <p style="margin-top:6px;">
-                                                                    등록된 서명이 없습니다.				</p>
-                                                            </div>
+                                                            </div> --%>
+                                                            
+                                                            
+                                                            
                                                             <div class="clearfix"></div>
                                                         </div>
                                                     </div>
@@ -252,20 +269,20 @@
                                                             MP						</a>
                                                     </li>
                                                                         <li class="list-group-item">
-                                                        <span class="pull-right">미등록</span>
+                                                        <span class="pull-right">${ loginUser.phone }</span>
                                                         연락처
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">여기에 이메일 들어간다?</span>
+                                                        <span class="pull-right">${ loginUser.email }</span>
                                                         E-Mail
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">2019-10-24 16:04:29</span>
-                                                        최종접속일
+                                                        <span class="pull-right">${ loginUser.gender }</span>
+                                                       성별
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">2019-10-23 19:56:59</span>
-                                                        회원가입일
+                                                        <span class="pull-right">${ loginUser.address }</span>
+                                                        주소
                                                     </li>
                                                                     </ul>
                                                             </div>
@@ -323,9 +340,9 @@
                                                 </div>
                                                 <div class="col-xs-6">
                                                     <div class="form-group">
-                                                        <a href="mdelete.me" class="btn btn-lightgray btn-sm btn-block leave-me">
+                                                        <button id="deleteMember" class="btn btn-lightgray btn-sm btn-block leave-me">
                                                             탈퇴하기
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -343,7 +360,7 @@
                     <div class="col-md-3">
                     
                     
-                        <!-- Recent Posts -->
+                        <!-- 메이트 매칭 모달창 -->
                         <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
                         <div id="matching_form" class="section_matching">
                             <div class="matching_content">
@@ -352,10 +369,7 @@
 									<div class="signup-header">
 										<h2 style="display: inline;">나에게 맞는 메이트는?</h2>
 										<span class="close"><h1 style="display: inline;">&times;</h1></span>
-										<br>
-										<br>
-										<br>
-										<br> 
+										<br><br><br><br> 
 									</div>
 									<div class="row">
 										<div class="col-sm-6">
@@ -429,7 +443,6 @@
 									</div> -->
 
 
-
 									<div class="row">
 										<div class="col-lg-8"></div>
 										<div class="col-lg-4 text-right">
@@ -441,103 +454,6 @@
 									<!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
 									<div class="row" >
 										<div class="col-md-12" id="matListDiv">
-
-											<!-- Portfolio Item -->
-											<%-- <div class="col-md-4 portfolio-item margin-bottom-40 video"  >
-													<a href="#">
-														<figure>
-															<img
-																src="${ contextPath }/resources/hmBoardUploadFiles/1.JPG"
-																alt="image1" style="width: 400px; height: 200px;">
-															<figcaption>
-																<h3 class="margin-top-20">Velit esse molestie</h3>
-																<br>
-																<div class="project-item__stats" style="align-content: right;">
-																	<span class="project-item__stats__item">스크랩 9</span>
-																	<!-- <span class="project-item__stats__dot"></span> -->
-																	<span class="project-item__stats__item">조회 521</span>
-																</div>
-															</figcaption>
-														</figure>
-														<h6 class="project-item__cover__title">바람이 솔솔 불어오는
-															화이트 인테리어</h6>
-														<div>
-															<div class="item_money_box">
-																<strong class="item_price" style="color: #aa6868;"> 
-																	<span>379,000원</span>
-																</strong>
-															</div>
-														</div>
-													</a>
-											</div>
-											<!-- End Portfolio Item -->
-											<!-- Portfolio Item -->
-											<div class="col-md-4 portfolio-item margin-bottom-40 design">
-												<div>
-													<a href="#">
-														<figure>
-															<img
-																src="${ contextPath }/resources/hmBoardUploadFiles/2.JPG"
-																alt="image2" style="width: 400px; height: 200px;">
-															<figcaption>
-																<h3 class="margin-top-20">Quam nunc putamus</h3>
-																<div class="project-item__stats"
-																	style="align-content: right;">
-																	<span class="project-item__stats__item">스크랩 9</span>
-																	<!-- <span class="project-item__stats__dot"></span> -->
-																	<span class="project-item__stats__item">조회 521</span>
-																</div>
-															</figcaption>
-														</figure>
-
-														<h6 class="project-item__cover__title">원목가구로 조화를 이룬
-															심플 인테리어</h6>
-														<div>
-															<div class="item_money_box">
-																<strong class="item_price" style="color: #aa6868;"> 
-																	<span>379,000원 	</span>
-																</strong>
-															</div>
-														</div>
-													</a>
-												</div>
-											</div>
-											<!-- End Portfolio Item -->
-											<!-- Portfolio Item -->
-											<div class="col-md-4 portfolio-item margin-bottom-40 audio">
-												<div>
-													<a href="#">
-														<figure>
-															<img
-																src="${ contextPath }/resources/hmBoardUploadFiles/3.JPG"
-																alt="image3" style="width: 400px; height: 200px;">
-															<figcaption>
-																<h3 class="margin-top-20">Placerat facer possim</h3>
-																<div class="project-item__stats"
-																	style="align-content: right;">
-																	<span class="project-item__stats__item">스크랩 9</span>
-																	<!-- <span class="project-item__stats__dot"></span> -->
-																	<span class="project-item__stats__item">조회 521</span>
-																</div>
-															</figcaption>
-														</figure>
-														<h6 class="project-item__cover__title">네추럴 모던 스타일의 취향
-															저격</h6>
-														<div>
-															<div class="item_money_box">
-																<p class="item_price_consumer"
-																	style="text-decoration: line-through; display: inline-block;">
-																	<span>450,000원 </span>
-																</p>
-																&nbsp;&nbsp; <strong class="item_price"
-																	style="color: #aa6868;"> <span>379,000원
-																</span>
-																</strong>
-															</div>
-														</div>
-													</a>
-												</div>
-											</div> --%>
 					
 										</div>
 									</div>
@@ -586,7 +502,6 @@
 								success: function(data){
 									console.log("ajax 성공");
 									$(".section_matching").css('display','block');
-									console.log("display block처리");
 									
 									$matListDiv = $("#matListDiv");
 									$matListDiv.html("");
@@ -600,23 +515,86 @@
 									
 									if(data.length > 0){
 										console.log("if왔나");
-										for(var i in data){
-											$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-											$atag = $("<a>").attr('href','#');
-											$figuretag = $("<figure>");
-											$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
-															  .width('400px').height('200px');
-											$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+										switch (data[0].bcode) {
+										case "RMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.rm?rbId='+data[i].rbId);
+												$figuretag = $("<figure>");
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												}
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
 											
-											$mDiv.append($atag);
-											$atag.append($figuretag); 
-											$figuretag.append($imgtag);
-											$atag.append($h6tag);
-											$matListDiv.append($mDiv);
+										case "HMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
+												$figuretag = $("<figure>");
+												
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												} 
+												/* $imgtag = $("<img>").error(function() {
+																		$("<img>").attr("src","${ contextPath }/resources/hmBoardUploadFiles/2.JPG");
+																	})
+																	.attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
+																	.width('400px').height('200px'); */
+												
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
+										case "FMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.fm?fbId='+data[i].fbId);
+												$figuretag = $("<figure>");
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												}
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
+										default:
+											break;
 										}
+										
 									}
 									
 									
+									// 모달창의 x를 누를때  기존값 초기화시키기
 									$(".close").on("click", function(){
 										$matListDiv.html("");
 										$("#mform").each(function() {
@@ -666,8 +644,7 @@
                                             <div class="at-tip" data-original-title="1,000점 추가획득시 레벨업합니다." data-toggle="tooltip" data-placement="top" data-html="true" style="margin:10px 0px;">
                                                 <div class="div-progress progress progress-striped" style="margin:0px;">
                                                     <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                                        <span class="sr-only">
-                                                            Lv.1					</span>
+                                                        <span class="sr-only">Lv.1</span>
                                                     </div>
                                                 </div>
                                                 <div class="sr-score pull-right" style="color:#fff; margin-top:-28px;">0 (0%)</div>
@@ -812,9 +789,69 @@
         </div>
         <!-- === END CONTENT === -->
 
+
+ <!-- 비밀번호 불일치 모달 -->
+	<div class="modal fade" id="pwdCheck" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel"> 탈퇴회원 비밀번호 확인 </h4>
+				</div>
+				<div class="modal-body">
+				본인 확인을 위해 가입시 입력하신 비밀번호를 입력해주세요<br>
+				<div class="form-group has-feedback" >
+					<label><b>회원아이디 : 
+					<span id="mb_confirm_id" class="text-primary">${loginUser.email }</span>
+					</b></label> 
+					<input type="password" name="pwd" id="passwordCheck" required
+						class="form-control input-sm" size="15" maxlength="20">
+					<span class="fa fa-lock form-control-feedback"></span>
+				</div>
+				<span id="pwdResult"></span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="submitBtn" class="btn btn-primary" >확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 비밀번호 불일치 모달 끝 -->
+
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 
+
+<script>
+$('#deleteMember').click(function() {
+		console.log("비밀번호 확인");
+		$("#pwdCheck").modal();
+		$('#pwdResult').html("");
+		$('#passwordCheck').val("");
+});
+
+$('#submitBtn').click(function(){
+	var passwordCheck = $('#passwordCheck').val();
+	var emailCheck = "${loginUser.email}";
+	//console.log("머야 왜안나와 " +passwordCheck+" "+emailCheck);
+	
+	$.ajax({
+		url  : "pwdCheck.me",
+		data : {pwd: passwordCheck, email :emailCheck},
+		success : function(data){
+			console.log("전송됨");
+			if(data == "success"){
+				window.location.replace("mdelete.me");
+			}else{
+				 $('#pwdResult').html("비밀번호 확인 값이 불일치합니다.").css('color','red');
+			}
+		}
+	});
+});
+</script>
 </body>
 </html>

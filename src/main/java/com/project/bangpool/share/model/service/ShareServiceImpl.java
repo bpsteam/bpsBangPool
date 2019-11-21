@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.share.model.dao.ShareDAO;
 import com.project.bangpool.share.model.vo.Share;
@@ -37,6 +38,16 @@ public class ShareServiceImpl implements ShareService{
 	@Override
 	public Share shareDetail(int srbId) {
 		return srDAO.shareDetail(sqlSession,srbId);
+	}
+
+	@Override
+	public int insertReply(Reply r) {
+		return srDAO.insertReply(sqlSession,r);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(int refBid) {
+		return srDAO.listReply(sqlSession,refBid);
 	}
 
 
