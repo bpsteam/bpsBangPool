@@ -47,9 +47,11 @@ public class MatchingController {
 		
 		if( mBcode.equals("RMBCODE")) {
 			ArrayList<RMBoard> mlist = mcService.selectRMatching(matchingMap);
+			System.out.println("RM list :" +mlist);
 			gson.toJson(mlist, response.getWriter());
 		} else if( mBcode.equals("HMBCODE")) {
 			ArrayList<HMBoard> mlist = mcService.selectHMatching(matchingMap);
+			System.out.println("HM list :" +mlist);
 			gson.toJson(mlist, response.getWriter());
 		} else if( mBcode.equals("FMBCODE")) {
 			ArrayList<FMBoard> mlist = mcService.selectFMatching(matchingMap);

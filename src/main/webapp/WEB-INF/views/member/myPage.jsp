@@ -360,7 +360,7 @@
                     <div class="col-md-3">
                     
                     
-                        <!-- Recent Posts -->
+                        <!-- 메이트 매칭 모달창 -->
                         <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
                         <div id="matching_form" class="section_matching">
                             <div class="matching_content">
@@ -369,10 +369,7 @@
 									<div class="signup-header">
 										<h2 style="display: inline;">나에게 맞는 메이트는?</h2>
 										<span class="close"><h1 style="display: inline;">&times;</h1></span>
-										<br>
-										<br>
-										<br>
-										<br> 
+										<br><br><br><br> 
 									</div>
 									<div class="row">
 										<div class="col-sm-6">
@@ -446,7 +443,6 @@
 									</div> -->
 
 
-
 									<div class="row">
 										<div class="col-lg-8"></div>
 										<div class="col-lg-4 text-right">
@@ -458,103 +454,6 @@
 									<!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
 									<div class="row" >
 										<div class="col-md-12" id="matListDiv">
-
-											<!-- Portfolio Item -->
-											<%-- <div class="col-md-4 portfolio-item margin-bottom-40 video"  >
-													<a href="#">
-														<figure>
-															<img
-																src="${ contextPath }/resources/hmBoardUploadFiles/1.JPG"
-																alt="image1" style="width: 400px; height: 200px;">
-															<figcaption>
-																<h3 class="margin-top-20">Velit esse molestie</h3>
-																<br>
-																<div class="project-item__stats" style="align-content: right;">
-																	<span class="project-item__stats__item">스크랩 9</span>
-																	<!-- <span class="project-item__stats__dot"></span> -->
-																	<span class="project-item__stats__item">조회 521</span>
-																</div>
-															</figcaption>
-														</figure>
-														<h6 class="project-item__cover__title">바람이 솔솔 불어오는
-															화이트 인테리어</h6>
-														<div>
-															<div class="item_money_box">
-																<strong class="item_price" style="color: #aa6868;"> 
-																	<span>379,000원</span>
-																</strong>
-															</div>
-														</div>
-													</a>
-											</div>
-											<!-- End Portfolio Item -->
-											<!-- Portfolio Item -->
-											<div class="col-md-4 portfolio-item margin-bottom-40 design">
-												<div>
-													<a href="#">
-														<figure>
-															<img
-																src="${ contextPath }/resources/hmBoardUploadFiles/2.JPG"
-																alt="image2" style="width: 400px; height: 200px;">
-															<figcaption>
-																<h3 class="margin-top-20">Quam nunc putamus</h3>
-																<div class="project-item__stats"
-																	style="align-content: right;">
-																	<span class="project-item__stats__item">스크랩 9</span>
-																	<!-- <span class="project-item__stats__dot"></span> -->
-																	<span class="project-item__stats__item">조회 521</span>
-																</div>
-															</figcaption>
-														</figure>
-
-														<h6 class="project-item__cover__title">원목가구로 조화를 이룬
-															심플 인테리어</h6>
-														<div>
-															<div class="item_money_box">
-																<strong class="item_price" style="color: #aa6868;"> 
-																	<span>379,000원 	</span>
-																</strong>
-															</div>
-														</div>
-													</a>
-												</div>
-											</div>
-											<!-- End Portfolio Item -->
-											<!-- Portfolio Item -->
-											<div class="col-md-4 portfolio-item margin-bottom-40 audio">
-												<div>
-													<a href="#">
-														<figure>
-															<img
-																src="${ contextPath }/resources/hmBoardUploadFiles/3.JPG"
-																alt="image3" style="width: 400px; height: 200px;">
-															<figcaption>
-																<h3 class="margin-top-20">Placerat facer possim</h3>
-																<div class="project-item__stats"
-																	style="align-content: right;">
-																	<span class="project-item__stats__item">스크랩 9</span>
-																	<!-- <span class="project-item__stats__dot"></span> -->
-																	<span class="project-item__stats__item">조회 521</span>
-																</div>
-															</figcaption>
-														</figure>
-														<h6 class="project-item__cover__title">네추럴 모던 스타일의 취향
-															저격</h6>
-														<div>
-															<div class="item_money_box">
-																<p class="item_price_consumer"
-																	style="text-decoration: line-through; display: inline-block;">
-																	<span>450,000원 </span>
-																</p>
-																&nbsp;&nbsp; <strong class="item_price"
-																	style="color: #aa6868;"> <span>379,000원
-																</span>
-																</strong>
-															</div>
-														</div>
-													</a>
-												</div>
-											</div> --%>
 					
 										</div>
 									</div>
@@ -616,15 +515,19 @@
 									
 									if(data.length > 0){
 										console.log("if왔나");
-										
 										switch (data[0].bcode) {
 										case "RMBCODE":
 											for(var i in data){
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.rm?rbId='+data[i].rbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/2.JPG')
-																  .width('400px').height('200px');
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
 												
 												$mDiv.append($atag);
@@ -640,8 +543,20 @@
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
-																  .width('400px').height('200px');
+												
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												} 
+												/* $imgtag = $("<img>").error(function() {
+																		$("<img>").attr("src","${ contextPath }/resources/hmBoardUploadFiles/2.JPG");
+																	})
+																	.attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
+																	.width('400px').height('200px'); */
+												
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
 												
 												$mDiv.append($atag);
@@ -656,8 +571,13 @@
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.fm?fbId='+data[i].fbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/2.JPG')
-																  .width('400px').height('200px');
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
 												
 												$mDiv.append($atag);
