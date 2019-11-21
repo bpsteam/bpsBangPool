@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.share.model.vo.Share;
 
@@ -30,6 +31,14 @@ public class ShareDAO {
 
 	public Share shareDetail(SqlSessionTemplate sqlSession, int srbId) {
 		return sqlSession.selectOne("shareMapper.shareDetail", srbId);
+	}
+
+	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
+		return sqlSession.insert("shareMapper.insertReply",r);
+	}
+
+	public ArrayList<Reply> listReply(SqlSessionTemplate sqlSession, int refBid) {
+		return (ArrayList)sqlSession.selectList("shareMapper.listReply",refBid);
 	}
 
 }

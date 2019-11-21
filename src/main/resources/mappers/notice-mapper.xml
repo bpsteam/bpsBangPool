@@ -159,7 +159,7 @@
 			    REPLY_SEQ.NEXTVAL,
 			    'NCODE',
 			    #{rContent},
-			    #{refBid},
+			    #{refbId},
 			    #{rWriter},
 			    SYSDATE,
 			    SYSDATE,
