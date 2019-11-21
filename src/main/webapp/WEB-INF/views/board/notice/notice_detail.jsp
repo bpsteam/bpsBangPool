@@ -252,26 +252,26 @@
 								   if( $('#nickname').val() == $('#nWriter').val() ){
 									   $tr2.append($rUpdate);
 									   $tr2.append($rDelete);
-								   }
+								   }else{
+					            	   
+					            	   $table = $('<table id="reply_list">');
+								       $tableBody = $("<tbody>");
+								       $rContent = $("<td id='rContent_form' colspan='3'>").text('등록된 댓글이 없습니다.');
+		  	   						   $tr = $('<tr>');
+		  	   						   $td = $('<td>');
+		  	   						   
+		  	   						   
+					            	   $tr.append($rContent);
+		  	   						   $tableBody.append($tr);
+		  	   						   $table.append($tableBody);
+									   $body.append($table);
+					               }
 								   
 								   $tableBody.append($tr);
 								   $tableBody.append($tr2);
 								   $table.append($tableBody);
 								   $body.append($table);
 			            	   }
-			               }else{
-			            	   
-			            	   $table = $('<table id="reply_list">');
-						       $tableBody = $("<tbody>");
-						       $rContent = $("<td id='rContent_form' colspan='3'>").text('등록된 댓글이 없습니다.');
-  	   						   $tr = $('<tr>');
-  	   						   $td = $('<td>');
-  	   						   
-  	   						   
-			            	   $tr.append($rContent);
-  	   						   $tableBody.append($tr);
-  	   						   $table.append($tableBody);
-							   $body.append($table);
 			               }
 					    }
 				});

@@ -97,4 +97,33 @@
 	
 	</select>	
 	
+	<!-- ***************************** REPLY ***************************** -->
+	
+	<select id="listReply" parameterType="_int" resultType="Reply">
+		
+		SELECT *
+		FROM REPLY
+		WHERE
+			REFBID = #{ refbId } AND
+		    RSTATUS ='Y' AND
+		    BCODE ='SBCODE'
+		ORDER BY RID ASC
+	
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+				INSERT INTO REPLY
+			VALUES
+			(
+			    REPLY_SEQ.NEXTVAL,
+			    'SBCODE',
+			    #{rContent},
+			    #{refbId},
+			    #{rWriter},
+			    SYSDATE,
+			    SYSDATE,
+			    'Y'
+			)
+	</insert>
+	
 </mapper>
