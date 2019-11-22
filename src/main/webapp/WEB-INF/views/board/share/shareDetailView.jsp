@@ -97,7 +97,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-5">
-												<img itemprop="image" src="https://quasarzone.co.kr/skin/board/nanum/img/jijang.jpg" class="reimg" data-toggle="modal" data-target="#eventModal" style="cursor: pointer;">
+								<img itemprop="image" src="https://quasarzone.co.kr/skin/board/nanum/img/jijang.jpg" class="reimg" data-toggle="modal" data-target="#eventModal" style="cursor: pointer;">
 								<!-- 이미지 확대-->
 								<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="myEventModalLabel" aria-hidden="false">
 									<div class="modal-dialog modal-sm">
@@ -127,10 +127,10 @@
 							</div>
 						</div>
 						<div class="view-line"></div>
-						<div class="text-center">
-								<button id="end_event" type="button" class="btn btn-danger" onclick="alert('나눔이 종료되었습니다.');" style="display:none;">나눔종료!</button>
-								<button id="join_event" type="button" class="btn btn-color" onclick="alert('댓글로 참여해주세요.');" style="display:none;">나눔진행중</button>
-						</div>
+						<p class="pull-center">
+								<button id="end_event" type="button" class="btn btn-danger" onclick="alert('나눔이 종료되었습니다.');" style="display:none; margin: auto;">나눔종료!</button>
+								<button id="join_event" type="button" class="btn btn-color" onclick="alert('댓글로 참여해주세요.');" style="display:none; margin: auto;">나눔진행중</button>
+						</p>
 						<div class="view-line"></div>
 						
 						  <div class="view-padding">
@@ -143,42 +143,43 @@
 				    <div class="view-comment font-18 en" style="margin-top:50px;">
 						<i class="fa fa-commenting"></i> 댓글 : <span class="orange">104</span> 개
 				    </div>
+				    <c:if test="${ loginUser != null }">
+				    
 				    <div class="comment-box">
 					      <div class="comment-box">
 	
 					        <div class="clearfix"></div>
 					
 					        <div class="form-group comment-content">
-					          <div class="comment-cell" style="width:80%">
-					            <textarea id="reply_content" tabindex="13" id="wr_content" name="wr_content" maxlength="10000" rows="5"
-					              class="form-control input-sm is_cm_color" title="내용"></textarea>
-					          </div>
-							<div style="display: table-cell;width: 80px;">
-								<input type="button" id="reply_insert" value="등록" style="background-color: #F90; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 65px;" tabindex="14">
-									
-								</input>
-								<div style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 35px;" tabindex="14">
-									등록+신청
+						        
+					          <form action="reply_event_insert.sr">
+						        <div class="comment-cell" style="width:80%">
+						            <textarea id="reply_content" tabindex="13" id="wr_content" name="rContent" maxlength="10000" rows="5"
+						              class="form-control input-sm is_cm_color" title="내용"></textarea>
+						            <input name="nickname" type="hidden" value=${ loginUser.nickname }>
+						            <input name="srbId" type="hidden" value=${ share.srbId }>
+						            <input name="email" type="hidden" value=${ loginUser.email }>
+						        </div>
+								<div style="display: table-cell;width: 80px;">
+									<input type="button" id="reply_insert" value="등록" name="rContent" style="background-color: #F90; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 65px;" tabindex="14">
+										
+									<input type="submit" id="reply_event_insert" value="등록+신청" style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 35px;" tabindex="14">
 								</div>
-							</div>
+							  </form>
 					        </div>
 					      </div>
 				    </div>
+				    </c:if>
 				    
+				    <c:if test="${ loginUser == null }">
+				    	<div>로그인시 댓글 이벤트 참여 가능합니다!!!</div>
+				    	<br>
+				    </c:if>
+				    
+				    <input id="winner" type="hidden" value="${ share.srWinner }">
+				    
+				    <!-- 댓글 목록 -->
 				      <div id="viewcomment">
-				      	<div class="reply_body">
-					        <div class="media-body">
-					            <b>닉네임</b>
-					                <i class="fa fa-clock-o"></i>
-					                19.11.19 
-					            &nbsp;
-					          <div class="media-content">
-					         	   추천합니다
-					            <span class="reply_edit"></span><!-- 수정 -->
-					            <textarea style="display:none">추천합니다</textarea>
-					          </div>
-					        </div>
-					     </div>
 					  </div>
 					  
 					</div>
@@ -194,19 +195,24 @@
 	<!-- ==== FOOTER END ==== -->
 	
 	<script>
-	
-		
 		
 	    $(function(){
 	    	
 	        getReplyList();
+	        
 	        countDate();
+	        
 			setInterval(function(){
 				countDate();
 			},1000);
 	        
-	        
 	  	});
+	    
+	    function already(){
+	    	if("${ already }" != ""){
+	    		alert("이미 참여하였습니다.")
+	    	}
+	    }
 	    
 	    function countDate(){
 	        
@@ -222,16 +228,31 @@
 	        var ed = endDate.split("-");
 	        
 	        var start = new Date(sd[0],sd[1]-1,sd[2],startTime,0,0);
-	        var end = new Date(ed[0],ed[1]-1,ed[2],startTime,59,0);
+	        var end = new Date(ed[0],ed[1]-1,ed[2],endTime,59,0);
 	        
 	        var left = end-today;
-			
+	        
+	        var winner = $('#winner').val();
+	        
 	        if(left <= 0){
+	        	if( winner == ""){
+					var srbId = ${ share.srbId };
+	        		$.ajax({
+	        			url:"share_winner.sr",
+	        			data : { srbId:srbId },
+	        			success:function(data){
+	        				
+	        			}
+	        		});
+	        		
+	        	}
 	        	$('#left_time').text('마감');
 	        	$('#join_event').text('나눔종료!');
+	        	$('#end_event').css('display','block');
 	        }else{
 	        	$('#left_time').text(msToTime(left));
 	        	$('#join_event').text('나눔진행중');
+	        	$('#join_event').css('display','block');
 	        }
 	        
 	    }

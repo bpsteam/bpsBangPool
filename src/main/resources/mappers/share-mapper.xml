@@ -112,7 +112,7 @@
 	</select>
 	
 	<insert id="insertReply" parameterType="Reply">
-				INSERT INTO REPLY
+			INSERT INTO REPLY
 			VALUES
 			(
 			    REPLY_SEQ.NEXTVAL,
@@ -125,5 +125,64 @@
 			    'Y'
 			)
 	</insert>
+	
+	<insert id="insertReply_event" parameterType="hashmap">
+		
+		INSERT ALL
+		WHEN 1=1 THEN
+		INTO REPLY
+		VALUES(
+			    REPLY_SEQ.NEXTVAL,
+			    'SBCODE',
+			    #{rContent},
+			    #{refbId},
+			    #{rWriter},
+			    SYSDATE,
+			    SYSDATE,
+			    'Y'  
+		)  
+		WHEN 1=1 THEN
+		INTO SHARE_JOIN_MEMBER
+		VALUES(
+			#{refbId},
+			#{email},
+			'Y'
+		)
+		SELECT *
+		FROM DUAL
+	
+	</insert>
+	
+	<select id="selectEventMember" parameterType="_int" resultType="Member">
+		
+		SELECT email
+		FROM SHARE_JOIN_MEMBER
+		WHERE 
+		REFBID = #{srbId}
+		AND
+		STATUS = 'Y'
+		
+	</select>
+	
+	<update id="insertWinner" parameterType="Share">
+		
+		UPDATE SHARE_BOARD
+		SET
+		SRWINNER=#{srWinner}
+		WHERE
+		SRBID = #{srbId}
+	
+	</update>
+	
+	<select id="selectMember" parameterType="map" resultType="Member">
+	
+		SELECT email
+		FROM SHARE_JOIN_MEMBER
+		WHERE 
+		REFBID = #{srbId}
+		AND
+		STATUS = 'Y'
+	
+	</select>
 	
 </mapper>

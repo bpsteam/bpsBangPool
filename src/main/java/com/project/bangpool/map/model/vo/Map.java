@@ -1,41 +1,60 @@
 package com.project.bangpool.map.model.vo;
 
 public class Map {
-	private int mid;
-	private String mName;
+	private int srbid;
+	private String srbwriter;
 	private String address;
+	private String sritemname;
+
 	public Map() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Map(int mid, String mName, String address) {
+
+	public Map(int srbid, String srbwriter, String address, String sritemname) {
 		super();
-		this.mid = mid;
-		this.mName = mName;
+		this.srbid = srbid;
+		this.srbwriter = srbwriter;
 		this.address = address;
+		this.sritemname = sritemname;
 	}
-	public int getMid() {
-		return mid;
+
+	public int getSrbid() {
+		return srbid;
 	}
-	public void setMid(int mid) {
-		this.mid = mid;
+
+	public void setSrbid(int srbid) {
+		this.srbid = srbid;
 	}
-	public String getmName() {
-		return mName;
+
+	public String getSrbwriter() {
+		return srbwriter;
 	}
-	public void setmName(String mName) {
-		this.mName = mName;
+
+	public void setSrbwriter(String srbwriter) {
+		this.srbwriter = srbwriter;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	@Override
-	public String toString() {
-		return "Map [mid=" + mid + ", mName=" + mName + ", address=" + address + "]";
+
+	public String getSritemname() {
+		return sritemname;
 	}
 
-	
+	public void setSritemname(String sritemname) {
+		this.sritemname = sritemname;
+	}
+
+	@Override
+	public String toString() {
+		return "Map [srbid=" + srbid + ", srbwriter=" + srbwriter + ", address=" + address + ", sritemname="
+				+ sritemname + "]";
+	}
+
 }

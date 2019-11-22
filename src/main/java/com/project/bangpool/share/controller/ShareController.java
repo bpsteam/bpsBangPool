@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -80,17 +81,22 @@ public class ShareController {
 		
 		System.out.println("ShareInsert : " + s);
 		
-/*		if(uploadFile != null && !uploadFile.isEmpty()) {
+		/*		
+ 		if(uploadFile != null && !uploadFile.isEmpty()) {
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
 				s.setOriginalFileName(uploadFile.getOriginalFilename());
 				s.setRenameFileName(renameFileName);
 			}
-		}*/
+		}
+		*/
 		
 		int result = srService.shareInsert(s);
 		
+		if(result>0) {
+			mv.setViewName("redirect:srListView.sr");
+		}
 		
 		
 		return mv;
@@ -174,6 +180,7 @@ public class ShareController {
 		gson.toJson(list, response.getWriter());
 	}
 	
+	
 	@RequestMapping("reply_insert.sr")
 	@ResponseBody
 	public String reply_insert(Reply r, Member m, HttpSession session) {
@@ -188,6 +195,90 @@ public class ShareController {
 		}
 
 	}
+	
+	@RequestMapping("reply_event_insert.sr")
+	public ModelAndView reply_event_insert(
+									 ModelAndView mv,
+									 @RequestParam("srbId") String srbId, 
+								     @RequestParam("email") String email,
+								     @RequestParam("nickname") String nickname,
+								     @RequestParam("rContent") String rContent
+								     ) {
+		Member m = new Member();
+		ArrayList<Member> list = new ArrayList<Member>();
+		HashMap<String, String> map1 = new HashMap<String, String>();
+		map1.put("srbId", srbId);
+		list = srService.selectMember(map1);
+		
+		System.out.println("이벤트 입력 :" +list);
+		if(list != null) {
+			
+			for(int i =0; i<list.size();i++) {
+				
+				if(list.get(i).getEmail().equals(email)) {
+					
+					mv.addObject("srbId",srbId)
+					  .addObject("already","already")
+					  .setViewName("redirect:srdetail.sr");
+					
+					return mv;
+					
+				}
+				
+			}
+		}
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("refbId",srbId );
+		map.put("email",email );
+		map.put("rWriter",nickname );
+		map.put("rContent",rContent );
+		
+		int result = srService.insertReplt_event(map);
+		
+		if(result>0) {
+			mv.addObject("srbId",srbId)
+			  .setViewName("redirect:srdetail.sr");
+			
+			return mv;
+		}else {
+			return mv;
+		}
+	
+	}
+	
+  @RequestMapping("share_winner.sr")
+  @ResponseBody
+  public String share_winner(@RequestParam("srbId") int srbId) {	  
+	  
+	  Share s = new Share();
+	  ArrayList<Member> list = new ArrayList<Member>();
+	  list = srService.selectEventMember(srbId);
+	  
+	  System.out.println(list.size());
+	  
+	  if(list.size() <=0) {
+		  return "error";
+	  }else {
+		  
+		  int random = (int)(Math.random()*(list.size()-1))+1;
+		  Member m = new Member();
+		  
+		  m = list.get(random);
+		  
+		  s.setSrbId(srbId);
+		  s.setSrWinner(m.getEmail().toString());
+		  
+		  System.out.println("winner"+s.getSrWinner());
+		  
+		  if(list !=null) {
+			  int result = srService.insertWinner(s);
+		  }
+		  
+		  return "success";
+	  }
+	  
+  }
 	
 	
 
