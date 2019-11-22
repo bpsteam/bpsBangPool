@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+<settings>
+	<!-- NULL을 null 로 인식하라고 셋팅해줌. 안하면 다른줄알고 인식못함. -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+
+	<typeAliases>
+		<typeAlias type="com.project.bangpool.member.model.vo.Member" alias="Member"/>
+
+		<typeAlias type="com.project.bangpool.housemateboard.model.vo.HMBoard" alias="HMBoard"/>
+
+		<typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.FMBoard" alias="FMBoard"/>
+		
+		<!-- <typeAlias type="com.project.bangpool.freshmanmateboard.model.vo.PiBoard" alias="PiBoard"/> -->
+
+	    <typeAlias type="com.project.bangpool.roommateboard.model.vo.RMBoard" alias="RMBoard"/>
+    	
+    	<typeAlias type="com.project.bangpool.common.Reply" alias="Reply"/>
+    	
+    	<typeAlias type="com.project.bangpool.secondHandBoard.model.vo.SecondHandBoard" alias="SecondHandBoard"/>
+    	
+    	<typeAlias type="com.project.bangpool.showing.model.vo.Showing" alias="Showing"/>
+    	
+    	<typeAlias type="com.project.bangpool.notice.model.vo.Notice" alias="Notice"/>
+
+    	<typeAlias type="com.project.bangpool.share.model.vo.Share" alias="Share"/>
+    	
+    	<typeAlias type="com.project.bangpool.memberlevel.model.vo.ManageMember" alias="ManageMember"/>
+
+    	<typeAlias type="com.project.bangpool.freeboard.model.vo.FreeBoard" alias="FreeBoard"/>
+
+    	
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
+
+		<mapper resource="mappers/hmboard-mapper.xml"/>
+
+		<mapper resource="mappers/fmboard-mapper.xml"/>
+    
+  	 	<mapper resource="mappers/rmboard-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/secondHandBoard-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/showing-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/notice-mapper.xml"/>
+
+  	 	<mapper resource="mappers/share-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/level-mapper.xml"/>
+
+  	 	<mapper resource="mappers/freeboard-mapper.xml"/>
+
+	</mappers>
+	
+</configuration>
+

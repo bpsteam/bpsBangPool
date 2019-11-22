@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="fmboardMapper">
+
+	<insert id="insertBoard" parameterType="FMBoard">
+		insert into freshman_board
+		values (FRESHMAN_BOARD_SEQ.nextval, default, #{fbTitle}, #{fbWriter}, 
+				#{fbContent}, default, sysdate, sysdate, 
+				default, #{fLocation}, #{schoolemail}, #{fRentType}, 
+				#{fLivingType}, #{fRoomCount}, #{fFloor}, #{fPrice}, 
+				#{fParking}, #{fReqGender}, #{contactInfo})
+	</insert>
+	
+	<!-- <select id="selectPiList" resultType="PiBoard" parameterType="string">
+		select*from freshman_board
+		where fbstatus='Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
+		order by fbid desc
+	</select> -->
+	
+	<select id="selectList" resultType="FMBoard" parameterType="string">
+		select fbid, fbtitle, fbwriter, fbcount, flocation from freshman_board
+		where fbstatus='Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
+		order by fbid desc
+	</select>
+	
+	<select id="getListCount" resultType="_int" parameterType="string">
+		select count(*) from freshman_board
+		where fbstatus = 'Y'
+		<if test="location!=null">
+		and flocation=#{location}
+		</if>
+	</select>
+	
+	<update id="addReadCount" parameterType="_int">
+		update freshman_board
+		set fbcount = fbcount+1
+		where fbId = #{fbId}
+	</update>
+	
+	<select id="selectBoard" parameterType="_int" resultType="FMBoard" >
+		select fm.*, a.originalfilename, a.renamefilename
+		from freshman_board fm
+		left join attachment a on a.bcode=fm.bcode
+		where fm.fbid = a.refbid
+		and fbstatus='Y'
+		and fbid=#{fbId}
+	</select>
+	
+	<!--  <resultMap type="FMBoard" id="fmboardMap">
+			 <id property="fbId" column="FBID"/>
+	 		<result column="BCODE" property="bcode"/>
+	 		<result column="FBTITLE" property="fbTitle"/>
+	 		<result column="FBWRITER" property="fbWriter"/>
+	 		<result column="FBCONTENT" property="fbContent"/>
+	 		<result column="FBCOUNT" property="fbCount"/>
+	 		<result column="FBCREATEDATE" property="fbCreateDate"/>
+	 		<result column="FBMODIFYDATE" property="fbModifyDate"/>
+	 		<result column="FBSTATUS" property="fbStatus"/>
+	 		<result column="FLOCATION" property="fLocation"/>
+	 		<result column="FRENTTYPE" property="fRentType"/>
+	 		<result column="FLIVINGTYPE" property="fLivingType"/>
+	 		<result column="FROOMCOUNT" property="fRoomCount"/>
+	 		<result column="FFLOOR" property="fFloor"/>
+	 		<result column="FPRICE" property="fPrice"/>
+	 		<result column="FPARKING" property="fParking"/>
+	 		<result column="FREQGENDER" property="fReqGender"/>
+	 		<result column="CONTACTINFO" property="contactInfo"/>
+	 		<result column="COLLEGE" property="college"/>
+	 		<result column="ORIGINALFILENAME" property="originalFileName"/>
+			<result column="RENAMEFILENAME" property="renameFileName"/> -->
+	<!-- 
+		<association javaType ="Attachment" property="att">
+			<result column="ORIGINALFILENAME" property="originalFileName"/>
+			<result column="RENAMEFILENAME" property="renameFileName"/>
+		</association> -->
+	
+	
+	<select id="selectCurrentBno" resultType="_int">
+		SELECT FRESHMAN_BOARD_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<insert id="insertFile" parameterType="FMBoard">
+		insert into attachment
+		values (attachment_seq.nextval, #{bcode}, #{fbId}, #{originalFileName},#{renameFileName} )
+	</insert>
+	
+	<update id="deleteBoard" parameterType="_int">
+		update freshman_board
+		set fbstatus = 'N'
+		where fbid = #{fbId}
+	</update>
+	
+	<update id="updateBoard" parameterType="FMBoard">
+		update freshman_board
+		set fbContent=#{fbContent},
+			fbmodifydate = SYSDATE,
+			flocation = #{fLocation},
+			frenttype=#{fRentType},
+			flivingtype=#{fLivingType},
+			froomcount=#{fRoomCount},
+			ffloor=#{fFloor},
+			fprice=#{fPrice},
+			fparking=#{fParking},
+			freqgender=#{fReqGender},
+			contactInfo=#{contactInfo}
+		where fbId = #{fbId}
+	</update>
+	
+	<update id="updateFile" parameterType="FMBoard">
+		update attachment
+		set originalFilename = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where bcode = #{bcode}
+		and refbid = #{fbId}
+	</update>
+	
+	<insert id="insertReply" parameterType="Reply">
+		insert into Reply
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+	</insert>
+	
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+		select * from Reply r
+		join freshman_board f on f.bcode=r.bcode
+		and r.refbid = f.fbid
+		where refbid=${fbId}
+		and rstatus='Y'
+		
+	</select>
+	
+	<select id="getSearchListCount" parameterType="hashmap" resultType="_int">
+		select count(*) from freshman_board
+		join member on (nickname = fbwriter)
+		where fbstatus = 'Y'
+		<if test="smethod eq 'fbTitle'">
+		and fbTitle like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbContent'">
+		and fbContent like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'titleNcontent'">
+		and (fbTitle like '%' || #{sword} || '%' or fbContent like '%' || #{sword} || '%')
+		</if>
+		<if test="smethod eq 'email'">
+		and email like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbWriter'">
+		and fbWriter like '%' || #{sword} || '%'
+		</if>
+	</select>
+	
+	<select id="getSearchList" parameterType="hashmap" resultType="FMBoard">
+		select * from freshman_board
+		join member on (nickname = fbwriter)
+		where fbstatus = 'Y'
+		<if test="smethod eq 'fbTitle'">
+		and fbTitle like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbContent'">
+		and fbContent like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'titleNcontent'">
+		and (fbTitle like '%' || #{sword} || '%' or fbContent like '%' || #{sword} || '%')
+		</if>
+		<if test="smethod eq 'email'">
+		and email like '%' || #{sword} || '%'
+		</if>
+		<if test="smethod eq 'fbWriter'">
+		and fbWriter like '%' || #{sword} || '%'
+		</if>
+	</select>
+	
+	<update id="deleteReply" parameterType="_int">
+		update reply
+		set rStatus='N'
+		where rid=#{rId}
+	</update>
+	
+	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultType="FMBoard">
+		<![CDATA[
+			select *
+			from (select *
+				  from freshman_board
+				  where fbstatus = 'Y'
+				  order by fbcreatedate desc)
+			where rownum <= 8
+		]]>
+	</select>
+	
+</mapper>

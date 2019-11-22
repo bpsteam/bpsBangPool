@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hmboardMapper">
+  
+  	<select id="getListCount" resultType="_int">
+		select count(*)
+		from HOUSEMATE_BOARD
+		where HBstatus='Y'
+		<if test="hLoc != null">
+		<choose>
+			<when test="hLoc.equals('SEOUL')"> and HLOCATION = '서울' </when>
+			<when test="hLoc.equals('INCHEON')"> and HLOCATION = '인천/부천' </when>
+			<when test="hLoc.equals('SU')"> and HLOCATION = '수원/경기' </when>
+			<when test="hLoc.equals('DAE')"> and HLOCATION = '대구/경북' </when>
+			<when test="hLoc.equals('BU')"> and HLOCATION = '부산/경남' </when>
+			<when test="hLoc.equals('CHUNG')"> and HLOCATION = '충청/강원' </when>
+			<when test="hLoc.equals('GWANG')"> and HLOCATION = '광주/전라' </when>
+			<otherwise> </otherwise>
+		</choose>
+		</if>
+	</select>
+	
+	<select id="selectList" resultMap="boardResultSet" parameterType="String">
+		select *
+		from HOUSEMATE_BOARD
+		where HBSTATUS='Y'
+		<if test="hLoc != null">
+		<choose>
+			<when test="hLoc.equals('SEOUL')"> and HLOCATION = '서울' </when>
+			<when test="hLoc.equals('INCHEON')"> and HLOCATION = '인천/부천' </when>
+			<when test="hLoc.equals('SU')"> and HLOCATION = '수원/경기' </when>
+			<when test="hLoc.equals('DAE')"> and HLOCATION = '대구/경북' </when>
+			<when test="hLoc.equals('BU')"> and HLOCATION = '부산/경남' </when>
+			<when test="hLoc.equals('CHUNG')"> and HLOCATION = '충청/강원' </when>
+			<when test="hLoc.equals('GWANG')"> and HLOCATION = '광주/전라' </when>
+			<otherwise> </otherwise>
+		</choose>
+		</if>
+		order by HBID desc
+	</select>
+	<resultMap type="HMBoard" id="boardResultSet">
+		<id property="hbId" column="HBID"/>
+		<result property="bcode" column="BCODE"/>
+		<result property="hbTitle" column="HBTITLE"/>
+		<result property="hbWriter" column="HBWRITER"/>
+		<result property="hbContent" column="HBCONTENT"/>
+		<result property="hbCount" column="HBCOUNT"/>
+		<result property="hbCreateDate" column="HBCREATEDATE"/>
+		<result property="hbModifyDate" column="HBMODIFYDATE"/>
+		<result property="hbStatus" column="HBSTATUS"/>
+		
+		<result property="hLocation" column="HLOCATION"/>
+		<result property="hRentType" column="HRENTTYPE"/>
+		<result property="hLivingType" column="HLIVINGTYPE"/>
+		<result property="hRoom" column="HROOMCOUNT"/>
+		<result property="hFloor" column="HFLOOR"/>
+		<result property="hPrice" column="HPRICE"/>
+		<result property="hParking" column="HPARKING"/>
+		<result property="hReqgender" column="HREQGENDER"/>
+	</resultMap>
+	
+	<update id="addReadCount" parameterType="_int">
+		update HOUSEMATE_BOARD
+		set HBCOUNT = HBCOUNT + 1
+		where HBID = #{hbId}
+	</update>
+	
+	<select id="selectBoard" parameterType="_int" resultType="HMBoard">
+		select hb.*, a.ORIGINALFILENAME, a.renamefilename
+		from HOUSEMATE_BOARD hb
+		left join attachment a on a.bcode=hb.bcode
+		where hb.hbid = a.refbid
+		and hb.hbstatus='Y' 
+		and hb.hbid =#{hbId} 
+	</select>
+	
+	<insert id="insertBoard" parameterType="HMBoard">
+		insert into HOUSEMATE_BOARD
+		values(HOUSEMATE_BOARD_SEQ.nextval, default , #{hbTitle}, #{hbContent}, #{hbWriter}, default,
+				sysdate, sysdate, default, #{hLocation}, #{hRentType}, #{hLivingType},
+				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hReqgender})
+	</insert>
+	
+	<select id="selectHbId" resultType="_int">
+		select max(hbid)
+		from HOUSEMATE_BOARD
+	</select>
+	
+	<insert id="insertFile">
+		insert into ATTACHMENT
+		values (attachment_seq.nextval, #{bcode}, #{hbId}, #{originalFileName}, #{renameFileName} )
+	</insert>
+	
+	<update id="updateBoard" parameterType="HMBoard" >
+		update HOUSEMATE_BOARD
+		set hbtitle=#{hbTitle}, hbcontent=#{hbContent}, hlocation=#{hLocation}, 
+			HBMODIFYDATE=sysdate, hrenttype=#{hRentType}, hlivingtype=#{hLivingType},
+			hroomcount=#{hRoom}, hfloor=#{hFloor}, hprice=#{hPrice}, hparking=#{hParking}, hreqgender=#{hReqgender}
+		where hbid=#{hbId}
+	</update>
+	
+	<update id="updateFile" parameterType="HMBoard">
+		update attachment
+		set originalFilename = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where bcode = #{bcode}
+		and refbid = #{hbId}
+	</update>
+	
+	<update id="deleteBoard" parameterType="_int">
+		update HOUSEMATE_BOARD
+		set HBSTATUS='N'
+		where hbid = #{hbId}
+	</update>
+	
+	<select id="selectReplyList" parameterType="_int" resultType="Reply">
+		select * from Reply r
+		join HOUSEMATE_BOARD hm on hm.bcode=r.bcode
+		and r.refbid = hbid
+		where refbid=${hbId}
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+		insert into Reply
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+	</insert>
+	
+	<select id="getSearchListCount" parameterType="hashmap" resultType="_int">
+		select count(*)
+		from HOUSEMATE_BOARD
+		join member on(nickname = hbwriter)
+		where HBstatus = 'Y'
+		<if test="sCondition eq 'wr_subject'">
+			and hbtitle like '%' || #{sValue} || '%'
+		</if>
+		<if test="sCondition eq 'wr_content'">
+			and hbcontent like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'titleNcontent'">
+			and (hbtitle like '%' || #{sValue} || '%' or hbcontent like '%' || #{sValue} || '%')
+		</if> 
+		<if test="sCondition eq 'email'">
+			and email like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'hbwriter'">
+			and hbwriter like '%' || #{sValue} || '%'
+		</if> 
+	</select>
+	
+	<select id="selectSearchList" parameterType="hashmap" resultType="HMBoard">
+		select *
+		from HOUSEMATE_BOARD
+		join member on(nickname = hbwriter)
+		where HBstatus = 'Y'
+		<if test="sCondition eq 'wr_subject'">
+			and hbtitle like '%' || #{sValue} || '%'
+		</if>
+		<if test="sCondition eq 'wr_content'">
+			and hbcontent like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'titleNcontent'">
+			and (hbtitle like '%' || #{sValue} || '%' or hbcontent like '%' || #{sValue} || '%')
+		</if> 
+		<if test="sCondition eq 'email'">
+			and email like '%' || #{sValue} || '%'
+		</if> 
+		<if test="sCondition eq 'hbwriter'">
+			and hbwriter like '%' || #{sValue} || '%'
+		</if> 
+		order by HBMODIFYDATE desc
+	</select>
+	
+	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultMap="boardResultSet">
+		<![CDATA[
+			select *
+			from (select *
+				  from housemate_board
+				  where hbstatus = 'Y'
+				  order by hbcreatedate desc)
+			where rownum <= 8
+		]]>
+	</select>
+	
+</mapper>

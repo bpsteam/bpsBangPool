@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="showingMapper">
+
+	<!-- 자랑하기 게시글 insert및  attachement file insert -->
+	<insert id="insertShowing">
+		insert all
+		when 1 = 1 then
+		into showing values(showing_seq.nextval, default, #{sbtitle},
+							#{sbwriter}, #{sbcontent}, default, 
+							sysdate, sysdate, default)
+							<!-- <foreach item="" -->
+		when #{renameFileName} is not null then
+		into attachment values(attachment_seq.nextval, 'SBCODE', 
+							   showing_seq.currval, #{originalFileName}, 
+							   #{renameFileName})
+		select * from dual
+	</insert>
+	
+	<!-- 자랑하기 게시글 전체 count -->
+	<select id="getListCount" resultType="_int">
+		select count(*)
+		from showing
+		where sbstatus = 'Y'
+		order by sbid desc
+	</select>
+	
+	<!-- 자랑하기 게시글 전체 showing 객체에 담기-->
+	<select id="selectList" resultMap="showingResultSet">
+		select *
+		from showing
+		left join attachment on showing.sbid = attachment.refbid
+		where sbstatus = 'Y'
+		order by sbid desc
+	</select>
+	
+	<!-- showing 객체에 set -->
+	<resultMap type="Showing" id="showingResultSet">
+		<id property="sbid"  column="sbid"/>
+		<result property="bcode" column="bcode"/>
+		<result property="sbtitle" column="sbtitle"/>
+		<result property="sbwriter" column="sbwriter"/>
+		<result property="sbcontent" column="sbcontent"/>
+		<result property="sbcount" column="sbcount"/>
+		<result property="sbcreatedate" column="sbcreatedate"/>
+		<result property="sbmodifydate" column="sbmodifydate"/>
+		<result property="sbstatus" column="sbstatus"/>
+	</resultMap>
+	
+	<!-- 게시글 조회수 update-->
+	<update id="addReadCount" parameterType="_int">
+		update showing
+		set sbcount = sbcount + 1
+		where sbid = #{sbid}
+	</update>
+	
+	<!-- showing board detail 가져오기 -->
+	<select id="selectShowing" parameterType="_int" resultMap="showingResultSet">
+		select * 
+		from showing sb
+		left join attachment on sb.sbid = attachment.refbid
+		where sbid = #{sbid} and sbstatus = 'Y'
+	</select>
+	
+	<!-- delete showing board -->
+	<update id="deleteShowing" parameterType="_int">
+		update showing
+		set sbstatus = 'N'
+		where sbid = #{sbid}
+	</update>
+	
+	<!-- start update showing board -->
+	<update id="updateShowing" parameterType="showing">
+		update showing
+  		set sbtitle=#{sbtitle}, sbcontent=#{sbcontent}, 
+  			sbmodifydate=sysdate
+  		where sbid=#{sbid}
+	</update>
+	
+	<!-- update attachment  -->
+	<update id="updateAttachment" parameterType="showing">
+		update attachment 
+		set originalFileName = #{originalFileName},
+			renameFileName = #{renameFileName}
+		where refbid = #{sbid} and bcode = 'SBCODE'
+	</update>
+	<!-- end update showing board -->
+	
+	<!-- insert showing Reply -->
+	<insert id="insertReply">
+		insert into reply
+		values(reply_seq.nextval, 'SBCODE', 
+				#{rContent}, #{refbId}, #{rWriter}, 
+				sysdate, sysdate, default)
+	</insert>
+	
+	<!-- Start select Reply List -->
+	<select id="selectReplyList" parameterType="_int" resultMap="replyResultSet">
+		select * 
+  		from reply r
+  		join showing s on (refbid = sbId)
+  		where refbid = #{sbId}
+  		order by rid desc
+	</select>
+	
+	<resultMap type="Reply" id="replyResultSet">
+  		<result property="refbId" column="REFBID"/>
+  		<result property="rCreateDate" column="rcreatedate"/>
+  		<result property="rModifyDate" column="rmodifydate"/>
+  		<result property="rStatus" column="rstatus"/>
+  	</resultMap>
+  	
+  	<!-- 김상욱 탑 리스트 -->
+	<select id="selectTopList" resultMap="showingResultSet">
+		<![CDATA[
+			select *
+			from (select *
+				  from showing s
+                  join attachment a on a.bcode=s.bcode
+                  where a.refbid=s.sbid
+				  and s.sbstatus = 'Y'
+				  order by sbcreatedate desc)
+			where rownum <= 12
+		]]>
+	</select>
+  	<!-- End select Reply List -->
+</mapper>
