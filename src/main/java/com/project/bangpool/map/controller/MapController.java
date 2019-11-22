@@ -50,7 +50,8 @@ public class MapController {
 	@RequestMapping("mapAddSC.map")
 	public String mapAddSC(/*HttpServletResponse response, int loginUserId*/) {
 		//response.setContentType("application/json; charset=utf-8");
-		/*ArrayList<share> list = srService*/
+		/*ArrayList<share> list = srService
+		 * sssss*/
 		
 		return "mapAddSC";
 	}
