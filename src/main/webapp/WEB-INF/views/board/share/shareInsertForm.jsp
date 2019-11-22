@@ -64,7 +64,7 @@
 				<!-- Main Column -->
 				<div class="col-sm-9">
 					<div class="tab-content">
-					<form action="srInsert.sr">
+					<form action="srInsert.sr" method="POST" enctype="Multipart/form-data">
 						<h1>
 							<small>글쓰기</small>
 						</h1>
@@ -235,11 +235,9 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">내용</label>
 									<div class="col-sm-12">
-										<span class="sound_only"></span>
 										<textarea id="wr_content" name="srbContent"
 											class="form-control input-sm write-content" maxlength="65536"
 											style="width: 100%; height: 300px"></textarea>
-										<span class="sound_only"></span>
 									</div>
 								</div>
 								<div class="form-group">
@@ -264,8 +262,9 @@
 																<div class="input-group input-group-sm">
 																	<span class="input-group-addon">파일 0</span><input
 																		type="file" class="form-control input-sm"
-																		name="bf_file[]"
-																		title="파일 용량 10,485,760 바이트 이하만 업로드 가능">
+																		name="uploadFile"
+																		title="파일 용량 10,485,760 바이트 이하만 업로드 가능"
+																		accept="image/*">
 																</div>
 															</div>
 														</div>
@@ -282,7 +281,7 @@
 								</div>
 							</div>
 							<br>
-							</form>
+						</form>
 						</div>
 					</div>
 				</div>

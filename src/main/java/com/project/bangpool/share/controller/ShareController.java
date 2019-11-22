@@ -74,21 +74,19 @@ public class ShareController {
 	public ModelAndView shareInsert(@ModelAttribute Share s,
 									@RequestParam(value="page", required=false) Integer page,
 								    @RequestParam(value="srLocation", required=false) String sLoc,
-								   // @RequestParam("uploadFile") MultipartFile uploadFile,
+								    @RequestParam("uploadFile") MultipartFile uploadFile,
 								    ModelAndView mv,
 								    HttpServletRequest request,
 								    HttpSession session) {
 		
-		System.out.println("ShareInsert : " + s);
-		
-/*		if(uploadFile != null && !uploadFile.isEmpty()) {
+		if(uploadFile != null && !uploadFile.isEmpty()) {
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
 				s.setOriginalFileName(uploadFile.getOriginalFilename());
 				s.setRenameFileName(renameFileName);
 			}
-		}*/
+		}
 		
 		int result = srService.shareInsert(s);
 		
@@ -118,7 +116,10 @@ public class ShareController {
 		double chance = 100;
 		
 		if(s.getSrEventEnterCount() != 0) {
-			chance = s.getSrEventLimit()/s.getSrEventEnterCount();
+			chance = s.getSrEventLimit()*100/s.getSrEventEnterCount();
+			if(chance >100) {
+				chance = 100;
+			}
 		}
 		
 		if(s != null) {
@@ -207,7 +208,7 @@ public class ShareController {
 		HashMap<String, String> map1 = new HashMap<String, String>();
 		map1.put("srbId", srbId);
 		list = srService.selectMember(map1);
-		
+		String already = "already";
 		System.out.println("이벤트 입력 :" +list);
 		if(list != null) {
 			
@@ -216,7 +217,7 @@ public class ShareController {
 				if(list.get(i).getEmail().equals(email)) {
 					
 					mv.addObject("srbId",srbId)
-					  .addObject("already","already")
+					  .addObject("already",already)
 					  .setViewName("redirect:srdetail.sr");
 					
 					return mv;

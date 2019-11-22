@@ -75,7 +75,7 @@
 		INTO ATTACHMENT
 		VALUES(
 			ATTACHMENT_SEQ.NEXTVAL,
-			'SCODE',
+			'SBCODE',
 			SHARE_SEQ.CURRVAL,
 			#{originalFileName},
 			#{renameFileName}

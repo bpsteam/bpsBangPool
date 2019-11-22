@@ -58,6 +58,14 @@
 		#left_time{
 			color:red;
 		}
+		textarea {
+			width:100%;
+			height:400px;
+		    border: none;
+		    background-color: transparent;
+		    resize: none;
+		    outline: none;
+		}
 		
 	</style>
 
@@ -71,9 +79,7 @@
 	<!-- ==== HEADER END ==== -->
 	<div id="content">
 	
-			<div class="margin-bottom-20">
-				<hr>
-			</div>
+
 			
 			<div class="container background-white ">
 				<div class="row margin-vert-30">
@@ -97,24 +103,14 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-sm-5">
-								<img itemprop="image" src="https://quasarzone.co.kr/skin/board/nanum/img/jijang.jpg" class="reimg" data-toggle="modal" data-target="#eventModal" style="cursor: pointer;">
-								<!-- 이미지 확대-->
-								<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="myEventModalLabel" aria-hidden="false">
-									<div class="modal-dialog modal-sm">
-										<div class="modal-content">
-											<div class="modal-body">
-												<img src="https://quasarzone.co.kr/skin/board/nanum/img/jijang.jpg">
-											</div>
-										</div>
-									</div>
-								</div>
+								<img itemprop="image" src="${ contextPath }/resources/srBoardUploadFiles/${ share.renameFileName }" class="reimg" data-toggle="modal" data-target="#eventModal" style="cursor: pointer;">
 							</div>
 							<div class="col-sm-7 font-14">
 												<div class="col-sm-12 font-16">
-									<strike class="gray">${ share.srItemName }</strike>
+									<span>${ share.srItemName }</span>
 								</div>
 								<div class="col-sm-12">
-									<strike class="gray">배송방법: ${ share.srDelivery }</strike>
+									<span>배송방법: ${ share.srDelivery }</span>
 								</div>
 								<div class="col-sm-12">
 									시작일시: ${ srStartDate }<br>
@@ -135,7 +131,7 @@
 						
 						  <div class="view-padding">
 						    <div class="view-content">
-								${ share.srbContent }
+						    	<textarea><c:out value="${ share.srbContent }"/></textarea>
 						    </div>
 						  </div>
 						  
@@ -201,7 +197,7 @@
 	        getReplyList();
 	        
 	        countDate();
-	        
+	        already();
 			setInterval(function(){
 				countDate();
 			},1000);
@@ -209,6 +205,8 @@
 	  	});
 	    
 	    function already(){
+	    	
+	    	console.log("${ already }");
 	    	if("${ already }" != ""){
 	    		alert("이미 참여하였습니다.")
 	    	}
