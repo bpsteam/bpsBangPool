@@ -25,6 +25,7 @@ import com.google.gson.JsonIOException;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.common.page.Pagination;
+import com.project.bangpool.map.model.vo.Map;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.share.model.service.ShareService;
 import com.project.bangpool.share.model.vo.Share;
@@ -191,6 +192,15 @@ public class ShareController {
 
 	}
 	
-	
+	// ajax map
+	@RequestMapping("mapAjax.map")
+	@ResponseBody
+	public void mapAjax(HttpSession session, Map mp) {
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		ArrayList<Share> list = srService.mapList();
+		System.out.println(loginUser); 			// 로그인한 유져의 정보
+		System.out.println("list : "+list);
+		
+	}
 
 }

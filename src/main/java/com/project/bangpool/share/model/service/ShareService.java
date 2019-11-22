@@ -20,4 +20,6 @@ public interface ShareService {
 
 	ArrayList<Reply> selectReplyList(int refBid);
 
+	ArrayList<Share> mapList();
+
 }

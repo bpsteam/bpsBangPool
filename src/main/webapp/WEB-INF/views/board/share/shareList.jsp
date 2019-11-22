@@ -279,16 +279,7 @@
                                     </ul>
                             </div>
                         </div> -->
-                        <div class="panel panel-danger">
-                         		<div class="panel-heading">
-	                        		<h3 class="panel-title">무료나눔</h3>
-	                        	</div>
-	                        <div class="margin-bottom-10">
-	                        	<!-- start 지도 -->
-									<div id="map" style="width:100%;height:370px; border-radius: 0.5em;"></div>
-								<!-- end 지도 -->
-	                        </div>
-        				</div>
+                        
                         <div class="panel panel-danger">
                             <div class="panel-heading">
                                 <h3 class="panel-title">공지사항</h3>
@@ -368,9 +359,20 @@
                     </div>
                     <!-- End Side Column -->
                 </div>
+                <div class="panel panel-danger">
+               		<div class="panel-heading">
+               			<h3 class="panel-title">무료나눔</h3>
+                   	</div>
+                    <div class="margin-bottom-10">
+	                   	<!-- start 지도 -->
+							<div id="map" style="width:100%;height:370px; border-radius: 0.5em;"></div>
+						<!-- end 지도 -->
+                    </div>
+   				</div>
             </div>
         
             <div class="margin-bottom-30">
+            
                 <hr>
             </div>
         
@@ -446,7 +448,7 @@
 	var mapContainer = document.getElementById('map'); 	//지도를 담을 영역의 DOM 레퍼런스
 	var mapOptions = { 									//지도를 생성할 때 필요한 기본 옵션
 		center: new kakao.maps.LatLng(0,0), 			//지도의 중심좌표 초기화값.
-		level: 6										//지도의 레벨(확대, 축소 정도)
+		level: 5										//지도의 레벨(확대, 축소 정도)
 	};
 	
 	var map = new kakao.maps.Map(mapContainer, mapOptions); //지도 생성 및 객체 리턴

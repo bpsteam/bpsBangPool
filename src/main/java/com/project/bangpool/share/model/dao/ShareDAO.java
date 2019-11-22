@@ -41,4 +41,8 @@ public class ShareDAO {
 		return (ArrayList)sqlSession.selectList("shareMapper.listReply",refBid);
 	}
 
+	public ArrayList<Share> mapList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("mapMapper.listMap");
+	}
+
 }

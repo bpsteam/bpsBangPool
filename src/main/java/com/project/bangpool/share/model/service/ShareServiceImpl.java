@@ -49,6 +49,9 @@ public class ShareServiceImpl implements ShareService{
 	public ArrayList<Reply> selectReplyList(int refBid) {
 		return srDAO.listReply(sqlSession,refBid);
 	}
-
-
+	
+	@Override
+	public ArrayList<Share> mapList(){
+		return srDAO.mapList(sqlSession);
+	}
 }
