@@ -81,16 +81,14 @@ public class ShareController {
 		
 		System.out.println("ShareInsert : " + s);
 		
-		/*		
- 		if(uploadFile != null && !uploadFile.isEmpty()) {
+/*		if(uploadFile != null && !uploadFile.isEmpty()) {
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
 				s.setOriginalFileName(uploadFile.getOriginalFilename());
 				s.setRenameFileName(renameFileName);
 			}
-		}
-		*/
+		}*/
 		
 		int result = srService.shareInsert(s);
 		
