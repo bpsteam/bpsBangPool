@@ -279,10 +279,16 @@
                                     </ul>
                             </div>
                         </div> -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-        
+                        <div class="panel panel-danger">
+                         		<div class="panel-heading">
+	                        		<h3 class="panel-title">무료나눔</h3>
+	                        	</div>
+	                        <div class="margin-bottom-10">
+	                        	<!-- start 지도 -->
+									<div id="map" style="width:100%;height:370px; border-radius: 0.5em;"></div>
+								<!-- end 지도 -->
+	                        </div>
+        				</div>
                         <div class="panel panel-danger">
                             <div class="panel-heading">
                                 <h3 class="panel-title">공지사항</h3>
@@ -419,6 +425,195 @@
 	
 </script>
 
+<!-- start 카카오 지도 API source -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a48fcadcb1442066ac40adaba14e637&libraries=services,clusterer,drawing"></script>
+<!-- end 카카오 지도 API source -->
+
+<!-- 지도 관련  유저 정보 가져오기 -->
+<script type="text/javascript">
+	// start 로그인한 유저의 주소 잘라서 보여주기
+	var loginUseradd = "";
+	loginUseradd = ("${loginUser.address}".split('/'));
+	// end 로그인한 유저의 주소 잘라서 보여주기
+</script>
+
+<!-- start 지도 관련 지도 생성 및 지도 중심 좌표 -->
+<script type="text/javascript">
+	// 로그인 유저의 좌표값이 들어갈 객체
+	var userCoords = null;
+
+	// start 지도 생성
+	var mapContainer = document.getElementById('map'); 	//지도를 담을 영역의 DOM 레퍼런스
+	var mapOptions = { 									//지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(0,0), 			//지도의 중심좌표 초기화값.
+		level: 6										//지도의 레벨(확대, 축소 정도)
+	};
+	
+	var map = new kakao.maps.Map(mapContainer, mapOptions); //지도 생성 및 객체 리턴
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// java 를 통해서 받아온 String 값에 넣어준다.
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(loginUseradd[1], function(result, status) {
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+
+	        var coordsLogInUser = new kakao.maps.LatLng(result[0].y, result[0].x);
+			console.log("값이 들어왔습니다. 안정식 coordsLogInUser " + coordsLogInUser);	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coordsLogInUser
+	        });
+
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<a href="www.naver.com">네이버</a><div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
+	        });
+	        infowindow.open(map, marker);
+			
+	        userCoords = {
+        		latitude : result[0].y,
+       			longitude : result[0].x
+	        };
+	        console.log(userCoords);
+	     	// start 지도에 표시할 원을 생성합니다 ** 수정해 놓은상태
+	    	var circle = new kakao.maps.Circle({
+	    	    center : new kakao.maps.LatLng(result[0].y, result[0].x),  // 원의 중심좌표 입니다 
+	    	    radius: 1000, // 미터 단위의 원의 반지름입니다 
+	    	    strokeWeight: 5, // 선의 두께입니다 
+	    	    strokeColor: '#75B8FA', // 선의 색깔입니다
+	    	    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    	    strokeStyle: 'dashed', // 선의 스타일 입니다
+	    	    fillColor: '#CFE7FF', // 채우기 색깔입니다
+	    	    fillOpacity: 0.7  // 채우기 불투명도 입니다   
+	    	}); 
+	    	
+	    	// 지도에 원을 표시합니다 
+	    	circle.setMap(map); 
+	    	// end 지도에 표시할 원을 생성합니다 ** 수정해 놓은상태
+	    	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coordsLogInUser);
+	    } 
+	}); 
+	// end 지도 생성
+	
+</script>
+
+<!-- 주변 1km 이내에 나눔 게시판 표시 -->
+<script type="text/javascript">
+	
+	// 다른사람들 주소 가지고 만들기
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// 다른분들 주소값 배열로 받아오기
+	var address = new Array('서울특별시 송파구 올림픽로 240',	
+							'서울특별시 송파구 올림픽로 269',
+							'서울특별시 송파구 올림픽로 300',
+							'서울특별시 송파구 석촌호수로 268',
+							'서울특별시 송파구 석촌호수로 258',
+							'서울특별시 송파구 석촌호수로 230',
+							'서울특별시 송파구 석촌호수로 188');
+	console.log("userCoords" + userCoords);
+	// java 를 통해서 받아온 String 값에 넣어준다.
+	// 주소로 좌표를 검색합니다
+	for(var i=0; i < address.length; i++){
+		console.log(address[i]);
+		// geocoder 안으로 들어가면 address[i]값이 표시되지 않는다.
+		geocoder.addressSearch(address[i], function(result, status) {
+			// 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+	
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		        console.log("값이 들어왔습니다." + coords);
+					
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
+		        });
+		        infowindow.open(map, marker);
+				
+		        // ** map.setCenter 주석처리
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        // map.setCenter(coords);
+		        // ** map.setCenter 주석처리
+		    } 
+		}); 
+	}
+
+/* 	
+	//마커를 표시할 위치와 title 객체 배열입니다 
+	var positions = [
+	    {
+	        title: '카카오', 
+	        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+	    },
+	    {
+	        title: '생태연못', 
+	        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+	    },
+	    {
+	        title: '텃밭', 
+	        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+	    },
+	    {
+	        title: '근린공원',
+	        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+	    }
+	];
+	
+	// 마커 이미지의 이미지 주소입니다
+	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	    
+	for (var i = 0; i < positions.length; i ++) {
+	    
+	    // 마커 이미지의 이미지 크기 입니다
+	    var imageSize = new kakao.maps.Size(24, 35); 
+	    
+	    // 마커 이미지를 생성합니다    
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+	    
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: positions[i].latlng, // 마커를 표시할 위치
+	        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지 
+	    });
+}
+
+ */	
+	
+</script>
+
+<!-- ajax map -->
+<script type="text/javascript">
+	window.onload = function (){ 					/* window.onload 페이지가 로딩되고 시작하는 함수 */
+		var loginUserName = "${ loginUser.name }";
+		$.ajax({
+			url:"mapAjax.map", 						// controller 접근
+			data: {mName:loginUserName}, 			// 왼쪽 변수가 컨트롤러에서 받는 값, 오른쪽 변수가 자바스크립트에서 받는 값입니다.
+			dataType: "json",
+			success: function(data){
+				console.log("성공");
+			}
+		});
+	}
+</script>
+
+<!-- 1km 이하 거리 계산하기-->
+<script type="text/javascript">
+	
+</script>
 
 </body>
 </html>
