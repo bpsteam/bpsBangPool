@@ -7,12 +7,6 @@
 	     <!-- Title -->
   <title>방풀-홈</title>
 
-<style>
-	#tb{width: 200px;}
-	.hahaha{float: right;}
-	.hohoho{width: 180px;}
-	.dadada{position: absolute; left: 0px; top: 0px;}
-</style>
 </head>
 <body>
 <!-- ==== HEADER START ==== -->
@@ -45,78 +39,9 @@
                             </div>
                             <div class="widget-box panel-body">
                                 <div class="basic-post-list ">
-                                    <ul class="post-list" style ="padding-left: 15px; width: 100%;" id="tb">
-                                        <!-- <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=134" id="tb">
-                                                <span class="pull-right gray font-12">안중식안중식안중식안중식안중식안중식</span>
-                                                <span class="wr-icon wr-new"><span class="subject_title">안중식안중식</span>
-                                            </a>
-                                        </li> -->
-                                    </ul>                                                         
+                                        <c:import url ="common/roommateTopList.jsp"/>                                                     
                                 </div>
                             </div>
-                            
-                            <script>
-						        function topList(){
-									$.ajax({
-										url: "topList.rm",
-										dataType: "json",
-										success: function(data){
-											$ul = $("#tb");
-											$ul.html("");
-											
-											var rbWriter;
-											var rbTitle;
-											
-											
-											
-											for(var i in data){
-												
-												$li = $('<li class="ellipsis">');
-												$a = $('<a>').attr('href',"bdetail.rm?rbId="+data[i].rbId);
-												$span = $('<span class="gray font-12 hahaha">');
-												$span2 = $('<span class="subject_title hohoho">');
-												
-												
-												$rbWriter = $("<b>").text(data[i].rbWriter);
-												$rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-												
-												$li.append($a);
-												$span.append($rbWriter);
-												$span2.append($rbTitle);
-												$a.append($span);
-												$a.append($span2);
-												/* $li.append($span);
-												$li.append($span2); */
-												$ul.append($li);
-												
-												
-												/* var $tr = $('<span class="pull-right gray font-12">');
-												var $tr2 = $('<span class="subject_title">');
-												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-												var $rbWriter = $("<b>").text(data[i].rbWriter); */
-												
-												/* $tr.append($rbTitle); */
-												
-												/* $tr.append($rbWriter);
-												$tr2.append($rbTitle);
-												
-												$tableBody.append($tr);
-												$tableBody.append($tr2); */
-											}
-										}
-									});
-								}
-								
-								$(function(){
-									topList();
-									
-									setInterval(function(){
-										topList();
-									}, 10000);
-								});
-							</script>
-                            
                             <!-- 이슈 끝-->
                         </div>
                         </div>
@@ -134,13 +59,7 @@
                             </div>
                             <div class="widget-box panel-body">
                                 <div class="basic-post-list ">
-                                    <ul class="post-list" style ="padding-left: 15px; width: 100%;" id="tb2">
-                                        <!-- <li class="ellipsis">
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=134" id="tb">
-                                                <span class="pull-right gray font-12">안중식안중식안중식안중식안중식안중식</span>
-                                                <span class="wr-icon wr-new"><span class="subject_title">안중식안중식</span>
-                                            </a>
-                                        </li> -->
+                                    <ul class="post-list" style ="padding-left: 15px; width: 100%;" id="topList2">
                                     </ul>                                                         
                                 </div>
                             </div>
@@ -151,7 +70,7 @@
 										url: "topList.hm",
 										dataType: "json",
 										success: function(data){
-											$ul = $("#tb2");
+											$ul = $("#topList2");
 											$ul.html("");
 											
 											var hbWriter;
@@ -202,7 +121,7 @@
 									
 									setInterval(function(){
 										topList2();
-									}, 10000);
+									}, 100000);
 								});
 							</script>
                             
@@ -222,13 +141,13 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-user"></i>
                                             </span>
-                                            <input placeholder="Username" class="form-control" type="text" name="email">
+                                            <input placeholder="Username" class="form-control" type="text" id="email" name="email">
                                         </div>
                                         <div class="input-group margin-bottom-20">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-lock"></i>
                                             </span>
-                                            <input placeholder="Password" class="form-control" type="password" name="pwd">
+                                            <input placeholder="Password" class="form-control" type="password" id="pwd" name="pwd">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
@@ -236,7 +155,7 @@
                                                     <input type="checkbox">Stay signed in</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <button class="btn btn-primary pull-right" type="submit">Login</button>
+                                                <button class="btn btn-primary pull-right" id="loginBtn" type="submit">Login</button>
                                             </div>
                                         </div>
                                         <!-- <hr>
@@ -363,7 +282,7 @@
                                 <div class="widget-box panel-body">
                                     <div class="basic-post-list">
                     
-                                        <ul class="post-list" id="tb3">
+                                        <ul class="post-list" id="topList3">
                                             <!-- <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=109#c_123">
                     
@@ -385,7 +304,7 @@
 										url: "topList.fm",
 										dataType: "json",
 										success: function(data){
-											$ul = $("#tb3");
+											$ul = $("#topList3");
 											$ul.html("");
 											
 											var fbWriter;
@@ -436,7 +355,7 @@
 									
 									setInterval(function(){
 										topList3();
-									}, 10000);
+									}, 100000);
 								});
 							</script>
                                 <!-- 댓글 끝 -->
@@ -447,7 +366,7 @@
                         <div class="col-md-6">
                             <h3 class="padding-vert-10">공지사항</h3>
                             <p>가장 최근에 올라온 공지사항을 보여줍니다</p>
-                            <ul class="tick animate fadeInRight" id="tb4">
+                            <ul class="tick animate fadeInRight" id="topList4">
                                 
                             </ul>
                         </div>
@@ -457,7 +376,7 @@
 										url: "topList.no",
 										dataType: "json",
 										success: function(data){
-											$ul = $("#tb4");
+											$ul = $("#topList4");
 											$ul.html("");
 											
 											var nTitle;
@@ -503,7 +422,7 @@
 									
 									setInterval(function(){
 										topList4();
-									}, 10000);
+									}, 100000);
 								});
 							</script>
                      
@@ -512,31 +431,19 @@
             <!-- Portfolio -->
             
             <div id="portfolio" class="bottom-border-shadow">
-                <div class="container bottom-border">
-                	<div class="col-md-12">
-                			<br>
+                <div class="container background-white  bottom-border" style="height: 400px;">
+                    <div class="row margin-vert-30">
+                        <div class="col-md-12">
                             <h2>이케요</h2>
+                            <br><br>
                             <!-- Filter Buttons -->
                         </div>
-                    <div class="row padding-top-40">
-                        <ul class="portfolio-group " id="tb5">
-                        	
-                            <!-- Portfolio Item -->
-                            <%-- <li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">
-                                <a href="#">
-                                    <figure class="animate fadeInLeft">
-                                        <img alt="image1" src="${contextPath}/resources/assets/img/frontpage/test1.jpg">
-                                        <figcaption>
-                                            <h3>내용 미리보기</h3>
-                                            <span>미리보기가 보입니다</span>
-                                        </figcaption>
-                                    </figure>
-                                </a>
-                            </li> --%>
-                            <!-- //Portfolio Item// -->
-                        </ul>
-                    </div>
-                </div>
+                    	<div class="row col-md-12 portfolio-group" style="position: relative; width: 1039.97px; height: 265.844px;">
+                   			<div id="topList5">
+                    		</div>
+                       </div>
+                	</div>
+            	</div>
             </div>
             </div>
             
@@ -546,31 +453,32 @@
 						url: "topList.se",
 						dataType: "json",
 						success: function(data){
-							$ul = $("#tb5");
-							$ul.html("");
+							$div = $("#topList5");
+							$div.html("");
 							
 							/* var fbWriter;
 							var fbTitle; */
 							for(var i in data){
 								
-								$li = $('<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">');
+								$div2 = $('<div class="col-md-2 portfolio-item margin-bottom-40 audio dadada">').css('overflow','unset');
+								$div3 = $('<div>');
 								$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
-								$span = $('<figure class="animate fadeInLeft">');
-								$span2 = $('<img alt="image1" style="width: 400px; height: 200px;" src="resources/buploadFiles/'+data[i].shbRenameFileName+'">');
+								$span = $('<figure>');
+								$span2 = $('<img alt="image1" src="resources/buploadFiles/'+data[i].shbRenameFileName+'" style="width:100%; height:100%;">');
 								
 								
 								/* $fbWriter = $("<b>").text(data[i].fbWriter);
 								$fbTitle = $("<b>").text(decodeURIComponent(data[i].fbTitle.replace(/\+/g," "))); */
 								
-								$li.append($a);
+								$a.append($span);
 								/* $span.append($fbWriter);
 								$span2.append($fbTitle); */
-								$a.append($span);
-								$a.append($span2);
+								$span.append($span2);
+								$div3.append($a);
 								/* $li.append($span);
 								$li.append($span2); */
-								$ul.append($li);
-								
+								$div2.append($div3);
+								$div.append($div2);
 								
 								/* var $tr = $('<span class="pull-right gray font-12">');
 								var $tr2 = $('<span class="subject_title">');
@@ -594,113 +502,95 @@
 					
 					setInterval(function(){
 						topList5();
-					}, 10000);
+					}, 100000);
 				});
 			</script>
             <!-- End Portfolio -->
 
             <!-- 추가 portfolio-->
             <div id="content" class="bottom-border-shadow">
-                  
-            <div class="container background-white  bottom-border">
+            	<div class="container background-white  bottom-border" style="height: 400px;">
                     <div class="row margin-vert-30">
                         <div class="col-md-12">
                             <h2>자랑하기</h2>
+                            <br><br>
                             <!-- Filter Buttons -->
                         </div>
-                    </div>
-                    <div id="tb6">
-                    
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 portfolio-group no-padding" style="position: relative; width: 1039.97px; height: 264.844px;">
-                            <!-- Portfolio Item -->
-                            <%-- <div class="col-md-2 portfolio-item margin-bottom-40 audio" style="position: absolute; left: 0px; top: 0px;">
-                                <div>
-                                    <a href="#">
-                                        <figure>
-                                            <img src="${contextPath}/resources/assets/img/portfolio/image1.jpg" alt="image1">
-                                            <figcaption>
-                                                <h3 class="margin-top-20">Velit</h3>
-                                            </figcaption>
-                                        </figure>
-                                    </a>
-                                </div>
-                            </div> --%>
-                            <!-- End Portfolio Item -->
-                            
-                            <script>
-						        function topList6(){
-									$.ajax({
-										url: "topList.sb",
-										dataType: "json",
-										success: function(data){
-											$div = $("#tb6");
-											$div.html("");
-											
-											/* var fbWriter; */
-											var sbTitle;
-											console.log(data);
-											for(var i in data){
-												
-												$div2 = $('<div class="col-md-2 portfolio-item margin-bottom-40 audio dadada">');
-												$div3 = $('<div>');
-												$a = $('<a>').attr('href',"ddetailShowing2.sb?sbid="+data[i].sbid);
-												$span = $('<figure>');
-												$span2 = $('<img alt="image1" src="resources/showinguploadFiles/'+data[i].renameFileName+'">');
-												$span3 = $('<figcaption>');
-												
-												/* $div = $('<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">');
-												$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
-												$span = $('<figure class="animate fadeInLeft">');
-												$span2 = $('<img alt="image1" style="width: 400px; height: 200px;" src="resources/buploadFiles/'+data[i].shbRenameFileName+'">'); */
-												
-												
-												/* $fbWriter = $("<b>").text(data[i].fbWriter); */
-												$sbTitle = $("<b>").text(decodeURIComponent(data[i].sbtitle.replace(/\+/g," ")));
-												
-												/* $span.append($fbWriter); */
-												$span3.append($sbTitle);
-												$a.append($span);
-												$span.append($span2);
-												$span2.append($span3);
-												/* $li.append($span);
-												$li.append($span2); */
-												$div3.append($a);
-												$div2.append($div3);
-												$div.append($div2);
-												
-												
-												/* var $tr = $('<span class="pull-right gray font-12">');
-												var $tr2 = $('<span class="subject_title">');
-												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-												var $rbWriter = $("<b>").text(data[i].rbWriter); */
-												
-												/* $tr.append($rbTitle); */
-												
-												/* $tr.append($rbWriter);
-												$tr2.append($rbTitle);
-												
-												$tableBody.append($tr);
-												$tableBody.append($tr2); */
-											}
-										}
-									});
-								}
-								
-								$(function(){
-									topList6();
-									
-									setInterval(function(){
-										topList6();
-									}, 10000);
-								});
-							</script>
-                        </div>
-                    </div>
-                </div>
+                    	<div class="row col-md-12 portfolio-group" style="position: relative; width: 1039.97px; height: 265.844px;">
+                   			<div id="topList6">
+                    		</div>
+                       </div>
+                	</div>
+            	</div>
             </div>
             <!-- portfolio 끝 -->
+            <script>
+		        function topList6(){
+					$.ajax({
+						url: "topList.sb",
+						dataType: "json",
+						success: function(data){
+							$div = $("#topList6");
+							$div.html("");
+							
+							/* var fbWriter; */
+							var sbTitle;
+							console.log(data);
+							for(var i in data){
+								
+								$div2 = $('<div class="col-md-2 portfolio-item margin-bottom-40 audio dadada">').css('overflow','unset');
+								$div3 = $('<div>');
+								$a = $('<a>').attr('href',"ddetailShowing2.sb?sbid="+data[i].sbid);
+								$span = $('<figure>');
+								$span2 = $('<img alt="image1" src="resources/showinguploadFiles/'+data[i].renameFileName+'" style="width:100%; height:100%;">' );
+								/* $span3 = $('<figcaption>'); */
+								
+								/* $div = $('<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">');
+								$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
+								$span = $('<figure class="animate fadeInLeft">');
+								$span2 = $('<img alt="image1" style="width: 400px; height: 200px;" src="resources/buploadFiles/'+data[i].shbRenameFileName+'">'); */
+								
+								
+								/* $fbWriter = $("<b>").text(data[i].fbWriter); */
+								$sbTitle = $("<b>").text(decodeURIComponent(data[i].sbtitle.replace(/\+/g," ")));
+								
+								/* $span.append($fbWriter); */
+								/* $span3.append($sbTitle); */
+								$a.append($span);
+								$span.append($span2);
+								/* $span2.append($span3); */
+								/* $li.append($span);
+								$li.append($span2); */
+								$div3.append($a);
+								$div2.append($div3);
+								$div.append($div2);
+								
+								
+								/* var $tr = $('<span class="pull-right gray font-12">');
+								var $tr2 = $('<span class="subject_title">');
+								var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+								var $rbWriter = $("<b>").text(data[i].rbWriter); */
+								
+								/* $tr.append($rbTitle); */
+								
+								/* $tr.append($rbWriter);
+								$tr2.append($rbTitle);
+								
+								$tableBody.append($tr);
+								$tableBody.append($tr2); */
+							}
+						}
+					});
+				}
+				
+				$(function(){
+					topList6();
+					
+					setInterval(function(){
+						topList6();
+					}, 100000);
+				});
+			</script>
 
 
 
@@ -807,7 +697,7 @@
                                     <div class="widget-box panel-body">
                                         <div class="basic-post-list ">
                             
-                                            <ul class="post-list" id="tb8">
+                                            <ul class="post-list" id="topList8">
                                                 <!-- <li class="ellipsis">
                                                     <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1620">
                             
@@ -827,7 +717,7 @@
 											url: "topList.fr",
 											dataType: "json",
 											success: function(data){
-												$ul = $("#tb8");
+												$ul = $("#topList8");
 												$ul.html("");
 												
 												var frbWriter;
@@ -878,7 +768,7 @@
 										
 										setInterval(function(){
 											topList8();
-										}, 10000);
+										}, 100000);
 									});
 								</script>
                                 <!-- 뉴스 끝 -->
@@ -944,8 +834,56 @@
 <!-- ==== END CONTENT ==== -->
 
 
+
+ <!-- 비밀번호 불일치 모달 -->
+	<div class="modal fade" id="pwdNotMatch" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">비밀번호 불일치</h4>
+				</div>
+				<div class="modal-body">
+				가입시 입력하신 비밀번호와 일치하지 않습니다.<br>
+				비밀번호를 다시 확인해주세요.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 비밀번호 불일치 모달 끝 -->
+
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
+
+
+<script>
+	$('#loginBtn').click(function(){
+		event.preventDefault();
+		var email = $('#email').val();
+		var pwd = $('#pwd').val();
+		$.ajax({
+			url: "pwdCheck.me",
+			data: {email:email,pwd:pwd},
+			success: function(data){
+				console.log(data);
+				 if (data == "success") {
+					$("#loginForm").submit();
+				} else {
+					$("#pwdNotMatch").modal();
+					$("#pwd").select();
+				} 
+			},error: function(data){
+				console.log("에러 : "+ data);
+			}
+		});
+	});
+</script>
 </body>
 </html>

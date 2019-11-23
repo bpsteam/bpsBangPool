@@ -79,7 +79,11 @@ public class ShareController {
 								    HttpServletRequest request,
 								    HttpSession session) {
 		
+
 		if(uploadFile != null && !uploadFile.isEmpty()) {
+	
+ 		if(uploadFile != null && !uploadFile.isEmpty()) {
+
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
@@ -87,6 +91,7 @@ public class ShareController {
 				s.setRenameFileName(renameFileName);
 			}
 		}
+
 		
 		int result = srService.shareInsert(s);
 		

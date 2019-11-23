@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -36,7 +37,6 @@ import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.service.MailService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.member.model.vo.Member;
-import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 
 @Controller
@@ -578,6 +578,17 @@ public class FMBoardController {
 		
 		return mv;
 		
+	}
+	
+	@RequestMapping("createCookie.fm")
+	public void createCookie(HttpServletResponse response, HttpSession session, FMBoard b) {
+		Cookie setCookie = new Cookie("recentList", "recent_"+b.getFbId()+"_"+b.getBcode()+"_"+b.getFbTitle()); // 쿠키 이름을 name으로 생성
+		//Member m = (Member)session.getAttribute("loginUser");
+		setCookie.setComment("최근본게시물") ;
+		setCookie.setMaxAge(60*60*24); // 기간을 하루로 지정
+		setCookie.setPath("/");
+		System.out.println("쿠키생성 : " +setCookie.getValue());
+		response.addCookie(setCookie);
 	}
 	
 	

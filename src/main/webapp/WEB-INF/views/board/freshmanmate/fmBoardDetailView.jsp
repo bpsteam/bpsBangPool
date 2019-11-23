@@ -511,6 +511,17 @@
    		/* setInterval(function(){
    			getReplyList();
    		}, 10000); */
+   		var fbId = ${ board.fbId };
+   		var bcode = "${ board.bcode }";
+   		var fbTitle = "${ board.fbTitle }";
+   		$.ajax({
+   			url: "createCookie.fm",
+   			data: {fbId:fbId, bcode:bcode, fbTitle:fbTitle},
+   			success:function(data){
+   				alert("전송성공");
+   			}
+   			
+   		});
    	});
 	
 		$("#rSubmit").on("click",function(){

@@ -27,6 +27,7 @@ public class Share {
     private String srItemName; 		// 아이템이름
     private String srDelivery; 		// 배송방법
     private String srWinner;   		// 당첨자
+
     
  	public Share() {}
  	
@@ -266,3 +267,4 @@ public class Share {
  	
     
 }
+

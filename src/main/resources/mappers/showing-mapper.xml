@@ -120,7 +120,7 @@
                   where a.refbid=s.sbid
 				  and s.sbstatus = 'Y'
 				  order by sbcreatedate desc)
-			where rownum <= 12
+			where rownum <= 10
 		]]>
 	</select>
   	<!-- End select Reply List -->

@@ -34,7 +34,6 @@
 										</div>
                                     </div>
                                     <hr>
-                                    
                                 </div>
                                 <div class="col-md-6 margin-bottom-10 animate fadeInRight" style="width: 500px;">
                                     <h3 class="padding-top-10 pull-left">${ showing.sbwriter }</h3>
@@ -69,7 +68,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- === END CONTENT === -->
             <!-- === BEGIN FOOTER === -->
             <c:import url ="../../common/footer.jsp"/>
