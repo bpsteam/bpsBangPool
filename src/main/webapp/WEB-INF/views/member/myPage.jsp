@@ -281,8 +281,9 @@
                                                         <span class="pull-right">${ loginUser.gender }</span>
                                                        성별
                                                     </li>
-                                                    <li class="list-group-item">
-                                                        <span class="pull-right">${ loginUser.address }</span>
+                                                    
+                                                    <li class="list-group-item" style="height:88px">
+                                                        <span class="pull-right" style="text-align:right">${ loginUser.address }</span>
                                                         주소
                                                     </li>
                                                                     </ul>
