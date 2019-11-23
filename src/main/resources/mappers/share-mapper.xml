@@ -213,6 +213,5 @@
 		SRBID = #{srbId}
 		
 	</update>
->>>>>>> branch 'bps_hs' of https://github.com/bpsteam/bpsBangPool.git
 	
 </mapper>
