@@ -1,15 +1,15 @@
 package com.project.bangpool.member.controller;
 
 
-import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
+import java.util.HashMap;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -34,6 +34,11 @@ public class MemberController {
 	 /* NaverLoginBO */
     private NaverLoginBO naverLoginBO;
     private String apiResult = null;
+    
+    
+    @Autowired
+    private KakaoAPI kakao;
+    
     
     @Autowired
     private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
@@ -83,8 +88,26 @@ public class MemberController {
 	
 	//로그아웃 용 컨트롤러 22
 		@RequestMapping("logout.me")
-		public String logout(SessionStatus status) {
-			
+		public String logout(SessionStatus status,
+								HttpServletRequest request, HttpServletResponse response
+								) {
+			Cookie[] cookies = request.getCookies() ;
+		     
+		    if(cookies != null){
+		        for(int i=0; i < cookies.length; i++){
+		             
+		            // 쿠키의 유효시간을 0으로 설정하여 만료시킨다
+		            cookies[i].setMaxAge(0) ;
+		             
+		            // 응답 헤더에 추가한다
+		            response.addCookie(cookies[i]) ;
+		        }
+		    }
+
+		    Cookie kc = new Cookie("recentList", null) ;
+		    kc.setMaxAge(0) ;
+		    response.addCookie(kc) ;
+
 			
 			status.setComplete();
 			
@@ -165,7 +188,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("mypage.me")
-	public String myPageView() {
+	public String myPageView(Model model) {
+		Member m = (Member)model.getAttribute("loginUser");
+		m.setAddress(m.getAddress().replace("/", "<br>"));
+		
 		return "myPage";
 	}
 	
@@ -223,6 +249,43 @@ public class MemberController {
 //    	return "redirect: callback.me";
 //    }
     
+    @RequestMapping(value="kakaocallback.me", method = { RequestMethod.GET, RequestMethod.POST })
+    public ModelAndView kakaoCallBack(Model model, @RequestParam String code,  HttpSession session,HttpServletResponse response, ModelAndView mv) {
+    	response.setContentType("application/json; charset=utf-8");
+    	  String access_Token = kakao.getAccessToken(code);
+    	  HashMap<String, String> userInfo = kakao.getUserInfo(access_Token);
+    	  
+//        클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+    	    if (userInfo.get("email") != null) {
+    	    	
+    	    	// 맴버 객체 생성 후 snsId 값 들고 디비로 넘어가서 가입된 맴버인지 확인하기
+    	    	Member m = new Member();
+    	        m.setSnsId(userInfo.get("snsId"));
+    	        Member loginUser = mService.snsLogin(m);
+    	       	System.out.println("snslogin 디비갔다온거 : "+loginUser);
+    	       	
+//    	        session.setAttribute("userId", userInfo.get("email"));
+//    	        session.setAttribute("access_Token", access_Token);
+    	       	
+    	       	// 가입된 맴버일 경우 로그인 시키기
+    	      	if(loginUser !=null) {
+    	      		model.addAttribute("loginUser", loginUser);
+    	      		mv.setViewName("kakaoSuccess");
+    	      	// 가입이 안된 맴버일 경우 카카오에서 받은 정보를 들고 회원가입 페이지로 넘어가기
+    	      	}else {
+    	      		m.setNickname(userInfo.get("nickname"));
+    	      		if(userInfo.get("gender").equals("female"))	m.setGender("여성");
+    	      		else	m.setGender("남성");
+    	      		m.setEmail(userInfo.get("email"));
+    	      		
+    	      		System.out.println("회원가입창으로 보낼 카카오계정 정보 : "+m );
+    	      		mv.addObject("snsMember", m).addObject("kakaoId",m.getSnsId()).setViewName("yakwan");
+    	      	}
+    	        
+    	    }
+    	return mv;
+    }
+    
     //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "callback.me", method = { RequestMethod.GET, RequestMethod.POST })
     public ModelAndView callback(Model model, @RequestParam String code, 
@@ -255,6 +318,7 @@ public class MemberController {
 
       Member m = new Member();
       m.setSnsId(snsId);
+      
       
 //      System.out.println("이름나와 ? " +name); //나온다
 //      try {

@@ -252,7 +252,10 @@
                                     <a href="<%=naverAuthUrl %>"></a>
                                 </li>
                                 <li class="social-twitter">
-                                        <a href="#"class="fa fa-bell-o"></a>
+                                        <a href="https://kauth.kakao.com/oauth/authorize?
+									client_id=f99dca6dd1bbdcd594add6026b96346d
+									&redirect_uri=http://localhost:9879/bangpool/kakaocallback.me
+									&response_type=code"class="fa fa-bell-o"></a>
                                 </li>
                                 <li class="social-facebook">
                                     <a href="#" class="glyphicon glyphicon-search"></a>
