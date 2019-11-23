@@ -33,6 +33,7 @@ public interface ShareService {
 
 	ArrayList<Member> selectMember(Reply r);
 
-	//ArrayList<Member> selectMember(HashMap<String, Integer> map);
+	ArrayList<Member> countMember(int srbId);
+
 
 }

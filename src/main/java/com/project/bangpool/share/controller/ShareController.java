@@ -65,6 +65,28 @@ public class ShareController {
 	}
 	
 	
+	
+	
+	
+	
+
+  	// ajax map
+	@RequestMapping("mapAjax.sr")
+	public void mapAjax(HttpServletResponse response) throws JsonIOException, IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Map> list = srService.mapList();
+		
+		for(Map s : list) {
+			s.setAddress(URLEncoder.encode(s.getAddress(),"utf-8"));
+			s.setSrbwriter(URLEncoder.encode(s.getSrbwriter(),"utf-8"));
+			s.setSritemname(URLEncoder.encode(s.getSritemname(),"utf-8"));
+		}
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	}
+	
+	
 	@RequestMapping("srInsertForm.sr")
 	public String shareInsertForm() {
 		
@@ -77,15 +99,13 @@ public class ShareController {
 	public ModelAndView shareInsert(@ModelAttribute Share s,
 									@RequestParam(value="page", required=false) Integer page,
 								    @RequestParam(value="srLocation", required=false) String sLoc,
-								   // @RequestParam("uploadFile") MultipartFile uploadFile,
+								    @RequestParam("uploadFile") MultipartFile uploadFile,
 								    ModelAndView mv,
 								    HttpServletRequest request,
 								    HttpSession session) {
-		
-		System.out.println("ShareInsert : " + s);
-		
-		/*		
+	
  		if(uploadFile != null && !uploadFile.isEmpty()) {
+
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
@@ -93,25 +113,30 @@ public class ShareController {
 				s.setRenameFileName(renameFileName);
 			}
 		}
-		*/
+
 		
 		int result = srService.shareInsert(s);
 		
 		if(result>0) {
 			mv.setViewName("redirect:srListView.sr");
+			return mv;
 		}
+			return mv;
 		
-		
-		return mv;
-		 
 	}
 	
 	@RequestMapping("srdetail.sr")
 	public ModelAndView shareDetail(@RequestParam("srbId") int srbId,
 							  ModelAndView mv) {
+		ArrayList<Member> m = new ArrayList<Member>();
+		
+		m = srService.countMember(srbId);
+	
 		SimpleDateFormat srDate = new SimpleDateFormat("yyyy년 MM월 dd일");
 		
 		Share s = srService.shareDetail(srbId);
+		
+		s.setSrEventEnterCount(m.size());
 		
 		String srStartDate = srDate.format(s.getSrStartDate());
 		String srEndDate = srDate.format(s.getSrEndDate());
@@ -201,24 +226,6 @@ public class ShareController {
 
 	}
 	
-
-  	// ajax map
-	@RequestMapping("mapAjax.sr")
-	public void mapAjax(HttpServletResponse response) throws JsonIOException, IOException {
-		
-		response.setContentType("application/json; charset=utf-8");
-		ArrayList<Map> list = srService.mapList();
-		
-		for(Map s : list) {
-			s.setAddress(URLEncoder.encode(s.getAddress(),"utf-8"));
-			s.setSrbwriter(URLEncoder.encode(s.getSrbwriter(),"utf-8"));
-			s.setSritemname(URLEncoder.encode(s.getSritemname(),"utf-8"));
-		}
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(list, response.getWriter());
-	}
-
-	
 	@RequestMapping("reply_event_insert.sr")
 	@ResponseBody
 	public String reply_event_insert(Reply r, 
@@ -240,7 +247,6 @@ public class ShareController {
 		}
 		else {
 			
-			System.out.println("값이 없어서 else로 옴 ");
 			HashMap<String, String> map = new HashMap<String, String>();
 			
 			map.put("refbId",refbId );

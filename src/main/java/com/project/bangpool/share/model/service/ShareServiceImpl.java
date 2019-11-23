@@ -40,7 +40,12 @@ public class ShareServiceImpl implements ShareService{
 
 	@Override
 	public Share shareDetail(int srbId) {
-		return srDAO.shareDetail(sqlSession,srbId);
+		Share s = null;
+		int result = srDAO.addReadCount(sqlSession,srbId);
+		if(result >0) {
+			return srDAO.shareDetail(sqlSession,srbId);
+		}
+		return s;
 	}
 
 	@Override
@@ -68,11 +73,6 @@ public class ShareServiceImpl implements ShareService{
 		return srDAO.insertWinner(sqlSession,s);
 	}
 
-	/*@Override
-	public ArrayList<Member> selectMember(HashMap<String, Integer> map) {
-		return srDAO.selectMember(sqlSession,map);
-	}*/
-
 	@Override
 	public ArrayList<Member> selectMember(Reply r) {
 		return srDAO.selectMember(sqlSession,r);
@@ -82,5 +82,13 @@ public class ShareServiceImpl implements ShareService{
 	public ArrayList<Map> mapList(){
 		return srDAO.mapList(sqlSession);
 	}
+	@Override
+	public ArrayList<Member> countMember(int srbId) {
+		return srDAO.countMember(sqlSession,srbId);
+	}
+
+
+
+	
 
 }

@@ -137,7 +137,7 @@
 						  
 					
 				    <div class="view-comment font-18 en" style="margin-top:50px;">
-						<i class="fa fa-commenting"></i> 댓글 : <span class="orange">104</span> 개
+						<i class="fa fa-commenting"></i> 댓글 : <span id="comment_count" class="orange"></span> 개
 				    </div>
 				    <c:if test="${ loginUser != null }">
 				    
@@ -151,7 +151,7 @@
 					          <form action="reply_event_insert.sr">
 						        <div class="comment-cell" style="width:80%">
 						            <textarea id="reply_content" tabindex="13" id="wr_content" name="rContent" maxlength="10000" rows="5"
-						              class="form-control input-sm is_cm_color" title="내용"></textarea>
+						              class="form-control input-sm is_cm_color" title="내용" required></textarea>
 						            <input name="nickname" type="hidden" value=${ loginUser.nickname }>
 						            <input name="srbId" type="hidden" value=${ share.srbId }>
 						            <input name="email" type="hidden" value=${ loginUser.email }>
@@ -320,7 +320,9 @@
 	    			var $reply_edit;
 	    			var $reply_edit_textarea;
 	    			
+	    			$('#comment_count').text(data.length);
 	    			if(data.length >0){
+	    				
 	    				
 	    				for(var i in data){
 	    					
