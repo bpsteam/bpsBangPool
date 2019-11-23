@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.share.model.vo.Map;
 import com.project.bangpool.share.model.vo.Share;
 
 @Repository("srDAO")
@@ -60,7 +61,7 @@ public class ShareDAO {
 		return (ArrayList)sqlSession.selectList("shareMapper.selectMember",map);
 	}
 
-	public ArrayList<Share> mapList(SqlSessionTemplate sqlSession) {
+	public ArrayList<Map> mapList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("mapMapper.listMap");
 	}
 }

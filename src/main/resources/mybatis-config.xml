@@ -28,13 +28,12 @@
 
     	<typeAlias type="com.project.bangpool.share.model.vo.Share" alias="Share"/>
     	
+    	<typeAlias type="com.project.bangpool.share.model.vo.Map" alias="share_Map"/>
+    	
     	<typeAlias type="com.project.bangpool.memberlevel.model.vo.ManageMember" alias="ManageMember"/>
 
     	<typeAlias type="com.project.bangpool.freeboard.model.vo.FreeBoard" alias="FreeBoard"/>
 
-    	<typeAlias type="com.project.bangpool.map.model.vo.Map" alias="share_Map"/>
-
-    	
 	</typeAliases>
 	
 	<mappers>

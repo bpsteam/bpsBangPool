@@ -185,4 +185,12 @@
 	
 	</select>
 	
+	<!-- share board 를 가지고 있는 객체 확인  지도에 표시하는 이름 -->
+	<select id="listMap" resultType="share_Map">
+		select srbid, srbwriter, address, sritemname
+		from share_board
+		left join member on member.nickname = share_board.srbwriter
+		where srstatus like 'Y' 
+	</select>
+	
 </mapper>
