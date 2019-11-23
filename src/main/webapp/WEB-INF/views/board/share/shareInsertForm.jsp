@@ -64,7 +64,7 @@
 				<!-- Main Column -->
 				<div class="col-sm-9">
 					<div class="tab-content">
-					<form action="srInsert.sr" method="POST" enctype="Multipart/form-data">
+					<form id="srInsert.sr" action="srInsert.sr" method="POST" enctype="Multipart/form-data">
 						<h1>
 							<small>글쓰기</small>
 						</h1>
@@ -107,7 +107,7 @@
 										<label class="col-sm-2 col-xs-12 control-label" for="sdate">시작일시</label>
 											<div class="col-sm-5 col-xs-6">
 												<div class="control-label input-group input-group-sm col-sm-4">
-													<input type="date" id="realDate" name="srStartDate" required> 
+													<input type="date" id="srStartDate" name="srStartDate"  min="2019-11-07" required> 
 													<span id="calendarBtn" class="input-group-addon"><i	class="fa fa-calendar"></i></span>
 												</div>
 											</div>
@@ -148,7 +148,7 @@
 									<label class="col-sm-2 col-xs-12 control-label" for="edate">종료일시</label>
 									<div class="col-sm-5 col-xs-6">
 										<div class="control-label input-group input-group-sm col-sm-4">
-											<input type="date" id="edate" name="srEndDate" required> 
+											<input type="date" id="srEndDate" name="srEndDate" required> 
 											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 										</div>
 									</div>
@@ -242,15 +242,6 @@
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label hidden-xs">첨부파일</label>
-									<div class="col-sm-10">
-										<p class="form-control-static text-muted"
-											style="padding: 0px; padding-top: 4px;">
-											<span class="cursor" onclick="add_file();"><i
-												class="fa fa-plus-circle fa-lg"></i> 파일추가</span> &nbsp; <span
-												class="cursor" onclick="del_file();"><i
-												class="fa fa-times-circle fa-lg"></i> 파일삭제</span>
-										</p>
-									</div>
 								</div>
 								<div class="col-sm-10 col-sm-offset-2">
 									<table id="variableFiles">
@@ -263,8 +254,8 @@
 																	<span class="input-group-addon">파일 0</span><input
 																		type="file" class="form-control input-sm"
 																		name="uploadFile"
-																		title="파일 용량 10,485,760 바이트 이하만 업로드 가능"
-																		accept="image/*">
+																		title="img 파일만 업로드 가능합니다"
+																		accept="image/*" required>
 																</div>
 															</div>
 														</div>
@@ -274,17 +265,17 @@
 									</table>
 								</div>
 								<div class="write-btn pull-right">
-									<button type="submit" id="btn_submit" accesskey="s"	class="btn btn-success btn-sm ">
+									<button type="button" id="btn_submit" accesskey="s"	class="btn btn-success btn-sm ">
 										<i class="fa fa-check"></i> <b>작성완료</b>
 									</button>
 									<a href="blist.hm" class="btn btn-danger btn-sm" role="button">취소</a>
 								</div>
-							</div>
-							<br>
-						</form>
+							</form>
 						</div>
+						<br>
 					</div>
 				</div>
+			</div>
 				<!-- End Main Column -->
 				<!-- Side Column -->
 				<div class="col-md-3">
@@ -407,8 +398,54 @@
 
 	<script type="text/javascript">
 		$(function() {
-			var today = getTodayType2();
-			console.log(today);
+			
+			
+			
+			var today = new Date();
+			var year = today.getFullYear();
+			var month = today.getMonth()+1;
+			var date = today.getDate();
+			
+			var min = year+"-"+month+"-"+(date+1);
+			
+			$('#srStartDate').attr({"min":min});
+			$('#srEndDate').attr({"min":min});
+			
+			$('#srStartDate').change(function(){
+				var startDate = $('#srStartDate').val();
+				var startDateArr = startDate.split('-');
+				var startDateCompare = startDateArr[0] +"-"+ startDateArr[1]+"-"+(parseInt(startDateArr[2])+1);
+				console.log(startDateCompare);
+				$('#srEndDate').attr({"min":startDateCompare});
+			});
+			
+			$('#srEndDate').change(function(){
+				var endDate = $('#srEndDate').val();
+				var endDateArr = endDate.split('-');
+				var endDateCompare = endDateArr[0] +"-"+ endDateArr[1] +"-"+ (parseInt(endDateArr[2])-1);
+				console.log(endDateCompare);
+				$('#srStartDate').attr({"max":endDateCompare});
+			});
+			
+			
+/* 			$('#btn_submit').click(function(){			
+ 				var startDate = $('#srStartDate').val();
+ 				var endDate = $('#srEndDate').val();
+ 				
+ 				var startDateArr = startDate.split('-');
+ 				var endDateArr = endDate.split('-');
+ 				
+		        var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
+		        var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
+ 				
+		        if(startDateCompare.getTime() > endDateCompare.getTime()) {
+		            alert("시작날짜와 종료날짜를 확인해 주세요.");
+		        }else{
+		        	$('#srInsert.sr').submit();
+		        }
+		        
+			}); */
+
 		});
 	</script>
 
