@@ -88,7 +88,7 @@ public class MemberController {
 	
 	//로그아웃 용 컨트롤러 22
 		@RequestMapping("logout.me")
-		public String logout(SessionStatus status,
+		public String logout(SessionStatus status, HttpSession session,
 								HttpServletRequest request, HttpServletResponse response
 								) {
 			Cookie[] cookies = request.getCookies() ;
@@ -108,7 +108,9 @@ public class MemberController {
 		    kc.setMaxAge(0) ;
 		    response.addCookie(kc) ;
 
-			
+//		    kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+//		    session.removeAttribute("access_Token");
+		    
 			status.setComplete();
 			
 			return "redirect:home.do";
@@ -270,6 +272,7 @@ public class MemberController {
     	       	// 가입된 맴버일 경우 로그인 시키기
     	      	if(loginUser !=null) {
     	      		model.addAttribute("loginUser", loginUser);
+//    	      		session.setAttribute("access_Token", access_Token);
     	      		mv.setViewName("kakaoSuccess");
     	      	// 가입이 안된 맴버일 경우 카카오에서 받은 정보를 들고 회원가입 페이지로 넘어가기
     	      	}else {

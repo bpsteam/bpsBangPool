@@ -447,45 +447,14 @@
                             </div>
                         </div>
                         <!-- End recent Posts -->
-                        <!-- 공지사항 -->
+                        <!-- RecentPost -->
                         <div class="panel panel-info">
-                            <!-- 이슈 시작-->
-                            <div class="panel-heading">
-                                <h3 class="panel-title">최신 게시글</h3>
-                            </div>
-                            <div class="widget-box panel-body" style="background-color: white;">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" style="margin-bottom:0px">
-
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>최신글입니다1</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>최신글입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>최신글입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td>최신글입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- 이슈 끝-->
+						
+						      <!-- recentPost 최근 본 개시물 Import -->
+						      <c:import url="../../common/recentPosts.jsp"/>
+						      <!-- recentPost Import -->
                         </div>
-                        <!-- End 공지사항 -->
+                        <!-- End RecentPost -->
                     </div>
                 </div>
                 <!-- End Side Column -->
@@ -514,11 +483,13 @@
    		var fbId = ${ board.fbId };
    		var bcode = "${ board.bcode }";
    		var fbTitle = "${ board.fbTitle }";
+   		var imgg= "${board.originalFileName}";
+   		var img=imgg.split(";")[0];
+   		console.log(img);
    		$.ajax({
    			url: "createCookie.fm",
-   			data: {fbId:fbId, bcode:bcode, fbTitle:fbTitle},
+   			data: {fbId:fbId, bcode:bcode, fbTitle:fbTitle, img:img},
    			success:function(data){
-   				alert("전송성공");
    			}
    			
    		});
