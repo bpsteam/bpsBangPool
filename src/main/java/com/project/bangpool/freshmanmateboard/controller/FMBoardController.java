@@ -277,15 +277,19 @@ public class FMBoardController {
 	
 	
 	@RequestMapping("bdetail.fm")
-	public ModelAndView selectOneBoard(@RequestParam("fbId") int fbId, ModelAndView mv,
+	public ModelAndView selectOneBoard(@RequestParam(value="fbId", required=false) Integer fbId, ModelAndView mv,
+									@RequestParam(value="bId", required=false) String bId,
 										HttpSession session) {
-
+		System.out.println("나오냐 : "+bId);
+		if(bId != "" && bId != null) {
+			fbId=Integer.parseInt(bId);
+		}
 		
-//		System.out.println("디테일뷰 보드 출력 fbId : "+fbId);
+		System.out.println("디테일뷰 보드 출력 fbId : "+fbId);
 		FMBoard board = fbService.selectBoard(fbId);
 
 		if(board != null) {
-//			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
+			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
 			
 			if(board.getRenameFileName()!=null) {
 				String[] original=board.getOriginalFileName().split(";");
@@ -338,10 +342,13 @@ public class FMBoardController {
 	@RequestMapping("bupdate.fm")
 	public ModelAndView updateBoard(@ModelAttribute FMBoard b, @RequestParam("phone1")String phone1,
 			@RequestParam("phone2")String phone2, @RequestParam("phone3")String phone3,
+			
 			@RequestParam(value="reloadFile1", required=false) MultipartFile reloadFile1, 
 			@RequestParam(value="reloadFile2", required=false) MultipartFile reloadFile2, 
 			@RequestParam(value="reloadFile3", required=false) MultipartFile reloadFile3,
 							HttpServletRequest request, ModelAndView mv) {
+		
+		
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
 
@@ -581,12 +588,15 @@ public class FMBoardController {
 	}
 	
 	@RequestMapping("createCookie.fm")
-	public void createCookie(HttpServletResponse response, HttpSession session, FMBoard b) {
-		Cookie setCookie = new Cookie("recentList", "recent_"+b.getFbId()+"_"+b.getBcode()+"_"+b.getFbTitle()); // 쿠키 이름을 name으로 생성
+	public void createCookie(HttpServletResponse response, HttpSession session, FMBoard b, @RequestParam(value="img", required=false) String img) {
+		if(img != null || img != "") {
+			img = "imageExists";
+		}
+		Cookie setCookie = new Cookie("recent_"+b.getFbId(), b.getFbId()+"_"+b.getBcode()+"_"+b.getFbTitle().trim()+"_"+img); // 쿠키 이름을 name으로 생성
 		//Member m = (Member)session.getAttribute("loginUser");
 		setCookie.setComment("최근본게시물") ;
 		setCookie.setMaxAge(60*60*24); // 기간을 하루로 지정
-		setCookie.setPath("/");
+		//setCookie.setPath("/");
 		System.out.println("쿠키생성 : " +setCookie.getValue());
 		response.addCookie(setCookie);
 	}
