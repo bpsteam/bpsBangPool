@@ -153,6 +153,8 @@
 	
 	</insert>
 	
+	<!-- Event -->
+	
 	<select id="selectEventMember" parameterType="_int" resultType="Member">
 		
 		SELECT email
@@ -174,12 +176,12 @@
 	
 	</update>
 	
-	<select id="selectMember" parameterType="map" resultType="Member">
+	<select id="selectMember" parameterType="Reply" resultType="Member">
 	
-		SELECT email
+		SELECT *
 		FROM SHARE_JOIN_MEMBER
 		WHERE 
-		REFBID = #{srbId}
+		REFBID = #{refbId}
 		AND
 		STATUS = 'Y'
 	

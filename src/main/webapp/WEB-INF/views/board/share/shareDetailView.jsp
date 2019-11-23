@@ -159,7 +159,7 @@
 								<div style="display: table-cell;width: 80px;">
 									<input type="button" id="reply_insert" value="등록" name="rContent" style="background-color: #F90; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 65px;" tabindex="14">
 										
-									<input type="submit" id="reply_event_insert" value="등록+신청" style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 35px;" tabindex="14">
+									<input type="button" id="reply_event_insert" value="등록+신청" style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 35px;" tabindex="14">
 								</div>
 							  </form>
 					        </div>
@@ -173,7 +173,7 @@
 				    </c:if>
 				    
 				    <input id="winner" type="hidden" value="${ share.srWinner }">
-				    
+
 				    <!-- 댓글 목록 -->
 				      <div id="viewcomment">
 					  </div>
@@ -185,7 +185,7 @@
 		</div>
 	</div>
 
-
+	
 	<!-- ==== FOOTER START ==== -->
 	<c:import url="../../common/footer.jsp" />
 	<!-- ==== FOOTER END ==== -->
@@ -197,20 +197,11 @@
 	        getReplyList();
 	        
 	        countDate();
-	        already();
 			setInterval(function(){
 				countDate();
 			},1000);
 	        
 	  	});
-	    
-	    function already(){
-	    	
-	    	console.log("${ already }");
-	    	if("${ already }" != ""){
-	    		alert("이미 참여하였습니다.")
-	    	}
-	    }
 	    
 	    function countDate(){
 	        
@@ -270,8 +261,7 @@
 				
 				var rContent = $('#reply_content').val();
 				var nickname = "${ loginUser.nickname }";
-				var refbId = ${ share.srbId };
-				console.log(nickname);
+				var refbId = "${ share.srbId }";
 				$.ajax({
 					url : "reply_insert.sr",
 					data : {rContent:rContent , refbId:refbId, rWriter:nickname },
@@ -283,7 +273,31 @@
 						}
 					}
 				});
-		}); 
+		});
+		
+		
+		$('#reply_event_insert').click(function(){
+			var rContent = $('#reply_content').val();
+			var nickname = "${ loginUser.nickname }";
+			var refbId = "${ share.srbId }";
+			var email = "${ loginUser.email }";
+			console.log(nickname);
+			$.ajax({
+				url : "reply_event_insert.sr",
+				data : { rContent:rContent , refbId:refbId, nickname:nickname, email:email },
+				type:"post",
+				success:function(data){
+					if(data == "success"){
+						getReplyList();
+					   $('#reply_content').val("");
+					}else{
+						alert("이미 참여 하였습니다.");
+						getReplyList();
+						$('#reply_content').val("");
+					}
+				}
+			});
+		});
 	    
 	    
 	    function getReplyList(){
