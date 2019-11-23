@@ -70,7 +70,7 @@ console.log("naver: "+naver);
 						<div class="margin-top-20" id="kakao_id_login" style="text-align: center">
 						<%-- 	<a href="${kakaoUrl}">  --%>
 							<img width="223"
-								src="${ contextPath }/resources/assets/img/bps/kakaologo.png" />
+								src="${ contextPath }/resources/assets/img/bps/kakao_login_btn.png" />
 							<!-- 	</a> -->
 						</div>
 					</form>
