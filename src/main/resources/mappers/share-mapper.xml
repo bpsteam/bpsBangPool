@@ -187,4 +187,23 @@
 	
 	</select>
 	
+	<select id="countMember" parameterType="_int" resultType="Member">
+		SELECT COUNT(*)
+		FROM SHARE_JOIN_MEMBER
+		WHERE
+		REFBID =#{refbId}
+		AND
+		STATUS = 'Y'
+	</select>
+	
+	<update id="addReadCount" parameterType="_int">
+		
+		UPDATE SHARE_BOARD
+		SET 
+		SRBCOUNT = SRBCOUNT + 1
+		WHERE
+		SRBID = #{srbId}
+		
+	</update>
+	
 </mapper>

@@ -60,9 +60,14 @@ public class ShareDAO {
 		return (ArrayList)sqlSession.selectList("shareMapper.selectMember",r);
 	}
 
-/*	public ArrayList<Member> selectMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
-		return (ArrayList)sqlSession.selectList("shareMapper.selectMember",map);
-	}*/
+	public ArrayList<Member> countMember(SqlSessionTemplate sqlSession, int srbId) {
+		int refbId = srbId;
+		return (ArrayList)sqlSession.selectList("shareMapper.countMember",refbId);
+	}
+
+	public int addReadCount(SqlSessionTemplate sqlSession, int srbId) {
+		return sqlSession.update("shareMapper.addReadCount",srbId);
+	}
 
 
 }

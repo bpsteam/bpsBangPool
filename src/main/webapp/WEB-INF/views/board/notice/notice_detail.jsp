@@ -54,6 +54,15 @@
 		#rUpdate{
 			padding-right:10px; 
 		}
+		
+		textarea {
+			width:100%;
+			height:400px;
+		    border: none;
+		    background-color: transparent;
+		    resize: none;
+		    outline: none;
+		}
 	</style>
 </head>
 <body>
@@ -80,7 +89,7 @@
 							</div>
                             </c:if>
 							<br>
-                            <div class="col-md-12 " ><p style="overflow: auto;"><span>${ notice.nContent }</span></div>
+                            <div class="col-md-12 " ><p style="overflow: auto;"><textarea><c:out value="${ notice.nContent }"/></textarea><%-- <span>${ notice.nContent }</span> --%></div>
                         </div>
                         
 	                    <div class="col-md-12" style="text-align: center;">

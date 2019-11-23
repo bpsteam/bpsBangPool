@@ -78,9 +78,7 @@ public class ShareController {
 								    ModelAndView mv,
 								    HttpServletRequest request,
 								    HttpSession session) {
-		
 
-		if(uploadFile != null && !uploadFile.isEmpty()) {
 	
  		if(uploadFile != null && !uploadFile.isEmpty()) {
 
@@ -97,20 +95,24 @@ public class ShareController {
 		
 		if(result>0) {
 			mv.setViewName("redirect:srListView.sr");
+			return mv;
 		}
+			return mv;
 		
-		
-		return mv;
-		 
 	}
 	
 	@RequestMapping("srdetail.sr")
 	public ModelAndView shareDetail(@RequestParam("srbId") int srbId,
 							  ModelAndView mv) {
+		ArrayList<Member> m = new ArrayList<Member>();
 		
+		m = srService.countMember(srbId);
+	
 		SimpleDateFormat srDate = new SimpleDateFormat("yyyy년 MM월 dd일");
 		
 		Share s = srService.shareDetail(srbId);
+		
+		s.setSrEventEnterCount(m.size());
 		
 		String srStartDate = srDate.format(s.getSrStartDate());
 		String srEndDate = srDate.format(s.getSrEndDate());
@@ -221,7 +223,6 @@ public class ShareController {
 		}
 		else {
 			
-			System.out.println("값이 없어서 else로 옴 ");
 			HashMap<String, String> map = new HashMap<String, String>();
 			
 			map.put("refbId",refbId );
