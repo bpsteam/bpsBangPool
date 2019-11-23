@@ -122,7 +122,10 @@ public class ShareController {
 		double chance = 100;
 		
 		if(s.getSrEventEnterCount() != 0) {
-			chance = s.getSrEventLimit()/s.getSrEventEnterCount();
+			chance = s.getSrEventLimit()*100/s.getSrEventEnterCount();
+			if(chance >100) {
+				chance = 100;
+			}
 		}
 		
 		if(s != null) {
@@ -198,54 +201,60 @@ public class ShareController {
 
 	}
 	
-	@RequestMapping("reply_event_insert.sr")
-	public ModelAndView reply_event_insert(
-									 ModelAndView mv,
-									 @RequestParam("srbId") String srbId, 
-								     @RequestParam("email") String email,
-								     @RequestParam("nickname") String nickname,
-								     @RequestParam("rContent") String rContent
-								     ) {
-		Member m = new Member();
-		ArrayList<Member> list = new ArrayList<Member>();
-		HashMap<String, String> map1 = new HashMap<String, String>();
-		map1.put("srbId", srbId);
-		list = srService.selectMember(map1);
+
+  	// ajax map
+	@RequestMapping("mapAjax.sr")
+	public void mapAjax(HttpServletResponse response) throws JsonIOException, IOException {
 		
-		System.out.println("이벤트 입력 :" +list);
-		if(list != null) {
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Map> list = srService.mapList();
+		
+		for(Map s : list) {
+			s.setAddress(URLEncoder.encode(s.getAddress(),"utf-8"));
+			s.setSrbwriter(URLEncoder.encode(s.getSrbwriter(),"utf-8"));
+			s.setSritemname(URLEncoder.encode(s.getSritemname(),"utf-8"));
+		}
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	}
+
+	
+	@RequestMapping("reply_event_insert.sr")
+	@ResponseBody
+	public String reply_event_insert(Reply r, 
+						             Member m,
+						             @RequestParam("refbId") String refbId) {
+
+		ArrayList<Member> list = new ArrayList<Member>();
+		list = srService.selectMember(r);
+
+		if(list.size()>0) {
 			
 			for(int i =0; i<list.size();i++) {
 				
-				if(list.get(i).getEmail().equals(email)) {
+				if(list.get(i).getEmail().equals(m.getEmail())) {
 					
-					mv.addObject("srbId",srbId)
-					  .addObject("already","already")
-					  .setViewName("redirect:srdetail.sr");
-					
-					return mv;
-					
+					return "error";
 				}
-				
 			}
 		}
-		HashMap<String, String> map = new HashMap<String, String>();
-		
-		map.put("refbId",srbId );
-		map.put("email",email );
-		map.put("rWriter",nickname );
-		map.put("rContent",rContent );
-		
-		int result = srService.insertReplt_event(map);
-		
-		if(result>0) {
-			mv.addObject("srbId",srbId)
-			  .setViewName("redirect:srdetail.sr");
+		else {
 			
-			return mv;
-		}else {
-			return mv;
+			System.out.println("값이 없어서 else로 옴 ");
+			HashMap<String, String> map = new HashMap<String, String>();
+			
+			map.put("refbId",refbId );
+			map.put("email",m.getEmail() );
+			map.put("rWriter",m.getNickname() );
+			map.put("rContent",r.getrContent() );
+			
+			int result = srService.insertReplt_event(map);
+			
+			if(result>0) {
+				return "success";
+			}
 		}
+		return "";
 	
 	}
 	
@@ -281,20 +290,7 @@ public class ShareController {
 	  }
 	  
   }
+	
+	
 
-  	// ajax map
-	@RequestMapping("mapAjax.sr")
-	public void mapAjax(HttpServletResponse response) throws JsonIOException, IOException {
-		
-		response.setContentType("application/json; charset=utf-8");
-		ArrayList<Map> list = srService.mapList();
-		
-		for(Map s : list) {
-			s.setAddress(URLEncoder.encode(s.getAddress(),"utf-8"));
-			s.setSrbwriter(URLEncoder.encode(s.getSrbwriter(),"utf-8"));
-			s.setSritemname(URLEncoder.encode(s.getSritemname(),"utf-8"));
-		}
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(list, response.getWriter());
-	}
 }

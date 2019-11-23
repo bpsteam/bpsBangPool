@@ -31,6 +31,8 @@ public interface ShareService {
 
 	int insertWinner(Share s);
 
-	ArrayList<Member> selectMember(HashMap<String, String> map);
+	ArrayList<Member> selectMember(Reply r);
+
+	//ArrayList<Member> selectMember(HashMap<String, Integer> map);
 
 }

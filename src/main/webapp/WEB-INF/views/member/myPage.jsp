@@ -121,7 +121,7 @@
                     <div class="col-md-9">
                             <!-- Tab v2 -->
                             <div class="tabs alternative">
-                                <div class="at-title">
+                                <div class="at-title" style="width:950px;">
                                     <div class="at-container">
                                         <div class="page-title en">
                                             <strong>
@@ -134,7 +134,7 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="tab-content" style="border-top: 1px;">
+                                <div class="tab-content" style="border-top: 1px; width:950px;">
                                 
                                 
                                     <div class="tab-pane fade in active" id="sample-2a">
@@ -158,10 +158,6 @@
 																	
 																	
 																	<!-- 
-																	<  lt  <if test="logCount lt 0">
-																	>  gt <if test="logCount gt 0"> 
-																	<= (또는 =<)  lte   <if test="logCount lte 0">
-																	>= (또는 =>)  gte   <if test="logCount gte 0"> 
 																	
 																	0 ~ 3 : 베이직
 																	3 ~ 5 : 실버
@@ -181,29 +177,64 @@
 																</div>
 																<div class="auth-info">
 																	<div class="en font-14" style="margin-bottom:6px;">
-																		<span class="pull-right font-12">Lv.1</span>
+																		<span class="pull-right font-12">
+																			<c:if test="${ loginUser.mlCode eq 'B' }">Exp 0 (0%)</c:if>
+																			<c:if test="${ loginUser.mlCode eq 'S' }">Exp 30 (30%)</c:if>
+																			<c:if test="${ loginUser.mlCode eq 'G' }">Exp 90 (90%)</c:if>
+																		</span>
 																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');">
 																		<span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;
-																		<span class="text-muted en font-12">실버</span>
+																		<span class="text-muted en font-12">
+																		<c:if test="${ loginUser.mlCode eq 'B' }">BASIC</c:if>
+																		<c:if test="${ loginUser.mlCode eq 'S' }">SILVER</c:if>
+																		<c:if test="${ loginUser.mlCode eq 'G' }">GOLD</c:if>
+																		레벨
+																		</span>
 																	</div>
+																	
+																<c:if test="${ loginUser.mlCode eq 'G' }">	
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+								                                            <span class="sr-only">90% Complete (Sucess)</span>
+								                                        </div>
+								                                    </div>
+							                                    </c:if>
+							
+																<c:if test="${ loginUser.mlCode eq 'S' }">
 																	<div class="progress progress-striped active">
 								                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
 								                                            <span class="sr-only">30% Complete (info)</span>
 								                                        </div>
-							                                    	</div>
-							                                        
-							                                        <div class="progress progress-striped active">
+								                                    </div>
+							                                    </c:if>
+
+																<c:if test="${ loginUser.mlCode eq 'B' }">
+																	<div class="progress progress-striped active">
 								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
 								                                            <span class="sr-only">20%Complete (warning)</span>
 								                                        </div>
 								                                    </div>
+							                                    </c:if>
+							                                    
+							                                    <div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+							                                            <span class="sr-only">30% Complete (info)</span>
+							                                        </div>
+							                                    </div>
+
+																<!-- <div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+							                                            <span class="sr-only">10% Complete (danger)</span>
+							                                        </div>
+							                                    </div> -->
+																	
+								                                    
 							                                    	<!-- 기존 상태바 -->
 																	<!-- <div class="div-progress progress progress-striped no-margin">
 																		<div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 																			<span class="sr-only">0 (0%)</span>
 																		</div>
 																	</div> -->
-																	<p style="margin-top:6px;">등록된 서명이 없습니다.</p>
 																</div>
 																<div class="clearfix"></div>
 															</div>
@@ -284,6 +315,10 @@
                                                     <li class="list-group-item">
                                                         <span class="pull-right">${ loginUser.address }</span>
                                                         주소
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <span class="pull-right">${ loginUser.address }</span>
+                                                        <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
                                                     </li>
                                                                     </ul>
                                                             </div>
@@ -368,7 +403,7 @@
                     
                     
                         <!-- Recent Posts -->
-                        <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
+                        <!-- <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button> -->
                         <div id="matching_form" class="section_matching">
                             <div class="matching_content">
                                 <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
@@ -699,7 +734,7 @@
 						
 					</script>
                         <br><br>
-                        <div class="panel panel-default">
+                        <%-- <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Profile</h3>
                             </div>
@@ -720,9 +755,9 @@
                                                     </div>
                                                 </a>
                                                 <h4>${ loginUser.nickname }
-                                                	<%-- <c:if test="${ !empty loginUser }">
+                                                	<c:if test="${ !empty loginUser }">
 	                                                   <input type="text" name="rbWriter"  id="rbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
-		                                         	</c:if>	 --%>
+		                                         	</c:if>	
                                                 </h4>
                                                 <div class="font-12 text-muted" style="letter-spacing:-1px;">실버</div>
                                                 <div class="clearfix"></div>
@@ -797,11 +832,14 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --%>
+                        <!-- 111 -->
+                        
+                        
                         <!-- End recent Posts -->
                         <!-- 공지사항 -->
-                        <div class="panel panel-danger">
-                            <!-- 이슈 시작-->
+                        <!-- <div class="panel panel-danger">
+                            이슈 시작
                             <div class="panel-heading">
                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate"
                                     style="color:darkslategray">
@@ -861,8 +899,9 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- 이슈 끝-->
-                        </div>
+                            이슈 끝
+                        </div> -->
+                        
                         <!-- End 공지사항 -->
                     </div>
                     <!-- End Side Column -->
