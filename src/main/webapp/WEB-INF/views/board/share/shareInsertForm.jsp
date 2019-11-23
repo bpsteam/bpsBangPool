@@ -107,7 +107,7 @@
 										<label class="col-sm-2 col-xs-12 control-label" for="sdate">시작일시</label>
 											<div class="col-sm-5 col-xs-6">
 												<div class="control-label input-group input-group-sm col-sm-4">
-													<input type="date" id="realDate" name="srStartDate"> 
+													<input type="date" id="realDate" name="srStartDate" required> 
 													<span id="calendarBtn" class="input-group-addon"><i	class="fa fa-calendar"></i></span>
 												</div>
 											</div>
@@ -148,7 +148,7 @@
 									<label class="col-sm-2 col-xs-12 control-label" for="edate">종료일시</label>
 									<div class="col-sm-5 col-xs-6">
 										<div class="control-label input-group input-group-sm col-sm-4">
-											<input type="date" id="edate" name="srEndDate"> 
+											<input type="date" id="edate" name="srEndDate" required> 
 											<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 										</div>
 									</div>
@@ -200,7 +200,7 @@
 									<div class="col-sm-5 col-xs-6">
 										<div class="control-label input-group input-group-sm">
 											<input class="form-control input-sm" type="text"
-												name="srEventLimit" value="" size="10" placeholder="숫자만 입력">
+												name="srEventLimit" value="" size="10" placeholder="숫자만 입력" required>
 											<span class="input-group-addon">명 당첨</span>
 										</div>
 									</div>
@@ -213,7 +213,7 @@
 										<div class="control-label input-group input-group-sm">
 											<input id="nanum_model" class="form-control input-sm"
 												type="text" name="srItemName" value="" size="150"
-												placeholder="">
+												placeholder="제품명을 입력해주세요" required>
 										</div>
 									</div>
 								</div>
@@ -237,7 +237,7 @@
 									<div class="col-sm-12">
 										<textarea id="wr_content" name="srbContent"
 											class="form-control input-sm write-content" maxlength="65536"
-											style="width: 100%; height: 300px"></textarea>
+											style="width: 100%; height: 300px" required></textarea>
 									</div>
 								</div>
 								<div class="form-group">
