@@ -67,9 +67,14 @@ public class ShareServiceImpl implements ShareService{
 		return srDAO.insertWinner(sqlSession,s);
 	}
 
-	@Override
-	public ArrayList<Member> selectMember(HashMap<String, String> map) {
+	/*@Override
+	public ArrayList<Member> selectMember(HashMap<String, Integer> map) {
 		return srDAO.selectMember(sqlSession,map);
+	}*/
+
+	@Override
+	public ArrayList<Member> selectMember(Reply r) {
+		return srDAO.selectMember(sqlSession,r);
 	}
 
 

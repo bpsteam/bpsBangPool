@@ -56,9 +56,13 @@ public class ShareDAO {
 		return sqlSession.update("shareMapper.insertWinner",s);
 	}
 
-	public ArrayList<Member> selectMember(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
-		return (ArrayList)sqlSession.selectList("shareMapper.selectMember",map);
+	public ArrayList<Member> selectMember(SqlSessionTemplate sqlSession, Reply r) {
+		return (ArrayList)sqlSession.selectList("shareMapper.selectMember",r);
 	}
+
+/*	public ArrayList<Member> selectMember(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return (ArrayList)sqlSession.selectList("shareMapper.selectMember",map);
+	}*/
 
 
 }
