@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapMapper">
+	<!-- share board 를 가지고 있는 객체 확인  지도에 표시하는 이름 -->
+	<select id="listMap" resultType="share_Map">
+		select srbid, srbwriter, address, sritemname
+		from share_board
+		left join member on member.nickname = share_board.srbwriter
+		where srstatus like 'Y' 
+	</select>
+</mapper>

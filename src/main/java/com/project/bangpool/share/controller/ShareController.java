@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -73,37 +74,45 @@ public class ShareController {
 	public ModelAndView shareInsert(@ModelAttribute Share s,
 									@RequestParam(value="page", required=false) Integer page,
 								    @RequestParam(value="srLocation", required=false) String sLoc,
-								   // @RequestParam("uploadFile") MultipartFile uploadFile,
+								    @RequestParam("uploadFile") MultipartFile uploadFile,
 								    ModelAndView mv,
 								    HttpServletRequest request,
 								    HttpSession session) {
-		
-		System.out.println("ShareInsert : " + s);
-		
-/*		if(uploadFile != null && !uploadFile.isEmpty()) {
+
+	
+ 		if(uploadFile != null && !uploadFile.isEmpty()) {
+
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
 				s.setOriginalFileName(uploadFile.getOriginalFilename());
 				s.setRenameFileName(renameFileName);
 			}
-		}*/
+		}
+
 		
 		int result = srService.shareInsert(s);
 		
+		if(result>0) {
+			mv.setViewName("redirect:srListView.sr");
+			return mv;
+		}
+			return mv;
 		
-		
-		return mv;
-		 
 	}
 	
 	@RequestMapping("srdetail.sr")
 	public ModelAndView shareDetail(@RequestParam("srbId") int srbId,
 							  ModelAndView mv) {
+		ArrayList<Member> m = new ArrayList<Member>();
 		
+		m = srService.countMember(srbId);
+	
 		SimpleDateFormat srDate = new SimpleDateFormat("yyyy년 MM월 dd일");
 		
 		Share s = srService.shareDetail(srbId);
+		
+		s.setSrEventEnterCount(m.size());
 		
 		String srStartDate = srDate.format(s.getSrStartDate());
 		String srEndDate = srDate.format(s.getSrEndDate());
@@ -114,7 +123,10 @@ public class ShareController {
 		double chance = 100;
 		
 		if(s.getSrEventEnterCount() != 0) {
-			chance = s.getSrEventLimit()/s.getSrEventEnterCount();
+			chance = s.getSrEventLimit()*100/s.getSrEventEnterCount();
+			if(chance >100) {
+				chance = 100;
+			}
 		}
 		
 		if(s != null) {
@@ -174,6 +186,7 @@ public class ShareController {
 		gson.toJson(list, response.getWriter());
 	}
 	
+	
 	@RequestMapping("reply_insert.sr")
 	@ResponseBody
 	public String reply_insert(Reply r, Member m, HttpSession session) {
@@ -188,6 +201,77 @@ public class ShareController {
 		}
 
 	}
+	
+	@RequestMapping("reply_event_insert.sr")
+	@ResponseBody
+	public String reply_event_insert(Reply r, 
+						             Member m,
+						             @RequestParam("refbId") String refbId) {
+
+		ArrayList<Member> list = new ArrayList<Member>();
+		list = srService.selectMember(r);
+
+		if(list.size()>0) {
+			
+			for(int i =0; i<list.size();i++) {
+				
+				if(list.get(i).getEmail().equals(m.getEmail())) {
+					
+					return "error";
+				}
+			}
+		}
+		else {
+			
+			HashMap<String, String> map = new HashMap<String, String>();
+			
+			map.put("refbId",refbId );
+			map.put("email",m.getEmail() );
+			map.put("rWriter",m.getNickname() );
+			map.put("rContent",r.getrContent() );
+			
+			int result = srService.insertReplt_event(map);
+			
+			if(result>0) {
+				return "success";
+			}
+		}
+		return "";
+	
+	}
+	
+  @RequestMapping("share_winner.sr")
+  @ResponseBody
+  public String share_winner(@RequestParam("srbId") int srbId) {	  
+	  
+	  Share s = new Share();
+	  ArrayList<Member> list = new ArrayList<Member>();
+	  list = srService.selectEventMember(srbId);
+	  
+	  System.out.println(list.size());
+	  
+	  if(list.size() <=0) {
+		  return "error";
+	  }else {
+		  
+		  int random = (int)(Math.random()*(list.size()-1))+1;
+		  Member m = new Member();
+		  
+		  m = list.get(random);
+		  
+		  s.setSrbId(srbId);
+		  s.setSrWinner(m.getEmail().toString());
+		  
+		  System.out.println("winner"+s.getSrWinner());
+		  
+		  if(list !=null) {
+			  int result = srService.insertWinner(s);
+		  }
+		  
+		  return "success";
+	  }
+	  
+  }
 	
 	
 

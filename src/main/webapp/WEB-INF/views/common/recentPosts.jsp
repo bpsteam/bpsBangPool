@@ -16,7 +16,7 @@
 		<h3 class="panel-title">Recent Posts</h3>
 	</div>
 	<div class="panel-body"
-		style="background-color: white; padding-bottom: 0px; height: 242px; overflow-y:scroll;">
+		style="background-color: white; padding-bottom: 0px; height: 313px; overflow-y:scroll;">
 		<ul class="post-list" id="ultag" style="list-style: none; padding: 0px;">
 			<%
 	    String bId ="";
