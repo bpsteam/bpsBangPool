@@ -10,9 +10,11 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label" for="email">대학생인증<strong class="sound_only">*</strong></label>
 		<div class="col-sm-6">
-			<input type="text" name="schoolemail" id="schoolemail"
+			<input type="email" name="schoolemail" id="schoolemail"
 				placeholder="인증받을 대학교 이메일을 입력해주세요." required
 				class="form-control input-sm email" size="50" maxlength="100">
+		<span id="result-check">
+		</span>
 		</div>
 		<button type="button" class="btn btn-green btn-sm" id="emailBtn">인증번호발송</button>
 	</div>
@@ -32,6 +34,46 @@
  <script type="text/javascript" src="${contextPath}/resources/assets/js/jquery.min.js" type="text/javascript"></script>
 		
 <script>
+	$(function(){
+		$("#emailBtn").prop('disabled', true);
+		$("#emailAuthBtn").prop('disabled', true);
+	});
+	// email check function
+	function email_check(email) {   
+	  var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	  var regExpKor = /ac.kr/; 
+	  var regExpFor = /.edu/; 
+		var test = false;
+		
+	  if(regExpKor.test(email) || regExpFor.test(email)){
+		  test = true;
+	  }else{
+		  test= false;
+	  }
+	  return (email != '' && email != 'undefined' && test ); 
+	}
+	
+	// check when email input lost foucus
+	$("#schoolemail").blur(function(){
+	  var email = $(this).val();
+	
+	  // if value is empty then exit
+	  if( email == '' || email == 'undefined') return;
+	
+	  // valid check
+	  if(! email_check(email) ) {
+		  console.log("나와봐 " +email_check(email));
+	  	$("#result-check").text('Not valid school email').css("color", "red");
+	    $(this).focus();
+	    return false;
+	  }
+	  else {
+		  console.log("성공 나와봐 " +email_check(email));
+	  	$("#result-check").text('Email address test OK.').css("color","green");
+	  	$("#emailBtn").prop('disabled', false);
+	  }
+	});
+	
 	
 	/*
 	이메일 인증 버튼 클릭시 발생하는 이벤트
@@ -43,6 +85,7 @@
 			data : "schoolemail=" + $("#schoolemail").val() + "&random=" + $("#random").val(),
 			success : function(data){
 						alert("사용가능한 이메일입니다. 인증번호를 입력해주세요.");
+						$("#emailAuthBtn").prop('disabled', false);
 			}, error: function(data){
 						alert("이메일전송에러");
 						return false;
@@ -73,6 +116,8 @@
 				}
 			});
 		});
+	
+	
 	
 </script>
 

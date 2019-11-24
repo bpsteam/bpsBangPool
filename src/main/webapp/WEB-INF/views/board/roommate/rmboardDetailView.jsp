@@ -513,6 +513,22 @@
 			setInterval(function(){
 				getReplyList();
 			}, 10000); 
+			
+			// RecentPost Cookie 생성 (은지)
+			 
+	   		var rbId = ${ rboard.rbId };
+	   		var bcode = "${ rboard.bcode }";
+	   		var rbTitle = "${ rboard.rbTitle }";
+	   		var img= "${rboard.originalFileName}";
+	   		console.log(img);
+	   		$.ajax({
+	   			url: "createCookie.rm",
+	   			data: {rbId:rbId, bcode:bcode, rbTitle:rbTitle, img:img},
+	   			success:function(data){
+	   			}
+	   			
+	   		});
+			
 		});
 		
 		$("#rSubmit").on("click", function(){
