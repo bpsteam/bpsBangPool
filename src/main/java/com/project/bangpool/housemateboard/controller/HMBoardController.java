@@ -38,7 +38,7 @@ public class HMBoardController {
 	
 	@Autowired	//service에 자동으로 객체 만들어주기
 	private HMBoardService hbService;
-
+	//push testest
 	/*** 전체 게시글 불러오기 ***/
 	@RequestMapping("blist.hm")
 	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page,
