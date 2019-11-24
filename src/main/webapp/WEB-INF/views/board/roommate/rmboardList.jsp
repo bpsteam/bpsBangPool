@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -868,81 +867,41 @@
                             <hr>
                         </div>
         
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">공지사항</h3>
-                            </div>
-                            <div class="panel-body" style="background-color: white; ">
-                                <div class="table-responsive">
-                                    <table class="table table-hover ellipsistb" >
-        
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td id="ellipsistd" >공지사항입니다1ddddd</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td id="ellipsistd">공지사항입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td  id="ellipsistd">공지사항입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td  id="ellipsistd">공지사항입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-        
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <!-- End recent Posts -->
-                        <!-- 공지사항 -->
-                        <div class="panel panel-info">
+                        <div class="panel panel-aqua">
                             <!-- 이슈 시작-->
-                            <div class="panel-heading">
-                                <h3 class="panel-title">최신 게시글</h3>
+                           <div class="panel-heading">
+                                <a href="blist.rm" style="color:white">
+                                    <span class="pull-right lightgray font-16 en">+</span>
+                                    <span class="div-title-underbar-bold border-navy font-16 en" >
+                                        <b>공지사항</b>
+                                    </span>
+                                </a>
                             </div>
-                            <div class="widget-box panel-body" style="background-color: white;">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" style="margin-bottom:0px">
-        
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>최신글입니다1</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>최신글입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>최신글입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td>최신글입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-        
-                                        </tbody>
-                                    </table>
+                            <div class="widget-box panel-body">
+                                <div class="basic-post-list ">
+                                	<c:import url ="../../common/noticeTopList.jsp"/>
                                 </div>
                             </div>
                             <!-- 이슈 끝-->
                         </div>
+                        <!-- End recent Posts -->
+                        <!-- 공지사항 -->
+                        <div class="panel panel-green">
+                               <!-- 뉴스 시작 -->
+                               <div class="panel-heading">
+                                   <a href="frblist.fr" style="color:white">
+                                       <span class="pull-right lightgray font-16 en">+</span>
+                                       <span class="div-title-underbar-bold border-navy font-16 en">
+                                           <b>자유게시판</b>
+                                       </span>
+                                   </a>
+                               </div>
+                               <div class="widget-box panel-body">
+                                   <div class="basic-post-list ">
+                                   	<c:import url="../../common/freeTopList.jsp"/>
+                               	</div>
+                           	</div>
+                       	</div>
                         <!-- End 공지사항 -->
                     </div>
                     <!-- End Side Column -->

@@ -1,49 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	.hahaha{float: right;}
-	.hohoho{width: 180px;}
-	.dadada{left: 0px; top: 0px; width:200px; height:100px; display:flex;}
-</style>
 </head>
 <body>
-	<ul class="post-list" style ="padding-left: 0px; width: 100%;" id="topList1">
-                                    
+	<ul class="tick animate fadeInRight" id="topList4">
     </ul>
     <script>
-        function topList(){
+        function topList4(){
 			$.ajax({
-				url: "topList.rm",
+				url: "topList.no",
 				dataType: "json",
 				success: function(data){
-					$ul = $("#topList1");
+					$ul = $("#topList4");
 					$ul.html("");
 					
-					var rbWriter;
-					var rbTitle;
-					
-					
+					var nTitle;
 					
 					for(var i in data){
 						
 						$li = $('<li class="ellipsis">');
-						$a = $('<a>').attr('href',"bdetail.rm?rbId="+data[i].rbId);
+						$a = $('<a>').attr('href',"ndetail2.no?nId="+data[i].nId);
 						$span = $('<span class="gray font-12 hahaha">');
 						$span2 = $('<span class="subject_title hohoho">');
 						
 						
-						$rbWriter = $("<b>").text(data[i].rbCreateDate);
-						$rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
+						$nTitle = $("<b>").text(decodeURIComponent(data[i].nTitle.replace(/\+/g," ")));
 						
 						$li.append($a);
-						$span.append($rbWriter);
-						$span2.append($rbTitle);
+						$span2.append($nTitle);
 						$a.append($span);
 						$a.append($span2);
 						/* $li.append($span);
@@ -69,10 +57,10 @@
 		}
 		
 		$(function(){
-			topList();
+			topList4();
 			
 			setInterval(function(){
-				topList();
+				topList4();
 			}, 100000);
 		});
 	</script>

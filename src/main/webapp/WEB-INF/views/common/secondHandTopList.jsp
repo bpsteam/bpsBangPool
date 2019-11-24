@@ -7,42 +7,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<ul class="post-list" style ="padding-left: 0px; width: 100%;" id="topList2">
-    </ul> 
+	<div id="topList5">
+    </div>
     <script>
-        function topList2(){
+        function topList5(){
 			$.ajax({
-				url: "topList.hm",
+				url: "topList.se",
 				dataType: "json",
 				success: function(data){
-					$ul = $("#topList2");
-					$ul.html("");
+					$div = $("#topList5");
+					$div.html("");
 					
-					var hbWriter;
-					var hbTitle;
-					
-					
-					
+					/* var fbWriter;
+					var fbTitle; */
 					for(var i in data){
 						
-						$li = $('<li class="ellipsis">');
-						$a = $('<a>').attr('href',"bdetail.hm?hbId="+data[i].hbId);
-						$span = $('<span class="gray font-12 hahaha">');
-						$span2 = $('<span class="subject_title hohoho">');
+						$div2 = $('<div class="col-md-2 portfolio-item margin-bottom-40 audio dadada">').css('overflow','unset');
+						$div3 = $('<div>');
+						$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
+						$span = $('<figure>');
+						$span2 = $('<img alt="image1" src="resources/buploadFiles/'+data[i].shbRenameFileName+'" style="width:100%; height:100%;">');
 						
 						
-						$hbWriter = $("<b>").text(data[i].hbWriter);
-						$hbTitle = $("<b>").text(decodeURIComponent(data[i].hbTitle.replace(/\+/g," ")));
+						/* $fbWriter = $("<b>").text(data[i].fbWriter);
+						$fbTitle = $("<b>").text(decodeURIComponent(data[i].fbTitle.replace(/\+/g," "))); */
 						
-						$li.append($a);
-						$span.append($hbWriter);
-						$span2.append($hbTitle);
 						$a.append($span);
-						$a.append($span2);
+						/* $span.append($fbWriter);
+						$span2.append($fbTitle); */
+						$span.append($span2);
+						$div3.append($a);
 						/* $li.append($span);
 						$li.append($span2); */
-						$ul.append($li);
-						
+						$div2.append($div3);
+						$div.append($div2);
 						
 						/* var $tr = $('<span class="pull-right gray font-12">');
 						var $tr2 = $('<span class="subject_title">');
@@ -62,10 +60,10 @@
 		}
 		
 		$(function(){
-			topList2();
+			topList5();
 			
 			setInterval(function(){
-				topList2();
+				topList5();
 			}, 100000);
 		});
 	</script>

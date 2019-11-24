@@ -59,72 +59,9 @@
                             </div>
                             <div class="widget-box panel-body">
                                 <div class="basic-post-list ">
-                                    <ul class="post-list" style ="padding-left: 15px; width: 100%;" id="topList2">
-                                    </ul>                                                         
+                                   	<c:import url="common/housemateTopList.jsp"/>                                                        
                                 </div>
                             </div>
-                            
-                            <script>
-						        function topList2(){
-									$.ajax({
-										url: "topList.hm",
-										dataType: "json",
-										success: function(data){
-											$ul = $("#topList2");
-											$ul.html("");
-											
-											var hbWriter;
-											var hbTitle;
-											
-											
-											
-											for(var i in data){
-												
-												$li = $('<li class="ellipsis">');
-												$a = $('<a>').attr('href',"bdetail.hm?hbId="+data[i].hbId);
-												$span = $('<span class="gray font-12 hahaha">');
-												$span2 = $('<span class="subject_title hohoho">');
-												
-												
-												$hbWriter = $("<b>").text(data[i].hbWriter);
-												$hbTitle = $("<b>").text(decodeURIComponent(data[i].hbTitle.replace(/\+/g," ")));
-												
-												$li.append($a);
-												$span.append($hbWriter);
-												$span2.append($hbTitle);
-												$a.append($span);
-												$a.append($span2);
-												/* $li.append($span);
-												$li.append($span2); */
-												$ul.append($li);
-												
-												
-												/* var $tr = $('<span class="pull-right gray font-12">');
-												var $tr2 = $('<span class="subject_title">');
-												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-												var $rbWriter = $("<b>").text(data[i].rbWriter); */
-												
-												/* $tr.append($rbTitle); */
-												
-												/* $tr.append($rbWriter);
-												$tr2.append($rbTitle);
-												
-												$tableBody.append($tr);
-												$tableBody.append($tr2); */
-											}
-										}
-									});
-								}
-								
-								$(function(){
-									topList2();
-									
-									setInterval(function(){
-										topList2();
-									}, 100000);
-								});
-							</script>
-                            
                             <!-- 뉴스 끝 -->
                         </div>
                         </div>
@@ -281,83 +218,11 @@
                                 </div>
                                 <div class="widget-box panel-body">
                                     <div class="basic-post-list">
-                    
-                                        <ul class="post-list" id="topList3">
-                                            <!-- <li class="ellipsis">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate&amp;wr_id=109#c_123">
-                    
-                                                    <span class="pull-right gray font-12">
-                                                        <span class="name">
-                                                            	순종 </span>
-                                                        &nbsp;10.06 </span>
-                                                    <span class="lightgray"><i class="fa fa-comment"></i></span> <span
-                                                        class="subject_title"><b>라인ho1413연락요망</b></span>
-                                                </a>
-                                            </li> -->
-                                        </ul>
+                                    	<c:import url="common/freshmateTopList.jsp"/>
                                     </div>
                                 </div>
                                 
-                                <script>
-						        function topList3(){
-									$.ajax({
-										url: "topList.fm",
-										dataType: "json",
-										success: function(data){
-											$ul = $("#topList3");
-											$ul.html("");
-											
-											var fbWriter;
-											var fbTitle;
-											
-											
-											
-											for(var i in data){
-												
-												$li = $('<li class="ellipsis">');
-												$a = $('<a>').attr('href',"bdetail2.fm?fbId="+data[i].fbId);
-												$span = $('<span class="gray font-12 hahaha">');
-												$span2 = $('<span class="subject_title hohoho">');
-												
-												
-												$fbWriter = $("<b>").text(data[i].fbWriter);
-												$fbTitle = $("<b>").text(decodeURIComponent(data[i].fbTitle.replace(/\+/g," ")));
-												
-												$li.append($a);
-												$span.append($fbWriter);
-												$span2.append($fbTitle);
-												$a.append($span);
-												$a.append($span2);
-												/* $li.append($span);
-												$li.append($span2); */
-												$ul.append($li);
-												
-												
-												/* var $tr = $('<span class="pull-right gray font-12">');
-												var $tr2 = $('<span class="subject_title">');
-												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-												var $rbWriter = $("<b>").text(data[i].rbWriter); */
-												
-												/* $tr.append($rbTitle); */
-												
-												/* $tr.append($rbWriter);
-												$tr2.append($rbTitle);
-												
-												$tableBody.append($tr);
-												$tableBody.append($tr2); */
-											}
-										}
-									});
-								}
-								
-								$(function(){
-									topList3();
-									
-									setInterval(function(){
-										topList3();
-									}, 100000);
-								});
-							</script>
+                                
                                 <!-- 댓글 끝 -->
                     
                         </div>
@@ -366,65 +231,9 @@
                         <div class="col-md-6">
                             <h3 class="padding-vert-10">공지사항</h3>
                             <p>가장 최근에 올라온 공지사항을 보여줍니다</p>
-                            <ul class="tick animate fadeInRight" id="topList4">
-                                
-                            </ul>
+                            <c:import url="common/noticeTopList.jsp"/>
                         </div>
-                        <script>
-						        function topList4(){
-									$.ajax({
-										url: "topList.no",
-										dataType: "json",
-										success: function(data){
-											$ul = $("#topList4");
-											$ul.html("");
-											
-											var nTitle;
-											
-											for(var i in data){
-												
-												$li = $('<li class="ellipsis">');
-												$a = $('<a>').attr('href',"ndetail2.no?nId="+data[i].nId);
-												$span = $('<span class="gray font-12 hahaha">');
-												$span2 = $('<span class="subject_title hohoho">');
-												
-												
-												$nTitle = $("<b>").text(decodeURIComponent(data[i].nTitle.replace(/\+/g," ")));
-												
-												$li.append($a);
-												$span2.append($nTitle);
-												$a.append($span);
-												$a.append($span2);
-												/* $li.append($span);
-												$li.append($span2); */
-												$ul.append($li);
-												
-												
-												/* var $tr = $('<span class="pull-right gray font-12">');
-												var $tr2 = $('<span class="subject_title">');
-												var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-												var $rbWriter = $("<b>").text(data[i].rbWriter); */
-												
-												/* $tr.append($rbTitle); */
-												
-												/* $tr.append($rbWriter);
-												$tr2.append($rbTitle);
-												
-												$tableBody.append($tr);
-												$tableBody.append($tr2); */
-											}
-										}
-									});
-								}
-								
-								$(function(){
-									topList4();
-									
-									setInterval(function(){
-										topList4();
-									}, 100000);
-								});
-							</script>
+                        
                      
                 </div>
             </div>
@@ -439,72 +248,14 @@
                             <!-- Filter Buttons -->
                         </div>
                     	<div class="row col-md-12 portfolio-group" style="position: relative; width: 1039.97px; height: 265.844px;">
-                   			<div id="topList5">
-                    		</div>
+                   			<c:import url="common/secondHandTopList.jsp"/>
                        </div>
                 	</div>
             	</div>
             </div>
             </div>
             
-            <script>
-		        function topList5(){
-					$.ajax({
-						url: "topList.se",
-						dataType: "json",
-						success: function(data){
-							$div = $("#topList5");
-							$div.html("");
-							
-							/* var fbWriter;
-							var fbTitle; */
-							for(var i in data){
-								
-								$div2 = $('<div class="col-md-2 portfolio-item margin-bottom-40 audio dadada">').css('overflow','unset');
-								$div3 = $('<div>');
-								$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
-								$span = $('<figure>');
-								$span2 = $('<img alt="image1" src="resources/buploadFiles/'+data[i].shbRenameFileName+'" style="width:100%; height:100%;">');
-								
-								
-								/* $fbWriter = $("<b>").text(data[i].fbWriter);
-								$fbTitle = $("<b>").text(decodeURIComponent(data[i].fbTitle.replace(/\+/g," "))); */
-								
-								$a.append($span);
-								/* $span.append($fbWriter);
-								$span2.append($fbTitle); */
-								$span.append($span2);
-								$div3.append($a);
-								/* $li.append($span);
-								$li.append($span2); */
-								$div2.append($div3);
-								$div.append($div2);
-								
-								/* var $tr = $('<span class="pull-right gray font-12">');
-								var $tr2 = $('<span class="subject_title">');
-								var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-								var $rbWriter = $("<b>").text(data[i].rbWriter); */
-								
-								/* $tr.append($rbTitle); */
-								
-								/* $tr.append($rbWriter);
-								$tr2.append($rbTitle);
-								
-								$tableBody.append($tr);
-								$tableBody.append($tr2); */
-							}
-						}
-					});
-				}
-				
-				$(function(){
-					topList5();
-					
-					setInterval(function(){
-						topList5();
-					}, 100000);
-				});
-			</script>
+            
             <!-- End Portfolio -->
 
             <!-- 추가 portfolio-->
@@ -517,80 +268,13 @@
                             <!-- Filter Buttons -->
                         </div>
                     	<div class="row col-md-12 portfolio-group" style="position: relative; width: 1039.97px; height: 265.844px;">
-                   			<div id="topList6">
-                    		</div>
+                   			<c:import url="common/showingTopList.jsp"/>
                        </div>
                 	</div>
             	</div>
             </div>
             <!-- portfolio 끝 -->
-            <script>
-		        function topList6(){
-					$.ajax({
-						url: "topList.sb",
-						dataType: "json",
-						success: function(data){
-							$div = $("#topList6");
-							$div.html("");
-							
-							/* var fbWriter; */
-							var sbTitle;
-							console.log(data);
-							for(var i in data){
-								
-								$div2 = $('<div class="col-md-2 portfolio-item margin-bottom-40 audio dadada">').css('overflow','unset');
-								$div3 = $('<div>');
-								$a = $('<a>').attr('href',"ddetailShowing2.sb?sbid="+data[i].sbid);
-								$span = $('<figure>');
-								$span2 = $('<img alt="image1" src="resources/showinguploadFiles/'+data[i].renameFileName+'" style="width:100%; height:100%;">' );
-								/* $span3 = $('<figcaption>'); */
-								
-								/* $div = $('<li class="portfolio-item col-sm-4 col-xs-6 margin-bottom-40">');
-								$a = $('<a>').attr('href',"shbdetail2.se?shbId="+data[i].shbId);
-								$span = $('<figure class="animate fadeInLeft">');
-								$span2 = $('<img alt="image1" style="width: 400px; height: 200px;" src="resources/buploadFiles/'+data[i].shbRenameFileName+'">'); */
-								
-								
-								/* $fbWriter = $("<b>").text(data[i].fbWriter); */
-								$sbTitle = $("<b>").text(decodeURIComponent(data[i].sbtitle.replace(/\+/g," ")));
-								
-								/* $span.append($fbWriter); */
-								/* $span3.append($sbTitle); */
-								$a.append($span);
-								$span.append($span2);
-								/* $span2.append($span3); */
-								/* $li.append($span);
-								$li.append($span2); */
-								$div3.append($a);
-								$div2.append($div3);
-								$div.append($div2);
-								
-								
-								/* var $tr = $('<span class="pull-right gray font-12">');
-								var $tr2 = $('<span class="subject_title">');
-								var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-								var $rbWriter = $("<b>").text(data[i].rbWriter); */
-								
-								/* $tr.append($rbTitle); */
-								
-								/* $tr.append($rbWriter);
-								$tr2.append($rbTitle);
-								
-								$tableBody.append($tr);
-								$tableBody.append($tr2); */
-							}
-						}
-					});
-				}
-				
-				$(function(){
-					topList6();
-					
-					setInterval(function(){
-						topList6();
-					}, 100000);
-				});
-			</script>
+            
 
 
 
@@ -696,83 +380,10 @@
                                     </div>
                                     <div class="widget-box panel-body">
                                         <div class="basic-post-list ">
-                            
-                                            <ul class="post-list" id="topList8">
-                                                <!-- <li class="ellipsis">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=free&amp;wr_id=1620">
-                            
-                                                        <span class="pull-right gray font-12">
-                                                            &nbsp;01.11 </span>
-                                                        <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                            class="subject_title"><b>강동구오피스텔</b></span>
-                                                    </a>
-                                                </li> -->
-                                            </ul>
-                                    </div>
-                                </div>
-                                
-                                <script>
-							        function topList8(){
-										$.ajax({
-											url: "topList.fr",
-											dataType: "json",
-											success: function(data){
-												$ul = $("#topList8");
-												$ul.html("");
-												
-												var frbWriter;
-												var frbTitle;
-												
-												
-												
-												for(var i in data){
-													
-													$li = $('<li class="ellipsis">');
-													$a = $('<a>').attr('href',"frbdetail.fr?frbId="+data[i].frbId);
-													$span = $('<span class="pull-right gray font-12">');
-													$span2 = $('<span class="subject_title">');
-													
-													
-													$frbWriter = $("<b>").text(data[i].frbWriter);
-													$frbTitle = $("<b>").text(decodeURIComponent(data[i].frbTitle.replace(/\+/g," ")));
-													
-													$li.append($a);
-													$span.append($frbWriter);
-													$span2.append($frbTitle);
-													$a.append($span);
-													$a.append($span2);
-													/* $li.append($span);
-													$li.append($span2); */
-													$ul.append($li);
-													
-													
-													/* var $tr = $('<span class="pull-right gray font-12">');
-													var $tr2 = $('<span class="subject_title">');
-													var $rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
-													var $rbWriter = $("<b>").text(data[i].rbWriter); */
-													
-													/* $tr.append($rbTitle); */
-													
-													/* $tr.append($rbWriter);
-													$tr2.append($rbTitle);
-													
-													$tableBody.append($tr);
-													$tableBody.append($tr2); */
-												}
-											}
-										});
-									}
-									
-									$(function(){
-										topList8();
-										
-										setInterval(function(){
-											topList8();
-										}, 100000);
-									});
-								</script>
-                                <!-- 뉴스 끝 -->
-                            </div>
+                                        	<c:import url="common/freeTopList.jsp"/>
+                                    	</div>
+                                	</div>
+                            	</div>
                             </div>
                            
                             <!-- End Icons -->
