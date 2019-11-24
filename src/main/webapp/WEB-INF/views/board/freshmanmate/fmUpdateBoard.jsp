@@ -74,7 +74,7 @@
                                        <c:url var="bupdate" value="bupdate.fm">
                                        		<c:param name="fbId" value="${ board.fbId }"/>
                                        </c:url>
-                                            <form action="${ bupdate }" method="post" enctype="Multipart/form-data" class="form-horizontal">
+                                            <form action="${ bupdate }" method="post" enctype="Multipart/form-data" id="insertform" class="form-horizontal">
                                        
                                                <div class="form-group has-feedback">
 	                                               <label class="col-sm-2 control-label" >작성자</label>

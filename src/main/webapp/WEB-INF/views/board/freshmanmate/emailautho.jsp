@@ -16,7 +16,7 @@
 		<span id="result-check">
 		</span>
 		</div>
-		<button type="button" class="btn btn-green btn-sm" id="emailBtn">인증번호발송</button>
+		<button type="button" disabled class="btn btn-green btn-sm" id="emailBtn">인증번호발송</button>
 	</div>
 
 	<div class="form-group">
@@ -25,19 +25,32 @@
 		</label>
 		<div class="col-sm-3">
 			<input type="text" name="emailAuth" id="emailAuth" required
-				class="form-control input-sm" maxlength="20"> 
+				class="form-control input-sm" maxlength="20" > 
 		</div>
-		<button type="button" class="btn btn-bronze btn-sm" id="emailAuthBtn">인증번호확인</button>
+		<button type="button" disabled class="btn btn-bronze btn-sm" id="emailAuthBtn">인증번호확인</button>
 	</div>
 		<input type="hidden" id="random" value="${random}" />
 		
  <script type="text/javascript" src="${contextPath}/resources/assets/js/jquery.min.js" type="text/javascript"></script>
 		
 <script>
-	$(function(){
-		$("#emailBtn").prop('disabled', true);
-		$("#emailAuthBtn").prop('disabled', true);
+	$("#emailBtn").blur(function(){
+		var emailbtn=$('#emailBtn').val();
+		if( emailbtn == null || emailbtn == "" ){
+			$("#emailBtn").prop('disabled', true);
+			$("#result-check").text('');
+		}
 	});
+	
+	$("#emailAuthBtn").blur(function(){
+		var emailAuthBtn=$('#emailAuthBtn').val();
+		
+		if(emailAuthBtn == null || emailAuthBtn == ""){
+			//$("#emailAuthBtn").prop('disabled', true);
+		}
+	});
+	
+	
 	// email check function
 	function email_check(email) {   
 	  var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
@@ -86,12 +99,14 @@
 			success : function(data){
 						alert("사용가능한 이메일입니다. 인증번호를 입력해주세요.");
 						$("#emailAuthBtn").prop('disabled', false);
+						$("#emailAuth").attr('readonly',false);
 			}, error: function(data){
 						alert("이메일전송에러");
 						return false;
 			}		
 		});
 	});
+	var validation = false;
 	/*
 	이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
 	*/
@@ -106,10 +121,11 @@
 					
 					$("#schoolemail").attr('readonly',true);
 					$("#emailAuth").attr('readonly',true);
-					
+					validation = true;
 				}else if(data == "false"){
 					alert("인증번호를 잘못 입력하셨습니다.");
 				}
+				
 			},
 			error:function(data){
 				alert("인증에러발생");
@@ -117,7 +133,16 @@
 			});
 		});
 	
-	
+	$('#insertform').submit(function(e){
+		if(validation){
+			$('#insertform').submit();
+		}else{
+			e.preventDefault();
+			alert("이메일 인증은 필수입니다.");
+			$('#emailAuth').select();
+		}
+		
+	});
 	
 </script>
 
