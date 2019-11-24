@@ -178,21 +178,21 @@
 																<div class="auth-info">
 																	<div class="en font-14" style="margin-bottom:6px;">
 																		<span class="pull-right font-12">
-																			<c:if test="${ loginUser.mlCode eq 'B' }">Exp 0 (0%)</c:if>
-																			<c:if test="${ loginUser.mlCode eq 'S' }">Exp 30 (30%)</c:if>
-																			<c:if test="${ loginUser.mlCode eq 'G' }">Exp 90 (90%)</c:if>
+																			<c:if test="${ mlCode eq 'B' }">Exp 0 (0%)</c:if>
+																			<c:if test="${ mlCode eq 'S' }">Exp 30 (30%)</c:if>
+																			<c:if test="${ mlCode eq 'G' }">Exp 60 (60%)</c:if>
 																		</span>
 																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');">
 																		<span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;
 																		<span class="text-muted en font-12">
-																		<c:if test="${ loginUser.mlCode eq 'B' }">BASIC</c:if>
-																		<c:if test="${ loginUser.mlCode eq 'S' }">SILVER</c:if>
-																		<c:if test="${ loginUser.mlCode eq 'G' }">GOLD</c:if>
+																		<c:if test="${ mlCode eq 'B' }">BASIC</c:if>
+																		<c:if test="${ mlCode eq 'S' }">SILVER</c:if>
+																		<c:if test="${ mlCode eq 'G' }">GOLD</c:if>
 																		레벨
 																		</span>
 																	</div>
 																	
-																<c:if test="${ loginUser.mlCode eq 'G' }">	
+																<c:if test="${ mlCode eq 'G' }">	
 																	<div class="progress progress-striped active">
 								                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
 								                                            <span class="sr-only">90% Complete (Sucess)</span>
@@ -200,7 +200,7 @@
 								                                    </div>
 							                                    </c:if>
 							
-																<c:if test="${ loginUser.mlCode eq 'S' }">
+																<c:if test="${ mlCode eq 'S' }">
 																	<div class="progress progress-striped active">
 								                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
 								                                            <span class="sr-only">30% Complete (info)</span>
@@ -208,7 +208,7 @@
 								                                    </div>
 							                                    </c:if>
 
-																<c:if test="${ loginUser.mlCode eq 'B' }">
+																<c:if test="${ mlCode eq 'B' }">
 																	<div class="progress progress-striped active">
 								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
 								                                            <span class="sr-only">20%Complete (warning)</span>
