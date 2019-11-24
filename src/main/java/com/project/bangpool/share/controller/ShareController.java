@@ -50,6 +50,8 @@ public class ShareController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Share> list = srService.selectList(pi,sLoc);
+		
+		System.out.println(list);
 		if(list != null) {
 			mv.addObject("list",list)
 			  .addObject("pi",pi)
@@ -254,7 +256,7 @@ public class ShareController {
 		  return "error";
 	  }else {
 		  
-		  int random = (int)(Math.random()*(list.size()-1))+1;
+		  int random = (int)(Math.random()*(list.size()-1));
 		  Member m = new Member();
 		  
 		  m = list.get(random);

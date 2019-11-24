@@ -139,7 +139,6 @@
 																		<td>${ s.srCreateDate }</td>
 																		<td>${ s.srbCount }</td>
 																	</tr>
-
 																</c:forEach> 
 															</tbody>
 														</table>
@@ -147,9 +146,6 @@
 												</div>
 											</div>
 										</div>
-
-
-
 
 										<!-- 페이징 처리 -->
 										<div class="text-center">
@@ -598,6 +594,7 @@
 <!-- ajax map -->
 <script type="text/javascript">
 	window.onload = function (){ 					/* window.onload 페이지가 로딩되고 시작하는 함수 */
+		console.log("${ list }");
 		var loginUserName = "${ loginUser.name }";
 		$.ajax({
 			url:"mapAjax.map", 						// controller 접근
@@ -608,11 +605,6 @@
 			}
 		});
 	}
-</script>
-
-<!-- 1km 이하 거리 계산하기-->
-<script type="text/javascript">
-	
 </script>
 
 </body>
