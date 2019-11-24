@@ -69,5 +69,9 @@ public class ShareDAO {
 		return sqlSession.update("shareMapper.addReadCount",srbId);
 	}
 
+	public int deleteReply(SqlSessionTemplate sqlSession, int rId) {
+		return sqlSession.update("shareMapper.deleteReply", rId);
+	}
+
 
 }

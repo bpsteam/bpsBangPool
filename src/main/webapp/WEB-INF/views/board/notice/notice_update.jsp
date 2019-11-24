@@ -46,6 +46,7 @@
                                 		현재 업로드한 파일 : 
                                 		<a href="${ contextPath }/resources/buploadFiles/${ notice.renameFileName }" download="${ notice.originalFileName }">
 										${ notice.originalFileName }
+										</a>
                                 	</c:if>
                                 </div>
                                 

@@ -248,8 +248,8 @@
 						           $rDelete = $('<td class="pull-right">');
 						           
 						           
-						           $rUpdateA = $('<a id="rUpdate">').text("수정").attr('href',"rUpdateA.no?rId="+data[i].rId+"&nId="+ ${ notice.nId } +"&page="+${ page });
-						           $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.no?rId="+data[i].rId+"&nId="+ ${ notice.nId } +"&page="+${ page });
+						           $rUpdateA = $('<a id="rUpdate">').text("수정").attr('href',"rUpdateA.no?rId="+data[i].rId+"&nId="+ ${ notice.nId } +"&page="+"${ page }");
+						           $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.no?rId="+data[i].rId+"&nId="+ ${ notice.nId } +"&page="+"${ page }");
 						        	   
 						           $rUpdate.append($rUpdateA);
 						           $rUpdate.append($rDeleteA);
@@ -268,7 +268,6 @@
 								       $rContent = $("<td id='rContent_form' colspan='3'>").text('등록된 댓글이 없습니다.');
 		  	   						   $tr = $('<tr>');
 		  	   						   $td = $('<td>');
-		  	   						   
 		  	   						   
 					            	   $tr.append($rContent);
 		  	   						   $tableBody.append($tr);
