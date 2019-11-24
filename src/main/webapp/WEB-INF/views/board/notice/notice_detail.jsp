@@ -89,12 +89,12 @@
 							</div>
                             </c:if>
 							<br>
-                            <div class="col-md-12 " ><p style="overflow: auto;"><textarea><c:out value="${ notice.nContent }"/></textarea><%-- <span>${ notice.nContent }</span> --%></div>
+                            <div class="col-md-12 " ><p style="overflow: auto;"><textarea><c:out value="${ notice.nContent }"/></textarea></div>
                         </div>
                         
 	                    <div class="col-md-12" style="text-align: center;">
 	                    
-	                     	<c:url var="nupView" value="nupView.no">
+	                     	  <c:url var="nupView" value="nupView.no">
 						         <c:param name="nId" value="${ notice.nId }"/>
 						         <c:param name="page" value="${ page }"/>
 						      </c:url>
@@ -102,10 +102,10 @@
 						      <c:url var="ndelete" value="ndelete.no">
 						         <c:param name="nId" value="${ notice.nId }"/>
 						      </c:url>
+						      
 						      <c:url var="nList" value="nList.no">
 						         <c:param name="page" value="${ page }"/>
 						      </c:url>
-						    
 	                    	
 	                    </div>
                     </div>
