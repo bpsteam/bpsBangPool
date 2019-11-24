@@ -252,7 +252,9 @@ public class MemberController {
 //    }
     
     @RequestMapping(value="kakaocallback.me", method = { RequestMethod.GET, RequestMethod.POST })
-    public ModelAndView kakaoCallBack(Model model, @RequestParam String code,  HttpSession session,HttpServletResponse response, ModelAndView mv) {
+    public ModelAndView kakaoCallBack(Model model, @RequestParam String code,  HttpSession session,
+    								HttpServletResponse response, ModelAndView mv) {
+    	
     	response.setContentType("application/json; charset=utf-8");
     	  String access_Token = kakao.getAccessToken(code);
     	  HashMap<String, String> userInfo = kakao.getUserInfo(access_Token);
@@ -390,6 +392,7 @@ public class MemberController {
 //pwdConfirm pwd: 1111
 
 		if(bcryptPasswordEncoder.matches(rawPwd, m.getPwd())) {
+			System.out.println("pwdConfirm메소드에서 주소 찍기 "+m.getAddress());
 			String post = m.getAddress().split("/")[0];
 			String address1 = m.getAddress().split("/")[1];
 			String address2 = m.getAddress().split("/")[2];
