@@ -51,7 +51,6 @@ public class ShareController {
 		
 		ArrayList<Share> list = srService.selectList(pi,sLoc);
 		
-		System.out.println(list);
 		if(list != null) {
 			mv.addObject("list",list)
 			  .addObject("pi",pi)
@@ -250,8 +249,6 @@ public class ShareController {
 	  ArrayList<Member> list = new ArrayList<Member>();
 	  list = srService.selectEventMember(srbId);
 	  
-	  System.out.println(list.size());
-	  
 	  if(list.size() <=0) {
 		  return "error";
 	  }else {
@@ -264,8 +261,6 @@ public class ShareController {
 		  s.setSrbId(srbId);
 		  s.setSrWinner(m.getEmail().toString());
 		  
-		  System.out.println("winner"+s.getSrWinner());
-		  
 		  if(list !=null) {
 			  int result = srService.insertWinner(s);
 		  }
@@ -274,6 +269,22 @@ public class ShareController {
 	  }
 	  
   }
+  
+	@RequestMapping("rDeleteA.sr")
+	public ModelAndView reply_Delete(@RequestParam("srbId") int srbId,
+									 @RequestParam("rId") int rId,
+									 ModelAndView mv
+									){
+		
+		int result = srService.deleteReply(rId);
+		
+		if(result>0) {
+			mv.setViewName("redirect:srdetail.sr?srbId="+srbId);
+		}
+		
+		
+		return mv;
+	}
 	
 	
 

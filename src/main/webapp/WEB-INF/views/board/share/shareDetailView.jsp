@@ -59,7 +59,7 @@
 		#left_time{
 			color:red;
 		}
-		textarea {
+		.view-content textarea {
 			width:100%;
 			height:400px;
 		    border: none;
@@ -90,10 +90,9 @@
 							<span class="pull-right" style="font-weight:bold;">
 								<i class="fa fa-comment"></i>
 								<!-- 댓글이 있으면 -->
-								<b class="orange">40</b>&nbsp;&nbsp;
-								<i class="fa fa-eye"></i>
-								<!-- 조회수 -->
-								431
+								<b class="orange comment_count"></b>&nbsp;&nbsp;
+								<i  class="fa fa-eye"></i>
+								${ share.srbCount }
 							</span>
 							<i class="fa fa-gift"></i> 나눔 제품
 						</h3>
@@ -133,21 +132,23 @@
 						<div class="view-line"></div>
 						
 						  <div class="view-padding">
-	<%-- 					            <!-- \r\n 말고 그냥 \n도, \r도 가능하다 -->
-         						  <td>${ fn:replace(board.bContent, newLineChar, "<br>") }</td> --%>
 						    <div class="view-content">
-						    	<%-- <textarea><c:out value="${ share.srbContent }"/></textarea> --%>
-						    	<% pageContext.setAttribute("newLineChar", "\r\n"); %>
-						    	<textarea>${ fn:replace(share.srbContent, newLineChar, "<br>")}</textarea>
+						    	<textarea><c:out value="${ share.srbContent }"/></textarea>
+<%-- 						    	<% pageContext.setAttribute("newLineChar", "\r\n"); %>
+						    	<textarea>${ fn:replace(share.srbContent, newLineChar, "<br>")}</textarea> --%>
 						    </div>
 						  </div>
 						  
+					    <c:url var="shareList" value="srListView.sr">
+				        </c:url>
+				        
 						<p class="pull-center">
-							<button id="shareList" type="button" class="btn btn-color" style="margin: auto; display: block;" onclick="location.href='${ shareList }'">목록으로</button>
+							<button id="shareList" type="button" class="btn btn-color" style="margin: auto; display: block;"
+							        onclick="location.href='${ shareList }'">목록으로</button>
 						</p>
 							  
 					    <div class="view-comment font-18 en" style="margin-top:11px;">
-							<i class="fa fa-commenting"></i> 댓글 : <span id="comment_count" class="orange"></span> 개
+							<i class="fa fa-commenting"></i> 댓글 : <span id="comment_count" class="orange comment_count"></span> 개
 					    </div>
 					    <c:if test="${ loginUser != null }">
 					    
@@ -206,10 +207,12 @@
 	    	
 	        getReplyList();
 	        
-	        countDate();
-			setInterval(function(){
-				countDate();
-			},1000);
+	        var left = countDate();
+	        if(left>0){
+				setInterval(function(){
+					countDate();
+				},1000);
+	        }
 	        
 	  	});
 	    
@@ -249,11 +252,16 @@
 	        	$('#join_event').text('나눔종료!');
 	        	$('#end_event').css('display','block');
 	        	$('#reply_event_insert').css('display','none');
+	        	if('${ loginUser.email}'== '${share.srWinner}'){
+	        		alert('당첨되셨습니다 축하합니다~!!!');
+	        	}
 	        }else{
 	        	$('#left_time').text(msToTime(left));
 	        	$('#join_event').text('나눔진행중');
 	        	$('#join_event').css('display','block');
 	        }
+	        
+	        return left;
 	        
 	    }
 	    
@@ -309,6 +317,10 @@
 				}
 			});
 		});
+		
+		$('#rUpdate').click(function(){
+			$('#reply_edit_textarea').css('display','block');
+		});
 	    
 	    
 	    function getReplyList(){
@@ -331,7 +343,7 @@
 	    			var $reply_edit;
 	    			var $reply_edit_textarea;
 	    			
-	    			$('#comment_count').text(data.length);
+	    			$('.comment_count').text(data.length);
 	    			if(data.length >0){
 	    				
 	    				
@@ -345,8 +357,22 @@
 	    					$reply_edit = $('<span class="reply_edit">');
 	    					$reply_edit_textarea =$('<textarea id="reply_edit_textarea">').text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
 	    					
-	    					$media_content.append($reply_edit);
-	    					$media_content.append($reply_edit_textarea);
+				            $rUpdate = $('<div class="pull-right">');
+				            $rDelete = $('<div class="pull-right">');
+				           
+				           /*  $rUpdateA = $('<a id="rUpdate">').text("수정").attr('href',"rUpdateA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"); */
+				            $rUpdateA = $('<button id="rUpdate">').text("수정");
+				            $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }");
+				            
+					        $rUpdate.append($rUpdateA);
+					        $rUpdate.append($rDeleteA);
+							
+					        if( decodeURIComponent(data[i].rWriter.replace(/\+/g, " ")) == "${ loginUser.nickname }" ){
+								   $media_content.append($rUpdate);
+								   $media_content.append($rDelete);
+			    				   $media_content.append($reply_edit);
+			    				   $media_content.append($reply_edit_textarea);
+							}
 	    					
 	    					$media_body.append($nickname);
 	    					$media_body.append($createDate);

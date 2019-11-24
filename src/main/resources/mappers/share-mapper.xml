@@ -206,4 +206,17 @@
 		
 	</update>
 	
+	<update id="deleteReply" parameterType="_int">
+		
+		UPDATE REPLY
+		SET 
+		  RSTATUS ='N',
+		  rModifyDate = SYSDATE
+	    WHERE
+	      BCODE ='SBCODE'
+	      AND
+	      RID = #{ rId }
+	
+	</update>
+	
 </mapper>
