@@ -311,9 +311,9 @@
                         <!-- Side Column -->
                     <div class="col-md-3">
                         <!-- Recent Posts -->
-                        <div class="margin-bottom-10">
+                        <!-- <div class="margin-bottom-10">
                             <hr>
-                        </div>
+                        </div> -->
                         <div class="panel panel-success">
                             <div class="panel-body" style="background-color: white;">
                                 <!-- <a href="#"><b>룸메이트</b></a> <br>
@@ -340,9 +340,9 @@
                             <hr>
                         </div> -->
         
-                        <div class="panel panel-aqua">
+                        <%-- <div class="panel panel-aqua">
                             <!-- 이슈 시작-->
-                           <%-- <div class="panel-heading">
+                           <div class="panel-heading">
                                 <a href="blist.rm" style="color:white">
                                     <span class="pull-right lightgray font-16 en">+</span>
                                     <span class="div-title-underbar-bold border-navy font-16 en" >
@@ -354,10 +354,13 @@
                                 <div class="basic-post-list ">
                                 	<c:import url ="../../common/noticeTopList.jsp"/>
                                 </div>
-                            </div> --%>
+                            </div>
                             <!-- 이슈 끝-->
-                        </div>
+                        </div> --%>
                         <!-- End recent Posts -->
+                        <div class="margin-bottom-10">
+                            <hr>
+                        </div>
                         <!-- 공지사항 -->
                         <div class="panel panel-green">
                                <!-- 뉴스 시작 -->
