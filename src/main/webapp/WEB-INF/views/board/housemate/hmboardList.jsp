@@ -570,6 +570,9 @@
                             <!-- 이슈 끝-->
                         </div>
                         <!-- End recent Posts -->
+                        <div class="margin-bottom-10">
+                            <hr>
+                        </div>
                         <!-- 공지사항 -->
                         <div class="panel panel-green">
                                <!-- 뉴스 시작 -->
