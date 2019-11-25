@@ -369,8 +369,8 @@
                                          if( hFileName != null ) {
                                         	 objContent = "<div class='row'>";
                                              objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
-                                             			+(objNum+1)+"</span><input type='file' class='form-control input-sm' name='reloadFile"+(objNum+1) + "'><br>현재업로드한 파일:"
-                                             			+"<a href='"+${ contextPath }+"/resources/hmBoardUploadFiles/"+${ hboard.renameFileName }+"' download='"+${ hboard.originalFileName }+"'>"
+                                             			+(objNum+1)+"</span> <input type='file' class='input-sm' name='reloadFile"+(objNum+1) + "'><br>현재업로드한 파일:"
+                                             			+"<a href='"+${ contextPath }+"/resources/hmBoardUploadFiles/"+${ hboard.renameFileName }+"'>"
                                              			+ hFileName + "</a>"
                                              			+"</div></div></div>";
                                          }else {
