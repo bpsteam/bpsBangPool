@@ -30,6 +30,7 @@ public class LevelController {
 								    ModelAndView mv) {
 		
 		Member m = (Member)session.getAttribute("loginUser");
+		m.setAddress(m.getAddress().replace("/", "<br>")); // mypage 주소 줄바꿈 넣기 (은지)
 		System.out.println("LevelController m객체 : "+m);
 
 		int result = lvService.updatelCode(m);

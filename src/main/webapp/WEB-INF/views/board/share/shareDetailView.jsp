@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@
 		#left_time{
 			color:red;
 		}
-		textarea {
+		.view-content textarea {
 			width:100%;
 			height:400px;
 		    border: none;
@@ -90,10 +91,10 @@
 							<span class="pull-right" style="font-weight:bold;">
 								<i class="fa fa-comment"></i>
 								<!-- 댓글이 있으면 -->
-								<b class="orange">40</b>				&nbsp;&nbsp;
-								<i class="fa fa-eye"></i>
-								<!-- 조회수 -->
-								431			</span>
+								<b class="orange comment_count"></b>&nbsp;&nbsp;
+								<i  class="fa fa-eye"></i>
+								${ share.srbCount }
+							</span>
 							<i class="fa fa-gift"></i> 나눔 제품
 						</h3>
 					</div>
@@ -127,34 +128,52 @@
 						<p class="pull-center">
 								<button id="end_event" type="button" class="btn btn-danger" onclick="alert('나눔이 종료되었습니다.');" style="display:none; margin: auto;">나눔종료!</button>
 								<button id="join_event" type="button" class="btn btn-color" onclick="alert('댓글로 참여해주세요.');" style="display:none; margin: auto;">나눔진행중</button>
+								<button id="check_event" type="button" class="btn btn-color" onclick="alert('댓글로 참여해주세요.');" style="display:none; margin: auto;">당첨 확인</button>
 						</p>
 						<div class="view-line"></div>
 						
 						  <div class="view-padding">
 						    <div class="view-content">
 						    	<textarea><c:out value="${ share.srbContent }"/></textarea>
+<%-- 						    	<% pageContext.setAttribute("newLineChar", "\r\n"); %>
+						    	<textarea>${ fn:replace(share.srbContent, newLineChar, "<br>")}</textarea> --%>
 						    </div>
 						  </div>
 						  
+					    <c:url var="shareList" value="srListView.sr">
+				        </c:url>
+				        
+						<p class="pull-center">
+							<button id="shareList" type="button" class="btn btn-color" style="margin: auto; display: block;"
+							        onclick="location.href='${ shareList }'">목록으로</button>
+						</p>
 					
-				    <div class="view-comment font-18 en" style="margin-top:50px;">
-						<i class="fa fa-commenting"></i> 댓글 : <span id="comment_count" class="orange"></span> 개
-				    </div>
-				    <c:if test="${ loginUser != null }">
-				    
-				    <div class="comment-box">
-					      <div class="comment-box">
-	
-					        <div class="clearfix"></div>
-					
-					        <div class="form-group comment-content ">
-					          <form action="reply_event_insert.sr" style="width:100%;">
-						        <div class="comment-cell col-md-10" >
-						            <textarea id="reply_content" tabindex="13" id="wr_content" name="rContent" maxlength="10000" rows="5"
-						              class="form-control input-sm is_cm_color" title="내용" required style="height:70px;"></textarea>
-						            <input name="nickname" type="hidden" value=${ loginUser.nickname }>
-						            <input name="srbId" type="hidden" value=${ share.srbId }>
-						            <input name="email" type="hidden" value=${ loginUser.email }>
+					    <div class="view-comment font-18 en" style="margin-top:11px;">
+							<i class="fa fa-commenting"></i> 댓글 : <span id="comment_count" class="orange comment_count"></span> 개
+					    </div>
+					    <c:if test="${ loginUser != null }">
+					    
+					    <div class="comment-box">
+						      <div class="comment-box">
+		
+						        <div class="clearfix"></div>
+						
+						        <div class="form-group comment-content">
+							        
+						          <form action="reply_event_insert.sr">
+							        <div class="comment-cell" style="width:80%">
+							            <textarea id="reply_content" tabindex="13" id="wr_content" name="rContent" maxlength="10000" rows="5"
+							              class="form-control input-sm is_cm_color" title="내용" required></textarea>
+							            <input name="nickname" type="hidden" value=${ loginUser.nickname }>
+							            <input name="srbId" type="hidden" value=${ share.srbId }>
+							            <input name="email" type="hidden" value=${ loginUser.email }>
+							        </div>
+									<div style="display: table-cell;width: 80px;">
+										<input type="button" id="reply_insert" value="등록" name="rContent" style="background-color: #F90; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 65px;" tabindex="14">
+											
+										<input type="button" id="reply_event_insert" value="등록+신청" style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 35px;" tabindex="14">
+									</div>
+								  </form>
 						        </div>
 								<div class="col-md-2" style="display:flex;">
 									<input type="button" id="reply_insert" value="등록" name="rContent" style="background-color: #F90; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; height: 70px;" tabindex="14">
@@ -176,7 +195,8 @@
 				    <!-- 댓글 목록 -->
 				      <div id="viewcomment">
 					  </div>
-					  
+						      </div>
+					    </div>
 					</div>
 					
 				</div>
@@ -195,10 +215,12 @@
 	    	
 	        getReplyList();
 	        
-	        countDate();
-			setInterval(function(){
-				countDate();
-			},1000);
+	        var left = countDate();
+	        if(left>0){
+				setInterval(function(){
+					countDate();
+				},1000);
+	        }
 	        
 	  	});
 	    
@@ -237,11 +259,17 @@
 	        	$('#left_time').text('마감');
 	        	$('#join_event').text('나눔종료!');
 	        	$('#end_event').css('display','block');
+	        	$('#reply_event_insert').css('display','none');
+	        	if('${ loginUser.email}'== '${share.srWinner}'){
+	        		alert('당첨되셨습니다 축하합니다~!!!');
+	        	}
 	        }else{
 	        	$('#left_time').text(msToTime(left));
 	        	$('#join_event').text('나눔진행중');
 	        	$('#join_event').css('display','block');
 	        }
+	        
+	        return left;
 	        
 	    }
 	    
@@ -297,6 +325,10 @@
 				}
 			});
 		});
+		
+		$('#rUpdate').click(function(){
+			$('#reply_edit_textarea').css('display','block');
+		});
 	    
 	    
 	    function getReplyList(){
@@ -319,7 +351,7 @@
 	    			var $reply_edit;
 	    			var $reply_edit_textarea;
 	    			
-	    			$('#comment_count').text(data.length);
+	    			$('.comment_count').text(data.length);
 	    			if(data.length >0){
 	    				
 	    				
@@ -333,8 +365,22 @@
 	    					$reply_edit = $('<span class="reply_edit">');
 	    					$reply_edit_textarea =$('<textarea id="reply_edit_textarea">').text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
 	    					
-	    					$media_content.append($reply_edit);
-	    					$media_content.append($reply_edit_textarea);
+				            $rUpdate = $('<div class="pull-right">');
+				            $rDelete = $('<div class="pull-right">');
+				           
+				           /*  $rUpdateA = $('<a id="rUpdate">').text("수정").attr('href',"rUpdateA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"); */
+				            $rUpdateA = $('<button id="rUpdate">').text("수정");
+				            $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }");
+				            
+					        $rUpdate.append($rUpdateA);
+					        $rUpdate.append($rDeleteA);
+							
+					        if( decodeURIComponent(data[i].rWriter.replace(/\+/g, " ")) == "${ loginUser.nickname }" ){
+								   $media_content.append($rUpdate);
+								   $media_content.append($rDelete);
+			    				   $media_content.append($reply_edit);
+			    				   $media_content.append($reply_edit_textarea);
+							}
 	    					
 	    					$media_body.append($nickname);
 	    					$media_body.append($createDate);

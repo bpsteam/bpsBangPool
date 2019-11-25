@@ -36,26 +36,27 @@ h3 {
 	    $("#email").html(email);
     });
   //location.href = "${pageContext.request.contextPath}/";
+//color:rgb(255,208,0)
 </script>
-
 </head>
-<body style="text-align:-webkit-center;background-color: #3EAF0E;">
-<br><br><br><br><br>
+<body style="text-align:-webkit-center; background-color: rgb(255,208,0)">
 <br><br><br><br><br>
 
   <div
-    style="background-color: white; width: 400px; height: 200px; text-align: center; color: white;">
-    <img src="${pageContext.request.contextPath}/resources/assets/img/bps/naverlogo.png" style="width:300px">
-  
-  <span> <h2 style="text-align: center;color:black" id="name"></h2></span>
-  <h4 style="text-align: center; color:#3EAF0E" id="email"></h4>
+    style="background-color: rgb(255,208,0); width: 400px; height: 80px; text-align: center; color: white;">
+    <img src="${pageContext.request.contextPath}/resources/assets/img/bps/kakaoSuccess.jpg" style="width:300px">
   </div>
+  <br><br><br><br><br><br><br>
+  <div><h2 style="text-align: center" id="name"></h2>
+</div>
+ 
+  <h2 style="text-align: center; " id="email"></h2>
   <script>
     $(function () {
       $("body").hide();
       $("body").fadeIn(3000);  
      
-		 setTimeout(function(){$("body").fadeOut(3000);},1000);
+ 		setTimeout(function(){$("body").fadeOut(3000);},1000);
      	setTimeout(function(){location.href= "home.do"},2000);  
     
     })

@@ -35,5 +35,7 @@ public interface ShareService {
 
 	ArrayList<Member> countMember(int srbId);
 
+	int deleteReply(int rId);
+
 
 }

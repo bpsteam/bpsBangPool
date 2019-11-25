@@ -84,6 +84,7 @@ public class ShareController {
 		}
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(list, response.getWriter());
+
 	}
 	
 	
@@ -272,21 +273,17 @@ public class ShareController {
 	  ArrayList<Member> list = new ArrayList<Member>();
 	  list = srService.selectEventMember(srbId);
 	  
-	  System.out.println(list.size());
-	  
 	  if(list.size() <=0) {
 		  return "error";
 	  }else {
 		  
-		  int random = (int)(Math.random()*(list.size()-1))+1;
+		  int random = (int)(Math.random()*(list.size()-1));
 		  Member m = new Member();
 		  
 		  m = list.get(random);
 		  
 		  s.setSrbId(srbId);
 		  s.setSrWinner(m.getEmail().toString());
-		  
-		  System.out.println("winner"+s.getSrWinner());
 		  
 		  if(list !=null) {
 			  int result = srService.insertWinner(s);
@@ -296,6 +293,22 @@ public class ShareController {
 	  }
 	  
   }
+  
+	@RequestMapping("rDeleteA.sr")
+	public ModelAndView reply_Delete(@RequestParam("srbId") int srbId,
+									 @RequestParam("rId") int rId,
+									 ModelAndView mv
+									){
+		
+		int result = srService.deleteReply(rId);
+		
+		if(result>0) {
+			mv.setViewName("redirect:srdetail.sr?srbId="+srbId);
+		}
+		
+		
+		return mv;
+	}
 	
 	
 

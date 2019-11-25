@@ -47,7 +47,6 @@
                                     </div>
                                 </div>
                             </form>
-                                
                         </div>
                         <!-- End Register Box -->
                           <!-- Side Column -->

@@ -312,12 +312,12 @@
                                                         <span class="pull-right">${ loginUser.gender }</span>
                                                        성별
                                                     </li>
-                                                    <li class="list-group-item">
-                                                        <span class="pull-right">${ loginUser.address }</span>
+                                                    
+                                                    <li class="list-group-item" style="height:88px">
+                                                        <span class="pull-right" style="text-align:right">${ loginUser.address }</span>
                                                         주소
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">${ loginUser.address }</span>
                                                         <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
                                                     </li>
                                                                     </ul>
@@ -373,17 +373,18 @@
                                                     </div>
                                                 </div> -->
                                         </div>
-                                        <div class="col-sm-12">
-                                                <div class="col-xs-6">
+                                        <div class="col-sm-4"></div>
+                                        <div class="col-sm-8">
+                                                <div class="col-xs-3">
                                                     <div class="form-group">
-                                                        <a href="mupConfirm.me" class="btn btn-lightgray btn-sm btn-block">
+                                                        <a href="mupConfirm.me" class="btn btn-green btn-sm btn-block">
                                                             정보수정
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-6">
+                                                <div class="col-xs-3">
                                                     <div class="form-group">
-                                                        <button id="deleteMember" class="btn btn-lightgray btn-sm btn-block leave-me">
+                                                        <button id="deleteMember" class="btn btn-red btn-sm btn-block leave-me">
                                                             탈퇴하기
                                                         </button>
                                                     </div>
