@@ -53,7 +53,7 @@
 			<%-- <c:set var=cValue value="${ cValue }"/> --%>
 			<%-- <c:forTokens  var="name" items="${ cValue }" delims="_">  --%>
 
-			<li class="ellipsis" style="border-bottom: 1px solid #efefef;">
+			<li class="ellipsis" >
 				<c:if test="${ bcode eq 'FMBCODE' }">
 					<a href="bdetail.fm?bId=${bId }" />
 				</c:if> <c:if test="${ bcode eq 'HMBCODE' }">
@@ -65,10 +65,11 @@
 				</c:if> <c:if test="${ empty img }">
 					<i class="fa-file-text"></i>
 				</c:if> 
-			<span class="subject_title" style="width:auto"> 
-					<b> <c:out value="${ bTitle }" /></b></span> 
+			<!-- <span class="subject_title" style="width:auto">  -->
+					<b> <c:out value="${ bTitle }" /></b>
+					<!-- </span>  -->
 				</a>
-			</li>
+			</li><br>
 			<% 
 	  	  }
 	        
