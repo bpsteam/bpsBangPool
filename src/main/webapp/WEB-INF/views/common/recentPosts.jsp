@@ -16,8 +16,8 @@
 		<h3 class="panel-title">Recent Posts</h3>
 	</div>
 	<div class="panel-body"
-		style="background-color: white; padding-bottom: 0px; height: 313px; overflow-y:scroll;">
-		<ul class="post-list" id="ultag" style="list-style: none; padding: 0px;">
+		style="background-color: white; padding-bottom: 0px; height: 313px; overflow-y:scroll; overflow:hidden; ">
+		<ul class="post-list" id="ultag" style="list-style: none; padding: 0px; overflow:hidden; text-overflow:ellipsis">
 			<%
 	    String bId ="";
 		String bcode ="";
@@ -53,7 +53,7 @@
 			<%-- <c:set var=cValue value="${ cValue }"/> --%>
 			<%-- <c:forTokens  var="name" items="${ cValue }" delims="_">  --%>
 
-			<li class="ellipsis" >
+			<li class="ellipsis" style="padding:0px" >
 				<c:if test="${ bcode eq 'FMBCODE' }">
 					<a href="bdetail.fm?bId=${bId }" />
 				</c:if> <c:if test="${ bcode eq 'HMBCODE' }">

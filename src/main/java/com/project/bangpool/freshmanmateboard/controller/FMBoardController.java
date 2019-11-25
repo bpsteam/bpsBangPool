@@ -397,10 +397,14 @@ public class FMBoardController {
 					renameFile +=";"+renameFileName3;
 				}
 			}
-		}
-		
-		b.setOriginalFileName(originalFile);
-		b.setRenameFileName(renameFile);
+			b.setOriginalFileName(originalFile);
+			b.setRenameFileName(renameFile);
+		}	
+//		}else {
+//			FMBoard board = fbService.selectBoard(b.getFbId());
+//			b.setOriginalFileName(board.getOriginalFileName());
+//			b.setRenameFileName(board.getRenameFileName());
+//		}
 		
 //		if(renameFileName1 != null) {
 //			originalFile =reloadFile1.getOriginalFilename();
