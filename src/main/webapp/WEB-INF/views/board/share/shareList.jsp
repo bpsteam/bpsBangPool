@@ -8,12 +8,26 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
     <style>
 
         .table tbody tr {
             border-bottom: 1px solid #dddddd ;
         }
+        
+        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+	    .wrap * {padding: 0;margin: 0;}
+	    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+	    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+	    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+	    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+	    .info .close:hover {cursor: pointer;}
+	    .info .body {position: relative;overflow: hidden;}
+	    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+	    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+	    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+	    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+	    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+	    .info .link {color: #5085BB;}
         
     </style>
 
@@ -447,7 +461,7 @@
 	// start 지도 생성
 	var mapContainer = document.getElementById('map'); 	//지도를 담을 영역의 DOM 레퍼런스
 	var mapOptions = { 									//지도를 생성할 때 필요한 기본 옵션
-		center: new kakao.maps.LatLng(0,0), 			//지도의 중심좌표 초기화값.
+		center: new kakao.maps.LatLng(123,123), 			//지도의 중심좌표 초기화값.
 		level: 5										//지도의 레벨(확대, 축소 정도)
 	};
 	
@@ -463,24 +477,17 @@
 	     if (status === kakao.maps.services.Status.OK) {
 
 	        var coordsLogInUser = new kakao.maps.LatLng(result[0].y, result[0].x);
-			console.log("값이 들어왔습니다. 안정식 coordsLogInUser " + coordsLogInUser);	
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new kakao.maps.Marker({
 	            map: map,
 	            position: coordsLogInUser
 	        });
 
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
-	        });
-	        infowindow.open(map, marker);
 			
 	        userCoords = {
         		latitude : result[0].y,
        			longitude : result[0].x
 	        };
-	        console.log(userCoords);
 	     	// start 지도에 표시할 원을 생성합니다 ** 수정해 놓은상태
 	    	var circle = new kakao.maps.Circle({
 	    	    center : new kakao.maps.LatLng(result[0].y, result[0].x),  // 원의 중심좌표 입니다 
@@ -521,7 +528,7 @@ var otherIdNum = new Array();
 			for(var i in data){
 				otherAddress[i] = decodeURIComponent(data[i].address.replace(/\+/g, " ")).split('/')[1];
 				otherWriter[i] = decodeURIComponent(data[i].srbwriter);
-				otherItem[i] = decodeURIComponent(data[i].sritemName);
+				otherItem[i] = decodeURIComponent(data[i].sritemname.replace(/\+/g, " "));
 				otherIdNum[i] = data[i].srbid;
 			}
 		}
@@ -533,7 +540,8 @@ var otherIdNum = new Array();
 
 	// java 를 통해서 받아온 String 값에 넣어준다.
 	// 주소로 좌표를 검색합니다
-	
+	var infowindow = null;
+	var marker = null;
 	var limit = otherAddress.length;
 	for(var i=0; i < otherAddress.length; i++){
 		// geocoder 안으로 들어가면 address[i]값이 표시되지 않는다.
@@ -544,23 +552,49 @@ var otherIdNum = new Array();
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 					
 		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
+		        marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
-		        console.log(otherIdNum[limit]);
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content:    '<div style="width:150px;text-align:center;padding:6px 0;">'
-           						+'<a href="srdetail.sr?srbId='+otherIdNum[limit]+'">'+otherWriter[limit]+'</a>'
-           						+'집</div>'+'<div>'+otherAddress[limit]+'</div>'
+		        infowindow = new kakao.maps.CustomOverlay({
+		            content:    '<div class="wrap">' + 
+           			            '    <div class="info">' + 
+           			            '        <div class="title">' + 
+           			            '            방풀 나눔게시판' + 
+           			            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+           			            '        </div>' + 
+           			            '        <div class="body">' + 
+           			            '            <div class="img">' +
+           			            '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+           			            '           </div>' + 
+           			            '            <div class="desc">' + 
+           			            '                <div class="ellipsis">상품 명 : '+otherItem[limit]+'</div>' + 
+           			            '                멋쟁이 '+'<a href="srdetail.sr?srbId='+otherIdNum[limit]+'">'+otherWriter[limit]+'</a>'+'님의 게시판</div>' + 
+           			            '            </div>' + 
+           			            '        </div>' + 
+           			            '    </div>' +    
+           			            '</div>',
+        			 map: map,
+        			 position: marker.getPosition() 
 		        });
-		        infowindow.open(map, marker);
+
 		    } 
 		     limit--;
 		}); 
+		
 	}
+	// 배열값으로 바꿔 넣어야 한다.
+	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	kakao.maps.event.addListener(marker, 'click', function() {
+	    overlay.setMap(map);
+	});
 
+	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	function closeOverlay() {
+	    overlay.setMap(null);     
+	}		        
+	
 </script>
 
 <!-- 1km 이하 거리 계산하기-->

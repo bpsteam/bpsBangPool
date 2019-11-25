@@ -29,8 +29,11 @@
                                 <input name="nTitle" class="form-control margin-bottom-20" type="text">
                                 <label>작성자</label><br>
                                 <input name="nWriter" value="${ loginUser.nickname }"><br><br>
-                                <label>게시글</label><br>
-                                <textarea name="nContent" style="resize: none; width: 680px; height: 400px;"></textarea>
+                                <!-- start sending 게시글 -->
+                                <label><h3>게시글</h3></label><br>
+                                <div id="dbText" class="form-control margin-bottom-20" contenteditable="true" style="width: 700px; height: 400px;"></div>
+                                <textarea id="nContent" class="form-control margin-bottom-20" style="resize:none; display:none; width: 700px; height: 400px;" name="sbcontent" ></textarea>
+                                <!-- end sending 게시글 -->
                                 <hr>
                                 <!-- <button class="btn btn-primary " type="submit">파일삭제</button> --> 
                                 <!-- <input type="file" style="display: none;" id="upFilebutton"> -->
@@ -133,6 +136,13 @@
 	           uploadFile.click();
 	       }
       	});
+      	
+   		// sending text
+		function sendingText(){
+			var insertText = document.getElementById("dbText").innerHTML
+			document.getElementById("nContent").value = document.getElementById("dbText").innerHTML;
+			document.getElementById("insertForm").submit();
+		}
       </script>
 
 </body>
