@@ -18,7 +18,7 @@
 </head>
 <body>
 	<!-- ==== HEADER START ==== -->
-	<c:import url="../common/header.jsp" />
+	<c:import url="../../common/header.jsp" />
 	<!-- ==== HEADER END ==== -->
 
 	<!-- === BEGIN CONTENT === -->
@@ -120,7 +120,7 @@
 
 
 	<!-- ==== FOOTER START ==== -->
-	<c:import url="../common/footer.jsp" />
+	<c:import url="../../common/footer.jsp" />
 	<!-- ==== FOOTER END ==== -->
 
 
