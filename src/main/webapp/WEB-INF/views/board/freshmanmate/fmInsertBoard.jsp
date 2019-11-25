@@ -278,15 +278,15 @@
 									</div>
 
 
-									<div class="well well-sm text-center">
+									<%-- <div class="well well-sm text-center">
 
 										<!-- 자동등록방지 -->
 										
 										
-										<c:import url ="../../common/captcha/captcha.jsp"/>
+										<c:import url ="../../common/captchaApi/captcha.jsp"/>
 									
 										<!-- 자동등록방지 -->
-									</div>
+									</div> --%>
 
 									<div class="write-btn pull-center">
 										<button type="submit" id="btn_submit" accesskey="s"
