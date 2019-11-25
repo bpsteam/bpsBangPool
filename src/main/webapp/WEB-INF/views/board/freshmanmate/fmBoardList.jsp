@@ -561,41 +561,23 @@
 
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                <h3 class="panel-title">공지사항</h3>
+                                <a href="blist.rm" style="color:white">
+                                    <span class="pull-right lightgray font-16 en">+</span>
+                                    <span class="div-title-underbar-bold border-navy font-16 en" >
+                                        <b>공지사항</b>
+                                    </span>
+                                </a>
                             </div>
-                            <div class="panel-body" style="background-color: white; ">
-                                <div class="table-responsive">
-                                    <table class="table table-hover ellipsistb" >
-        
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td id="ellipsistd" >공지사항입니다1ddddd</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td id="ellipsistd">공지사항입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td  id="ellipsistd">공지사항입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td  id="ellipsistd">공지사항입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-        
-                                        </tbody>
-                                    </table>
+                            <div class="widget-box panel-body">
+                                <div class="basic-post-list ">
+                                	<c:import url ="../../common/noticeTopList.jsp"/>
                                 </div>
-                                
                             </div>
                         </div>
                         <!-- End recent Posts -->
+                        <div class="margin-bottom-10">
+                            <hr>
+                        </div>
                         <!-- RecentPost -->
                         <div class="panel panel-info">
 						
