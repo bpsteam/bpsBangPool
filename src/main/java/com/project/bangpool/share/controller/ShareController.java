@@ -2,6 +2,7 @@ package com.project.bangpool.share.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.Response;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -28,6 +30,7 @@ import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.common.page.Pagination;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.share.model.service.ShareService;
+import com.project.bangpool.share.model.vo.Map;
 import com.project.bangpool.share.model.vo.Share;
 
 @Controller
@@ -50,7 +53,6 @@ public class ShareController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Share> list = srService.selectList(pi,sLoc);
-		
 		if(list != null) {
 			mv.addObject("list",list)
 			  .addObject("pi",pi)
@@ -63,9 +65,31 @@ public class ShareController {
 	}
 	
 	
+	
+	
+	
+	
+
+  	// ajax map
+	@RequestMapping("mapAjax.sr")
+	public void mapAjax(HttpServletResponse response) throws JsonIOException, IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Map> list = srService.mapList();
+		
+		for(Map s : list) {
+			s.setAddress(URLEncoder.encode(s.getAddress(),"utf-8"));
+			s.setSrbwriter(URLEncoder.encode(s.getSrbwriter(),"utf-8"));
+			s.setSritemname(URLEncoder.encode(s.getSritemname(),"utf-8"));
+		}
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+
+	}
+	
+	
 	@RequestMapping("srInsertForm.sr")
 	public String shareInsertForm() {
-		
 		
 		return "shareInsertForm";
 		
@@ -79,7 +103,6 @@ public class ShareController {
 								    ModelAndView mv,
 								    HttpServletRequest request,
 								    HttpSession session) {
-
 	
  		if(uploadFile != null && !uploadFile.isEmpty()) {
 
@@ -113,7 +136,7 @@ public class ShareController {
 		
 		Share s = srService.shareDetail(srbId);
 		
-		s.setSrEventEnterCount(m.size());
+		/*s.setSrEventEnterCount(m.size());*/
 		
 		String srStartDate = srDate.format(s.getSrStartDate());
 		String srEndDate = srDate.format(s.getSrEndDate());
@@ -209,34 +232,44 @@ public class ShareController {
 						             Member m,
 						             @RequestParam("refbId") String refbId) {
 
+		String listNickname ="";
+		String MemberNickname =m.getNickname();
+		
 		ArrayList<Member> list = new ArrayList<Member>();
 		list = srService.selectMember(r);
-
+		
+		System.out.println("list : " + list);
+		System.out.println("member : "+m.getNickname());
+		System.out.println("listSIZE: "+list.size());
+		
 		if(list.size()>0) {
 			
 			for(int i =0; i<list.size();i++) {
-				
-				if(list.get(i).getEmail().equals(m.getEmail())) {
-					
+				System.out.println(i);
+				listNickname = list.get(i).getNickname();
+				System.out.println("list : "+ list.get(i).getNickname());
+				System.out.println("member : "+m.getNickname());
+				/*list.get(i).getNickname().equals(m.getNickname())*/
+				if(listNickname.equals(MemberNickname)) {
 					return "error";
 				}
 			}
 		}
-		else {
-			
-			HashMap<String, String> map = new HashMap<String, String>();
-			
-			map.put("refbId",refbId );
-			map.put("email",m.getEmail() );
-			map.put("rWriter",m.getNickname() );
-			map.put("rContent",r.getrContent() );
-			
-			int result = srService.insertReplt_event(map);
-			
-			if(result>0) {
-				return "success";
-			}
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("refbId",refbId );
+		map.put("nickname",m.getNickname() );
+		map.put("rWriter",m.getNickname() );
+		map.put("rContent",r.getrContent() );
+		
+		int result = srService.insertReplt_event(map);
+		int eventMemberUpdate = srService.eventMemberUpdate(refbId);
+		
+		if(result>0) {
+			return "success";
 		}
+	
 		return "";
 	
 	}
@@ -259,7 +292,7 @@ public class ShareController {
 		  m = list.get(random);
 		  
 		  s.setSrbId(srbId);
-		  s.setSrWinner(m.getEmail().toString());
+		  s.setSrWinner(m.getNickname().toString());
 		  
 		  if(list !=null) {
 			  int result = srService.insertWinner(s);
@@ -271,15 +304,22 @@ public class ShareController {
   }
   
 	@RequestMapping("rDeleteA.sr")
-	public ModelAndView reply_Delete(@RequestParam("srbId") int srbId,
+	public ModelAndView reply_Delete(@RequestParam("srbId") String srbId,
 									 @RequestParam("rId") int rId,
+									 @RequestParam("nickname") String nickname,
 									 ModelAndView mv
 									){
+		
+		HashMap<String, String> map = new HashMap<String, String>();
 		
 		int result = srService.deleteReply(rId);
 		
 		if(result>0) {
+			
+			result = srService.deleteReplyEvent(rId);
+			
 			mv.setViewName("redirect:srdetail.sr?srbId="+srbId);
+			
 		}
 		
 		

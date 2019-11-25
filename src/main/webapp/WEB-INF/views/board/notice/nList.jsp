@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,17 +73,12 @@
 						      <!-- <button type="submit">검색하기</button> -->
 		                  </form>
                      </div>
-                     
                     
                    <div style="text-align: end;">
 		               <form action="notice_insert.no">
 	                          	<c:if test="${ !empty sessionScope.loginUser && loginUser.nickname == '관리자닉네임'}">
 	                          		<input type="submit" class="btn btn-primary btn-sm" style="margin-bottom: 3px;" value="글쓰기"></input>
 	                          	</c:if>
-	                          	
-						   <%-- <c:if test="${  empty sessionScope.loginUser }">
-	                          		<input type="button" class="btn btn-primary btn-sm needLogin" style="margin-bottom: 3px;" value="글쓰기"></input>
-	                          	</c:if> --%>
 	                   </form>	
                    </div> 							
                       
@@ -109,9 +105,8 @@
 										<a href="${ contextPath }/resources/nuploadFiles/${ n.renameFileName }" download="${ n.originalFileName }">${ n.originalFileName }</a>
 									</div>
 	                            </c:if>
-	                            
-								<p>${ n.nContent }</p>
-								
+								<% pageContext.setAttribute("newLineChar", "\n"); %>
+                            	<span>${ fn:replace(n.nContent, newLineChar, "<br>")}</span>
 								<p style="text-align:center;">
 								
 									<c:if test="${ !empty sessionScope.loginUser && loginUser.nickname == '관리자닉네임' }">

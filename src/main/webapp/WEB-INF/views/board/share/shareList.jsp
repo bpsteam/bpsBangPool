@@ -8,12 +8,26 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
     <style>
 
         .table tbody tr {
             border-bottom: 1px solid #dddddd ;
         }
+        
+        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+	    .wrap * {padding: 0;margin: 0;}
+	    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+	    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+	    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+	    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+	    .info .close:hover {cursor: pointer;}
+	    .info .body {position: relative;overflow: hidden;}
+	    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+	    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+	    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+	    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+	    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+	    .info .link {color: #5085BB;}
         
     </style>
 
@@ -275,16 +289,7 @@
                                     </ul>
                             </div>
                         </div> -->
-                        <div class="panel panel-danger">
-                         		<div class="panel-heading">
-	                        		<h3 class="panel-title">무료나눔</h3>
-	                        	</div>
-	                        <div class="margin-bottom-10">
-	                        	<!-- start 지도 -->
-									<div id="map" style="width:100%;height:370px; border-radius: 0.5em;"></div>
-								<!-- end 지도 -->
-	                        </div>
-        				</div>
+                        
                         <div class="panel panel-danger">
                             <div class="panel-heading">
                                 <h3 class="panel-title">공지사항</h3>
@@ -364,9 +369,20 @@
                     </div>
                     <!-- End Side Column -->
                 </div>
+                <div class="panel panel-danger">
+               		<div class="panel-heading">
+               			<h3 class="panel-title">무료나눔</h3>
+                   	</div>
+                    <div class="margin-bottom-10">
+	                   	<!-- start 지도 -->
+							<div id="map" style="width:100%;height:370px; border-radius: 0.5em;"></div>
+						<!-- end 지도 -->
+                    </div>
+   				</div>
             </div>
         
             <div class="margin-bottom-30">
+            
                 <hr>
             </div>
         
@@ -441,8 +457,8 @@
 	// start 지도 생성
 	var mapContainer = document.getElementById('map'); 	//지도를 담을 영역의 DOM 레퍼런스
 	var mapOptions = { 									//지도를 생성할 때 필요한 기본 옵션
-		center: new kakao.maps.LatLng(0,0), 			//지도의 중심좌표 초기화값.
-		level: 6										//지도의 레벨(확대, 축소 정도)
+		center: new kakao.maps.LatLng(123,123), 			//지도의 중심좌표 초기화값.
+		level: 5										//지도의 레벨(확대, 축소 정도)
 	};
 	
 	var map = new kakao.maps.Map(mapContainer, mapOptions); //지도 생성 및 객체 리턴
@@ -457,24 +473,17 @@
 	     if (status === kakao.maps.services.Status.OK) {
 
 	        var coordsLogInUser = new kakao.maps.LatLng(result[0].y, result[0].x);
-			console.log("값이 들어왔습니다. 안정식 coordsLogInUser " + coordsLogInUser);	
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new kakao.maps.Marker({
 	            map: map,
 	            position: coordsLogInUser
 	        });
 
-	        // 인포윈도우로 장소에 대한 설명을 표시합니다
-	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<a href="www.naver.com">네이버</a><div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
-	        });
-	        infowindow.open(map, marker);
 			
 	        userCoords = {
         		latitude : result[0].y,
        			longitude : result[0].x
 	        };
-	        console.log(userCoords);
 	     	// start 지도에 표시할 원을 생성합니다 ** 수정해 놓은상태
 	    	var circle = new kakao.maps.Circle({
 	    	    center : new kakao.maps.LatLng(result[0].y, result[0].x),  // 원의 중심좌표 입니다 
@@ -502,70 +511,85 @@
 <!-- 주변 1km 이내에 나눔 게시판 표시 -->
 <script type="text/javascript">
 	
+var otherAddress = new Array();
+var otherWriter = new Array();
+var otherItem = new Array();
+var otherIdNum = new Array();
+
+/* 페이지가 로딩되고 Share Board 를 가지고 오는 함수 */
+	$.ajax({
+		url:"mapAjax.sr", // controller 접근
+		dataType: "json",
+		success: function(data){
+			for(var i in data){
+				otherAddress[i] = decodeURIComponent(data[i].address.replace(/\+/g, " ")).split('/')[1];
+				otherWriter[i] = decodeURIComponent(data[i].srbwriter);
+				otherItem[i] = decodeURIComponent(data[i].sritemname.replace(/\+/g, " "));
+				otherIdNum[i] = data[i].srbid;
+			}
+		}
+		,async: false
+	});
 	// 다른사람들 주소 가지고 만들기
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
-	
-	// 다른분들 주소값 배열로 받아오기
-	var address = new Array('서울특별시 송파구 올림픽로 240',	
-							'서울특별시 송파구 올림픽로 269',
-							'서울특별시 송파구 올림픽로 300',
-							'서울특별시 송파구 석촌호수로 268',
-							'서울특별시 송파구 석촌호수로 258',
-							'서울특별시 송파구 석촌호수로 230',
-							'서울특별시 송파구 석촌호수로 188');
-	console.log("userCoords" + userCoords);
+
 	// java 를 통해서 받아온 String 값에 넣어준다.
 	// 주소로 좌표를 검색합니다
-	for(var i=0; i < address.length; i++){
-		console.log(address[i]);
+	var infowindow = null;
+	var marker = null;
+	var limit = otherAddress.length;
+	for(var i=0; i < otherAddress.length; i++){
 		// geocoder 안으로 들어가면 address[i]값이 표시되지 않는다.
-		geocoder.addressSearch(address[i], function(result, status) {
-			// 정상적으로 검색이 완료됐으면 
+		geocoder.addressSearch(otherAddress[i], function(result, status) {
+			// 정상적으로 검색이 완료됐으면
 		     if (status === kakao.maps.services.Status.OK) {
-	
+				
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		        console.log("값이 들어왔습니다." + coords);
 					
 		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
+		        marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${loginUser.name}집</div>'
+		        infowindow = new kakao.maps.CustomOverlay({
+		            content:    '<div class="wrap">' + 
+           			            '    <div class="info">' + 
+           			            '        <div class="title">' + 
+           			            '            방풀 나눔게시판' + 
+           			            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+           			            '        </div>' + 
+           			            '        <div class="body">' + 
+           			            '            <div class="img">' +
+           			            '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+           			            '           </div>' + 
+           			            '            <div class="desc">' + 
+           			            '                <div class="ellipsis">상품 명 : '+otherItem[limit]+'</div>' + 
+           			            '                멋쟁이 '+'<a href="srdetail.sr?srbId='+otherIdNum[limit]+'">'+otherWriter[limit]+'</a>'+'님의 게시판</div>' + 
+           			            '            </div>' + 
+           			            '        </div>' + 
+           			            '    </div>' +    
+           			            '</div>',
+        			 map: map,
+        			 position: marker.getPosition() 
 		        });
-		        infowindow.open(map, marker);
-				
-		        // ** map.setCenter 주석처리
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        // map.setCenter(coords);
-		        // ** map.setCenter 주석처리
-		    } 
-		}); 
-	}
 
-/* 	
-	//마커를 표시할 위치와 title 객체 배열입니다 
-	var positions = [
-	    {
-	        title: '카카오', 
-	        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-	    },
-	    {
-	        title: '생태연못', 
-	        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-	    },
-	    {
-	        title: '텃밭', 
-	        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-	    },
-	    {
-	        title: '근린공원',
-	        latlng: new kakao.maps.LatLng(33.451393, 126.570738)
-	    }
-	];
+		    } 
+		     limit--;
+		}); 
+		
+	}
+	// 배열값으로 바꿔 넣어야 한다.
+	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	kakao.maps.event.addListener(marker, 'click', function() {
+	    overlay.setMap(map);
+	});
+
+	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	function closeOverlay() {
+	    overlay.setMap(null);     
+	}		        
 	
 	// 마커 이미지의 이미지 주소입니다
 	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -587,25 +611,10 @@
 	    });
 }
 
- */	
 	
 </script>
 
-<!-- ajax map -->
-<script type="text/javascript">
-	window.onload = function (){ 					/* window.onload 페이지가 로딩되고 시작하는 함수 */
-		console.log("${ list }");
-		var loginUserName = "${ loginUser.name }";
-		$.ajax({
-			url:"mapAjax.map", 						// controller 접근
-			data: {mName:loginUserName}, 			// 왼쪽 변수가 컨트롤러에서 받는 값, 오른쪽 변수가 자바스크립트에서 받는 값입니다.
-			dataType: "json",
-			success: function(data){
-				console.log("성공");
-			}
-		});
-	}
-</script>
+
 
 </body>
 </html>

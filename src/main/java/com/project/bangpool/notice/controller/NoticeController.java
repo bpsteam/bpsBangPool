@@ -123,7 +123,7 @@ public class NoticeController {
         							  ModelAndView mv) {
 		
 		Notice notice = nService.detail_Notice(nId);
-		
+		System.out.println("notice : "+notice.getnContent());
 		if(notice != null) {
 			mv.addObject("notice",notice)
 			   .addObject("page",page)

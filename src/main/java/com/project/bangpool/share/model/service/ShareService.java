@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.share.model.vo.Map;
 import com.project.bangpool.share.model.vo.Share;
 
 public interface ShareService {
@@ -22,6 +23,8 @@ public interface ShareService {
 
 	ArrayList<Reply> selectReplyList(int refBid);
 
+	ArrayList<Map> mapList();
+	
 	int insertReplt_event(HashMap<String, String> map);
 
 	ArrayList<Member> selectEventMember(int srbId);
@@ -34,6 +37,9 @@ public interface ShareService {
 
 	int deleteReply(int rId);
 
+	int deleteReplyEvent(int rId);
+
+	int eventMemberUpdate(String refbId);
 
 
 }
