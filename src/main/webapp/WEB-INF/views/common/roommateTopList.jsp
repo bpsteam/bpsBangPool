@@ -34,17 +34,17 @@
 						
 						$li = $('<li class="ellipsis">');
 						$a = $('<a>').attr('href',"bdetail.rm?rbId="+data[i].rbId);
-						$span = $('<span class="gray font-12 hahaha">');
+						/* $span = $('<span class="gray font-12 hahaha">'); */
 						$span2 = $('<span class="subject_title hohoho">');
 						
 						
-						$rbWriter = $("<b>").text(data[i].rbCreateDate);
+						/* $rbWriter = $("<b>").text(data[i].rbCreateDate); */
 						$rbTitle = $("<b>").text(decodeURIComponent(data[i].rbTitle.replace(/\+/g," ")));
 						
 						$li.append($a);
-						$span.append($rbWriter);
+						/* $span.append($rbWriter); */
 						$span2.append($rbTitle);
-						$a.append($span);
+						/* $a.append($span); */
 						$a.append($span2);
 						/* $li.append($span);
 						$li.append($span2); */

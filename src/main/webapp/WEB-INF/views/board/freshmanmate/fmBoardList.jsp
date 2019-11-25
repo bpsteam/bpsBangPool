@@ -537,6 +537,7 @@
                                 <a href="#">하우스메이트</a> <br>
                                 <a href="#">신입생메이트</a> -->
                                 <ul class="nav nav-pills nav-stacked">
+
                                         <li >
                                             <a href="blist.rm">
                                                 <i class="fa fa-cloud"></i>  룸메이트</a>
@@ -557,6 +558,7 @@
                             <hr>
                         </div>
         
+
                         <div class="panel panel-danger">
                             <div class="panel-heading">
                                 <h3 class="panel-title">공지사항</h3>
