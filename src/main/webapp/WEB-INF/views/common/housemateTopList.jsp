@@ -27,17 +27,17 @@
 						
 						$li = $('<li class="ellipsis">');
 						$a = $('<a>').attr('href',"bdetail.hm?hbId="+data[i].hbId);
-						$span = $('<span class="gray font-12 hahaha">');
+						/* $span = $('<span class="gray font-12 hahaha">'); */
 						$span2 = $('<span class="subject_title hohoho">');
 						
 						
-						$hbWriter = $("<b>").text(data[i].hbWriter);
+						/* $hbWriter = $("<b>").text(data[i].hbWriter); */
 						$hbTitle = $("<b>").text(decodeURIComponent(data[i].hbTitle.replace(/\+/g," ")));
 						
 						$li.append($a);
-						$span.append($hbWriter);
+						/* $span.append($hbWriter); */
 						$span2.append($hbTitle);
-						$a.append($span);
+						/* $a.append($span); */
 						$a.append($span2);
 						/* $li.append($span);
 						$li.append($span2); */

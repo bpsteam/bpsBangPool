@@ -429,7 +429,6 @@
 									var $h6tag;
 									
 									if(data.length > 0){
-										console.log("if왔나");
 										switch (data[0].bcode) {
 										case "RMBCODE":
 											for(var i in data){
@@ -440,7 +439,7 @@
 													$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/'+data[i].renameFileName)
 													  .width('400px').height('200px');
 												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
 																	  .width('400px').height('200px');
 												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
@@ -458,20 +457,13 @@
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
 												$figuretag = $("<figure>");
-												
 												if(data[i].renameFileName != null){
 													$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
 													  .width('400px').height('200px');
 												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
 																	  .width('400px').height('200px');
-												} 
-												/* $imgtag = $("<img>").error(function() {
-																		$("<img>").attr("src","${ contextPath }/resources/hmBoardUploadFiles/2.JPG");
-																	})
-																	.attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
-																	.width('400px').height('200px'); */
-												
+												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
 												
 												$mDiv.append($atag);
@@ -490,7 +482,7 @@
 													$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/'+data[i].renameFileName)
 													  .width('400px').height('200px');
 												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
 																	  .width('400px').height('200px');
 												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
@@ -559,39 +551,22 @@
         
                         <div class="panel panel-danger">
                             <div class="panel-heading">
-                                <h3 class="panel-title">공지사항</h3>
+                                <a href="blist.rm" style="color:white">
+                                    <span class="pull-right lightgray font-16 en">+</span>
+                                    <span class="div-title-underbar-bold border-navy font-16 en" >
+                                        <b>공지사항</b>
+                                    </span>
+                                </a>
                             </div>
-                            <div class="panel-body" style="background-color: white; ">
-                                <div class="table-responsive">
-                                    <table class="table table-hover ellipsistb" >
-        
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td id="ellipsistd" >공지사항입니다1ddddd</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td id="ellipsistd">공지사항입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td  id="ellipsistd">공지사항입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td  id="ellipsistd">공지사항입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-        
-                                        </tbody>
-                                    </table>
+                            <div class="widget-box panel-body">
+                                <div class="basic-post-list ">
+                                	<c:import url ="../../common/noticeTopList.jsp"/>
                                 </div>
-                                
                             </div>
+                        </div>
+                        <!-- End recent Posts -->
+                        <div class="margin-bottom-10">
+                            <hr>
                         </div>
                         <!-- End recent Posts -->
                         <!-- RecentPost -->
@@ -857,4 +832,5 @@
 	
 	</script>
 </body>
+
 </html>

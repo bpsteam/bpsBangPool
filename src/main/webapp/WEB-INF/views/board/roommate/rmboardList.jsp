@@ -739,7 +739,6 @@
 									var $h6tag;
 									
 									if(data.length > 0){
-										console.log("if왔나");
 										switch (data[0].bcode) {
 										case "RMBCODE":
 											for(var i in data){
@@ -750,7 +749,7 @@
 													$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/'+data[i].renameFileName)
 													  .width('400px').height('200px');
 												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
 																	  .width('400px').height('200px');
 												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
@@ -768,20 +767,13 @@
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
 												$figuretag = $("<figure>");
-												
 												if(data[i].renameFileName != null){
 													$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
 													  .width('400px').height('200px');
 												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
 																	  .width('400px').height('200px');
-												} 
-												/* $imgtag = $("<img>").error(function() {
-																		$("<img>").attr("src","${ contextPath }/resources/hmBoardUploadFiles/2.JPG");
-																	})
-																	.attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
-																	.width('400px').height('200px'); */
-												
+												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
 												
 												$mDiv.append($atag);
@@ -800,7 +792,7 @@
 													$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/'+data[i].renameFileName)
 													  .width('400px').height('200px');
 												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
 																	  .width('400px').height('200px');
 												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
