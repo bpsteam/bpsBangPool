@@ -223,7 +223,7 @@
 										<label class="col-sm-2 control-label " for="ca_name">핸드폰</label>
 										<div class="col-sm-7">
 											<input type="text" name="wr_phone" readonly
-												value="" id="wr_name"
+												value="${ loginUser.phone }" id="wr_name"
 												class="form-control input-sm" size="10" maxlength="20">
 				
 											<!-- <table>
@@ -318,24 +318,24 @@
 										<div class="col-sm-10 col-sm-offset-2">
 											<table id="variableFiles">
 												<tbody>
-													<tr>
+													<%-- <tr>
 														<td><div class="row">
 																<div class="col-sm-7">
 																	<div class="form-group">
 																		<div class="input-group input-group-sm">
-																			<span class="input-group-addon">파일 1</span>
-																			<input type="hidden" class="input-sm" name="reloadFile">
+																			<span class="input-group-addon">파일 1</span> 
+																			<input	type="file" class="input-sm" name="reloadFile"> 
 																			<c:if test="${ !empty hboard.originalFileName }">
-																			<input type="text"class="input-sm" value="현재 업로드한 파일 :"> 
-																			<a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" download="${ hboard.originalFileName }">
-																				${ hboard.originalFileName }
-																			</a>
-																		</c:if>
+																				<input type="text" class="input-sm" value="현재 업로드한 파일 :">
+																				<a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }"
+																					download="${ hboard.originalFileName }"> ${ hboard.originalFileName }
+																				</a>
+																			</c:if>
 																		</div>
 																	</div>
 																</div>
 															</div></td>
-													</tr>
+													</tr> --%>
 												</tbody>
 											</table>
 										</div>
@@ -368,11 +368,11 @@
                                          var hFileName = ${ hboard.originalFileName };
                                          if( hFileName != null ) {
                                         	 objContent = "<div class='row'>";
-                                             objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)
-                                             			+"</span><input type='file' class='form-control input-sm' name='reloadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)
-                                             			+"<a href='"+${ contextPath }+"/resources/hmBoardUploadFiles/"+${ hboard.renameFileName }+"' download='"+${ hboard.originalFileName }+"'>"
+                                             objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
+                                             			+(objNum+1)+"</span> <input type='file' class='input-sm' name='reloadFile"+(objNum+1) + "'><br>현재업로드한 파일:"
+                                             			+"<a href='"+${ contextPath }+"/resources/hmBoardUploadFiles/"+${ hboard.renameFileName }+"'>"
                                              			+ hFileName + "</a>"
-                                             			+"></div></div></div>";
+                                             			+"</div></div></div>";
                                          }else {
                                         	 objContent = "<div class='row'>";
                                              objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)

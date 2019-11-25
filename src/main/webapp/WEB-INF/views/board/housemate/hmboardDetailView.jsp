@@ -189,10 +189,27 @@
 
                                     <div class="view-content" style="padding:0px 15px 20px; margin-top:200px">
                                        	 ${ hboard.hbContent } <br><br>
-                                       	 <c:if test="${ hboard.renameFileName ne null }">
+                                       	<%--  <c:if test="${ hboard.renameFileName ne null }">
                                        	 	<img src="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" alt="image1" style="width: 100%; height: 100%;">
-                                       	 </c:if>
-                                    </div>
+                                       	 </c:if> --%>
+
+									<c:if test="${ !empty rename0 }">
+										<br>
+										<img src="${contextPath}/resources/hmBoardUploadFiles/${rename0}">
+									</c:if>
+									<c:if test="${ !empty rename1 }">
+										<br>
+										<br>
+										<br>
+										<img src="${contextPath}/resources/hmBoardUploadFiles/${rename1}">
+									</c:if>
+									<c:if test="${ !empty rename2 }">
+										<br>
+										<br>
+										<br>
+										<img src="${contextPath}/resources/hmBoardUploadFiles/${rename2}">
+									</c:if>
+								</div>
 
                                     <div class="print-hide view-icon">
                                         <div class="pull-right">
