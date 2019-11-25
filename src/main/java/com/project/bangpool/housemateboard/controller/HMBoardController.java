@@ -85,6 +85,16 @@ public class HMBoardController {
 		System.out.println("bdetail hmboard : "+ hmboard);
 		
 		if(hmboard != null) {
+			
+			if(hmboard.getRenameFileName()!=null) {
+				String[] original=hmboard.getOriginalFileName().split(";");
+				String[] rename=hmboard.getRenameFileName().split(";");
+				
+				for(int i=0; i<rename.length; i++) {
+					mv.addObject("rename"+i, rename[i]);
+				}
+			}
+			
 			mv.addObject("hboard", hmboard)
 			  .setViewName("hmboardDetailView");
 		} else {
@@ -103,23 +113,46 @@ public class HMBoardController {
 	/*** 글쓰기 입력후 등록하기 버튼 누를시. ***/
 	@RequestMapping("binsert.hm")
 	public String boardInsert(HMBoard hb , 
-			 				@RequestParam("uploadFile") MultipartFile uploadFile,
+			 				@RequestParam(value="uploadFile1", required=false) MultipartFile uploadFile,
+			 				@RequestParam(value="uploadFile2", required=false) MultipartFile uploadFile2, 
+							@RequestParam(value="uploadFile3", required=false) MultipartFile uploadFile3,
 			 				HttpServletRequest request) {
 		
 		System.out.println("갔다오기전 hb : "+ hb);
 		System.out.println(uploadFile);
 		System.out.println(uploadFile.getOriginalFilename()); 
 		
+		String uploadFileName="";
+		String rename="";
+		
 		if(uploadFile != null && !uploadFile.isEmpty()) {	//윗줄과 같은 의미.
 			//saveFile(내가 넣을 파일, 넣을위치지정 );
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
-				hb.setOriginalFileName(uploadFile.getOriginalFilename());  //파일네임지정
-				hb.setRenameFileName(renameFileName); // 리네임파일 지정
+				uploadFileName += uploadFile.getOriginalFilename();
+				rename += renameFileName;
 			}
-			System.out.println("파일이름 넣은후 hb : "+ hb);
 		}
+		if(uploadFile2 != null && !uploadFile2.isEmpty()) { 
+			String renameFileName = saveFile(uploadFile2, request); 
+			
+			if(renameFileName != null) {
+				uploadFileName += ";"+uploadFile2.getOriginalFilename();
+				rename += ";"+renameFileName;
+			}
+		}
+		if(uploadFile3 != null && !uploadFile3.isEmpty()) { 
+			String renameFileName = saveFile(uploadFile3, request); 
+			
+			if(renameFileName != null) {
+				uploadFileName += ";"+uploadFile3.getOriginalFilename();
+				rename += ";"+renameFileName;
+			}
+		}
+		
+		hb.setOriginalFileName(uploadFileName);  //파일네임지정
+		hb.setRenameFileName(rename);	//리네임파일 지정
 		
 		int result = hbService.insertBoard(hb);
 
@@ -165,14 +198,12 @@ public class HMBoardController {
 	/*** 게시글 디테일에서 수정하기 화면가기 ***/
 	@RequestMapping("bupView.hm")
 	public ModelAndView boardUpdateView(@RequestParam("hbId") int hbId,
-								  		/*@RequestParam("page") int page, */
 										ModelAndView mv) {
 		
 		HMBoard hboard = hbService.selectBoard(hbId);
 		System.out.println("upView에서 db후 hb: "+ hboard);
 		
 		mv.addObject("hboard", hboard)
-		  /*.addObject("page",page)*/
 		  .setViewName("hmUpdateForm");
 		
 		return mv;
