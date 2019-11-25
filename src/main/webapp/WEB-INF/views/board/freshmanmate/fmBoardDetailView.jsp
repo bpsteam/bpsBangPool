@@ -203,7 +203,7 @@
                                     <div class="print-hide view-icon">
                                         <div class="pull-right">
                                             <div class="form-group">
-                                                <button onclick="apms_print();" class="btn btn-blue btn-xs"><i
+                                                <button onclick="detailPrint();" class="btn btn-blue btn-xs"><i
                                                         class="fa fa-print"></i> <span
                                                         class="hidden-xs">프린트</span></button>
                                                 <button onclick="apms_shingo('house', '7156');"
@@ -473,13 +473,18 @@
 <!-- ==== FOOTER END ==== -->
 
 	<script>
+	function detailPrint(){
+		window.print();
+	}
 	
 	$(function(){
    		getReplyList();
    		
-   		/* setInterval(function(){
+   		 setInterval(function(){
    			getReplyList();
-   		}, 10000); */
+   		}, 10000); 
+   		 
+   		 
    		var fbId = ${ board.fbId };
    		var bcode = "${ board.bcode }";
    		var fbTitle = "${ board.fbTitle }";

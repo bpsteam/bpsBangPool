@@ -308,70 +308,76 @@
                         </div>
                         <!-- End Main Column -->
                         <!-- Side Column -->
-                        <div class="col-md-3">
-                            <!-- Recent Posts -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">인기 TOP 게시글</h3>
-                                </div>
-                                <div class="panel-body" style="height: 250px; overflow: auto;" >
-                                    <ul class="posts-list margin-top-10">
-                                        <li>
-                                            <div class="recent-post">
-                                                <a href="">
-                                                    <img class="pull-left" src="${contextPath}/resources/assets/img/detailShowingImg/02.jfif" alt="thumb1">
-                                                </a>
-                                                <a href="#" class="posts-list-title">역삼역 자취생 방방방</a>
-                                                <br>
-                                                <span class="recent-post-date">
-                                                    10 30, 2019
-                                                </span>
-                                            </div>
-                                            <div class="clearfix"></div>
+                        <!-- Side Column -->
+                    <div class="col-md-3">
+                        <!-- Recent Posts -->
+                        <div class="margin-bottom-10">
+                            <hr>
+                        </div>
+                        <div class="panel panel-success">
+                            <div class="panel-body" style="background-color: white;">
+                                <!-- <a href="#"><b>룸메이트</b></a> <br>
+                                <a href="#">하우스메이트</a> <br>
+                                <a href="#">신입생메이트</a> -->
+                                <ul class="nav nav-pills nav-stacked">
+                                        <li class="active">
+                                            <a href="#roommate" data-toggle="tab">
+                                                <i class="fa fa-cloud"></i>  룸메이트</a>
                                         </li>
                                         <li>
-                                            <div class="recent-post">
-                                                <a href="">
-                                                    <img class="pull-left" src="${contextPath}/resources/assets/img/detailShowingImg/04.jfif" alt="thumb2">
-                                                </a>
-                                                <a href="#" class="posts-list-title">강남역 쉐어하우스를 소개.</a>
-                                                <br>
-                                                <span class="recent-post-date">
-                                                    10 28, 2019
-                                                </span>
-                                            </div>
-                                            <div class="clearfix"></div>
+                                            <a href="#housemate" data-toggle="tab">
+                                                <i class="fa fa-home"></i>  하우스메이트</a>
                                         </li>
                                         <li>
-                                            <div class="recent-post">
-                                                <a href="">
-                                                    <img class="pull-left" src="${contextPath}/resources/assets/img/detailShowingImg/07.jfif" alt="thumb3">
-                                                </a>
-                                                <a href="#" class="posts-list-title">선릉에서 혼자 꾸미면서 살아요</a>
-                                                <br>
-                                                <span class="recent-post-date">
-                                                    10 28, 2019
-                                                </span>
-                                            </div>
-                                            <div class="clearfix"></div>
+                                            <a href="#freshmanmate" data-toggle="tab">
+                                                <i class="fa fa-comments"></i>  신입생메이트</a>
                                         </li>
+                                        
                                     </ul>
-                                </div>
-                            </div>
-                            <!-- End recent Posts -->
-                            <!-- About -->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">오늘의 자취 꿀팁</h3>
-                                </div>
-                                <div class="panel-body" style="overflow: auto;">
-                                    1. 계란한판으로 맛있게 먹는 요리 <br>
-                                    2. 인테리어 꾸르팁 <br>
-                                    3. 쉐어하우스 잘 고르는 방법 <br>
-                                    4. 동물을 키울수 있는 쉐어하우스 찾는 방법  <br>
-                                </div>
                             </div>
                         </div>
+                        <!-- <div class="margin-bottom-10">
+                            <hr>
+                        </div> -->
+        
+                        <div class="panel panel-aqua">
+                            <!-- 이슈 시작-->
+                           <%-- <div class="panel-heading">
+                                <a href="blist.rm" style="color:white">
+                                    <span class="pull-right lightgray font-16 en">+</span>
+                                    <span class="div-title-underbar-bold border-navy font-16 en" >
+                                        <b>공지사항</b>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="widget-box panel-body">
+                                <div class="basic-post-list ">
+                                	<c:import url ="../../common/noticeTopList.jsp"/>
+                                </div>
+                            </div> --%>
+                            <!-- 이슈 끝-->
+                        </div>
+                        <!-- End recent Posts -->
+                        <!-- 공지사항 -->
+                        <div class="panel panel-green">
+                               <!-- 뉴스 시작 -->
+                               <div class="panel-heading">
+                                   <a href="frblist.fr" style="color:white">
+                                       <span class="pull-right lightgray font-16 en">+</span>
+                                       <span class="div-title-underbar-bold border-navy font-16 en">
+                                           <b>자유게시판</b>
+                                       </span>
+                                   </a>
+                               </div>
+                               <div class="widget-box panel-body">
+                                   <div class="basic-post-list ">
+                                   	<c:import url="../../common/freeTopList.jsp"/>
+                               	</div>
+                           	</div>
+                       	</div>
+                        <!-- End 공지사항 -->
+                    </div>
+                    <!-- End Side Column -->
                     </div>
                 </div>
                 </div>

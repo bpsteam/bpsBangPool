@@ -446,6 +446,24 @@
 		setInterval(function(){
 			getReplyList();
 		},10000	);
+		
+		// 최근 본 게시글 코드 (은지)
+		var hbId = ${ hboard.hbId };
+   		var bcode = "${ hboard.bcode }";
+   		var hbTitle = "${ hboard.hbTitle }";
+   		var img= "${hboard.originalFileName}";
+   		//var img=imgg.split(";")[0];
+   		
+   		console.log("이미지 출력 : "+ typeof img);
+   		console.log("이미지 출력 : "+ img.length);
+   		$.ajax({
+   			url: "createCookie.hm",
+   			data: {hbId:hbId, bcode:bcode, hbTitle:hbTitle, img:img},
+   			success:function(data){
+   			}
+   			
+   		});
+   		// 최근 본 게시글 코드 끝 (은지)
 	});
 	
 	function getReplyList(){

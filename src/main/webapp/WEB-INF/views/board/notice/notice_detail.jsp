@@ -89,7 +89,7 @@
 							</div>
                             </c:if>
 							<br>
-                            <div class="col-md-12 " ><p style="overflow: auto;"><textarea><c:out value="${ notice.nContent }"/></textarea></div>
+                            <div class="col-md-12 " ><textarea><c:out value="${ notice.nContent }"/></textarea></div>
                         </div>
                         
 	                    <div class="col-md-12" style="text-align: center;">

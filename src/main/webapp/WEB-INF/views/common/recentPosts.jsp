@@ -21,7 +21,7 @@
 			<%
 	    String bId ="";
 		String bcode ="";
-		String fbTitle ="";
+		String bTitle ="";
 		String img="";
 		
 	    Cookie[] cookies = request.getCookies();
@@ -32,19 +32,21 @@
 	        System.out.println("cookies: " +c.getValue());
 	    	
 	        if(c.getName().contains("recent_")){
+	        	System.out.println("array print out (recentPost) : " + c.getName().contains("recent_"));
 	        	String cValue = c.getValue();
 	        	
 	 			bId = cValue.split("_")[0];
 	 			bcode = cValue.split("_")[1];
-	 			fbTitle = cValue.split("_")[2];
+	 			bTitle = cValue.split("_")[2].replace("%32%"," ");
 	 			
 		 			if(cValue.split("_").length>3){
 		 				img=cValue.split("_")[3];
 			 			pageContext.setAttribute("img", img);
+			 			System.out.println("cookie img print : " +img);
 		 			}
 		 			
 	 			pageContext.setAttribute("bcode", bcode);
-	 			pageContext.setAttribute("fbTitle", fbTitle);
+	 			pageContext.setAttribute("bTitle", bTitle);
 	 			pageContext.setAttribute("bId", bId);
 	        %>
 
@@ -58,13 +60,13 @@
 					<a href="bdetail.hm?bId=${bId }" />
 				</c:if> <c:if test="${ bcode eq 'RMBCODE' }">
 					<a href="bdetail.rm?bId=${bId }" />
-				</c:if> <c:if test="${ ! empty img }">
+				</c:if> <c:if test="${ img eq 'imageExists' }">
 					<i class="fa-camera"></i>
 				</c:if> <c:if test="${ empty img }">
 					<i class="fa-file-text"></i>
 				</c:if> 
-					<span class="subject_title"> 
-					<b> <c:out value="${ fbTitle }" /></b></span> 
+			<span class="subject_title" style="width:auto"> 
+					<b> <c:out value="${ bTitle }" /></b></span> 
 				</a>
 			</li>
 			<% 
@@ -86,5 +88,23 @@
 		</ul>
 	</div>
 
+<script>
+
+/* 	$(function(){
+		var bcode = "${bcode}";
+		var bId = "${bId}";
+		$.ajax({
+			url: "recentPost.fm",
+			data: {bcode: bcode, bId: bId},
+			success: function(data){
+				
+			},error: function(data){
+				alert("error");
+			}
+			
+		});
+	}); */
+
+</script>
 </body>
 </html>
