@@ -7,6 +7,25 @@
     input:focus {
         outline: none;
     }
+    /* width */
+	::-webkit-scrollbar {
+	  width: 10px;
+	}
+	
+	/* Track */
+	::-webkit-scrollbar-track {
+	  background: #f1f1f1;
+	}
+	
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+	  background: #888;
+	}
+	
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+	  background: #555;
+	}
 </style>
 <html lang="ko">
     <body>
@@ -24,36 +43,32 @@
                                 <div class="col-md-6 animate fadeIn">
                                     <div>
                                        <c:set var="fileSplit" value="${fn:split(showing.renameFileName,',')}"></c:set>
-                                       <div><img src="${contextPath}/resources/showinguploadFiles/${ fileSplit[0] }" style="border-radius: 0.5em; width: 500px; height: 300px;" alt="about-me" class="margin-top-10" id="mainImg" ></div>
+                                       <div><img src="${contextPath}/resources/showinguploadFiles/${ fileSplit[0] }" style="border-radius: 0.5em; width: 500px; height: 500px;" alt="about-me" class="margin-top-10" id="mainImg" ></div>
                                        	<div id="carousel-example-2" class="carousel slide alternative" data-ride="carousel">
-									      <div class="row">
+									      <div class="row" style="overflow:auto; height:90px;">
 									       	<c:forEach var="picture" items="${ fileSplit }">
 									        	<div class="col-md-3" style="padding:10px; border-radius: 0.5em;"><img src="${contextPath}/resources/showinguploadFiles/${ picture }" style="width:100px; height:70px; border-radius: 0.5em;" onclick="selectImg(this)"></div>
 									        </c:forEach>
 									      </div>
 										</div>
                                     </div>
-                                    <hr>
                                 </div>
-                                <div class="col-md-6 margin-bottom-10 animate fadeInRight" style="width: 500px;">
-                                    <h3 class="padding-top-10 pull-left">${ showing.sbwriter }</h3>
+                                <div class="col-md-6 margin-bottom-10 animate fadeInRight" style="height:550px; width: 500px;">
+                                    <h3 class="padding-top-10 pull-left"><i>${ showing.sbwriter }</i></h3>
                                     <div class="clearfix"></div>
                                     <h4 style="color:#EB9F28; font-size:x-large;"> <b>${ showing.sbtitle }</b></h4>
                                     <span>${ showing.sbcontent }</span>
-                                    <hr>
-                                    <div style="display: flex; padding-top:20px;">
-                                        <i class="fa-thumbs-o-up" style="font-size:24px; cursor: pointer; margin-left: 5px;" ></i>&nbsp;&nbsp;<span>1</span>&nbsp;&nbsp;    
-                                        <i class="fa-thumbs-o-down" style="font-size:24px;cursor: pointer; margin-left: 5px;"></i>&nbsp;&nbsp;<span>2</span>
-                                        <!-- <p><img id="heartButton" src="resources/assets/img/thumbs/heart.png" style="width: 20px; height: 20px; cursor: pointer; margin-left: 5px;" alt="thumb-down" onclick="heartButton(this)"></p> -->
-                                        
-                                        <div class="col-md-9" ><i class="fa-ellipsis-h pull-right" style="font-size: 24px; cursor: pointer; margin-left: 5px; display:flex;" onclick="$('.more').css('display', 'block')"></i>
-                                            <button type="button" class="btn btn-primary btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;"onclick="location.href='updateView.sb?sbId=${showing.sbid}&page=${page}'">수정하기</button>
-                                            <button type="button" class="btn btn-warning btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;">신고하기</button>
-                                            <button type="button" class="btn btn-danger btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;" onclick="location.href='deleteShowing.sb?sbId=${ showing.sbid }'">삭제하기</button>
-                                        </div>
-                                    </div>
                                 </div>
+                                   <div class="col-md-6" style="display: flex; padding-top:20px;">
+                                       <div class="col-md-9" ><i class="fa-ellipsis-h pull-right" style="font-size: 24px; cursor: pointer; margin-left: 5px; display:flex;" onclick="$('.more').toggle('slow')";></i>
+                                       	   <c:if test="${ loginUser.nickname eq showing.sbwriter }">
+                                           <button type="button" class="btn btn-primary btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;"onclick="location.href='updateView.sb?sbId=${showing.sbid}&page=${page}'">수정하기</button>
+                                           </c:if>
+                                           <button type="button" class="btn btn-danger btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;" onclick="location.href='deleteShowing.sb?sbId=${ showing.sbid }'">삭제하기</button>
+                                       </div>
+                                   </div>
                             </div>
+                                <hr>
                                 <!-- 로그인 한 회원 -->
                                 <div style="display: flex;">
                                     <p style="font-size: 25px; margin-top:15px;"><b>${ loginUser.name }</b></p>
@@ -144,23 +159,10 @@
         		}
         	})
         }
-        var heartPath = null;
-        function heartButton(t){                
-            console.log($(t).attr("class"));
-            if($(t).attr("class") == "empty"){
-            	$(t).attr("class","full");
-                $(t).attr("src", "resources/assets/img/thumbs/heartRed.png") ;
-            }
-            else if($(t).attr("class") == "full"){
-            	$(t).attr("class","empty");
-                $(t).attr("src" , "resources/assets/img/thumbs/heart.png") ;
-            }
-        }
         // default main pic
         function selectImg(t){
             console.log(t);
             document.getElementById("mainImg").src = t.src;
         }
-        
     </script>
 </html>

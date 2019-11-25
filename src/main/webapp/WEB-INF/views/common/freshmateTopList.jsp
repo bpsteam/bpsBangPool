@@ -27,17 +27,17 @@
 						
 						$li = $('<li class="ellipsis">');
 						$a = $('<a>').attr('href',"bdetail2.fm?fbId="+data[i].fbId);
-						$span = $('<span class="gray font-12 hahaha">');
+						/* $span = $('<span class="gray font-12 hahaha">'); */
 						$span2 = $('<span class="subject_title hohoho">');
 						
 						
-						$fbWriter = $("<b>").text(data[i].fbWriter);
+						/* $fbWriter = $("<b>").text(data[i].fbWriter); */
 						$fbTitle = $("<b>").text(decodeURIComponent(data[i].fbTitle.replace(/\+/g," ")));
 						
 						$li.append($a);
-						$span.append($fbWriter);
+						/* $span.append($fbWriter); */
 						$span2.append($fbTitle);
-						$a.append($span);
+						/* $a.append($span); */
 						$a.append($span2);
 						/* $li.append($span);
 						$li.append($span2); */

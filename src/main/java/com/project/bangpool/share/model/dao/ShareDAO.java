@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.share.model.vo.Map;
 import com.project.bangpool.share.model.vo.Share;
 
 @Repository("srDAO")
@@ -60,6 +61,10 @@ public class ShareDAO {
 		return (ArrayList)sqlSession.selectList("shareMapper.selectMember",r);
 	}
 
+	public ArrayList<Map> mapList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("shareMapper.listMap");
+	}
+	
 	public ArrayList<Member> countMember(SqlSessionTemplate sqlSession, int srbId) {
 		int refbId = srbId;
 		return (ArrayList)sqlSession.selectList("shareMapper.countMember",refbId);
@@ -80,6 +85,4 @@ public class ShareDAO {
 	public int eventMemberUpdate(SqlSessionTemplate sqlSession, String srbId) {
 		return sqlSession.update("shareMapper.eventMemberUpdate",srbId);
 	}
-
-
 }

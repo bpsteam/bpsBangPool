@@ -27,17 +27,17 @@
 						
 						$li = $('<li class="ellipsis">');
 						$a = $('<a>').attr('href',"frbdetail.fr?frbId="+data[i].frbId);
-						$span = $('<span class="pull-right gray font-12">');
+						/* $span = $('<span class="pull-right gray font-12">'); */
 						$span2 = $('<span class="subject_title">');
 						
 						
-						$frbWriter = $("<b>").text(data[i].frbCreateDate);
+						/* $frbWriter = $("<b>").text(data[i].frbCreateDate); */
 						$frbTitle = $("<b>").text(decodeURIComponent(data[i].frbTitle.replace(/\+/g," ")));
 						
 						$li.append($a);
-						$span.append($frbWriter);
+						/* $span.append($frbWriter); */
 						$span2.append($frbTitle);
-						$a.append($span);
+						/* $a.append($span); */
 						$a.append($span2);
 						/* $li.append($span);
 						$li.append($span2); */

@@ -9,7 +9,8 @@
 <title>Insert title here</title>
 	
 	<style>
-	
+		
+		
 		.panel-default > .panel-heading {
 		    color: #EEE;
 		    background-color: #444;
@@ -146,49 +147,39 @@
 							<button id="shareList" type="button" class="btn btn-color" style="margin: auto; display: block;"
 							        onclick="location.href='${ shareList }'">목록으로</button>
 						</p>
-							  
+					
 					    <div class="view-comment font-18 en" style="margin-top:11px;">
 							<i class="fa fa-commenting"></i> 댓글 : <span id="comment_count" class="orange comment_count"></span> 개
 					    </div>
 					    <c:if test="${ loginUser != null }">
 					    
-					    <div class="comment-box">
-						      <div class="comment-box">
-		
-						        <div class="clearfix"></div>
-						
-						        <div class="form-group comment-content">
-							        
-						          <form action="reply_event_insert.sr">
-							        <div class="comment-cell" style="width:80%">
+						          <form action="reply_event_insert.sr" style="display:flex;">
+							        <div class="comment-cell" style="width:100%;">
 							            <textarea id="reply_content" tabindex="13" id="wr_content" name="rContent" maxlength="10000" rows="5"
-							              class="form-control input-sm is_cm_color" title="내용" required></textarea>
+							              class="form-control input-sm is_cm_color" title="내용" required style="width: 100%; height:70px;"></textarea>
 							            <input name="nickname" type="hidden" value=${ loginUser.nickname }>
 							            <input name="srbId" type="hidden" value=${ share.srbId }>
 							            <input name="email" type="hidden" value=${ loginUser.email }>
 							        </div>
-									<div style="display: table-cell;width: 80px;">
-										<input type="button" id="reply_insert" value="등록" name="rContent" style="background-color: #F90; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 65px;" tabindex="14">
-											
-										<input type="button" id="reply_event_insert" value="등록+신청" style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; line-height: 35px;" tabindex="14">
+									<div class="col-md-2" style="display:flex;">
+										<input type="button" id="reply_insert" value="등록" name="rContent" style="background-color: #F90; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; height: 70px;" tabindex="14">
+										<input type="button" id="reply_event_insert" value="등록+신청" style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; height: 70px;" tabindex="14">
 									</div>
-								  </form>
-						        </div>
+							  	</form>
+				   		</c:if>
+				    
+				    <c:if test="${ loginUser == null }">
+				    	<div>로그인시 댓글 이벤트 참여 가능합니다!!!</div>
+				    	<br>
+				    </c:if>
+				    
+				    <input id="winner" type="hidden" value="${ share.srWinner }">
+
+				    <!-- 댓글 목록 -->
+				      <div id="viewcomment">
+					  </div>
 						      </div>
 					    </div>
-					    </c:if>
-					    
-					    <c:if test="${ loginUser == null }">
-					    	<div>로그인시 댓글 이벤트 참여 가능합니다!!!</div>
-					    	<br>
-					    </c:if>
-					    
-					    <input id="winner" type="hidden" value="${ share.srWinner }">
-	
-					    <!-- 댓글 목록 -->
-					      <div id="viewcomment">
-						  </div>
-					  
 					</div>
 					
 				</div>
@@ -223,10 +214,10 @@
 	    	
 	        var startDate = "${ share.srStartDate }";
 	        var startTime = "${ share.srStartHour }";
-	        
+	        console.log(startDate);
 	        var endDate = "${ share.srEndDate }";
 	        var endTime = "${ share.srEndHour }";
-	        
+	        console.log(endDate);
 	        var sd = startDate.split("-");
 	        var ed = endDate.split("-");
 	        
@@ -234,7 +225,7 @@
 	        var end = new Date(ed[0],ed[1]-1,ed[2],endTime,59,0);
 	        
 	        var left = end-today;
-	        
+	        console.log("left : " + left);
 	        var winner = $('#winner').val();
 	        
 	        if(left <= 0){
@@ -271,7 +262,7 @@
 	    	var seconds = Math.floor(((ms/1000) % 60));
 	    	var minutes = Math.floor(((ms/(1000*60)) % 60));
 	    	var hours = Math.floor(((ms/(1000*60*60)) % 24));
-			var day = Math.floor(((ms/(1000*60*60*60)) % 365));
+			var day = Math.floor(((ms/(1000*60*60*24)) % 365));
 			
 			return day+'일 '+hours+'시 '+minutes+'분 '+seconds+'초'
 
@@ -294,8 +285,6 @@
 					}
 				});
 		});
-		
-		
 		$('#reply_event_insert').click(function(){
 			var rContent = $('#reply_content').val();
 			var nickname = "${ loginUser.nickname }";

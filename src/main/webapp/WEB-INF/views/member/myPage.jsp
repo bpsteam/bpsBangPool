@@ -658,7 +658,6 @@
 									var $h6tag;
 									
 									if(data.length > 0){
-										console.log("if왔나");
 										
 										switch (data[0].bcode) {
 										case "RMBCODE":
@@ -666,8 +665,13 @@
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.rm?rbId='+data[i].rbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/2.JPG')
-																  .width('400px').height('200px');
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
 												
 												$mDiv.append($atag);
@@ -683,8 +687,13 @@
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
-																  .width('400px').height('200px');
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
 												
 												$mDiv.append($atag);
@@ -699,8 +708,13 @@
 												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
 												$atag = $("<a>").attr('href','bdetail.fm?fbId='+data[i].fbId);
 												$figuretag = $("<figure>");
-												$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/2.JPG')
-																  .width('400px').height('200px');
+												if(data[i].renameFileName != null){
+													$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/'+data[i].renameFileName)
+													  .width('400px').height('200px');
+												} else {
+													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
+																	  .width('400px').height('200px');
+												}
 												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
 												
 												$mDiv.append($atag);

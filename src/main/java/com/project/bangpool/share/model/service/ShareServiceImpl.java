@@ -11,6 +11,7 @@ import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.share.model.dao.ShareDAO;
+import com.project.bangpool.share.model.vo.Map;
 import com.project.bangpool.share.model.vo.Share;
 
 @Service("srService")
@@ -78,6 +79,10 @@ public class ShareServiceImpl implements ShareService{
 	}
 
 	@Override
+	public ArrayList<Map> mapList(){
+		return srDAO.mapList(sqlSession);
+	}
+	@Override
 	public ArrayList<Member> countMember(int srbId) {
 		return srDAO.countMember(sqlSession,srbId);
 	}
@@ -100,6 +105,5 @@ public class ShareServiceImpl implements ShareService{
 
 
 	
-
 
 }

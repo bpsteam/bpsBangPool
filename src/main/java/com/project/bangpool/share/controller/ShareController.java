@@ -2,6 +2,7 @@ package com.project.bangpool.share.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.Response;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
@@ -28,6 +30,7 @@ import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.common.page.Pagination;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.share.model.service.ShareService;
+import com.project.bangpool.share.model.vo.Map;
 import com.project.bangpool.share.model.vo.Share;
 
 @Controller
@@ -50,7 +53,6 @@ public class ShareController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Share> list = srService.selectList(pi,sLoc);
-		
 		if(list != null) {
 			mv.addObject("list",list)
 			  .addObject("pi",pi)
@@ -60,6 +62,29 @@ public class ShareController {
 		
 		
 		return mv;
+	}
+	
+	
+	
+	
+	
+	
+
+  	// ajax map
+	@RequestMapping("mapAjax.sr")
+	public void mapAjax(HttpServletResponse response) throws JsonIOException, IOException {
+		
+		response.setContentType("application/json; charset=utf-8");
+		ArrayList<Map> list = srService.mapList();
+		
+		for(Map s : list) {
+			s.setAddress(URLEncoder.encode(s.getAddress(),"utf-8"));
+			s.setSrbwriter(URLEncoder.encode(s.getSrbwriter(),"utf-8"));
+			s.setSritemname(URLEncoder.encode(s.getSritemname(),"utf-8"));
+		}
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+
 	}
 	
 	
@@ -78,7 +103,6 @@ public class ShareController {
 								    ModelAndView mv,
 								    HttpServletRequest request,
 								    HttpSession session) {
-
 	
  		if(uploadFile != null && !uploadFile.isEmpty()) {
 
