@@ -144,21 +144,28 @@
 				                <input type="text" class="form-control margin-bottom-20 postcodify_address" name="address1" id="address1" placeholder="address1">
 				                <input type="text" class="form-control margin-bottom-20 postcodify_extra_info" name="address2" id="address2" placeholder="address2">
 				                                
-                                <img src="../noAuto.PNG"><br>
+                                <!-- <img src="../noAuto.PNG"><br>
                                 <label>자동등록 방지 확인
                                      <span class="color-red">*</span> 
                                 </label>
-                                <input class="form-control margin-bottom-20" type="text">
-                                <hr>
+                                <input class="form-control margin-bottom-20" type="text"> -->
+                               
+                                
+                                <!-- 자동등록방지 -->
+										
+								<%-- 		<c:import url ="../common/captchaApi/naverCaptcha.jsp"/> --%>
+									
+										<!-- 자동등록방지 -->
+                                
                                 <div class="row">
-                                    <div class="col-lg-8">
-                                        <!-- <label class="checkbox">
+                                    <!-- <div class="col-lg-8">
+                                        <label class="checkbox">
                                             <input type="checkbox">I read the
                                             <a href="#">Terms and Conditions</a>
-                                        </label> -->
-                                    </div>
-                                    <div class="col-lg-4 text-right">
-                                        <button type="submit" class="btn btn-primary" >Register</button>
+                                        </label>
+                                    </div> -->
+                                    <div class="col-lg-12" style="text-align:center">
+                                        <button type="submit" id="submit" class="btn btn-primary" >Register</button>
                                     </div>
                                 </div>
                             </form>
