@@ -62,13 +62,20 @@
 			0,
 			'Y',
 			#{srStartHour},
-			#{srEndHour}
+			#{srEndHour},
+			#{srEvent},
+			#{srEventLimit},
+			#{srEventEnterCount},
+			#{srItemName},
+			#{srDelivery},
+			#{srWinner}
+
 		)  
 		WHEN #{renameFileName} IS NOT NULL THEN
 		INTO ATTACHMENT
 		VALUES(
 			ATTACHMENT_SEQ.NEXTVAL,
-			'SCODE',
+			'SBCODE',
 			SHARE_SEQ.CURRVAL,
 			#{originalFileName},
 			#{renameFileName}
@@ -89,5 +96,127 @@
   		WHERE SRBID = #{srbId} AND SRSTATUS = 'Y'
 	
 	</select>	
+	
+	<!-- ***************************** REPLY ***************************** -->
+	
+	<select id="listReply" parameterType="_int" resultType="Reply">
+		
+		SELECT *
+		FROM REPLY
+		WHERE
+			REFBID = #{ refbId } AND
+		    RSTATUS ='Y' AND
+		    BCODE ='SBCODE'
+		ORDER BY RID ASC
+	
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+			INSERT INTO REPLY
+			VALUES
+			(
+			    REPLY_SEQ.NEXTVAL,
+			    'SBCODE',
+			    #{rContent},
+			    #{refbId},
+			    #{rWriter},
+			    SYSDATE,
+			    SYSDATE,
+			    'Y'
+			)
+	</insert>
+	
+	<insert id="insertReply_event" parameterType="hashmap">
+		
+		INSERT ALL
+		WHEN 1=1 THEN
+		INTO REPLY
+		VALUES(
+			    REPLY_SEQ.NEXTVAL,
+			    'SBCODE',
+			    #{rContent},
+			    #{refbId},
+			    #{rWriter},
+			    SYSDATE,
+			    SYSDATE,
+			    'Y'  
+		)  
+		WHEN 1=1 THEN
+		INTO SHARE_JOIN_MEMBER
+		VALUES(
+			#{refbId},
+			#{email},
+			'Y'
+		)
+		SELECT *
+		FROM DUAL
+	
+	</insert>
+	
+	<!-- Event -->
+	
+	<select id="selectEventMember" parameterType="_int" resultType="Member">
+		
+		SELECT email
+		FROM SHARE_JOIN_MEMBER
+		WHERE 
+		REFBID = #{srbId}
+		AND
+		STATUS = 'Y'
+		
+	</select>
+	
+	<update id="insertWinner" parameterType="Share">
+		
+		UPDATE SHARE_BOARD
+		SET
+		SRWINNER=#{srWinner}
+		WHERE
+		SRBID = #{srbId}
+	
+	</update>
+	
+	<select id="selectMember" parameterType="Reply" resultType="Member">
+	
+		SELECT *
+		FROM SHARE_JOIN_MEMBER
+		WHERE 
+		REFBID = #{refbId}
+		AND
+		STATUS = 'Y'
+	
+	</select>
+	
+	<select id="countMember" parameterType="_int" resultType="Member">
+		SELECT COUNT(*)
+		FROM SHARE_JOIN_MEMBER
+		WHERE
+		REFBID =#{refbId}
+		AND
+		STATUS = 'Y'
+	</select>
+	
+	<update id="addReadCount" parameterType="_int">
+		
+		UPDATE SHARE_BOARD
+		SET 
+		SRBCOUNT = SRBCOUNT + 1
+		WHERE
+		SRBID = #{srbId}
+		
+	</update>
+	
+	<update id="deleteReply" parameterType="_int">
+		
+		UPDATE REPLY
+		SET 
+		  RSTATUS ='N',
+		  rModifyDate = SYSDATE
+	    WHERE
+	      BCODE ='SBCODE'
+	      AND
+	      RID = #{ rId }
+	
+	</update>
 	
 </mapper>

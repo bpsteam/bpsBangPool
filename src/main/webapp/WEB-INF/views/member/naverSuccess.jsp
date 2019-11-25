@@ -39,24 +39,24 @@ h3 {
 </script>
 
 </head>
-<body style="text-align:-webkit-center">
+<body style="text-align:-webkit-center;background-color: #3EAF0E;">
 <br><br><br><br><br>
 <br><br><br><br><br>
 
   <div
-    style="background-color: white; width: 400px; height: 80px; text-align: center; color: white;">
+    style="background-color: white; width: 400px; height: 200px; text-align: center; color: white;">
     <img src="${pageContext.request.contextPath}/resources/assets/img/bps/naverlogo.png" style="width:300px">
-  </div><span> <h2 style="text-align: center" id="name"></h2></span>
-
- 
+  
+  <span> <h2 style="text-align: center;color:black" id="name"></h2></span>
   <h4 style="text-align: center; color:#3EAF0E" id="email"></h4>
+  </div>
   <script>
     $(function () {
       $("body").hide();
       $("body").fadeIn(3000);  
      
-		setTimeout(function(){$("body").fadeOut(3000);},1000);
-     	setTimeout(function(){location.href= "home.do"},2000); 
+		 setTimeout(function(){$("body").fadeOut(3000);},1000);
+     	setTimeout(function(){location.href= "home.do"},2000);  
     
     })
   </script>

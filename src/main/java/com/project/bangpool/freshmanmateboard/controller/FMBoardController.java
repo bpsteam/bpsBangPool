@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,7 +36,10 @@ import com.project.bangpool.freshmanmateboard.model.exception.FMBoardException;
 import com.project.bangpool.freshmanmateboard.model.service.FMBoardService;
 import com.project.bangpool.freshmanmateboard.model.service.MailService;
 import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
+import com.project.bangpool.housemateboard.model.service.HMBoardService;
+import com.project.bangpool.housemateboard.model.vo.HMBoard;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.service.RMBoardService;
 import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 
@@ -45,6 +49,10 @@ public class FMBoardController {
 
 	@Autowired // boardservice에 알아서 객체만들어서 쏴준다. 
 	private FMBoardService fbService;
+	@Autowired 
+	private HMBoardService hbService;
+	@Autowired 
+	private RMBoardService rbService;
 	@Autowired 
 	private MailService mailService;
 
@@ -277,15 +285,19 @@ public class FMBoardController {
 	
 	
 	@RequestMapping("bdetail.fm")
-	public ModelAndView selectOneBoard(@RequestParam("fbId") int fbId, ModelAndView mv,
-										HttpSession session) {
-
+	public ModelAndView selectOneBoard(@RequestParam(value="fbId", required=false) Integer fbId, 
+									@RequestParam(value="bId", required=false) String bId,
+									ModelAndView mv, HttpSession session) {
+		System.out.println("나오냐 : "+bId);
+		if(bId != "" && bId != null) {
+			fbId=Integer.parseInt(bId);
+		}
 		
-//		System.out.println("디테일뷰 보드 출력 fbId : "+fbId);
+		System.out.println("디테일뷰 보드 출력 fbId : "+fbId);
 		FMBoard board = fbService.selectBoard(fbId);
 
 		if(board != null) {
-//			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
+			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
 			
 			if(board.getRenameFileName()!=null) {
 				String[] original=board.getOriginalFileName().split(";");
@@ -338,10 +350,13 @@ public class FMBoardController {
 	@RequestMapping("bupdate.fm")
 	public ModelAndView updateBoard(@ModelAttribute FMBoard b, @RequestParam("phone1")String phone1,
 			@RequestParam("phone2")String phone2, @RequestParam("phone3")String phone3,
+			
 			@RequestParam(value="reloadFile1", required=false) MultipartFile reloadFile1, 
 			@RequestParam(value="reloadFile2", required=false) MultipartFile reloadFile2, 
 			@RequestParam(value="reloadFile3", required=false) MultipartFile reloadFile3,
 							HttpServletRequest request, ModelAndView mv) {
+		
+		
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
 
@@ -580,6 +595,57 @@ public class FMBoardController {
 		
 	}
 	
+	@RequestMapping("createCookie.fm")
+	public void createCookie(HttpServletResponse response, HttpSession session, FMBoard b, @RequestParam(value="img", required=false) String img) {
+		System.out.println("controller img "+img);
+		String cookieValue = "";
+		String title = b.getFbTitle().trim().replace(" ", "%32%");
+		System.out.println("title printout : "+ title);
+		
+		if(img == null || img == "") {
+			cookieValue = b.getFbId()+"_"+b.getBcode()+"_"+title;
+		}else {
+			cookieValue = b.getFbId()+"_"+b.getBcode()+"_"+title+"_imageExists";
+		}
+		Cookie setCookie = new Cookie("recent_hm"+b.getFbId(), cookieValue); // 쿠키 이름을 name으로 생성
+		//Member m = (Member)session.getAttribute("loginUser");
+		
+		setCookie.setComment("최근본게시물") ;
+		setCookie.setMaxAge(60*60*24); // 기간을 하루로 지정
+		//setCookie.setPath("/");
+		System.out.println("쿠키생성 : " +setCookie.getValue());
+		response.addCookie(setCookie);
+	}
+	
+//	@RequestMapping("recentPost.fm")
+//	public void recentPost(@RequestParam("bcode") String bcode, @RequestParam("bId") String bId) {
+//		HashMap<String, String> map = new HashMap<String, String>();
+//			map.put("bcode", bcode);
+//			map.put("bId", bId);
+//		
+//		if(bcode.equals("FMBOARD")) {
+//			int fbId = Integer.parseInt(bId);
+//			FMBoard board = fbService.selectBoard(fbId);
+//			map.put("bId", bId);
+//			map.put("bTitle", board.getFbTitle());
+//			map.put("bcode", bcode);
+//			
+//		}else if(bcode.equals("HMBOARD")) {
+//			int hbId = Integer.parseInt(bId);
+//			HMBoard board = hbService.selectBoard(hbId);
+//			map.put("bId", bId);
+//			map.put("bTitle", board.getHbTitle());
+//			map.put("bcode", bcode);
+//		}else {
+//			int rbId = Integer.parseInt(bId);
+//			RMBoard board = rbService.selectBoard(rbId);
+//			map.put("bId", bId);
+//			map.put("bTitle", board.getRbTitle());
+//			map.put("bcode", bcode);
+//		}
+//		
+//	}
+//	
 	
 }
 

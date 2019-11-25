@@ -838,6 +838,28 @@
 		</div>
 	</div>
 	<!--  모달창 끝  -->
+	<!-- 카카오 회원가입 모달창 -->
+	<div class="modal fade" id="kakaoId" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">카카오 계정 회원가입</h4>
+				</div>
+				<div class="modal-body">
+				가입되지 않은 카카오 계정입니다.<br>
+				먼저 회원가입 페이지에서 카카오 계정으로 가입하세요. 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  모달창 끝  -->
 
 	<!-- ==== FOOTER START ==== -->
 	<c:import url ="../common/footer.jsp"/>
@@ -862,12 +884,15 @@
 
 		$(function() {
 			var naverId = "${naverId}";
-			console.log(naverId);
-			if (naverId != "") {
-				console.log("네이버 정보 있음");
+			var kakaoId = "${kakaoId}"
+			console.log("naver " + naverId);
+			console.log("kakao " +kakaoId);
+			if (naverId == "") {
 				$("#naverId").modal();
+			} else if (kakaoId == ""){
+				$("#kakaoId").modal();
 			} else {
-				console.log("네이버 정보 없음");
+				$("#kakaoId").hide();
 				$("#naverId").hide();
 			}
 		});

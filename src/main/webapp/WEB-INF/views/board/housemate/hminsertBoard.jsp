@@ -223,7 +223,7 @@
 										<label class="col-sm-2 control-label " for="ca_name">핸드폰</label>
 										<div class="col-sm-7">
 											<input type="text" name="wr_phone" readonly
-												value="" id="wr_name"
+												value="${ loginUser.phone }" id="wr_name"
 												class="form-control input-sm" size="10" maxlength="20">
 				
 											<!-- <table>

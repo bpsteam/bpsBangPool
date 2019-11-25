@@ -6,6 +6,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,7 @@ import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.common.page.Pagination;
+import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.RMBoardException;
 import com.project.bangpool.roommateboard.model.service.RMBoardService;
@@ -150,10 +152,17 @@ public class RMBoardController {
 	}
 	
 	
-	@RequestMapping("bdetail.rm")
-	public ModelAndView selectOneBoard(@RequestParam("rbId") int rbId,
+	@RequestMapping("bdetail.rm") 		// 쿠키 생성 때문에 bId 추가 (은지)
+	public ModelAndView selectOneBoard(@RequestParam(value="rbId", required=false) Integer rbId, 
+									@RequestParam(value="bId", required=false) String bId,
 									// @RequestParam("page") int page,
 									  ModelAndView mv) {
+		//------------------- 쿠키 때매 만든 코드 (은지) 
+		System.out.println("hbid나오냐 : "+bId);
+		if(bId != "" && bId != null) {
+		rbId=Integer.parseInt(bId);
+		}
+		//----------------------------------------
 		
 		RMBoard board = rbService.selectBoard(rbId);
 		
@@ -347,6 +356,28 @@ public class RMBoardController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(list, response.getWriter());
 		
+	}
+	
+	@RequestMapping("createCookie.rm")
+	public void createCookie(HttpServletResponse response, HttpSession session, RMBoard b, @RequestParam(value="img", required=false) String img) {
+		System.out.println("controller img "+img);
+		String cookieValue = "";
+		String title = b.getRbTitle().trim().replace(" ", "%32%");
+		System.out.println("title printout : "+ title);
+		
+		if(img == null || img == "") {
+			cookieValue = b.getRbId()+"_"+b.getBcode()+"_"+title;
+		}else {
+			cookieValue = b.getRbId()+"_"+b.getBcode()+"_"+title+"_imageExists";
+		}
+		Cookie setCookie = new Cookie("recent_hm"+b.getRbId(), cookieValue); // 쿠키 이름을 name으로 생성
+		//Member m = (Member)session.getAttribute("loginUser");
+		
+		setCookie.setComment("최근본게시물") ;
+		setCookie.setMaxAge(60*60*24); // 기간을 하루로 지정
+		//setCookie.setPath("/");
+		System.out.println("쿠키생성 : " +setCookie.getValue());
+		response.addCookie(setCookie);
 	}
 	
 }

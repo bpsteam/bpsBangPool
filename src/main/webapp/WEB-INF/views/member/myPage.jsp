@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,7 +121,7 @@
                     <div class="col-md-9">
                             <!-- Tab v2 -->
                             <div class="tabs alternative">
-                                <div class="at-title">
+                                <div class="at-title" style="width:950px;">
                                     <div class="at-container">
                                         <div class="page-title en">
                                             <strong>
@@ -133,7 +134,9 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="tab-content" style="border-top: 1px;">
+                                <div class="tab-content" style="border-top: 1px; width:950px;">
+                                
+                                
                                     <div class="tab-pane fade in active" id="sample-2a">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -143,27 +146,26 @@
                                                             <h3 class="panel-title">My Profile</h3>
                                                         </div>
                                                         <div class="panel-body" style="background-color:white;">
-                                                            <!-- <div class="pull-left text-center auth-photo">
-                                                                <div class="img-photo">
-                                                                    <i class="fa fa-user"></i>				</div>
-                                                                <div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
-                                                                    <button type="button" class="btn btn-color btn-sm" onclick="apms_like('ch93ksw', 'like', 'it_like'); return false;" title="Like">
-                                                                        <i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
-                                                                    </button>
-                                                                    <button type="button" class="btn btn-color btn-sm" onclick="apms_like('ch93ksw', 'follow', 'it_follow'); return false;" title="Follow">
-                                                                        <i class="fa fa-users"></i> <span id="it_follow">0</span>
-                                                                    </button>
-                                                                </div>
-                                                            </div> -->
                                                             
                                                             <!-- 여기 -->
-                                                            <!-- <div class="panel-body">
-																<div class="pull-left text-center auth-photo">
+                                                            <div class="panel-body">
+																<div class="pull-left text-center auth-photo" style="width:100px;">
 																	<div class="img-photo">
-																		<i class="fa fa-user" >
-																			<img src="/img/456.jpg">
-																		</i>				
+																		<!-- <i class="fa fa-user" > -->
+																			<img src="${ contextPath }/resources/456.jpg" style="width: 100%;">
+																		<!-- </i> -->				
 																	</div>
+																	
+																	
+																	<!-- 
+																	
+																	0 ~ 3 : 베이직
+																	3 ~ 5 : 실버
+																	5 ~ 10 : 골드-->
+																	<c:if test="loginCount lte 3">
+																		
+																	</c:if>
+																	
 																	<div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
 																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'like', 'it_like'); return false;" title="Like">
 																			<i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
@@ -175,23 +177,71 @@
 																</div>
 																<div class="auth-info">
 																	<div class="en font-14" style="margin-bottom:6px;">
-																		<span class="pull-right font-12">Lv.1</span>
-																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 중중식</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
+																		<span class="pull-right font-12">
+																			<c:if test="${ loginUser.mlCode eq 'B' }">Exp 0 (0%)</c:if>
+																			<c:if test="${ loginUser.mlCode eq 'S' }">Exp 30 (30%)</c:if>
+																			<c:if test="${ loginUser.mlCode eq 'G' }">Exp 90 (90%)</c:if>
+																		</span>
+																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');">
+																		<span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;
+																		<span class="text-muted en font-12">
+																		<c:if test="${ loginUser.mlCode eq 'B' }">BASIC</c:if>
+																		<c:if test="${ loginUser.mlCode eq 'S' }">SILVER</c:if>
+																		<c:if test="${ loginUser.mlCode eq 'G' }">GOLD</c:if>
+																		레벨
+																		</span>
 																	</div>
-																	<div class="div-progress progress progress-striped no-margin">
+																	
+																<c:if test="${ loginUser.mlCode eq 'G' }">	
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
+								                                            <span class="sr-only">90% Complete (Sucess)</span>
+								                                        </div>
+								                                    </div>
+							                                    </c:if>
+							
+																<c:if test="${ loginUser.mlCode eq 'S' }">
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+								                                            <span class="sr-only">30% Complete (info)</span>
+								                                        </div>
+								                                    </div>
+							                                    </c:if>
+
+																<c:if test="${ loginUser.mlCode eq 'B' }">
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+								                                            <span class="sr-only">20%Complete (warning)</span>
+								                                        </div>
+								                                    </div>
+							                                    </c:if>
+							                                    
+							                                    <div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+							                                            <span class="sr-only">30% Complete (info)</span>
+							                                        </div>
+							                                    </div>
+
+																<!-- <div class="progress progress-striped active">
+							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
+							                                            <span class="sr-only">10% Complete (danger)</span>
+							                                        </div>
+							                                    </div> -->
+																	
+								                                    
+							                                    	<!-- 기존 상태바 -->
+																	<!-- <div class="div-progress progress progress-striped no-margin">
 																		<div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 																			<span class="sr-only">0 (0%)</span>
 																		</div>
-																	</div>
-																	<p style="margin-top:6px;">
-																		등록된 서명이 없습니다.				</p>
+																	</div> -->
 																</div>
 																<div class="clearfix"></div>
-															</div> -->
+															</div>
                                                             <!-- 끝 -->
                                                             
                                                             <!-- 잠시 주석  -->
-                                                            <div class="auth-info">
+                                                            <%-- <div class="auth-info">
                                                                 <div class="en font-14" style="margin-bottom:6px;">
                                                                     <span class="pull-right font-12">Lv.1</span>
                                                                     <b><a href="javascript:;" onclick="showSideView(this, 'ch93ksw', 'wbgg', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 
@@ -209,28 +259,27 @@
 							                                            <span class="sr-only">30% Complete (info)</span>
 							                                        </div>
 							                                    </div> -->
+							                                    
+							                                    <c:if test="${ !empty loginUser }">
 							
-																<div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-							                                            <span class="sr-only">20%Complete (warning)</span>
-							                                        </div>
-							                                    </div>
+																	<div class="progress progress-striped active">
+								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
+								                                            <span class="sr-only">20%Complete (warning)</span>
+								                                        </div>
+								                                    </div>
+							                                    
+							                                    </c:if>	
 							
-																<div class="progress progress-striped active">
+																<!-- <div class="progress progress-striped active">
 							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
 							                                            <span class="sr-only">10% Complete (danger)</span>
 							                                        </div>
-							                                    </div>
+							                                    </div> -->
 							                                    
-                                                                <!-- 기존 -->
-                                                                <!-- <div class="div-progress progress progress-striped no-margin">
-                                                                    <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                                                        <span class="sr-only">0 (0%)</span>
-                                                                    </div>
-                                                                </div> -->
-                                                                <p style="margin-top:6px;">
-                                                                    등록된 서명이 없습니다.				</p>
-                                                            </div>
+                                                            </div> --%>
+                                                            
+                                                            
+                                                            
                                                             <div class="clearfix"></div>
                                                         </div>
                                                     </div>
@@ -252,26 +301,35 @@
                                                             MP						</a>
                                                     </li>
                                                                         <li class="list-group-item">
-                                                        <span class="pull-right">미등록</span>
+                                                        <span class="pull-right">${ loginUser.phone }</span>
                                                         연락처
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">여기에 이메일 들어간다?</span>
+                                                        <span class="pull-right">${ loginUser.email }</span>
                                                         E-Mail
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">2019-10-24 16:04:29</span>
-                                                        최종접속일
+                                                        <span class="pull-right">${ loginUser.gender }</span>
+                                                       성별
+                                                    </li>
+                                                    
+                                                    <li class="list-group-item" style="height:88px">
+                                                        <span class="pull-right" style="text-align:right">${ loginUser.address }</span>
+                                                        주소
                                                     </li>
                                                     <li class="list-group-item">
-                                                        <span class="pull-right">2019-10-23 19:56:59</span>
-                                                        회원가입일
+                                                        <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
                                                     </li>
                                                                     </ul>
                                                             </div>
                                         </div>
+                                      
                                         <div class="col-sm-5">
-                                            <div class="row">
+                                            <div class="panel panel-default">
+                                            	<!-- recentPost 최근 본 개시물 Import -->
+                                            	<c:import url="../common/recentPosts.jsp"/>
+                                            	<!-- recentPost Import -->
+                                            </div>
                                                 <!-- <div class="col-xs-6">
                                                     <div class="form-group">
                                                         <a href="http://myroom.oceanmate.co.kr/bbs/response.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
@@ -314,21 +372,23 @@
                                                         </a>
                                                     </div>
                                                 </div> -->
-                                                <div class="col-xs-6">
+                                        </div>
+                                        <div class="col-sm-4"></div>
+                                        <div class="col-sm-8">
+                                                <div class="col-xs-3">
                                                     <div class="form-group">
-                                                        <a href="mupConfirm.me" class="btn btn-lightgray btn-sm btn-block">
+                                                        <a href="mupConfirm.me" class="btn btn-green btn-sm btn-block">
                                                             정보수정
                                                         </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-6">
+                                                <div class="col-xs-3">
                                                     <div class="form-group">
-                                                        <a href="mdelete.me" class="btn btn-lightgray btn-sm btn-block leave-me">
+                                                        <button id="deleteMember" class="btn btn-red btn-sm btn-block leave-me">
                                                             탈퇴하기
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </div>
                                     
@@ -344,7 +404,7 @@
                     
                     
                         <!-- Recent Posts -->
-                        <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
+                        <!-- <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button> -->
                         <div id="matching_form" class="section_matching">
                             <div class="matching_content">
                                 <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
@@ -586,7 +646,6 @@
 								success: function(data){
 									console.log("ajax 성공");
 									$(".section_matching").css('display','block');
-									console.log("display block처리");
 									
 									$matListDiv = $("#matListDiv");
 									$matListDiv.html("");
@@ -600,23 +659,65 @@
 									
 									if(data.length > 0){
 										console.log("if왔나");
-										for(var i in data){
-											$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-											$atag = $("<a>").attr('href','#');
-											$figuretag = $("<figure>");
-											$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
-															  .width('400px').height('200px');
-											$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+										
+										switch (data[0].bcode) {
+										case "RMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.rm?rbId='+data[i].rbId);
+												$figuretag = $("<figure>");
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/2.JPG')
+																  .width('400px').height('200px');
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
 											
-											$mDiv.append($atag);
-											$atag.append($figuretag); 
-											$figuretag.append($imgtag);
-											$atag.append($h6tag);
-											$matListDiv.append($mDiv);
+										case "HMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
+												$figuretag = $("<figure>");
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/2.JPG')
+																  .width('400px').height('200px');
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
+										case "FMBCODE":
+											for(var i in data){
+												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
+												$atag = $("<a>").attr('href','bdetail.fm?fbId='+data[i].fbId);
+												$figuretag = $("<figure>");
+												$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/2.JPG')
+																  .width('400px').height('200px');
+												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
+												
+												$mDiv.append($atag);
+												$atag.append($figuretag); 
+												$figuretag.append($imgtag);
+												$atag.append($h6tag);
+												$matListDiv.append($mDiv);
+											}
+											break;
+										default:
+											break;
 										}
+										
 									}
 									
 									
+									// 모달창의 x를 누를때  기존값 초기화시키기
 									$(".close").on("click", function(){
 										$matListDiv.html("");
 										$("#mform").each(function() {
@@ -634,7 +735,7 @@
 						
 					</script>
                         <br><br>
-                        <div class="panel panel-default">
+                        <%-- <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Profile</h3>
                             </div>
@@ -655,9 +756,9 @@
                                                     </div>
                                                 </a>
                                                 <h4>${ loginUser.nickname }
-                                                	<%-- <c:if test="${ !empty loginUser }">
+                                                	<c:if test="${ !empty loginUser }">
 	                                                   <input type="text" name="rbWriter"  id="rbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
-		                                         	</c:if>	 --%>
+		                                         	</c:if>	
                                                 </h4>
                                                 <div class="font-12 text-muted" style="letter-spacing:-1px;">실버</div>
                                                 <div class="clearfix"></div>
@@ -666,8 +767,7 @@
                                             <div class="at-tip" data-original-title="1,000점 추가획득시 레벨업합니다." data-toggle="tooltip" data-placement="top" data-html="true" style="margin:10px 0px;">
                                                 <div class="div-progress progress progress-striped" style="margin:0px;">
                                                     <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                                        <span class="sr-only">
-                                                            Lv.1					</span>
+                                                        <span class="sr-only">Lv.1</span>
                                                     </div>
                                                 </div>
                                                 <div class="sr-score pull-right" style="color:#fff; margin-top:-28px;">0 (0%)</div>
@@ -733,11 +833,14 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> --%>
+                        <!-- 111 -->
+                        
+                        
                         <!-- End recent Posts -->
                         <!-- 공지사항 -->
-                        <div class="panel panel-danger">
-                            <!-- 이슈 시작-->
+                        <!-- <div class="panel panel-danger">
+                            이슈 시작
                             <div class="panel-heading">
                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=roomate"
                                     style="color:darkslategray">
@@ -797,8 +900,9 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- 이슈 끝-->
-                        </div>
+                            이슈 끝
+                        </div> -->
+                        
                         <!-- End 공지사항 -->
                     </div>
                     <!-- End Side Column -->
@@ -812,9 +916,68 @@
         </div>
         <!-- === END CONTENT === -->
 
+ <!-- 비밀번호 불일치 모달 -->
+	<div class="modal fade" id="pwdCheck" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel"> 탈퇴회원 비밀번호 확인 </h4>
+				</div>
+				<div class="modal-body">
+				본인 확인을 위해 가입시 입력하신 비밀번호를 입력해주세요<br>
+				<div class="form-group has-feedback" >
+					<label><b>회원아이디 : 
+					<span id="mb_confirm_id" class="text-primary">${loginUser.email }</span>
+					</b></label> 
+					<input type="password" name="pwd" id="passwordCheck" required
+						class="form-control input-sm" size="15" maxlength="20">
+					<span class="fa fa-lock form-control-feedback"></span>
+				</div>
+				<span id="pwdResult"></span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="submitBtn" class="btn btn-primary" >확인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 비밀번호 불일치 모달 끝 -->
+
 <!-- ==== FOOTER START ==== -->
 	<c:import url ="../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 
+
+<script>
+$('#deleteMember').click(function() {
+		console.log("비밀번호 확인");
+		$("#pwdCheck").modal();
+		$('#pwdResult').html("");
+		$('#passwordCheck').val("");
+});
+
+$('#submitBtn').click(function(){
+	var passwordCheck = $('#passwordCheck').val();
+	var emailCheck = "${loginUser.email}";
+	//console.log("머야 왜안나와 " +passwordCheck+" "+emailCheck);
+	
+	$.ajax({
+		url  : "pwdCheck.me",
+		data : {pwd: passwordCheck, email :emailCheck},
+		success : function(data){
+			console.log("전송됨");
+			if(data == "success"){
+				window.location.replace("mdelete.me");
+			}else{
+				 $('#pwdResult').html("비밀번호 확인 값이 불일치합니다.").css('color','red');
+			}
+		}
+	});
+});
+</script>
 </body>
 </html>

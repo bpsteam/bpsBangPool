@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.showing.model.dao.ShowingDao;
 import com.project.bangpool.common.page.PageInfo;
-import com.project.bangpool.roommateboard.model.vo.RMBoard;
 import com.project.bangpool.showing.model.vo.Showing;
 
 @Service("sService")

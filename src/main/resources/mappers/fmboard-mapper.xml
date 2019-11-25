@@ -11,14 +11,18 @@
 				#{fParking}, #{fReqGender}, #{contactInfo})
 	</insert>
 	
-	<!-- <select id="selectPiList" resultType="PiBoard" parameterType="string">
+	<!--
+	
+	<select id="selectPiList" resultType="PiBoard" parameterType="string">
 		select*from freshman_board
 		where fbstatus='Y'
 		<if test="location!=null">
 		and flocation=#{location}
 		</if>
 		order by fbid desc
-	</select> -->
+	</select> 
+	
+	-->
 	
 	<select id="selectList" resultType="FMBoard" parameterType="string">
 		select fbid, fbtitle, fbwriter, fbcount, flocation from freshman_board
@@ -192,6 +196,25 @@
 				  order by fbcreatedate desc)
 			where rownum <= 8
 		]]>
+	</select>
+	
+	<!-- 매칭리스트 -->
+	<select id="selectFMatching" parameterType="hashmap" resultType="FMBoard">
+		select *
+		from freshman_board
+		where fbstatus = 'Y'
+		<if test=" mLoc != null" >
+		and fLocation like '%' || #{mLoc} || '%'
+		</if>
+		<if test=" mReq != null" >
+		and fReqGender = #{mReq}
+		</if>
+		<if test=" mLiv != null">
+		or fLivingType = #{mLiv} 
+		</if>
+		<if test=" mRom != null">
+		or fRoomcount = #{mRom} 
+		</if>
 	</select>
 	
 </mapper>

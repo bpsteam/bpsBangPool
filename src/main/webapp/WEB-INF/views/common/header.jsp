@@ -158,28 +158,28 @@
                                         <span class="glyphicon glyphicon-book "> 하우스메이트</span>
                                         <ul>
                                             <li>
-                                                <a href="blist.hm?fLocation=전체" >전체</a>
+                                                <a href="blist.hm" >전체</a>
                                             </li>
                                             <li>
-                                                <a href="blist.hm?fLocation=서울" >서울</a>
+                                                <a href="blist.hm?hLocation=SEOUL" >서울</a>
                                             </li>
                                             <li>
-                                                <a href="blist.hm?fLocation=인천/부천">인천/부천</a>
+                                                <a href="blist.hm?hLocation=INCHEON">인천/부천</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=수원/경기">수원/경기</a>
+                                                <a href="blist.hm?hLocation=SU">수원/경기</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=대구/경북">대구/경북</a>
+                                                <a href="blist.hm?hLocation=DAE">대구/경북</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=부산/경남" >부산/경남</a>
+                                                <a href="blist.hm?hLocation=BU" >부산/경남</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=충청/강원" >충청/강원</a>
+                                                <a href="blist.hm?hLocation=CHUNG" >충청/강원</a>
                                             </li>                                
                                             <li>                                 
-                                                <a href="blist.hm?fLocation=광주/전라">광주/전라</a>
+                                                <a href="blist.hm?hLocation=GWANG">광주/전라</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -252,14 +252,17 @@
                                     <a href="<%=naverAuthUrl %>"></a>
                                 </li>
                                 <li class="social-twitter">
-                                        <a href="#"class="fa fa-bell-o"></a>
+                                        <a href="https://kauth.kakao.com/oauth/authorize?
+									client_id=f99dca6dd1bbdcd594add6026b96346d
+									&redirect_uri=http://localhost:9879/bangpool/kakaocallback.me
+									&response_type=code"class="fa fa-bell-o"></a>
                                 </li>
-                                <li class="social-facebook">
+                               <!--  <li class="social-facebook">
                                     <a href="#" class="glyphicon glyphicon-search"></a>
                                 </li>
                                 <li class="social-googleplus">
                                     <a href="#" target="_blank" title="Google+"></a>
-                                </li>
+                                </li> -->
                             </ul> 
                         
                         </div>

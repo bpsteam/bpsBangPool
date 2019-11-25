@@ -195,10 +195,12 @@
 	</select>
 	
 	<!-- 매칭리스트 -->
-	<select id="selectMatching" parameterType="hashmap" resultType="RMBoard">
-		select *
-		from roomate_board
-		where rbstatus = 'Y'
+	<select id="selectRMatching" parameterType="hashmap" resultType="RMBoard">
+		select rb.*, A.originalfilename, A.renamefilename
+		from roomate_board rb
+		left join attachment A on rb.bcode=A.bcode
+		where rb.rbstatus = 'Y'
+		and rb.rbid = A.refbid
 		<if test=" mLoc != null" >
 		and rLocation like '%' || #{mLoc} || '%'
 		</if>
@@ -211,10 +213,9 @@
 		<if test=" mRom != null">
 		or rRoomCount = #{mRom} 
 		</if>
-		
-		 
-		
 	</select>
+	
+	
 	
 	</mapper>
 

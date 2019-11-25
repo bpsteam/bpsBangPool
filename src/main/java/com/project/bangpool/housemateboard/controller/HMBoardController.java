@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -27,6 +28,7 @@ import com.google.gson.JsonIOException;
 import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.common.page.Pagination;
+import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.housemateboard.model.exception.HMBoardException;
 import com.project.bangpool.housemateboard.model.service.HMBoardService;
 import com.project.bangpool.housemateboard.model.vo.HMBoard;
@@ -38,7 +40,7 @@ public class HMBoardController {
 	
 	@Autowired	//service에 자동으로 객체 만들어주기
 	private HMBoardService hbService;
-
+	//push testest
 	/*** 전체 게시글 불러오기 ***/
 	@RequestMapping("blist.hm")
 	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page,
@@ -68,10 +70,16 @@ public class HMBoardController {
 	
 	
 	/*** 게시글 선택시 디테일 화면가기 ***/
-	@RequestMapping("bdetail.hm")
-	public ModelAndView boardDetail(@RequestParam("hbId") int hbId, 
+	@RequestMapping("bdetail.hm")		// 쿠키 생성 때문에 bId 추가 (은지)
+	public ModelAndView boardDetail(@RequestParam(value="hbId", required=false) Integer hbId, 
+									@RequestParam(value="bId", required=false) String bId,
 									ModelAndView mv) {
-		
+		//------------------- 쿠키 때매 만든 코드 (은지)
+		System.out.println("hbid나오냐 : "+bId);
+		if(bId != "" && bId != null) {
+		hbId=Integer.parseInt(bId);
+		}
+		//----------------------------------------
 		HMBoard hmboard = hbService.selectBoard(hbId);
 		System.out.println("bdetail hbId : "+ hbId);
 		System.out.println("bdetail hmboard : "+ hmboard);
@@ -326,6 +334,29 @@ public class HMBoardController {
 		gson.toJson(list, response.getWriter());
 		
 	}
+	
+	@RequestMapping("createCookie.hm")
+	public void createCookie(HttpServletResponse response, HttpSession session, HMBoard b, @RequestParam(value="img", required=false) String img) {
+		System.out.println("controller img "+img);
+		String cookieValue = "";
+		String title = b.getHbTitle().trim().replace(" ", "%32%");
+		System.out.println("title printout : "+ title);
+		
+		if(img == null || img == "") {
+			cookieValue = b.getHbId()+"_"+b.getBcode()+"_"+title;
+		}else {
+			cookieValue = b.getHbId()+"_"+b.getBcode()+"_"+title+"_imageExists";
+		}
+		Cookie setCookie = new Cookie("recent_hm"+b.getHbId(), cookieValue); // 쿠키 이름을 name으로 생성
+		//Member m = (Member)session.getAttribute("loginUser");
+		
+		setCookie.setComment("최근본게시물") ;
+		setCookie.setMaxAge(60*60*24); // 기간을 하루로 지정
+		//setCookie.setPath("/");
+		System.out.println("쿠키생성 : " +setCookie.getValue());
+		response.addCookie(setCookie);
+	}
+	
 	
 	
 }

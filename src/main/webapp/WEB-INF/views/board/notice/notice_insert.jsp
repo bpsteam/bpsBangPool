@@ -28,7 +28,7 @@
                                 <label>글제목</label>
                                 <input name="nTitle" class="form-control margin-bottom-20" type="text">
                                 <label>작성자</label><br>
-                                <input name="nWriter" value="${ loginUser.nickname }"><br><br>
+                                <span name="nWriter">${ loginUser.nickname }</span><br><br>
                                 <label>게시글</label><br>
                                 <textarea name="nContent" style="resize: none; width: 680px; height: 400px;"></textarea>
                                 <hr>
