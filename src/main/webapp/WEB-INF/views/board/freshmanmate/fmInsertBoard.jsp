@@ -283,7 +283,7 @@
 										<!-- 자동등록방지 -->
 										
 										
-										
+										<c:import url ="../../common/captcha/captcha.jsp"/>
 									
 										<!-- 자동등록방지 -->
 									</div>

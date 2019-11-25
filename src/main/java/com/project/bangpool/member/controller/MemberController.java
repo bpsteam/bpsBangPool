@@ -141,7 +141,7 @@ public class MemberController {
 		
 		m.setBirth(year+"-"+month+"-"+date);
 		m.setAddress(post+"/"+address1+"/"+address2);
-		System.out.println(m);
+		System.out.println("member insert : " + m);
 		
 		String encPwd = bcryptPasswordEncoder.encode(m.getPwd());
 		m.setPwd(encPwd);
@@ -277,6 +277,7 @@ public class MemberController {
     	      		mv.setViewName("kakaoSuccess");
     	      	// 가입이 안된 맴버일 경우 카카오에서 받은 정보를 들고 회원가입 페이지로 넘어가기
     	      	}else {
+    	      		model.addAttribute("loginUser", null);
     	      		m.setNickname(userInfo.get("nickname"));
 //    	      		if(userInfo.get("gender").equals("female"))	m.setGender("여성");
 //    	      		else	m.setGender("남성");

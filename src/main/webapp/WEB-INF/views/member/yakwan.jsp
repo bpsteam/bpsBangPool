@@ -887,9 +887,9 @@
 			var kakaoId = "${kakaoId}"
 			console.log("naver " + naverId);
 			console.log("kakao " +kakaoId);
-			if (naverId == "") {
+			if (naverId != "") {
 				$("#naverId").modal();
-			} else if (kakaoId == ""){
+			} else if (kakaoId != ""){
 				$("#kakaoId").modal();
 			} else {
 				$("#kakaoId").hide();
