@@ -61,8 +61,9 @@
                                 </div>
                                    <div class="col-md-6" style="display: flex; padding-top:20px;">
                                        <div class="col-md-9" ><i class="fa-ellipsis-h pull-right" style="font-size: 24px; cursor: pointer; margin-left: 5px; display:flex;" onclick="$('.more').toggle('slow')";></i>
+                                       	   <c:if test="${ loginUser.nickname eq showing.sbwriter }">
                                            <button type="button" class="btn btn-primary btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;"onclick="location.href='updateView.sb?sbId=${showing.sbid}&page=${page}'">수정하기</button>
-                                           <button type="button" class="btn btn-warning btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;">신고하기</button>
+                                           </c:if>
                                            <button type="button" class="btn btn-danger btn-sm pull-right more" style="display: none; cursor:pointer; margin:10px;" onclick="location.href='deleteShowing.sb?sbId=${ showing.sbid }'">삭제하기</button>
                                        </div>
                                    </div>
