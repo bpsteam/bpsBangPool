@@ -89,7 +89,12 @@
 							</div>
                             </c:if>
 							<br>
-                            <div class="col-md-12 " ><textarea><c:out value="${ notice.nContent }"/></textarea></div>
+							                         
+                            <div class="col-md-12 " >
+                            <% pageContext.setAttribute("newLineChar", "\n"); %>
+                            <textarea>${ fn:replace(notice.nContent, newLineChar, "<br>")}</textarea>
+                           <%--  <textarea><c:out value="${ notice.nContent }"/></textarea> --%>
+                            </div>
                         </div>
                         
 	                    <div class="col-md-12" style="text-align: center;">

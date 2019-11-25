@@ -208,6 +208,7 @@
 	        getReplyList();
 	        
 	        var left = countDate();
+	        
 	        if(left>0){
 				setInterval(function(){
 					countDate();
@@ -252,7 +253,7 @@
 	        	$('#join_event').text('나눔종료!');
 	        	$('#end_event').css('display','block');
 	        	$('#reply_event_insert').css('display','none');
-	        	if('${ loginUser.email}'== '${share.srWinner}'){
+	        	if('${ loginUser.nickname}'== '${share.srWinner}'){
 	        		alert('당첨되셨습니다 축하합니다~!!!');
 	        	}
 	        }else{
@@ -299,26 +300,28 @@
 			var rContent = $('#reply_content').val();
 			var nickname = "${ loginUser.nickname }";
 			var refbId = "${ share.srbId }";
-			var email = "${ loginUser.email }";
-			console.log(nickname);
+
 			$.ajax({
 				url : "reply_event_insert.sr",
-				data : { rContent:rContent , refbId:refbId, nickname:nickname, email:email },
+				data : { rContent:rContent , refbId:refbId, nickname:nickname},
 				type:"post",
 				success:function(data){
 					if(data == "success"){
 						getReplyList();
 					   $('#reply_content').val("");
-					}else{
+					}else if(data =="error"){
 						alert("이미 참여 하였습니다.");
 						getReplyList();
 						$('#reply_content').val("");
+					}else{
+						alert("잘못옴");
 					}
 				}
 			});
 		});
 		
 		$('#rUpdate').click(function(){
+			$(this).text("취소");
 			$('#reply_edit_textarea').css('display','block');
 		});
 	    
@@ -361,8 +364,8 @@
 				            $rDelete = $('<div class="pull-right">');
 				           
 				           /*  $rUpdateA = $('<a id="rUpdate">').text("수정").attr('href',"rUpdateA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"); */
-				            $rUpdateA = $('<button id="rUpdate">').text("수정");
-				            $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }");
+				            $rUpdateA = $('<span id="rUpdate">').text("수정");
+				            $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"+"&nickname="+data[i].rWriter);
 				            
 					        $rUpdate.append($rUpdateA);
 					        $rUpdate.append($rDeleteA);

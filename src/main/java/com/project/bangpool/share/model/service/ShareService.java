@@ -34,6 +34,10 @@ public interface ShareService {
 
 	int deleteReply(int rId);
 
+	int deleteReplyEvent(int rId);
+
+	int eventMemberUpdate(String refbId);
+
 
 
 }

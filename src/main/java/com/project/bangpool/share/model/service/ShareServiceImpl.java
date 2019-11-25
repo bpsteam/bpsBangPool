@@ -87,6 +87,16 @@ public class ShareServiceImpl implements ShareService{
 		return srDAO.deleteReply(sqlSession,rId);
 	}
 
+	@Override
+	public int deleteReplyEvent(int rId) {
+		return srDAO.deleteReplyEvent(sqlSession,rId);
+	}
+
+	@Override
+	public int eventMemberUpdate(String srbId) {
+		return srDAO.eventMemberUpdate(sqlSession,srbId);
+	}
+
 
 
 	

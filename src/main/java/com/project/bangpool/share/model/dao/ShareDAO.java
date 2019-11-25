@@ -73,5 +73,13 @@ public class ShareDAO {
 		return sqlSession.update("shareMapper.deleteReply", rId);
 	}
 
+	public int deleteReplyEvent(SqlSessionTemplate sqlSession, int rId) {
+		return sqlSession.update("shareMapper.deleteReplyEvent",rId);
+	}
+
+	public int eventMemberUpdate(SqlSessionTemplate sqlSession, String srbId) {
+		return sqlSession.update("shareMapper.eventMemberUpdate",srbId);
+	}
+
 
 }
