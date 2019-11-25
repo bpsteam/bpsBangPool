@@ -204,7 +204,7 @@
 				<div class="text-center" style="margin: 30px 0px;">
 					<button type="submit" id="submit" class="btn btn-success"
 						accesskey="s">정보수정</button>
-					<a href="http://myroom.oceanmate.co.kr" class="btn btn-danger"
+					<a href="mypage.me" class="btn btn-danger"
 						role="button">취소</a>
 				</div>
 			</form>

@@ -227,9 +227,9 @@
                     <!-- Side Column -->
                     <div class="col-md-3">
                         <!-- Recent Posts -->
-                        <div class="margin-bottom-10">
+                        <!-- <div class="margin-bottom-10">
                             <hr>
-                        </div>
+                        </div> -->
                         <div class="panel panel-success">
                             <div class="panel-body" style="background-color: white;">
                                 <!-- <a href="#"><b>룸메이트</b></a> <br>

@@ -300,7 +300,7 @@
                                                             <span class="pull-right">0점</span>
                                                             MP						</a>
                                                     </li>
-                                                                        <li class="list-group-item">
+                                                    <li class="list-group-item">
                                                         <span class="pull-right">${ loginUser.phone }</span>
                                                         연락처
                                                     </li>
