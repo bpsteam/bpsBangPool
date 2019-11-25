@@ -92,7 +92,6 @@ public class MemberController {
 								HttpServletRequest request, HttpServletResponse response
 								) {
 			Cookie[] cookies = request.getCookies() ;
-		     
 		    if(cookies != null){
 		        for(int i=0; i < cookies.length; i++){
 		             
@@ -279,8 +278,8 @@ public class MemberController {
     	      	// 가입이 안된 맴버일 경우 카카오에서 받은 정보를 들고 회원가입 페이지로 넘어가기
     	      	}else {
     	      		m.setNickname(userInfo.get("nickname"));
-    	      		if(userInfo.get("gender").equals("female"))	m.setGender("여성");
-    	      		else	m.setGender("남성");
+//    	      		if(userInfo.get("gender").equals("female"))	m.setGender("여성");
+//    	      		else	m.setGender("남성");
     	      		m.setEmail(userInfo.get("email"));
     	      		
     	      		System.out.println("회원가입창으로 보낼 카카오계정 정보 : "+m );
@@ -393,9 +392,9 @@ public class MemberController {
 
 		if(bcryptPasswordEncoder.matches(rawPwd, m.getPwd())) {
 			System.out.println("pwdConfirm메소드에서 주소 찍기 "+m.getAddress());
-			String post = m.getAddress().split("/")[0];
-			String address1 = m.getAddress().split("/")[1];
-			String address2 = m.getAddress().split("/")[2];
+			String post = m.getAddress().split("<br>")[0];
+			String address1 = m.getAddress().split("<br>")[1];
+			String address2 = m.getAddress().split("<br>")[2];
 			
 			String year = m.getBirth().split("-")[0];
 			String month = m.getBirth().split("-")[1];

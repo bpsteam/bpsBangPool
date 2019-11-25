@@ -280,29 +280,12 @@
 
 									<div class="well well-sm text-center">
 
-										<script> 
-											var g5_captcha_url = "https://openapi.naver.com/v1/captcha/nkey";
-										</script>
-										<script
-											src="https://openapi.naver.com/v1/captcha/nkey"></script>
-										<fieldset id="captcha" class="captcha">
-											<legend>
-												<label for="captcha_key">자동등록방지</label>
-											</legend>
-											<img
-												src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha_image.php?t=1571763466619"
-												alt="" id="captcha_img">
-											<button type="button" id="captcha_mp3">
-												<span></span>숫자음성듣기
-											</button>
-											<button type="button" id="captcha_reload">
-												<span></span>새로고침
-											</button>
-											<input type="text" name="captcha_key" id="captcha_key"
-												required class="captcha_box required" size="6"
-												maxlength="6"> <span id="captcha_info">자동등록방지
-												숫자를 순서대로 입력하세요.</span>
-										</fieldset>
+										<!-- 자동등록방지 -->
+										
+										
+										
+									
+										<!-- 자동등록방지 -->
 									</div>
 
 									<div class="write-btn pull-center">
