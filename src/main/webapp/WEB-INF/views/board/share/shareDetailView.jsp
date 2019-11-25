@@ -153,17 +153,10 @@
 					    </div>
 					    <c:if test="${ loginUser != null }">
 					    
-					    <div class="comment-box">
-						      <div class="comment-box">
-		
-						        <div class="clearfix"></div>
-						
-						        <div class="form-group comment-content">
-							        
 						          <form action="reply_event_insert.sr" style="display:flex;">
 							        <div class="comment-cell" style="width:100%;">
 							            <textarea id="reply_content" tabindex="13" id="wr_content" name="rContent" maxlength="10000" rows="5"
-							              class="form-control input-sm is_cm_color" title="내용" required style="width: 580px; height:70px;"></textarea>
+							              class="form-control input-sm is_cm_color" title="내용" required style="width: 100%; height:70px;"></textarea>
 							            <input name="nickname" type="hidden" value=${ loginUser.nickname }>
 							            <input name="srbId" type="hidden" value=${ share.srbId }>
 							            <input name="email" type="hidden" value=${ loginUser.email }>
@@ -173,10 +166,7 @@
 										<input type="button" id="reply_event_insert" value="등록+신청" style="background-color: #e9541b; border: 1px solid #555; text-align: center; vertical-align: middle; cursor: pointer; height: 70px;" tabindex="14">
 									</div>
 							  	</form>
-					        </div>
-					      </div>
-				    </div>
-				    </c:if>
+				   		</c:if>
 				    
 				    <c:if test="${ loginUser == null }">
 				    	<div>로그인시 댓글 이벤트 참여 가능합니다!!!</div>
@@ -294,8 +284,6 @@
 					}
 				});
 		});
-		
-		
 		$('#reply_event_insert').click(function(){
 			var rContent = $('#reply_content').val();
 			var nickname = "${ loginUser.nickname }";
