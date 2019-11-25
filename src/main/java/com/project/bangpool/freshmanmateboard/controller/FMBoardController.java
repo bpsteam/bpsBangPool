@@ -186,6 +186,7 @@ public class FMBoardController {
 	public ModelAndView boardInsertView(ModelAndView mv) {
 		// email 인증을 위한 랜덤 넘버 보내기
 		int ran = new Random().nextInt(900000) + 100000;
+		System.out.println("random for email autho: "+ran);
 		mv.addObject("random", ran).setViewName("fmInsertBoard");
 		return mv;
 		
@@ -524,16 +525,27 @@ public class FMBoardController {
 	public String createEmailCheck(@RequestParam("schoolemail") String userEmail, 
 									@RequestParam int random, HttpServletRequest request){
 		System.out.println(random);
-		
 		//이메일 인증
 		int ran = new Random().nextInt(900000) + 100000;
 		HttpSession session = request.getSession(true);
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		String authCode = String.valueOf(ran);
 		session.setAttribute("authCode", authCode);
 		session.setAttribute("random", random);
-		String subject = "이메일 인증 코드 발급 안내 입니다.";
+		String subject = "BangPool 학교이메일 인증 코드 발급 안내 입니다.";
 		StringBuilder sb = new StringBuilder();
-		sb.append("귀하의 인증 코드는 " + authCode + "입니다.");
+//		sb.append("BangPool 서비스 이용을 위한 본인 확인 메일 입니다."+authCode);
+		sb.append("BangPool 서비스 이용을 위한 본인 확인 메일 입니다."
+				+ "<br><br>안녕하세요 "+loginUser.getNickname()+"님, "
+				+ "<br>본인 확인을 위하여 이래의 ID 및 인증 번호를 확인하신 후, 글 작성을 완료해주세요."
+				+ "<br><br>BangPool ID : "+loginUser.getEmail()
+				+ "<br>인증 번호 : " + authCode
+				+ "<br><br>감사합니다."
+				+ "<br><br>서울시 강남구 역삼동" + 
+				"<br>태헤란로 테헤란로14길" + 
+				"<br>6 남도빌딩," + 
+				"<br>KH 정보교육원"+
+				"<br>G오후 강의장");
 		String sendEmailId = "bangpool.kh@gmail.com";
 		
 		String result = mailService.send(subject, sb.toString(), sendEmailId, userEmail, null) + "";
