@@ -304,12 +304,10 @@
 									<div class="form-group">
 										<label class="col-sm-2 control-label">첨부파일</label>
 										<div class="col-sm-10">
-											<button class="btn btn-blue btn-sm" type="button"
-												onclick="add_file();">
+											<button class="btn btn-blue btn-sm" type="button" onclick="add_file();">
 												<i class="fa fa-plus-circle fa-lg"></i> 추가하기
 											</button>
-											<button class="btn btn-red btn-sm" type="button"
-												onclick="del_file();">
+											<button class="btn btn-red btn-sm" type="button" onclick="del_file();">
 												<i class="fa fa-times-circle fa-lg"></i> 삭제하기
 											</button>
 										</div>
@@ -344,7 +342,7 @@
 									<script>
                                      var flen = 0;
                                      function add_file(delete_code) {
-                                         var upload_count = 2;
+                                         var upload_count = 3;
                                          if (upload_count && flen >= upload_count) {
                                              alert("이 게시판은 "+upload_count+"개 까지만 파일 업로드가 가능합니다.");
                                              return;
@@ -365,22 +363,29 @@
                                          objCell = objRow.insertCell(0);
                              
                                          
-                                         var hFileName = ${ hboard.originalFileName };
-                                         if( hFileName != null ) {
-                                        	 objContent = "<div class='row'>";
-                                             objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
-                                             			+(objNum+1)+"</span> <input type='file' class='input-sm' name='reloadFile"+(objNum+1) + "'><br>현재업로드한 파일:"
-                                             			+"<a href='"+${ contextPath }+"/resources/hmBoardUploadFiles/"+${ hboard.renameFileName }+"'>"
-                                             			+ hFileName + "</a>"
-                                             			+"</div></div></div>";
-                                         }else {
-                                        	 objContent = "<div class='row'>";
-                                             objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+(objNum+1)
-                                             			+"</span><input type='file' class='form-control input-sm' name='reloadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'"+(objNum+1)
-                                             			+"></div></div></div>";
-                                         }
+                                        /*  var hFileName = "${ hboard.originalFileName }";
+                                         var hFileREName = "${ hboard.renameFileName }";
+                                         var contextpath = "${ contextPath }";
+                                         var himg = hFileName.split(";")[0];
+                                         console.log(himg);
                                          
+                                       	 if( hFileName != null){
+                                         objContent = "<div class='row'>";
+                                     	 objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
+                                     					+ (objNum+1) + "</span><input class='input-sm' name='reloadFile"+(objNum+1)
+                                     					+"' value='"+himg+"'>"
+                                     					+"</div></div></div>";
+                                       	 }else {
+                                       		objContent = "<div class='row'>";
+                                        	objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
+                                        				+ (objNum+1) + "</span>	<input type='file' class='input-sm' name='reloadFile"+(objNum+1)
+                                        				+"'></div></div></div>";
+                                       	 } */
                                          
+                                       	objContent = "<div class='row'>";
+                        				objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "
+                        					+ (objNum+1)
+                        					+ "</span>	<input type='file' class='input-sm' name='reloadFile"+(objNum+1)+"'></div></div></div>";
                                          if (delete_code) {
                                              objContent += delete_code;
                                          } else {
