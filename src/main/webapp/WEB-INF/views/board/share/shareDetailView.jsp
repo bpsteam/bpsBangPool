@@ -61,7 +61,7 @@
 		}
 		.view-content textarea {
 			width:100%;
-			height:400px;
+			height:250px;
 		    border: none;
 		    background-color: transparent;
 		    resize: none;
@@ -175,9 +175,11 @@
 				    <!-- 댓글 목록 -->
 				      <div id="viewcomment">
 					  </div>
-						      </div>
-					    </div>
-					</div>
+					  
+				</div>
+					
+					
+					
 					
 				</div>
 			</div>
@@ -210,10 +212,8 @@
 	    	
 	        var startDate = "${ share.srStartDate }";
 	        var startTime = "${ share.srStartHour }";
-	        console.log(startDate);
 	        var endDate = "${ share.srEndDate }";
 	        var endTime = "${ share.srEndHour }";
-	        console.log(endDate);
 	        var sd = startDate.split("-");
 	        var ed = endDate.split("-");
 	        var start = new Date(sd[0],sd[1]-1,sd[2],startTime,0,0);
@@ -230,10 +230,8 @@
 	    	
 	        var startDate = "${ share.srStartDate }";
 	        var startTime = "${ share.srStartHour }";
-	        console.log(startDate);
 	        var endDate = "${ share.srEndDate }";
 	        var endTime = "${ share.srEndHour }";
-	        console.log(endDate);
 	        var sd = startDate.split("-");
 	        var ed = endDate.split("-");
 	        
@@ -241,7 +239,6 @@
 	        var end = new Date(ed[0],ed[1]-1,ed[2],endTime,59,0);
 	        
 	        var left = end-today;
-	        console.log("left : " + left);
 	        var winner = $('#winner').val();
 	        
 	        if(left <= 0){
@@ -380,7 +377,7 @@
 				            /* $rUpdateA = $('<span id="rUpdate">').text("수정"); */
 				            $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"+"&nickname="+data[i].rWriter);
 				            
-					        $rUpdate.append($rUpdateA);
+					       /*  $rUpdate.append($rUpdateA); */
 					        $rUpdate.append($rDeleteA);
 							
 					        if( decodeURIComponent(data[i].rWriter.replace(/\+/g, " ")) == "${ loginUser.nickname }" ){
