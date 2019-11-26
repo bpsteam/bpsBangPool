@@ -17,7 +17,7 @@ public class Member {
 	private String mStatus;
 	private Date enrollDate;
 	private Date updateDate;
-	private String profile;
+	private String profile; // 프로필
 	private String originalFileName;// 원래파일이름
 	private String renameFileName;	// 변경파일이름 
 
