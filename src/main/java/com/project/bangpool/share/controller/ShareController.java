@@ -86,7 +86,6 @@ public class ShareController {
 	@RequestMapping("srInsertForm.sr")
 	public String shareInsertForm() {
 		
-		
 		return "shareInsertForm";
 		
 	}
@@ -132,7 +131,7 @@ public class ShareController {
 		
 		Share s = srService.shareDetail(srbId);
 		
-		s.setSrEventEnterCount(m.size());
+		/*s.setSrEventEnterCount(m.size());*/
 		
 		String srStartDate = srDate.format(s.getSrStartDate());
 		String srEndDate = srDate.format(s.getSrEndDate());
@@ -228,34 +227,44 @@ public class ShareController {
 						             Member m,
 						             @RequestParam("refbId") String refbId) {
 
+		String listNickname ="";
+		String MemberNickname =m.getNickname();
+		
 		ArrayList<Member> list = new ArrayList<Member>();
 		list = srService.selectMember(r);
-
+		
+		System.out.println("list : " + list);
+		System.out.println("member : "+m.getNickname());
+		System.out.println("listSIZE: "+list.size());
+		
 		if(list.size()>0) {
 			
 			for(int i =0; i<list.size();i++) {
-				
-				if(list.get(i).getEmail().equals(m.getEmail())) {
-					
+				System.out.println(i);
+				listNickname = list.get(i).getNickname();
+				System.out.println("list : "+ list.get(i).getNickname());
+				System.out.println("member : "+m.getNickname());
+				/*list.get(i).getNickname().equals(m.getNickname())*/
+				if(listNickname.equals(MemberNickname)) {
 					return "error";
 				}
 			}
 		}
-		else {
-			
-			HashMap<String, String> map = new HashMap<String, String>();
-			
-			map.put("refbId",refbId );
-			map.put("email",m.getEmail() );
-			map.put("rWriter",m.getNickname() );
-			map.put("rContent",r.getrContent() );
-			
-			int result = srService.insertReplt_event(map);
-			
-			if(result>0) {
-				return "success";
-			}
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("refbId",refbId );
+		map.put("nickname",m.getNickname() );
+		map.put("rWriter",m.getNickname() );
+		map.put("rContent",r.getrContent() );
+		
+		int result = srService.insertReplt_event(map);
+		int eventMemberUpdate = srService.eventMemberUpdate(refbId);
+		
+		if(result>0) {
+			return "success";
 		}
+	
 		return "";
 	
 	}
@@ -278,7 +287,7 @@ public class ShareController {
 		  m = list.get(random);
 		  
 		  s.setSrbId(srbId);
-		  s.setSrWinner(m.getEmail().toString());
+		  s.setSrWinner(m.getNickname().toString());
 		  
 		  if(list !=null) {
 			  int result = srService.insertWinner(s);
@@ -290,14 +299,22 @@ public class ShareController {
   }
   
 	@RequestMapping("rDeleteA.sr")
-	public ModelAndView reply_Delete(@RequestParam("srbId") int srbId,
+	public ModelAndView reply_Delete(@RequestParam("srbId") String srbId,
 									 @RequestParam("rId") int rId,
-									 ModelAndView mv){
+									 @RequestParam("nickname") String nickname,
+									 ModelAndView mv
+									){
+		
+		HashMap<String, String> map = new HashMap<String, String>();
 		
 		int result = srService.deleteReply(rId);
 		
 		if(result>0) {
+			
+			result = srService.deleteReplyEvent(rId);
+			
 			mv.setViewName("redirect:srdetail.sr?srbId="+srbId);
+			
 		}
 		
 		

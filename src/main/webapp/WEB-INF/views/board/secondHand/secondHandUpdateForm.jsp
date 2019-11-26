@@ -19,7 +19,7 @@
 								<input type="hidden" name="renameFileName" value="${ board.shbRenameFileName }">
                             
                                 <div class="signup-header">
-                                    <h2>중고 이케요 수정하기</h2>
+                                    <h2>중고판매 수정하기</h2>
                                 </div>
                                 <label>글제목</label>
                                 <input value="${ board.shbTitle }"class="form-control margin-bottom-20" type="text" name="shbTitle">

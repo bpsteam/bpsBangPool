@@ -122,7 +122,8 @@
 			    #{rWriter},
 			    SYSDATE,
 			    SYSDATE,
-			    'Y'
+			    'Y',
+			    DEFAULT
 			)
 	</insert>
 	
@@ -132,38 +133,46 @@
 		WHEN 1=1 THEN
 		INTO REPLY
 		VALUES(
-			    REPLY_SEQ.NEXTVAL,
-			    'SBCODE',
-			    #{rContent},
-			    #{refbId},
-			    #{rWriter},
-			    SYSDATE,
-			    SYSDATE,
-			    'Y'  
+		    REPLY_SEQ.NEXTVAL,
+		    'SBCODE',
+		    #{rContent},
+		    #{refbId},
+		    #{rWriter},
+		    SYSDATE,
+		    SYSDATE,
+		    'Y',
+		    'Y'
 		)  
 		WHEN 1=1 THEN
 		INTO SHARE_JOIN_MEMBER
 		VALUES(
 			#{refbId},
-			#{email},
-			'Y'
+			#{nickname},
+			'Y',
+			REPLY_SEQ.CURRVAL
 		)
 		SELECT *
 		FROM DUAL
 	
 	</insert>
 	
+	<update id="eventMemberUpdate" parameterType="string">
+		UPDATE SHARE_BOARD
+		SET 
+		SREVENTENTERCOUNT = SREVENTENTERCOUNT + 1
+		WHERE
+		SRBID = #{srbId}
+	</update>
+	
 	<!-- Event -->
 	
 	<select id="selectEventMember" parameterType="_int" resultType="Member">
-		
-		SELECT email
+		SELECT NICKNAME
 		FROM SHARE_JOIN_MEMBER
 		WHERE 
 		REFBID = #{srbId}
 		AND
 		STATUS = 'Y'
-		
 	</select>
 	
 	<update id="insertWinner" parameterType="Share">
@@ -184,6 +193,7 @@
 		REFBID = #{refbId}
 		AND
 		STATUS = 'Y'
+
 	
 	</select>
 	
@@ -225,6 +235,15 @@
 	      AND
 	      RID = #{ rId }
 	
+	</update>
+	
+	<update id="deleteReplyEvent" parameterType="_int">
+		
+		UPDATE SHARE_JOIN_MEMBER
+		SET 
+		  STATUS ='N'
+	    WHERE
+	      RID = #{ rId }
 	</update>
 	
 </mapper>

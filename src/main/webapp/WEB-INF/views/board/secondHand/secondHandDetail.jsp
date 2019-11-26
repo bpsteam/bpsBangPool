@@ -11,7 +11,7 @@
 
 <head>
     <!-- Title -->
-    <title>중고 이케요</title>
+    <title>중고판매</title>
     <!-- Meta -->
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="">

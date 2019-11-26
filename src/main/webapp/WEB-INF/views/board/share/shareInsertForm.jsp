@@ -265,7 +265,7 @@
 									</table>
 								</div>
 								<div class="write-btn pull-right">
-									<button type="button" id="btn_submit" accesskey="s"	class="btn btn-success btn-sm ">
+									<button type="submit" id="btn_submit" accesskey="s"	class="btn btn-success btn-sm ">
 										<i class="fa fa-check"></i> <b>작성완료</b>
 									</button>
 									<a href="blist.hm" class="btn btn-danger btn-sm" role="button">취소</a>
@@ -427,25 +427,6 @@
 				$('#srStartDate').attr({"max":endDateCompare});
 			});
 			
-			
-/* 			$('#btn_submit').click(function(){			
- 				var startDate = $('#srStartDate').val();
- 				var endDate = $('#srEndDate').val();
- 				
- 				var startDateArr = startDate.split('-');
- 				var endDateArr = endDate.split('-');
- 				
-		        var startDateCompare = new Date(startDateArr[0], parseInt(startDateArr[1])-1, startDateArr[2]);
-		        var endDateCompare = new Date(endDateArr[0], parseInt(endDateArr[1])-1, endDateArr[2]);
- 				
-		        if(startDateCompare.getTime() > endDateCompare.getTime()) {
-		            alert("시작날짜와 종료날짜를 확인해 주세요.");
-		        }else{
-		        	$('#srInsert.sr').submit();
-		        }
-		        
-			}); */
-
 		});
 	</script>
 

@@ -883,18 +883,7 @@
                         <!-- 공지사항 -->
                         <div class="panel panel-green">
                                <!-- 뉴스 시작 -->
-                               <div class="panel-heading">
-                                   <a href="frblist.fr" style="color:white">
-                                       <span class="pull-right lightgray font-16 en">+</span>
-                                       <span class="div-title-underbar-bold border-navy font-16 en">
-                                           <b>자유게시판</b>
-                                       </span>
-                                   </a>
-                               </div>
-                               <div class="widget-box panel-body">
-                                   <div class="basic-post-list ">
-                                   	<c:import url="../../common/freeTopList.jsp"/>
-                               	</div>
+                               <c:import url="../../common/recentPosts.jsp"/>
                            	</div>
                        	</div>
                         <!-- End 공지사항 -->
