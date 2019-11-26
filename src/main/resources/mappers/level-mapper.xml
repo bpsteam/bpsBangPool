@@ -10,6 +10,17 @@
 		<!-- where MSTATUS = 'Y' -->
 	</select>
 	
+	<select id="getWriteCount" parameterType="string" resultType="_int">
+		select COUNT(*)
+		from MANAGEBOARD M
+        LEFT join housemate_board  H on ( H.BCODE = M.BCODE)
+        LEFT join roomate_board  R on ( R.BCODE = M.BCODE)
+        LEFT join freshman_board  F on ( F.BCODE = M.BCODE)
+        where R.RBWRITER = #{ nickname }
+        OR H.HBWRITER = #{ nickname }
+        OR F.FBWRITER = #{ nickname }
+	</select>
+	
 	<!-- <select id="selectlCode" parameterType="_int" resultType="Member">
 		select MLNAME
 		from MANAGEMEMBER
@@ -19,13 +30,14 @@
 		<if test="loginCount gte 10"> and mlcode = 'G'</if>
 	</select> -->
 	
-	<update id="updatelCode" parameterType="Member">
+	<update id="updatelCode" parameterType="hashmap">
 		update MEMBER
 		set 
-			<if test="loginCount lte 3"> mlcode = 'B'</if>
-			<if test="(loginCount gte 4) &amp;&amp; (loginCount lte 9)"> mlcode = 'S'</if>
-			<if test="loginCount gte 10"> mlcode = 'G'</if>
-		where mno = #{mNo}
+			<!-- <if test="(loginCount lte 3) or (writeCount lte 3)"> mlcode = 'B'</if>
+			<if test="(loginCount lte 5) or (writeCount lte 5)"> mlcode = 'S'</if>
+			<if test="(loginCount gt 5 ) or (writeCount gt 5)"> mlcode = 'G'</if> -->
+			mlcode = #{level}
+		where mno = #{mNo}	
 	</update>
 	
 	<!-- login시 -->

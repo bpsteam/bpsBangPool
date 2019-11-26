@@ -55,6 +55,11 @@
 		where email=#{email}
 		and mStatus='Y'
 	</update>
+	
+	<insert id="insertProfile" parameterType="Member">
+		insert into profile
+		values (#{mNo}, #{originalFileName}, #{renameFileName})
+	</insert>
 
 
 </mapper>

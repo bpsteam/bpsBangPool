@@ -68,5 +68,10 @@ public class MemberServiceImpl implements MemberService{
 		return mDAO.memberUpdate(sqlSession, m);
 	}
 
+	@Override
+	public int insertProfile(Member m) {
+		return mDAO.insertProfile(sqlSession, m);
+	}
+
 
 }

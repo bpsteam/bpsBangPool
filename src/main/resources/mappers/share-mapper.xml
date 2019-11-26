@@ -59,7 +59,6 @@
 			SYSDATE,
 			#{srStartDate},
 			#{srEndDate},
-			0,
 			'Y',
 			#{srStartHour},
 			#{srEndHour},
@@ -244,6 +243,7 @@
 		  STATUS ='N'
 	    WHERE
 	      RID = #{ rId }
+	      
 	</update>
 	
 </mapper>
