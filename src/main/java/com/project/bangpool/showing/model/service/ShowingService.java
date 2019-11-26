@@ -77,5 +77,9 @@ public class ShowingService implements ShowingServiceImpl{
 	public ArrayList<Showing> selectTopList() {
 		return sbDao.selectTopList(sqlSession);
 	}
+	@Override
+	public int deleteReply(int rId) {
+		return sbDao.deleteReply(sqlSession, rId);
+	}
 	
 }
