@@ -170,11 +170,18 @@ public class HMBoardController {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 파일이 저장될 경로 설정 ==> webapp 아래에 있는 resources를 데려온다는 의미.
 		
-		String savePath = root + "\\hmBoardUploadFiles";   
+		String savePath = root + "\\hmBoardUploadFiles";
+		String savePath2 = root + "\\attboarduploads";
 		
 		File folder = new File(savePath);
+		File folder2 = new File(savePath2);
+		
 		if(!folder.exists()) {
 			folder.mkdirs();  //해당하는 폴더가 없다면 폴더를 만들어주는 메소드.
+		}
+		
+		if(!folder2.exists()) {
+			folder2.mkdirs();  //해당하는 폴더가 없다면 폴더를 만들어주는 메소드.
 		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -184,9 +191,11 @@ public class HMBoardController {
 								+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 								// '.' 붙여서 확장자 갖고 옴.
 		String renamePath = folder + "\\" + renameFileName;
+		String renamePath2 = folder2 + "\\" + renameFileName;
 		
 		try {
 			file.transferTo(new File(renamePath));  // 전달받은 리네임한걸로 파일을 덮어쓰겠다는 의미.
+			file.transferTo(new File(renamePath2));  // 전달받은 리네임한걸로 파일을 덮어쓰겠다는 의미.
 		}  catch (Exception e) {
 			e.printStackTrace();
 		}

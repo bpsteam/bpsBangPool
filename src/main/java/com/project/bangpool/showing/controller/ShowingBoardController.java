@@ -84,7 +84,7 @@ public class ShowingBoardController {
 		
 		for(int i = 0; i < uploadFile.size(); i ++) {
 			if(i < uploadFile.size()-1)
-				fileName += String.valueOf(uploadFile.get(i).getOriginalFilename())+",";
+				fileName += String.valueOf(uploadFile.get(i).getOriginalFilename())+";";
 			else
 				fileName += String.valueOf(uploadFile.get(i).getOriginalFilename());
 		}
@@ -95,7 +95,7 @@ public class ShowingBoardController {
 		if(uploadFile != null && uploadFile.size() > 0) {
 			for(int i = 0; i < uploadFile.size(); i++) {
 				if(i < uploadFile.size()-1)
-					renameFileName[i] += saveFile(uploadFile.get(i), request)+",";
+					renameFileName[i] += saveFile(uploadFile.get(i), request)+";";
 				else
 					renameFileName[i] += saveFile(uploadFile.get(i), request);
 			}
@@ -120,18 +120,31 @@ public class ShowingBoardController {
 	
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\showinguploadFiles";
+		String savePath2 = root + "\\attboarduploads";
+		
+		
 		File folder = new File(savePath);
+		File folder2 = new File(savePath2);
+		
 		if(!folder.exists()) {
 			folder.mkdir();
 		}
+		
+		if(!folder2.exists()) {
+			folder2.mkdir();
+		}
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String originFileName = file.getOriginalFilename();
 		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) +
 				originFileName.substring(0,originFileName.lastIndexOf(".") + 1) 
 				+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 		String renamePath = folder + "\\" + renameFileName;
+		String renamePath2 = folder2 + "\\" + renameFileName;
+		
 		try {
 			file.transferTo(new File(renamePath));
+			file.transferTo(new File(renamePath2));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -156,10 +169,10 @@ public class ShowingBoardController {
 	
 	// 김상욱 메소드 추가
 	@RequestMapping("ddetailShowing2.sb")
-	public ModelAndView bdetailShowingBoard(@RequestParam("sbId") int sbId,
+	public ModelAndView bdetailShowingBoard(@RequestParam("sbid") int sbid,
 										ModelAndView mv) {
 		
-		Showing showing = sService.selectShowing(sbId);
+		Showing showing = sService.selectShowing(sbid);
 		if(showing != null) {
 			mv.addObject("showing", showing)
 			.setViewName("detailShowingBoard");
@@ -209,7 +222,7 @@ public class ShowingBoardController {
 		
 		for(int i = 0 ; i < reloadFile.size(); i++) {
 			if(i < reloadFile.size()-1)
-				originFileName += String.valueOf(reloadFile.get(i).getOriginalFilename())+",";
+				originFileName += String.valueOf(reloadFile.get(i).getOriginalFilename())+";";
 			else
 				originFileName += String.valueOf(reloadFile.get(i).getOriginalFilename());
 		}
@@ -220,7 +233,7 @@ public class ShowingBoardController {
 		
 		for(int i = 0; i < reloadFile.size(); i++) {
 			if(i<reloadFile.size()-1)
-				renameFileName += saveFile(reloadFile.get(i) , request)+",";
+				renameFileName += saveFile(reloadFile.get(i) , request)+";";
 			else
 				renameFileName += saveFile(reloadFile.get(i) , request);
 		}
@@ -290,12 +303,19 @@ public class ShowingBoardController {
 		System.out.println(list);
 		
 		for(Showing b : list) {
-			b.setSbtitle(URLEncoder.encode(b.getSbtitle(),"utf-8"));
-			b.setRenameFileName(URLEncoder.encode(b.getRenameFileName(),"utf-8"));
+			
+			if(b.getRenameFileName().contains(";")) {
+				
+				String[] name = b.getRenameFileName().split(";");
+				String name2 = name[0];
+				b.setRenameFileName(URLEncoder.encode(name2,"utf-8"));
+			}
+			
 		}
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(list, response.getWriter());
 		
 	}
+	
 }

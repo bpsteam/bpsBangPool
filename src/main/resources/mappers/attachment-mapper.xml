@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="attachmentMapper">
+	
+	<select id="selectTopList" resultType="Attachment">
+		<![CDATA[
+			select *
+			from (select *
+				  from attachment
+                  where renamefilename is not null
+				  order by fno desc)
+			where rownum <= 4
+		]]>
+	</select>
+	<select id="selectTopList2" resultType="Attachment">
+		<![CDATA[
+			select *
+			from (select rownum numrow, aa.*
+				  from (select * from attachment
+                        where renamefilename is not null
+                        order by fno desc)aa)
+			where numrow >4 and numrow <=8
+		]]>
+	</select>
+	
+	
+</mapper>

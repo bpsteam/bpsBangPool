@@ -106,11 +106,17 @@ public class RMBoardController {
 		// 파일이 저장될 경로
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\rmboarduploads";
+		String savePath2 = root + "\\attboarduploads";
 		
 		File folder = new File(savePath);
+		File folder2 = new File(savePath2);
 		// 폴더가 없으면 folder 만들어라.
 		if(!folder.exists()) {
 			folder.mkdir();
+		}
+		
+		if(!folder2.exists()) {
+			folder2.mkdir();
 		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -120,9 +126,11 @@ public class RMBoardController {
 								+ originFileName.substring(originFileName.lastIndexOf(".")+1);
 		
 		String renamePath = folder + "\\" + renameFileName;
+		String renamePath2 = folder2 + "\\" + renameFileName;
 		
 		try {
 			file.transferTo(new File(renamePath));
+			file.transferTo(new File(renamePath2));
 			// 전달받은 파일 new File(renamePath) 로 rename한거 덮어 쓰겠다.
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -163,7 +171,7 @@ public class RMBoardController {
 		rbId=Integer.parseInt(bId);
 		}
 		//----------------------------------------
-		
+		System.out.println("하하하 : " + rbId);
 		RMBoard board = rbService.selectBoard(rbId);
 		
 		if(board != null) {

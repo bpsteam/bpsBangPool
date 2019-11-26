@@ -408,20 +408,10 @@
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner">
                                         <div class="item active">
-                                            <div class="row">
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample3.jpg" style="max-width:100%;"></div>
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample2.jpg" style="max-width:100%;"></div>
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample3.jpg" style="max-width:100%;"></div>
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample2.jpg" style="max-width:100%;"></div>
-                                            </div>
+                                            <c:import url="common/attachmentTopList.jsp"/>
                                         </div>
                                         <div class="item">
-                                            <div class="row">
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample2.jpg" style="max-width:100%;"></div>
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample3.jpg" style="max-width:100%;"></div>
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample2.jpg" style="max-width:100%;"></div>
-                                                <div class="col-md-3"><img src="${contextPath}/resources/assets/img/sample/sample3.jpg" style="max-width:100%;"></div>
-                                            </div>
+                                            <c:import url="common/attachmentTopList2.jsp"/>
                                         </div>
                                     </div>
                                     <!-- Controls -->

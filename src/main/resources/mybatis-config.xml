@@ -33,6 +33,8 @@
     	<typeAlias type="com.project.bangpool.memberlevel.model.vo.ManageMember" alias="ManageMember"/>
 
     	<typeAlias type="com.project.bangpool.freeboard.model.vo.FreeBoard" alias="FreeBoard"/>
+    	
+    	<typeAlias type="com.project.bangpool.attachment.model.vo.Attachment" alias="Attachment"/>
 
 	</typeAliases>
 	
@@ -58,6 +60,8 @@
   	 	<mapper resource="mappers/freeboard-mapper.xml"/>
 
   	 	<mapper resource="mappers/map-mapper.xml"/>
+  	 	
+  	 	<mapper resource="mappers/attachment-mapper.xml"/>
 
 	</mappers>
 	

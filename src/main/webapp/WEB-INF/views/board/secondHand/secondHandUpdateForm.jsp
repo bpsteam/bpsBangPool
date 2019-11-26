@@ -81,64 +81,14 @@
                                 <!-- Recent Posts -->
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">인기 TOP 게시글</h3>
+                                        <h3 class="panel-title">공지사항</h3>
                                     </div>
-                                    <div class="panel-body" style="height: 250px; overflow: auto;" >
-                                        <ul class="posts-list margin-top-10">
-                                            <li>
-                                                <div class="recent-post">
-                                                    <a href="">
-                                                        <img class="pull-left" src="resources/assets/img/detailShowingImg/02.jfif" alt="thumb1">
-                                                    </a>
-                                                    <a href="#" class="posts-list-title">역삼역 자취생 방방방</a>
-                                                    <br>
-                                                    <span class="recent-post-date">
-                                                        10 30, 2019
-                                                    </span>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </li>
-                                            <li>
-                                                <div class="recent-post">
-                                                    <a href="">
-                                                        <img class="pull-left" src="resources/assets/img/detailShowingImg/04.jfif" alt="thumb2">
-                                                    </a>
-                                                    <a href="#" class="posts-list-title">강남역 쉐어하우스를 소개.</a>
-                                                    <br>
-                                                    <span class="recent-post-date">
-                                                        10 28, 2019
-                                                    </span>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </li>
-                                            <li>
-                                                <div class="recent-post">
-                                                    <a href="">
-                                                        <img class="pull-left" src="resources/assets/img/detailShowingImg/07.jfif" alt="thumb3">
-                                                    </a>
-                                                    <a href="#" class="posts-list-title">선릉에서 혼자 꾸미면서 살아요</a>
-                                                    <br>
-                                                    <span class="recent-post-date">
-                                                        10 28, 2019
-                                                    </span>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <c:import url="../../common/noticeTopList.jsp"/>
                                 </div>
                                 <!-- End recent Posts -->
                                 <!-- About -->
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">오늘의 자취 꿀팁</h3>
-                                    </div>
-                                    <div class="panel-body" style="overflow: auto;">
-                                        1. 계란한판으로 맛있게 먹는 요리 <br>
-                                        2. 인테리어 꾸르팁 <br>
-                                        3. 쉐어하우스 잘 고르는 방법 <br>
-                                        4. 동물을 키울수 있는 쉐어하우스 찾는 방법  <br>
-                                    </div>
+                                    <c:import url="../../common/recentPosts.jsp"/>
                                 </div>
                                 <!-- End About -->
                             </div>

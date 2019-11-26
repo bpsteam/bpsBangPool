@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-md-6 animate fadeIn">
                                     <div>
-                                       <c:set var="fileSplit" value="${fn:split(showing.renameFileName,',')}"></c:set>
+                                       <c:set var="fileSplit" value="${fn:split(showing.renameFileName,';')}"></c:set>
                                        <div><img src="${contextPath}/resources/showinguploadFiles/${ fileSplit[0] }" style="border-radius: 0.5em; width: 500px; height: 500px;" alt="about-me" class="margin-top-10" id="mainImg" ></div>
                                        	<div id="carousel-example-2" class="carousel slide alternative" data-ride="carousel">
 									      <div class="row" style="overflow:auto; height:90px;">

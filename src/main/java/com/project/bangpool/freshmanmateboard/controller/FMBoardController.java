@@ -258,13 +258,19 @@ public class FMBoardController {
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources"); 
 		System.out.println("루트 : " + root);
-		String savePath = root + "/fmboarduploads"; 
+		String savePath = root + "\\fmboarduploads"; 
+		String savePath2 = root + "\\attboarduploads";
 		System.out.println("저장경로 : " + savePath);
 	
 		File folder = new File(savePath);
+		File folder2 = new File(savePath2);
 		
 		if(!folder.exists()) {
 			folder.mkdirs(); // buploadFiles folder가없으면 만들어준다. 
+		}
+		
+		if(!folder2.exists()) {
+			folder2.mkdirs(); // buploadFiles folder가없으면 만들어준다. 
 		}
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS"); // millisecond -> yyyyMMddHHmmssSSS
@@ -273,10 +279,12 @@ public class FMBoardController {
 								+"."
 								+originFileName.substring(originFileName.lastIndexOf(".")+1); // .확장자 가지고옴
 		
-		String renamePath = folder + "/" + renameFileName;
+		String renamePath = folder + "\\" + renameFileName;
+		String renamePath2 = folder2 + "\\" + renameFileName;
 		
 		try {
 			file.transferTo(new File(renamePath)); // 전달받은 rename파일을 file에 덮어쓴다. 
+			file.transferTo(new File(renamePath2)); // 전달받은 rename파일을 file에 덮어쓴다. 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

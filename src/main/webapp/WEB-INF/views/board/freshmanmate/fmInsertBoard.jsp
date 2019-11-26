@@ -318,9 +318,6 @@
                     <!-- Side Column -->
                     <div class="col-md-3">
                         <!-- Recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
                         <div class="panel panel-success">
                             <div class="panel-body" style="background-color: white;">
                                 <!-- <a href="#"><b>룸메이트</b></a> <br>
@@ -351,75 +348,13 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">공지사항</h3>
                             </div>
-                            <div class="panel-body" style="background-color: white;">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" style="margin-bottom:0px">
-        
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>공지사항입니다1</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>공지사항입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>공지사항입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td>공지사항입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-        
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                            </div>
+                            <c:import url="../../common/noticeTopList.jsp"/>
                         </div>
                         <!-- End recent Posts -->
                         <!-- 공지사항 -->
                         <div class="panel panel-info">
                             <!-- 이슈 시작-->
-                            <div class="panel-heading">
-                                <h3 class="panel-title">최신 게시글</h3>
-                            </div>
-                            <div class="widget-box panel-body" style="background-color: white;">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" style="margin-bottom:0px">
-        
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>최신글입니다1</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>최신글입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>최신글입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td>최신글입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-        
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                            <c:import url="../../common/recentPosts.jsp"/>
                             <!-- 이슈 끝-->
                         </div>
                         <!-- End 공지사항 -->
