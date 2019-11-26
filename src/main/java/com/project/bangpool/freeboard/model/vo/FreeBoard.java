@@ -5,7 +5,7 @@ import java.sql.Date;
 public class FreeBoard {
 	
 	private int frbId;				//게시글 번호
-	private String bcode;			//게시판코드(HMBOARD)
+	private String bcode;			//게시판코드(FRBCODE)
 	private String frbTitle;			//제목
 	private String frbContent;		//게시물내용
 	private String frbWriter;		//작성자
