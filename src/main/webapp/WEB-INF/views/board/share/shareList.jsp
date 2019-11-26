@@ -451,6 +451,9 @@
 
 <!-- start 지도 관련 지도 생성 및 지도 중심 좌표 -->
 <script type="text/javascript">
+	// 로그인 유저의 좌표값이 들어갈 객체
+	var userCoords = null;
+
 	// start 지도 생성
 	var mapContainer = document.getElementById('map'); 	//지도를 담을 영역의 DOM 레퍼런스
 	var mapOptions = { 									//지도를 생성할 때 필요한 기본 옵션
@@ -475,6 +478,7 @@
 	            map: map,
 	            position: coordsLogInUser
 	        });
+
 			
 	        userCoords = {
         		latitude : result[0].y,
@@ -529,13 +533,11 @@ var otherIdNum = new Array();
 	// 다른사람들 주소 가지고 만들기
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
-	
-	// list 로 표시되는 overlay
-	var overlay = [];
-	
+
 	// java 를 통해서 받아온 String 값에 넣어준다.
 	// 주소로 좌표를 검색합니다
-	var marker = [];
+	var infowindow = null;
+	var marker = null;
 	var limit = otherAddress.length;
 	for(var i=0; i < otherAddress.length; i++){
 		// geocoder 안으로 들어가면 address[i]값이 표시되지 않는다.
@@ -544,14 +546,14 @@ var otherIdNum = new Array();
 		     if (status === kakao.maps.services.Status.OK) {
 				
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-				
+					
 		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        marker[i] = new kakao.maps.Marker({
+		        marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        overlay[i] = new kakao.maps.CustomOverlay({
+		        infowindow = new kakao.maps.CustomOverlay({
 		            content:    '<div class="wrap">' + 
            			            '    <div class="info">' + 
            			            '        <div class="title">' + 
@@ -570,24 +572,45 @@ var otherIdNum = new Array();
            			            '    </div>' +    
            			            '</div>',
         			 map: map,
-        			 position: marker[i].getPosition() 
+        			 position: marker.getPosition() 
 		        });
+
 		    } 
 		     limit--;
 		}); 
+		
 	}
-	
+	// 배열값으로 바꿔 넣어야 한다.
 	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-	kakao.maps.event.addListener(marker[], 'click', function() {
-	    overlay[1].setMap(map);
+	kakao.maps.event.addListener(marker, 'click', function() {
+	    overlay.setMap(map);
 	});
-	
-	
+
 	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
 	function closeOverlay() {
-		console.log(overlay);
-	    overlay[1].setMap(null);     
-	}
+	    overlay.setMap(null);     
+	}		        
+	
+	// 마커 이미지의 이미지 주소입니다
+	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+	    
+	for (var i = 0; i < positions.length; i ++) {
+	    
+	    // 마커 이미지의 이미지 크기 입니다
+	    var imageSize = new kakao.maps.Size(24, 35); 
+	    
+	    // 마커 이미지를 생성합니다    
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+	    
+	    // 마커를 생성합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: positions[i].latlng, // 마커를 표시할 위치
+	        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지 
+	    });
+}
+
 	
 </script>
 

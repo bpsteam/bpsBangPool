@@ -64,11 +64,6 @@ public class ShareController {
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
 
   	// ajax map
 	@RequestMapping("mapAjax.sr")
@@ -297,8 +292,7 @@ public class ShareController {
 	@RequestMapping("rDeleteA.sr")
 	public ModelAndView reply_Delete(@RequestParam("srbId") int srbId,
 									 @RequestParam("rId") int rId,
-									 ModelAndView mv
-									){
+									 ModelAndView mv){
 		
 		int result = srService.deleteReply(rId);
 		
