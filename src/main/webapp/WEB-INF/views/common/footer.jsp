@@ -44,13 +44,13 @@
                                     <a class="fa-tasks" href="home.do">HOME</a>
                                 </li>
                                 <li>
-                                    <a class="fa-users" href="#">ROOMMATE</a>
+                                    <a class="fa-users" href="blist.rm">ROOMMATE</a>
                                 </li>
                                 <li>
-                                    <a class="fa-signal" href="#">HOUSEMATE</a>
+                                    <a class="fa-signal" href="blist.hm">HOUSEMATE</a>
                                 </li>
                                 <li>
-                                    <a class="fa-coffee" href="#">FREECYCLE</a>
+                                    <a class="fa-coffee" href="blist.fm">FRESHMANMATE</a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
