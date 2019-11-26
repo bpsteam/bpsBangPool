@@ -66,6 +66,7 @@ public class NoticeController {
 	public String insert_Notice(@ModelAttribute Notice n,
 			                    @RequestParam("uploadFile") MultipartFile uploadFile,
 			                    HttpServletRequest request) {
+		System.out.println(n);
 		
 		if(uploadFile != null && !uploadFile.isEmpty()) {
 			String renameFileName = saveFile(uploadFile , request);
@@ -123,7 +124,6 @@ public class NoticeController {
         							  ModelAndView mv) {
 		
 		Notice notice = nService.detail_Notice(nId);
-		System.out.println("notice : "+notice.getnContent());
 		if(notice != null) {
 			mv.addObject("notice",notice)
 			   .addObject("page",page)
