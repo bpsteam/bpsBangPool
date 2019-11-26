@@ -170,7 +170,7 @@ public class HMBoardController {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 파일이 저장될 경로 설정 ==> webapp 아래에 있는 resources를 데려온다는 의미.
 		
-		String savePath = root + "\\hmBoardUploadFiles";   
+		String savePath = root + "/hmBoardUploadFiles";   
 		
 		File folder = new File(savePath);
 		if(!folder.exists()) {
@@ -183,7 +183,7 @@ public class HMBoardController {
 								+ "." 
 								+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 								// '.' 붙여서 확장자 갖고 옴.
-		String renamePath = folder + "\\" + renameFileName;
+		String renamePath = folder + "/" + renameFileName;
 		
 		try {
 			file.transferTo(new File(renamePath));  // 전달받은 리네임한걸로 파일을 덮어쓰겠다는 의미.
