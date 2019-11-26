@@ -23,8 +23,6 @@
 	    width: 150px;
 	
 	}
-	//하이
-	//바이
 	#table td {
 	    width: 150px;
 	
@@ -129,7 +127,7 @@
                                         <div style="both:clear;">
                                         </div>
 
-                                        <div
+                                        <%-- <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>게시물구분</b>
                                         </div>
@@ -145,9 +143,46 @@
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <!-- 128 -->
                                             ${ rboard.rbCount}
+                                        </div> --%>
+                                        <div style="both:clear;">
+                                        </div>
+                                        
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>지역구분</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            	<!-- 대구/경북 </div> -->
+                                            	${ rboard.rLocation} </div>
+                                        <div style="both:clear;">
+                                        </div>
+                                        
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>매물구분</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            ${ rboard.rRentType } </div>
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>방개수</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            ${ rboard.rRoomCount }
                                         </div>
                                         <div style="both:clear;">
                                         </div>
+
+                                        <div
+                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            <b>거주지형태</b>
+                                        </div>
+                                        <div
+                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                           ${ rboard.rLivingType }</div>
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
@@ -173,36 +208,8 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            010-000-0000 </div>
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>지역구분</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            	<!-- 대구/경북 </div> -->
-                                            	${ rboard.rLocation} </div>
-                                        <div style="both:clear;">
-                                        </div>
-
-                                        <%-- <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>거주지구분</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:80%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            	<!-- 아파트 </div> -->
-                                            	${ rboard.rLivingType} </div>
-                                        <div style="both:clear;">
-                                        </div> --%>
+                                            ${ rboard.contactInfo } </div>   
                                         
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>거주지구분</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            ${ rboard.rLivingType} </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>첨부파일</b>
