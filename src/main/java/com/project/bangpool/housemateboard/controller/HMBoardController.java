@@ -85,6 +85,7 @@ public class HMBoardController {
 		System.out.println("bdetail hmboard : "+ hmboard);
 		
 		if(hmboard != null) {
+			hmboard.setHbContent(hmboard.getHbContent().replace("\n", "<br>"));
 			
 			if(hmboard.getRenameFileName()!=null) {
 				String[] original=hmboard.getOriginalFileName().split(";");
@@ -121,6 +122,7 @@ public class HMBoardController {
 		System.out.println("갔다오기전 hb : "+ hb);
 		System.out.println(uploadFile);
 		System.out.println(uploadFile.getOriginalFilename()); 
+		System.out.println(uploadFile.getOriginalFilename()); 
 		
 		String uploadFileName="";
 		String rename="";
@@ -135,19 +137,19 @@ public class HMBoardController {
 			}
 		}
 		if(uploadFile2 != null && !uploadFile2.isEmpty()) { 
-			String renameFileName = saveFile(uploadFile2, request); 
+			String renameFileName2 = saveFile(uploadFile2, request); 
 			
-			if(renameFileName != null) {
+			if(renameFileName2 != null) {
 				uploadFileName += ";"+uploadFile2.getOriginalFilename();
-				rename += ";"+renameFileName;
+				rename += ";"+renameFileName2;
 			}
 		}
 		if(uploadFile3 != null && !uploadFile3.isEmpty()) { 
-			String renameFileName = saveFile(uploadFile3, request); 
+			String renameFileName3 = saveFile(uploadFile3, request); 
 			
-			if(renameFileName != null) {
+			if(renameFileName3 != null) {
 				uploadFileName += ";"+uploadFile3.getOriginalFilename();
-				rename += ";"+renameFileName;
+				rename += ";"+renameFileName3;
 			}
 		}
 		
@@ -170,20 +172,20 @@ public class HMBoardController {
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		// 파일이 저장될 경로 설정 ==> webapp 아래에 있는 resources를 데려온다는 의미.
 		
-		String savePath = root + "\\hmBoardUploadFiles";   
+		String savePath = root + "/hmBoardUploadFiles";   
 		
 		File folder = new File(savePath);
 		if(!folder.exists()) {
 			folder.mkdirs();  //해당하는 폴더가 없다면 폴더를 만들어주는 메소드.
 		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		String originFileName = file.getOriginalFilename();
 		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))
 								+ "." 
 								+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 								// '.' 붙여서 확장자 갖고 옴.
-		String renamePath = folder + "\\" + renameFileName;
+		String renamePath = folder + "/" + renameFileName;
 		
 		try {
 			file.transferTo(new File(renamePath));  // 전달받은 리네임한걸로 파일을 덮어쓰겠다는 의미.
@@ -213,7 +215,6 @@ public class HMBoardController {
 	/*** 정보 입력 후 수정하기 버튼 눌렀을 시 ***/
 	@RequestMapping("bupdate.hm")
 	public ModelAndView boardUpdate(@ModelAttribute HMBoard hb,
-							/*@RequestParam("page") Integer page,*/
 							/* @RequestParam("reloadFile") MultipartFile reloadFile, */
 							@RequestParam(value="reloadFile1", required=false) MultipartFile reloadFile, 
 							@RequestParam(value="reloadFile2", required=false) MultipartFile reloadFile2, 
@@ -225,7 +226,13 @@ public class HMBoardController {
 		String renameFile = "";
 		
 		if(reloadFile != null && !reloadFile.isEmpty()) {
-			deleteFile(hb.getRenameFileName(), request);
+			String dbFile = hb.getRenameFileName();
+			if(dbFile != null) {
+				String file[] = dbFile.split(";");
+				for(int i=0; i<file.length; i++) {
+					deleteFile(file[i], request); // 파일삭제하는 메소드 만들기
+				}
+			}
 			String renameFileName = saveFile(reloadFile, request);
 			if(renameFileName != null) {
 				originalFile +=reloadFile.getOriginalFilename();
@@ -236,6 +243,7 @@ public class HMBoardController {
 		if(reloadFile2 != null && !reloadFile2.isEmpty()) {
 			String renameFileName2 = saveFile(reloadFile2, request);
 			if(renameFileName2 != null) {
+				
 				originalFile +=";"+reloadFile2.getOriginalFilename();
 				renameFile +=";"+renameFileName2;
 			}
@@ -252,12 +260,11 @@ public class HMBoardController {
 		hb.setOriginalFileName(originalFile);
 		hb.setRenameFileName(renameFile);
 		
-		System.out.println("update.hm db전 hb: "+ hb);
+		System.out.println("update.hm db수정전 hb: "+ hb);
 		int result = hbService.updateBoard(hb);
-		System.out.println("update.hm db후 hb: "+ hb);
+		System.out.println("update.hm db수정후 hb: "+ hb);
 		
 		if(result > 0) {
-			//mv.addObject("page", page).setViewName("redirect:bdetail.bo?bId="+hb.getHbId());
 			mv.setViewName("redirect:bdetail.hm?hbId="+hb.getHbId());
 		} else {
 			throw new HMBoardException("게시글 수정 실패하였습니다.");
@@ -268,9 +275,9 @@ public class HMBoardController {
 
 	public void deleteFile(String fileName, HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\hmBoardUploadFiles";
+		String savePath = root + "/hmBoardUploadFiles";
 		
-		File f = new File(savePath + "\\" + fileName);
+		File f = new File(savePath + "/" + fileName);
 		
 		if(f.exists()) {
 			f.delete();	//파일 존재시 삭제
