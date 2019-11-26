@@ -213,13 +213,13 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <span class="glyphicon glyphicon-book "> 이케요</span>
+                                        <span class="glyphicon glyphicon-book "> 중고거래</span>
                                         <ul>
                                             <li>
-                                                <a href="shblistView.se">이케요</a>
+                                                <a href="shblistView.se">중고판매</a>
                                             </li>
                                             <li>
-                                                <a href="srListView.sr">나눔</a>
+                                                <a href="srListView.sr">중고나눔</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -296,7 +296,7 @@
                                                         <th style="text-align: center;">룸메이트</th>
                                                         <th style="text-align: center;">하우스메이트</th>
                                                         <th style="text-align: center;">신입생메이트</th>
-                                                        <th style="text-align: center;">이케요</th>
+                                                        <th style="text-align: center;">중고거래</th>
                                                         <th style="text-align: center;">커뮤니티</th>
                                                    </tr>
                                                 </thead>
@@ -395,7 +395,8 @@
                                                         </td>   
                                                         <td style="text-align: center;" >   
                                                             <ul style="list-style: none; padding:0px">
-                                                                <li><a href="shblistView.se">이케요</a></li>      
+                                                                <li><a href="shblistView.se">중고판매</a></li>
+                                                                <li><a href="shblistView.se">중고나눔</a></li>      
                                                             </ul> 
                                                         </td>
                                                         <td style="text-align: center;">  
