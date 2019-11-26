@@ -42,4 +42,8 @@ public class MemberDAO {
 		return sqlSession.update("memberMapper.memberUpdate", m);
 	}
 
+	public int insertProfile(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.insertProfile", m);
+	}
+
 }

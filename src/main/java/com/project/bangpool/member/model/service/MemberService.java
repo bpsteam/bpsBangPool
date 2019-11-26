@@ -3,6 +3,7 @@ package com.project.bangpool.member.model.service;
 
 
 import com.project.bangpool.member.model.vo.Member;
+//import com.project.bangpool.member.model.vo.Profile;
 
 public interface MemberService {
 
@@ -19,5 +20,8 @@ public interface MemberService {
 	Member snsLogin(Member m);
 
 	int memberUpdate(Member m);
+
+	int insertProfile(Member m);
+
 
 }

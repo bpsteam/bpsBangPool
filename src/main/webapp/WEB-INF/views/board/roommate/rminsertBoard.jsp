@@ -99,10 +99,6 @@
 		                                                        <div class="input-group">
 		                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
 		                                                            <input type="text" name="rbTitle" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
-		                                                            <span class="input-group-btn">
-		                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">안내</a>
-		                                                                <a href="http://myroom.oceanmate.co.kr/bbs/helper.php?act=map" target="_blank" class="btn btn-black btn-sm hidden-xs win_scrap">지도</a>
-		                                                            </span>
 		                                                        </div>
 		                                                    </div>
 		                                                </div>
@@ -237,6 +233,27 @@
 				                                            </select>	
 														</div>
 													</div>
+													
+													<div class="form-group">
+														<label class="col-sm-2 control-label " for="ca_name">핸드폰<strong
+															class="sound_only">*</strong></label>
+														<div class="col-sm-7">
+															<table>
+																<tbody>
+																	<tr>
+																		<td><input type="tel" name="phone1" size="3"
+																			maxlength="3" class="form-control input-sm"></td>
+																		<td>-</td>
+																		<td><input type="tel" name="phone2" size="4"
+																			maxlength="4" class="form-control input-sm"></td>
+																		<td>-</td>
+																		<td><input type="tel" name="phone3" size="4"
+																			maxlength="4" class="form-control input-sm"></td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
                                             
                                                     <div class="form-group">
                                                         <!-- <label class="col-sm-2 control-label " for="RPRICE">거래금액</label> -->
@@ -270,21 +287,6 @@
                                             <span class="sound_only"></span>		</div>
                                                 </div>
                                             
-                                                            <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="wr_link1">링크 #1</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" name="wr_link1" value="" id="wr_link1" class="form-control input-sm" size="50">
-                                                                                <div class="text-muted font-12" style="margin-top:4px;">
-                                                                    유튜브, 비메오 등 동영상 공유주소 등록시 해당 동영상은 본문 자동실행
-                                                                </div>
-                                                                        </div>
-                                                    </div>
-                                                        <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="wr_link2">링크 #2</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" name="wr_link2" value="" id="wr_link2" class="form-control input-sm" size="50">
-                                                                        </div>
-                                                    </div>
                                                     
                                                         <style>
                                                     #variableFiles { width:100%; margin:0; border:0; }
@@ -372,23 +374,6 @@
                                                     }
                                                     </script>
                                             
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">첨부사진</label>
-                                                        <div class="col-sm-10">
-                                                            <label class="control-label sp-label">
-                                                                <input type="radio" name="as_img" value="0" checked=""> 상단출력
-                                                            </label>
-                                                            <label class="control-label sp-label">
-                                                                <input type="radio" name="as_img" value="1"> 하단출력
-                                                            </label>
-                                                            <label class="control-label sp-label">
-                                                                <input type="radio" name="as_img" value="2"> 본문삽입
-                                                            </label>
-                                                            <div class="text-muted font-12" style="margin-top:4px;">
-                                                                본문삽입시 {이미지:0}, {이미지:1} 과 같이 첨부번호를 입력하면 내용에 첨부사진 출력 가능
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 
                                                         <div class="well well-sm text-center">
                                                         

@@ -17,6 +17,9 @@ public class Member {
 	private String mStatus;
 	private Date enrollDate;
 	private Date updateDate;
+	private String profile; // 프로필
+	private String originalFileName;// 원래파일이름
+	private String renameFileName;	// 변경파일이름 
 
 	private int loginCount;		// 추가
 	private String snsId;
@@ -25,10 +28,9 @@ public class Member {
 		super();
 	}
 
-
 	public Member(String mNo, String mlCode, String email, String pwd, String name, String nickname, String gender,
-			String birth, String address, String phone, String mStatus, Date enrollDate, Date updateDate,String snsId,
-			int loginCount) {
+			String birth, String address, String phone, String mStatus, Date enrollDate, Date updateDate,
+			String profile, String originalFileName, String renameFileName, int loginCount, String snsId) {
 		super();
 		this.mNo = mNo;
 		this.mlCode = mlCode;
@@ -43,11 +45,12 @@ public class Member {
 		this.mStatus = mStatus;
 		this.enrollDate = enrollDate;
 		this.updateDate = updateDate;
+		this.profile = profile;
+		this.originalFileName = originalFileName;
+		this.renameFileName = renameFileName;
 		this.loginCount = loginCount;
 		this.snsId = snsId;
 	}
-
-
 
 	public String getmNo() {
 		return mNo;
@@ -153,6 +156,29 @@ public class Member {
 		this.updateDate = updateDate;
 	}
 
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public String getRenameFileName() {
+		return renameFileName;
+	}
+
+	public void setRenameFileName(String renameFileName) {
+		this.renameFileName = renameFileName;
+	}
 
 	public int getLoginCount() {
 		return loginCount;
@@ -161,14 +187,13 @@ public class Member {
 	public void setLoginCount(int loginCount) {
 		this.loginCount = loginCount;
 	}
-	
+
 	public String getSnsId() {
 		return snsId;
 	}
-	
+
 	public void setSnsId(String snsId) {
 		this.snsId = snsId;
-
 	}
 
 	@Override
@@ -176,9 +201,9 @@ public class Member {
 		return "Member [mNo=" + mNo + ", mlCode=" + mlCode + ", email=" + email + ", pwd=" + pwd + ", name=" + name
 				+ ", nickname=" + nickname + ", gender=" + gender + ", birth=" + birth + ", address=" + address
 				+ ", phone=" + phone + ", mStatus=" + mStatus + ", enrollDate=" + enrollDate + ", updateDate="
-				+ updateDate + ", snsId=" + snsId + ", loginCount=" + loginCount + "]";
+				+ updateDate + ", profile=" + profile + ", originalFileName=" + originalFileName + ", renameFileName="
+				+ renameFileName + ", loginCount=" + loginCount + ", snsId=" + snsId + "]";
 	}
-
 	
 
 }
