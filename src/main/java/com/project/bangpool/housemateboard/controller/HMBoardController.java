@@ -214,20 +214,44 @@ public class HMBoardController {
 	@RequestMapping("bupdate.hm")
 	public ModelAndView boardUpdate(@ModelAttribute HMBoard hb,
 							/*@RequestParam("page") Integer page,*/
-							@RequestParam("reloadFile") MultipartFile reloadFile,
+							/* @RequestParam("reloadFile") MultipartFile reloadFile, */
+							@RequestParam(value="reloadFile1", required=false) MultipartFile reloadFile, 
+							@RequestParam(value="reloadFile2", required=false) MultipartFile reloadFile2, 
+							@RequestParam(value="reloadFile3", required=false) MultipartFile reloadFile3,
 							HttpServletRequest request,
 							ModelAndView mv) {
 		
+		String originalFile = "";
+		String renameFile = "";
+		
 		if(reloadFile != null && !reloadFile.isEmpty()) {
 			deleteFile(hb.getRenameFileName(), request);
+			String renameFileName = saveFile(reloadFile, request);
+			if(renameFileName != null) {
+				originalFile +=reloadFile.getOriginalFilename();
+				renameFile +=renameFileName;
+			}
 		}
 		
-		String renameFileName = saveFile(reloadFile, request);
-		
-		if(renameFileName != null) {
-			hb.setOriginalFileName(reloadFile.getOriginalFilename());
-			hb.setRenameFileName(renameFileName);
+		if(reloadFile2 != null && !reloadFile2.isEmpty()) {
+			String renameFileName2 = saveFile(reloadFile2, request);
+			if(renameFileName2 != null) {
+				originalFile +=";"+reloadFile2.getOriginalFilename();
+				renameFile +=";"+renameFileName2;
+			}
 		}
+		
+		if(reloadFile3 != null && !reloadFile3.isEmpty()) {
+			String renameFileName3 = saveFile(reloadFile3, request);
+			if(renameFileName3 != null) {
+				originalFile +=";"+reloadFile3.getOriginalFilename();
+				renameFile +=";"+renameFileName3;
+			}
+		}
+		
+		hb.setOriginalFileName(originalFile);
+		hb.setRenameFileName(renameFile);
+		
 		System.out.println("update.hm db전 hb: "+ hb);
 		int result = hbService.updateBoard(hb);
 		System.out.println("update.hm db후 hb: "+ hb);

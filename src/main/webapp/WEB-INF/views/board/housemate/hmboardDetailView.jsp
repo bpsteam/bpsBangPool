@@ -77,7 +77,7 @@
                                         </span>
                                         <span class="sp"></span>
                                         <i class="fa fa-comment"></i>
-                                        <b style="color:red">4</b>
+                                        <b style="color:red" id="rCount"></b>
                                         <span class="sp"></span>
                                         <i class="fa fa-eye"></i>${ hboard.hbCount }
                                         <span class="pull-right">
@@ -462,7 +462,7 @@
    				var $rimg;
    				var $rWriter;
    				
-   				//$("#rCount").text("댓글( " + data.length + ")");
+   				$("#rCount").text(data.length);
    				
    				if(data.length >0){
    					for (var i in data) {
