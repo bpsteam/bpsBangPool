@@ -134,8 +134,6 @@
 						  <div class="view-padding">
 						    <div class="view-content">
 						    	<textarea><c:out value="${ share.srbContent }"/></textarea>
-<%-- 						    	<% pageContext.setAttribute("newLineChar", "\r\n"); %>
-						    	<textarea>${ fn:replace(share.srbContent, newLineChar, "<br>")}</textarea> --%>
 						    </div>
 						  </div>
 						  
@@ -328,6 +326,8 @@
 						}
 					}
 				});
+			}else if("${ loginUser.nickname }"== "{share.srbWriter}"){
+				
 			}else{
 				alert('이벤트 시작일을 확인해주세요!!');
 			}
@@ -377,7 +377,7 @@
 				            $rDelete = $('<div class="pull-right">');
 				           
 				           /*  $rUpdateA = $('<a id="rUpdate">').text("수정").attr('href',"rUpdateA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"); */
-				            $rUpdateA = $('<span id="rUpdate">').text("수정");
+				            /* $rUpdateA = $('<span id="rUpdate">').text("수정"); */
 				            $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"+"&nickname="+data[i].rWriter);
 				            
 					        $rUpdate.append($rUpdateA);
