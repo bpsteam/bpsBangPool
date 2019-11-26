@@ -31,12 +31,8 @@
                                 <input name="nWriter" value="${ loginUser.nickname }"><br><br>
                                 <!-- start sending 게시글 -->
                                 <label><h3>게시글</h3></label><br>
-                                <div id="dbText" class="form-control margin-bottom-20" contenteditable="true" style="width: 700px; height: 400px;"></div>
-                                <textarea id="nContent" class="form-control margin-bottom-20" style="resize:none; display:none; width: 700px; height: 400px;" name="sbcontent" ></textarea>
-                                <!-- end sending 게시글 -->
+                                <textarea id="nContent" name="nContent" class="form-control margin-bottom-20" style="resize:none; width: 700px; height: 400px;"></textarea>
                                 <hr>
-                                <!-- <button class="btn btn-primary " type="submit">파일삭제</button> --> 
-                                <!-- <input type="file" style="display: none;" id="upFilebutton"> -->
                                 <input type="file" name="uploadFile" class="btn btn-primary">
                                 <button id="file_upload" type="button" class="btn btn-primary" onclick="upFile()">파일올리기</button>
                                 <span> 파일이름 영역 </span><br><br>
@@ -135,13 +131,6 @@
 	           uploadFile.click();
 	       }
       	});
-      	
-   		// sending text
-		function sendingText(){
-			var insertText = document.getElementById("dbText").innerHTML
-			document.getElementById("nContent").value = document.getElementById("dbText").innerHTML;
-			document.getElementById("insertForm").submit();
-		}
       </script>
 
 </body>

@@ -369,7 +369,7 @@
                     </div>
                     <!-- End Side Column -->
                 </div>
-                <div class="panel panel-danger">
+                <div class="panel panel-success">
                		<div class="panel-heading">
                			<h3 class="panel-title">무료나눔</h3>
                    	</div>
@@ -562,10 +562,10 @@ var otherIdNum = new Array();
            			            '        </div>' + 
            			            '        <div class="body">' + 
            			            '            <div class="img">' +
-           			            '                <img src="http://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+           			            '                <img src="https://img.icons8.com/color/48/000000/cardboard-box.png" width="73" height="70">' +
            			            '           </div>' + 
            			            '            <div class="desc">' + 
-           			            '                <div class="ellipsis">상품 명 : '+otherItem[limit]+'</div>' + 
+           			            '                <div class="ellipsis"><b>상품 명 : '+otherItem[limit]+'</b></div>' + 
            			            '                멋쟁이 '+'<a href="srdetail.sr?srbId='+otherIdNum[limit]+'">'+otherWriter[limit]+'</a>'+'님의 게시판</div>' + 
            			            '            </div>' + 
            			            '        </div>' + 

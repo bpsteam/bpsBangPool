@@ -68,6 +68,8 @@
                                        </div>
                                    </div>
                             </div>
+                            <input id="nickname" type="hidden" value="${ loginUser.nickname }">
+                			<input id="nWriter" type="hidden" value="${ showing.sbwriter }">
                                 <hr>
                                 <!-- 로그인 한 회원 -->
                                 <div style="display: flex;">
@@ -133,8 +135,8 @@
         			var $span1;
         			var $span2;
         			var $img;
-        			var $delete;
-        			
+        			var $rDelete;
+        			var $rUpdate;
         			console.log(data);
         			if(data.length > 0){
         				for (var i in data){
@@ -142,22 +144,29 @@
         					$div2 =  $("<div style='display: flex; padding-left:10px;'>");
         					$img =   $("<img src='resources/assets/img/user.png' style='padding-left:10px; margin-top:0px; width 40px; height:40px;'>");
         					$span1 = $("<span style='padding-left:5px;'>").text(decodeURIComponent(data[i].rWriter));
-        					
-        					$delete =$("<a location.href=''>");
-        					
         					$span2 = $("<span style='padding-left: 15px; '>").text(data[i].rCreateDate);
         					$div3 =  $("<p style='padding-left:60px; font-size: 14px; border-radius: 0.5em;'>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " "))); 
-        					
+        					$rDelete = $('<div class="pull-right">');
+        					$rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rdelete.sb?rId="+data[i].rId+"&sbId="+ ${ showing.sbid } +"&page="+"${ page }");
+
         					$div1.append($div2);
         					$div1.append($img);
         					$div1.append($span1);
         					$div1.append($span2);
+        					$rDelete.append($rDeleteA);
+        					
+        					if( $('#nickname').val() == $('#nWriter').val() ){
+        						$div1.append($rDelete);
+        					}else{
+        						$div1.append($div3);
+            					$replyBoard.append($div1);
+        					}
         					$div1.append($div3);
         					$replyBoard.append($div1);
         				}
         			}
         		}
-        	})
+        	});
         }
         // default main pic
         function selectImg(t){

@@ -70,7 +70,7 @@
 									<label class="col-sm-2 control-label" for="reg_mb_password"><b>비밀번호</b><strong
 										class="sound_only">*</strong></label>
 									<div class="col-sm-3">
-										<input type="password" name="pwd" id="pwd"
+										<input type="password" name="pwd" id="pwd" required
 											class="form-control input-sm" maxlength="20">
 									<label class="control-label inputError" style="display:none;">Input with error</label>
 									<label class="control-label inputSuccess" style="display:none;">Input with success</label>
@@ -78,7 +78,7 @@
 									<label class="col-sm-2 control-label" for="reg_mb_password_re"><b>비밀번호
 											확인</b><strong class="sound_only">*</strong></label>
 									<div class="col-sm-3">
-										<input type="password" name="pwd2"
+										<input type="password" name="pwd2" required
 											id="pwd2" class="form-control input-sm"
 											maxlength="20"> 
 									<label class="control-label inputError"  style="display:none;">Input with error</label>
@@ -98,7 +98,7 @@
 									<label class="col-sm-2 control-label" for="reg_mb_name"><b>이름</b><strong
 										class="sound_only">*</strong></label>
 									<div class="col-sm-3">
-										<input type="text" id="name" name="name" value="${ loginUser.name }"
+										<input type="text" id="name" name="name" value="${ loginUser.name }" required
 											class="form-control input-sm" size="10">
 									</div>
 								</div>
@@ -110,7 +110,7 @@
 										class="sound_only">*</strong></label>
 									<div class="col-sm-5">
 										<input type="text"
-											name="nickname" value="${ loginUser.nickname }"
+											name="nickname" value="${ loginUser.nickname }" required
 											id="nickname" readonly
 											class="form-control input-sm email" size="10" >
 									</div>
@@ -121,7 +121,7 @@
 								<div class="form-group has-feedback col-sm-12">
 									<label class="col-sm-2 control-label" for="reg_mb_hp"><b>휴대폰번호</b></label>
 									<div class="col-sm-3">
-										<input type="tel" name="phone" value="${ loginUser.phone }"
+										<input type="tel" name="phone" value="${ loginUser.phone }" required
 											id="reg_mb_hp" class="form-control input-sm" maxlength="20">
 									</div>
 								</div>
