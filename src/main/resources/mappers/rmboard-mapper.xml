@@ -6,8 +6,7 @@
 		insert into ROOMATE_BOARD
 		values (ROOMATE_BOARD_SEQ.nextval, default, #{rLocation}, #{rbTitle}, #{rbContent},
 				#{rbWriter}, default, sysdate, sysdate, default, 
-				#{rRentType}, #{rLivingType}, #{rRoomCount}, #{rFloor}, #{rPrice}, #{rParking}, #{rReqGender},
-				#{originalFileName}, #{renameFileName})
+				#{rRentType}, #{rLivingType}, #{rRoomCount}, #{rFloor}, #{rPrice}, #{rParking}, #{rReqGender}, #{contactInfo})
 	</insert>
 	
 	<select id="selectList" resultType="RMBoard">
@@ -88,7 +87,7 @@
 		update ROOMATE_BOARD
 		set rLocation=#{rLocation}, rbTitle=#{rbTitle}, rbContent=#{rbContent}, 
 			 rRentType=#{rRentType}, rLivingType=#{rLivingType}, rRoomCount=#{rRoomCount},
-			rFloor=#{rFloor}, rPrice=#{rPrice}, rParking=#{rParking}, rReqGender=#{rReqGender}
+			rFloor=#{rFloor}, rPrice=#{rPrice}, rParking=#{rParking}, rReqGender=#{rReqGender}, contactInfo=#{contactInfo}
 		where rbId = #{rbId} 	
 	<!-- 생성/수정 날짜 -->		
 	</update>

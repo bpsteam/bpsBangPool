@@ -150,15 +150,31 @@
                                                             <!-- 여기 -->
                                                             <div class="panel-body">
 																<div class="pull-left text-center auth-photo" style="width:100px;">
-																	<div class="img-photo">
-																		<!-- <i class="fa fa-user" > -->
+																	<%-- <div class="img-photo">
 																			<img src="${ contextPath }/resources/456.jpg" style="width: 100%;">
-																		<!-- </i> -->				
-																	</div>
+																	</div> --%>
 																	
+																	
+																<!-- 사진등록  -->	
+																<div class="member/profile">
+																	<!-- <a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" target="_blank" class="win_memo" title="사진등록"> -->
+																	<%-- <a href="${ pageContext.request.contextPath }/WEB-INF/views/memebr/myPhoto.jsp" target="_blank" class="win_memo" title="사진등록"> --%>
+																	
+																	<a href="mProfile.me" target="_blank" class="win_memo" title="사진등록">
+																		<div class="photo pull-left">
+																		<c:if test="${ empty loginUser.renameFileName }">
+																			<img src="${ contextPath }/resources/photo.png" style="width:80px; border-radius:50px;">
+																		</c:if>
+																			
+																		<c:if test="${ !empty loginUser.renameFileName }">
+																			<img src="${ contextPath }/resources/profileUpload/${ loginUser.renameFileName }"style="width:80px;border-radius:50px;">
+																		</c:if>
+																		</div>
+																	</a>
+																	<div class="clearfix"></div>
+																</div>	
 																	
 																	<!-- 
-																	
 																	0 ~ 3 : 베이직
 																	3 ~ 5 : 실버
 																	5 ~ 10 : 골드-->
@@ -166,11 +182,11 @@
 																		
 																	</c:if>
 																	
-																	<div class="btn-group" style="margin-top:-30px;white-space:nowrap;">
-																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'like', 'it_like'); return false;" title="Like">
+																	<div class="btn-group" style="margin-top:-10px;margin-left:-20px;white-space:nowrap;">
+																		<button type="button" class="btn btn-red btn btn-primary btn-sm" onclick="apms_like('khajsfirepunch', 'like', 'it_like'); return false;" title="Like">
 																			<i class="fa fa-thumbs-up"></i> <span id="it_like">0</span>
 																		</button>
-																		<button type="button" class="btn btn-color btn-sm" onclick="apms_like('khajsfirepunch', 'follow', 'it_follow'); return false;" title="Follow">
+																		<button type="button" class="btn btn-color btn-sm btn btn-red btn btn-primary btn-sm" onclick="apms_like('khajsfirepunch', 'follow', 'it_follow'); return false;" title="Follow">
 																			<i class="fa fa-users"></i> <span id="it_follow">0</span>
 																		</button>
 																	</div>
@@ -182,8 +198,20 @@
 																			<c:if test="${ mlCode eq 'S' }">Exp 30 (30%)</c:if>
 																			<c:if test="${ mlCode eq 'G' }">Exp 60 (60%)</c:if>
 																		</span>
-																		<b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');">
-																		<span class="member"><span class="lv-icon lv-1">1</span> ${ loginUser.nickname }</span></a></b> &nbsp;
+																		
+																		<!-- <b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"> -->
+																		<span class="member">
+																			<span class="lv-icon lv-1">
+																				<%-- <choose>
+																					<when test="${ mlCode eq 'B' }"><img src="${ contextPath }/resources/lv_basic.png" style="width: 30px;"></when>
+																					<when test="${ mlCode eq 'S' }"><img src="${ contextPath }/resources/lv_silver.png" style="width: 30px;"></when>
+																					<when test="${ mlCode eq 'G' }"><img src="${ contextPath }/resources/lv_gold.png" style="width: 30px;"></when>
+																				</choose> --%>
+																			
+																				<c:if test="${ mlCode eq 'B' }"><img src="${ contextPath }/resources/lv_basic.png" style="width: 30px;"></c:if>
+																				<c:if test="${ mlCode eq 'S' }"><img src="${ contextPath }/resources/lv_silver.png" style="width: 30px;"></c:if>
+																				<c:if test="${ mlCode eq 'G' }"><img src="${ contextPath }/resources/lv_gold.png" style="width: 30px;"></c:if>
+																			</span> ${ loginUser.nickname }</span></a></b> &nbsp;
 																		<span class="text-muted en font-12">
 																		<c:if test="${ mlCode eq 'B' }">BASIC</c:if>
 																		<c:if test="${ mlCode eq 'S' }">SILVER</c:if>
@@ -191,6 +219,7 @@
 																		레벨
 																		</span>
 																	</div>
+																	<br>
 																	
 																<c:if test="${ mlCode eq 'G' }">	
 																	<div class="progress progress-striped active">
@@ -216,68 +245,20 @@
 								                                    </div>
 							                                    </c:if>
 							                                    
-							                                    <div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-							                                            <span class="sr-only">30% Complete (info)</span>
-							                                        </div>
-							                                    </div>
-
-																<!-- <div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-							                                            <span class="sr-only">10% Complete (danger)</span>
-							                                        </div>
-							                                    </div> -->
-																	
-								                                    
-							                                    	<!-- 기존 상태바 -->
-																	<!-- <div class="div-progress progress progress-striped no-margin">
+							                                    <!-- <div class="at-tip" data-original-title="1,000점 추가획득시 레벨업합니다." data-toggle="tooltip" data-placement="top" data-html="true" style="margin:10px 0px;">
+																	<div class="div-progress progress progress-striped" style="margin:0px;">
 																		<div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-																			<span class="sr-only">0 (0%)</span>
+																			<span class="sr-only">
+																				Lv.1					</span>
 																		</div>
-																	</div> -->
+																	</div>
+																	<div class="sr-score pull-right" style="color:#fff; margin-top:-28px;">0 (0%)</div>
+																</div> -->
+																
 																</div>
 																<div class="clearfix"></div>
 															</div>
                                                             <!-- 끝 -->
-                                                            
-                                                            <!-- 잠시 주석  -->
-                                                            <%-- <div class="auth-info">
-                                                                <div class="en font-14" style="margin-bottom:6px;">
-                                                                    <span class="pull-right font-12">Lv.1</span>
-                                                                    <b><a href="javascript:;" onclick="showSideView(this, 'ch93ksw', 'wbgg', '', '');"><span class="member"><span class="lv-icon lv-1">1</span> 
-                                                                    ${ loginUser.nickname }</span></a></b> &nbsp;<span class="text-muted en font-12">실버</span>
-                                                                </div>
-                                                                
-                                                                <!-- <div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-							                                            <span class="sr-only">90% Complete (Sucess)</span>
-							                                        </div>
-							                                    </div> -->
-							
-																<!-- <div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
-							                                            <span class="sr-only">30% Complete (info)</span>
-							                                        </div>
-							                                    </div> -->
-							                                    
-							                                    <c:if test="${ !empty loginUser }">
-							
-																	<div class="progress progress-striped active">
-								                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-								                                            <span class="sr-only">20%Complete (warning)</span>
-								                                        </div>
-								                                    </div>
-							                                    
-							                                    </c:if>	
-							
-																<!-- <div class="progress progress-striped active">
-							                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-							                                            <span class="sr-only">10% Complete (danger)</span>
-							                                        </div>
-							                                    </div> -->
-							                                    
-                                                            </div> --%>
-                                                            
                                                             
                                                             
                                                             <div class="clearfix"></div>
@@ -330,48 +311,6 @@
                                             	<c:import url="../common/recentPosts.jsp"/>
                                             	<!-- recentPost Import -->
                                             </div>
-                                                <!-- <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/response.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
-                                                            내글반응
-                                                                                    </a>		
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/memo.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
-                                                            쪽지함
-                                                                                    </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/follow.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
-                                                            팔로우
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/scrap.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_scrap">
-                                                            스크랩
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                                <div class="col-xs-6">
-                                                    <div class="form-group">   
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/mypost.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
-                                                            내글관리
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <div class="form-group">
-                                                        <a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" target="_blank" class="btn btn-lightgray btn-sm btn-block win_memo">
-                                                            사진등록
-                                                        </a>
-                                                    </div>
-                                                </div> -->
                                         </div>
                                         <div class="col-sm-4"></div>
                                         <div class="col-sm-8">
@@ -735,107 +674,6 @@
 						
 					</script>
                         <br><br>
-                        <%-- <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Profile</h3>
-                            </div>
-                            <div class="panel-body">
-                                <ul class="posts-list margin-top-10">
-                                    <li>
-                                        <div class="recent-post">
-                                            <div class="basic-outlogin">
-                                                <div class="pull-right">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/member_confirm.php?url=member_leave.php" class="leave-me at-tip" data-original-title="<nobr>회원탈퇴</nobr>" data-toggle="tooltip" data-placement="top" data-html="true">
-                                                    <span class="text-muted"><i class="fa fa-sign-out fa-lg"></i></span>
-                                                </a>
-                                            </div>
-                                            <div class="profile">
-                                                <a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" target="_blank" class="win_memo" title="사진등록">
-                                                    <div class="photo pull-left">
-                                                        <img class="img-circle" style="width:80px" src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
-                                                    </div>
-                                                </a>
-                                                <h4>${ loginUser.nickname }
-                                                	<c:if test="${ !empty loginUser }">
-	                                                   <input type="text" name="rbWriter"  id="rbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
-		                                         	</c:if>	
-                                                </h4>
-                                                <div class="font-12 text-muted" style="letter-spacing:-1px;">실버</div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                    
-                                            <div class="at-tip" data-original-title="1,000점 추가획득시 레벨업합니다." data-toggle="tooltip" data-placement="top" data-html="true" style="margin:10px 0px;">
-                                                <div class="div-progress progress progress-striped" style="margin:0px;">
-                                                    <div class="progress-bar progress-bar-exp" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-                                                        <span class="sr-only">Lv.1</span>
-                                                    </div>
-                                                </div>
-                                                <div class="sr-score pull-right" style="color:#fff; margin-top:-28px;">0 (0%)</div>
-                                            </div>
-                                    
-                                            <div class="text-muted">
-                                    
-                                                <div class="pull-left">
-                                                    <!--
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/response.php" target="_blank" class="win_memo">
-                                                        알림				</a>
-                                                    -->
-                                    
-                                                    <a href="javascript:;" onclick="sidebar_open('sidebar-response');"> 
-                                                        알림
-                                                        <span class="sidebarLabel" style="display:none;">
-                                                            <b class="orangered sidebarCount">0</b>
-                                                        </span>
-                                                    </a>
-                                    
-                                                    <span class="lightgray">&nbsp;|&nbsp;</span>
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/memo.php" target="_blank" class="win_memo">
-                                                        쪽지				</a>
-                                                                </div>
-                                                <div class="pull-right">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/scrap.php" target="_blank" class="win_scrap">
-                                                        스크랩
-                                                    </a>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                    
-                                            <div class="login-line">
-                                                <div class="pull-left">
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/point.php" target="_blank" class="win_point">
-                                                        <i class="fa fa-gift"></i> MP <b class="red">0</b>
-                                                    </a>
-                                                </div>
-                                    
-                                                <div class="pull-right" style="letter-spacing:-1px;">
-                                                    <!--
-                                                    <a href="#" class="asideButton">
-                                                    -->
-                                                    <a href="javascript:;" onclick="sidebar_open('sidebar-user');">
-                                                        <span class="text-muted">마이메뉴</span>
-                                                    </a>
-                                                    <span class="lightgray">&nbsp;|&nbsp;</span>
-                                                    <a href="http://myroom.oceanmate.co.kr/bbs/member_confirm.php?url=register_form.php">
-                                                        <span class="text-muted">정보수정</span>
-                                                    </a>
-                                                </div>
-                                    
-                                                <div class="clearfix"></div>
-                                            </div>
-                                    
-                                            <a href="http://myroom.oceanmate.co.kr/bbs/logout.php" class="btn btn-navy btn-block en">
-                                                <i class="fa fa-power-off"></i>	Logout
-                                            </a>
-                                    
-                                        </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div> --%>
-                        <!-- 111 -->
-                        
                         
                         <!-- End recent Posts -->
                         <!-- 공지사항 -->

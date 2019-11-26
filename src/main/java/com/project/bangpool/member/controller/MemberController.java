@@ -1,7 +1,9 @@
 package com.project.bangpool.member.controller;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
@@ -20,12 +22,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.project.bangpool.member.model.exception.MemberException;
 import com.project.bangpool.member.model.service.MemberService;
 import com.project.bangpool.member.model.vo.Member;
+import com.project.bangpool.roommateboard.model.exception.RMBoardException;
 
 
 @Controller
@@ -408,9 +412,76 @@ public class MemberController {
 		}
 		
 	}
-
- 
-
+	
+	// myPage.jsp에서 넘어오는
+	@RequestMapping("mProfile.me")
+	public String uploadProfileView() {
+		return "myProfile";
+	}
+	
+	// 프로필 업로드
+	@RequestMapping("pinsert.me")
+	public String insertProfile(Model model,
+							  @RequestParam("uploadFile") MultipartFile uploadFile,
+							  HttpServletRequest request) {
+		Member m = (Member) model.getAttribute("loginUser");
+		
+		System.out.println("uploadFile:"+uploadFile);
+		System.out.println("upload OriginalFilename"+uploadFile.getOriginalFilename()); // 업로드 한 파일 현 이름으로 출력
+		
+		if(uploadFile != null && !uploadFile.isEmpty()) {
+			String renameFileName = saveFile(uploadFile, request);
+			
+			if(renameFileName != null) {
+				m.setOriginalFileName(uploadFile.getOriginalFilename());
+				m.setRenameFileName(renameFileName);
+			}
+		}
+		
+		System.out.println("m"+m);
+		
+		int result = mService.insertProfile(m);
+		
+		if(result > 0) {
+			System.out.println("프로필 업로드 성공");
+			
+			model.addAttribute("loginUser", m);
+			
+			return "redirect:mlevel.me";
+			
+		}else {
+			throw new RMBoardException("프로필 업로드 실패");
+		}
+	}
+	
+	private String saveFile(MultipartFile file, HttpServletRequest request) {
+		// 파일이 저장될 경로
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\profileUpload";
+		
+		File folder = new File(savePath);
+		// 폴더가 없으면 folder 만들어라.
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String originFileName = file.getOriginalFilename();
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))
+								+"."
+								+ originFileName.substring(originFileName.lastIndexOf(".")+1);
+		
+		String renamePath = folder + "\\" + renameFileName;
+		
+		try {
+			file.transferTo(new File(renamePath));
+			// 전달받은 파일 new File(renamePath) 로 rename한거 덮어 쓰겠다.
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return renameFileName;
+	}
 
 }
 
