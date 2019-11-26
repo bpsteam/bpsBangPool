@@ -56,7 +56,7 @@
             <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
        </div>
                           
-       <div class="item">
+       <div class="item" style="height: 422px">
              <img src="${contextPath}/resources/assets/img/slideshow/eveningAd.png">
           <%--   <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
