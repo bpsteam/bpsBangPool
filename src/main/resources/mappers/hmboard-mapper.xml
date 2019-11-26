@@ -65,7 +65,7 @@
 		where HBID = #{hbId}
 	</update>
 	
-	<select id="selectBoard" parameterType="_int" resultType="HMBoard">
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
 		select hb.*, a.ORIGINALFILENAME, a.renamefilename
 		from HOUSEMATE_BOARD hb
 		left join attachment a on a.bcode=hb.bcode
@@ -78,7 +78,7 @@
 		insert into HOUSEMATE_BOARD
 		values(HOUSEMATE_BOARD_SEQ.nextval, default , #{hbTitle}, #{hbContent}, #{hbWriter}, default,
 				sysdate, sysdate, default, #{hLocation}, #{hRentType}, #{hLivingType},
-				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hReqgender})
+				#{hRoom},#{hFloor}, #{hPrice}, #{hParking}, #{hReqgender}, #{contactInfo})
 	</insert>
 	
 	<select id="selectHbId" resultType="_int">
@@ -95,7 +95,8 @@
 		update HOUSEMATE_BOARD
 		set hbtitle=#{hbTitle}, hbcontent=#{hbContent}, hlocation=#{hLocation}, 
 			HBMODIFYDATE=sysdate, hrenttype=#{hRentType}, hlivingtype=#{hLivingType},
-			hroomcount=#{hRoom}, hfloor=#{hFloor}, hprice=#{hPrice}, hparking=#{hParking}, hreqgender=#{hReqgender}
+			hroomcount=#{hRoom}, hfloor=#{hFloor}, hprice=#{hPrice}, hparking=#{hParking}, 
+			hreqgender=#{hReqgender}, contactinfo=#{contactInfo}
 		where hbid=#{hbId}
 	</update>
 	

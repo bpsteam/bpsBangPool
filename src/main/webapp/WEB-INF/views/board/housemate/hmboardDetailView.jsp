@@ -103,35 +103,35 @@
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>작성자</b>
+                                            <b>지역</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                       		${ hboard.hbWriter }</div>
+                                       		${ hboard.hLocation }</div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>작성일자</b>
+                                            <b>층수</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            ${ hboard.hbCreateDate } </div>
+                                            ${ hboard.hFloor } </div>
                                         <div style="both:clear;">
                                         </div>
 
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>게시물구분</b>
+                                            <b>매물구분</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            	세놓아요 </div>
+                                            	${ hboard.hRentType } </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>조회건수</b>
+                                            <b>방개수</b>
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            ${ hboard.hbCount }
+                                            ${ hboard.hRoom }
                                         </div>
                                         <div style="both:clear;">
                                         </div>
@@ -142,7 +142,7 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                           	 여자 </div>
+                                           	 여성 </div>
                                         <div
                                             style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
                                             <b>상대 성별</b>
@@ -154,33 +154,31 @@
                                         </div>
 
                                         <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>핸드폰번호</b>
+                                            <b>연락가능번호</b>
                                         </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            010-000-0000 </div>
+                                        <div style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
+                                            ${ hboard.contactInfo } </div>
                                         <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>지역구분</b>
+                                            <b>거래금액</b>
                                         </div>
                                         <div  style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                          	  ${ hboard.hLocation } </div>
+                                          	  ${ hboard.hPrice } </div>
                                         <div style="both:clear;">
                                         </div>
 
                                         <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>거주지구분</b>
+                                            <b>주차가능여부</b>
                                         </div>
                                         <div style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            ${ hboard.hLivingType } </div>
+                                            ${ hboard.hParking } </div>
                                         <div style="both:clear;">
                                         </div>
                                         
                                         <div style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>첨부파일</b>
+                                            <b>거주지형태</b>
                                         </div>
                                         <div style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                          	  <a href="${ contextPath }/resources/hmBoardUploadFiles/${ hboard.renameFileName }" download="${ hboard.originalFileName }">${ hboard.originalFileName } </a>
-                                          	  <c:if test="${ hboard.renameFileName eq null }"> 첨부파일없음 </c:if>
+	                                        ${ hboard.hLivingType }
                                          </div>
                                         <div style="both:clear;">
                                         </div>
@@ -469,13 +467,13 @@
    						$rDiv = $("<div>").addClass("col-md-12");
    						$replyContent = $("<p>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
    						$rrDiv = $("<div>").addClass("testimonial-info");
-   						$rimg = $("<img>").addClass("img-circle img-responsive img-sm").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').width( '10%' ).height('10%');
+   						$rimg = $("<img>").addClass("img-circle img-responsive img-sm").attr('src','${contextPath}/resources/assets/img/profiles/userimg.jpg').width( '10%' ).height('10%');
    						$rWriter = $("<span>").addClass("testimonial-author").text(data[i].rWriter);
    						$rCreateDate = $("<em>").text(data[i].rCreateDate);
    						
    						$rDiv.append($replyContent);
    						$rrDiv.append($rimg);
-   						$rrDiv.append($rWriter);
+   						$rrDiv.append($rWriter).append("<br>");
    						$rrDiv.append($rCreateDate);
    						$rDiv.append($rrDiv);
    						$replyDiv.append($rDiv);
