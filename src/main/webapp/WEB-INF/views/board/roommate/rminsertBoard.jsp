@@ -385,7 +385,7 @@
 									</div>
 
 									<div class="write-btn pull-center">
-										<button type="submit" id="submit" accesskey="s"
+										<button type="submit" id="submit" accesskey="s" disabled
 											class="btn btn-success btn-sm">
 											<i class="fa fa-check"></i> <b>작성완료</b>
 										</button>

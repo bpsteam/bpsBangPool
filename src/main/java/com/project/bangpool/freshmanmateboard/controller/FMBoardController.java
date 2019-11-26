@@ -201,7 +201,7 @@ public class FMBoardController {
 							HttpServletRequest request,ModelAndView mv) {
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
-
+		System.out.println("인서트할때 엔터 값 확인 : "+b);
 //		System.out.println(uploadFile1 +"/"+ uploadFile2+"/"+uploadFile3);
 //		System.out.println(uploadFile1.getOriginalFilename());
 //		System.out.println(uploadFile2.getOriginalFilename());
@@ -298,8 +298,8 @@ public class FMBoardController {
 		FMBoard board = fbService.selectBoard(fbId);
 
 		if(board != null) {
-			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board);
-			
+			System.out.println("디테일뷰 정보하나 불러오기 성공 "+board); 
+			board.setFbContent(board.getFbContent().replace("\n", "<br>"));
 			if(board.getRenameFileName()!=null) {
 				String[] original=board.getOriginalFileName().split(";");
 				String[] rename=board.getRenameFileName().split(";");
