@@ -120,7 +120,7 @@
 	
 	<insert id="insertReply" parameterType="Reply">
 		insert into reply
-		values (REPLY_SEQ.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter},sysdate, sysdate, default)
+		values (REPLY_SEQ.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter},sysdate, sysdate, default,DEFAULT)
 	</insert>
 	
 	<update id="deleteBoard">

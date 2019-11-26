@@ -122,7 +122,7 @@
 	
 	<insert id="insertReply" parameterType="Reply">
 		insert into Reply
-		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default)	
+		values (reply_seq.nextval, #{bCode}, #{rContent}, #{refbId}, #{rWriter}, SYSDATE, SYSDATE, default,DEFAULT)	
 	</insert>
 	
 	<select id="getSearchListCount" parameterType="hashmap" resultType="_int">

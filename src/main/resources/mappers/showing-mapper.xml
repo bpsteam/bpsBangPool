@@ -91,7 +91,7 @@
 		insert into reply
 		values(reply_seq.nextval, 'SBCODE', 
 				#{rContent}, #{refbId}, #{rWriter}, 
-				sysdate, sysdate, default)
+				sysdate, sysdate, default,DEFAULT)
 	</insert>
 	
 	<!-- Start select Reply List -->
