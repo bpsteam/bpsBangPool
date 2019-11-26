@@ -61,8 +61,7 @@ public class ReplyController {
 	public ModelAndView reply_Delete(@RequestParam("nId") int nId,
 									 @RequestParam("rId") int rId,
 									 @RequestParam("page") int page,
-									 ModelAndView mv
-									){
+									 ModelAndView mv){
 		
 		int result = rService.deleteReply(rId);
 		

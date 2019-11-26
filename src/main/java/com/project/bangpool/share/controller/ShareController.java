@@ -64,11 +64,6 @@ public class ShareController {
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
 
   	// ajax map
 	@RequestMapping("mapAjax.sr")
