@@ -34,7 +34,7 @@
 <body>
 
 <!-- ==== HEADER START ==== -->
-	<c:import url ="../../common/header.jsp"/>
+   <c:import url ="../../common/header.jsp"/>
 <!-- ==== HEADER END ==== -->
 
  <!-- === BEGIN CONTENT === -->
@@ -64,61 +64,39 @@
                                                         <label class="col-sm-2 control-label">작성자</label>
                                                         <div class="col-sm-3">
                                                         <!-- name="rbWriter" value="{ 닉네임}"  -->
-                                                        	<c:if test="${ !empty loginUser }">
-			                                                   <input type="text" name="rbWriter"  id="rbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
-				                                         	</c:if>	
+                                                           <c:if test="${ !empty loginUser }">
+                                                            <input type="text" name="rbWriter"  id="rbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
+                                                        </c:if>   
                                                             <span class="fa fa-check form-control-feedback"></span>
                                                         </div>
                                                     </div>
-                                                
-                                                        <!-- <div class="form-group has-feedback">
-                                                        <label class="col-sm-2 control-label" for="wr_password">비밀번호<strong class="sound_only">필수</strong></label>
-                                                        <div class="col-sm-3">
-                                                            <input type="password" name="wr_password" id="wr_password" required="" class="form-control input-sm" maxlength="20">
-                                                            <span class="fa fa-check form-control-feedback"></span>
-                                                        </div>
-                                                    </div>
-                                                
-                                                        <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="wr_email">E-mail</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" name="wr_email" id="wr_email" value="" class="form-control input-sm email" size="50" maxlength="100">
-                                                        </div>
-                                                    	</div> -->
-                                                
-                                                        <!-- <div class="form-group">
-                                                        <label class="col-sm-2 control-label" for="wr_homepage">홈페이지</label>
-                                                        <div class="col-sm-6">
-                                                            <input type="text" name="wr_homepage" id="wr_homepage" value="" class="form-control input-sm" size="50">
-                                                        </div>
-                                                   		 </div> -->
-                                                   		 
-                                                   		 <div class="form-group">
-		                                                    <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">*</strong></label>
-		                                                    <div class="col-sm-10">
-		                                                        <div class="input-group">
-		                                                            <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
-		                                                            <input type="text" name="rbTitle" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
-		                                                        </div>
-		                                                    </div>
-		                                                </div>
+            
+                                                          <div class="form-group">
+                                                          <label class="col-sm-2 control-label" for="RBTITLE">제목<strong class="sound_only">*</strong></label>
+                                                          <div class="col-sm-10">
+                                                              <div class="input-group">
+                                                                  <!-- <input type="text" name="wr_subject" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255"> -->
+                                                                  <input type="text" name="rbTitle" value="" id="wr_subject" required="" class="form-control input-sm" size="50" maxlength="255">
+                                                              </div>
+                                                          </div>
+                                                      </div>
                                                 
                                                         <div class="form-group">
-	                                                        <label class="col-sm-2 control-label" for="RLOCATION">지역분류<strong class="sound_only">*</strong></label>
-	                                                        <div class="col-sm-3">
-	                                                            <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
-	                                                            <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
-	                                                                <option value="">선택하세요</option>
-	                                                                <option value="서울">서울</option>
-						                                            <option value="인천/부천">인천/부천</option>
-						                                            <option value="수원/경기">수원/경기</option>
-						                                            <option value="대구/경북">대구/경북</option>
-						                                            <option value="부산/경남">부산/경남</option>
-						                                            <option value="충청/강원">충청/강원</option>
-						                                            <option value="광주/전라">광주/전라</option>
-	                                                            </select>
-	                                                        </div>
-	                                                    </div>
+                                                           <label class="col-sm-2 control-label" for="RLOCATION">지역분류<strong class="sound_only">*</strong></label>
+                                                           <div class="col-sm-3">
+                                                               <!-- <select name="ca_name" id="ca_name" required="" class="form-control input-sm"> -->
+                                                               <select name="rLocation" id="ca_name" required="" class="form-control input-sm">
+                                                                   <option value="">선택하세요</option>
+                                                                   <option value="서울">서울</option>
+                                                              <option value="인천/부천">인천/부천</option>
+                                                              <option value="수원/경기">수원/경기</option>
+                                                              <option value="대구/경북">대구/경북</option>
+                                                              <option value="부산/경남">부산/경남</option>
+                                                              <option value="충청/강원">충청/강원</option>
+                                                              <option value="광주/전라">광주/전라</option>
+                                                               </select>
+                                                           </div>
+                                                       </div>
                                                         
                                             
                                             
@@ -186,74 +164,40 @@
                                                         </select>
                                                         </div>
                                                     </div>
-                                            
-                                            
-                                            
-                                                    <!-- <div class="form-group">
-                                                        <label class="col-sm-2 control-label " for="ca_name">핸드폰<strong class="sound_only">필수</strong></label>
-                                                        <div class="col-sm-7">
-                                                        
-                                                                        
-                                                        <table>
-                                                            <tbody><tr><td>
-                                                        <select name="wr_4" itemname="핸드폰 국번" class="form-control input-sm" style="width:100px;">
-                                                            <option value="" selected="">국번</option>
-                                                            <option value="010">010</option>
-                                                            <option value="011">011</option>
-                                                            <option value="016">016</option>
-                                                            <option value="017">017</option>
-                                                            <option value="018">018</option>
-                                                            <option value="019">019</option>
-                                                        </select>
-                                                        </td>
-                                                        <td>
-                                                        -
-                                                        </td>
-                                                        <td>
-                                                        <input type="text" name="wr_5" size="4" maxlength="4" itemname="핸드폰 앞자리" value="" class="form-control input-sm">
-                                                        </td>
-                                                        <td>
-                                                         -
-                                                         </td>
-                                                         <td>
-                                                        <input type="text" name="wr_6" size="4" maxlength="4" itemname="핸드폰 뒷자리" value="" class="form-control input-sm">			
-                                                        </td>
-                                                        </tr></tbody></table>
-                                                        </div>
-                                                    </div> -->
+                                           
                                             
                                                     <div class="form-group">
-														<label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
-														<div class="col-sm-3">
-															<select name="rReqGender" required class="form-control input-sm">
-				                                                <option value="" selected >원하는 상대 성별</option>
-				                                                <option value="무관">무관</option>
-				                                                <option value="여성">여성</option>
-				                                                <option value="남성">남성</option>
-				                                            </select>	
-														</div>
-													</div>
-													
-													<div class="form-group">
-														<label class="col-sm-2 control-label " for="ca_name">핸드폰<strong
-															class="sound_only">*</strong></label>
-														<div class="col-sm-7">
-															<table>
-																<tbody>
-																	<tr>
-																		<td><input type="tel" name="phone1" size="3"
-																			maxlength="3" class="form-control input-sm"></td>
-																		<td>-</td>
-																		<td><input type="tel" name="phone2" size="4"
-																			maxlength="4" class="form-control input-sm"></td>
-																		<td>-</td>
-																		<td><input type="tel" name="phone3" size="4"
-																			maxlength="4" class="form-control input-sm"></td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
+                                          <label class="col-sm-2 control-label " for="ca_name">상대 성별</label>
+                                          <div class="col-sm-3">
+                                             <select name="rReqGender" required class="form-control input-sm">
+                                                            <option value="" selected >원하는 상대 성별</option>
+                                                            <option value="무관">무관</option>
+                                                            <option value="여성">여성</option>
+                                                            <option value="남성">남성</option>
+                                                        </select>   
+                                          </div>
+                                       </div>
+                                       
+                                       <div class="form-group">
+                                          <label class="col-sm-2 control-label " for="ca_name">핸드폰<strong
+                                             class="sound_only">*</strong></label>
+                                          <div class="col-sm-7">
+                                             <table>
+                                                <tbody>
+                                                   <tr>
+                                                      <td><input type="tel" name="phone1" size="3"
+                                                         maxlength="3" class="form-control input-sm"></td>
+                                                      <td>-</td>
+                                                      <td><input type="tel" name="phone2" size="4"
+                                                         maxlength="4" class="form-control input-sm"></td>
+                                                      <td>-</td>
+                                                      <td><input type="tel" name="phone3" size="4"
+                                                         maxlength="4" class="form-control input-sm"></td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
                                             
                                                     <div class="form-group">
                                                         <!-- <label class="col-sm-2 control-label " for="RPRICE">거래금액</label> -->
@@ -272,9 +216,9 @@
                                                         
                                                         <!-- <input type="text" name="rParking" size="50" value="" class="form-control input-sm"> -->
                                                         <select name="rParking" class="form-control input-sm" required="required">
-                                                        	<option value="" selected="">주차 가능여부</option>
-                                                        	<option value="가능">가능</option>
-                                                        	<option value="불가능">불가능</option>
+                                                           <option value="" selected="">주차 가능여부</option>
+                                                           <option value="가능">가능</option>
+                                                           <option value="불가능">불가능</option>
                                                         </select>
                                                         </div>
                                                     </div>
@@ -284,17 +228,17 @@
                                                     <div class="col-sm-12">
                                                                     <span class="sound_only"></span>
                                             <textarea id="wr_content" name="rbContent" class="form-control input-sm write-content" maxlength="65536" style="width:100%;height:300px"></textarea>
-                                            <span class="sound_only"></span>		</div>
+                                            <span class="sound_only"></span>      </div>
                                                 </div>
                                             
                                                     
-                                                        <style>
-                                                    #variableFiles { width:100%; margin:0; border:0; }
-                                                    #variableFiles td { padding:0px 0px 7px; border:0; }
-                                                    #variableFiles input[type=file] { box-shadow : none; border: 1px solid #ccc !important; outline:none; }
-                                                    #variableFiles .form-group { margin-left:0; margin-right:0; margin-bottom:7px; }
-                                                    #variableFiles .checkbox-inline { padding-top:0px; font-weight:normal; }
-                                                    </style>
+                                                    <style>
+                                                       #variableFiles { width:100%; margin:0; border:0; }
+                                                       #variableFiles td { padding:0px 0px 7px; border:0; }
+                                                       #variableFiles input[type=file] { box-shadow : none; border: 1px solid #ccc !important; outline:none; }
+                                                       #variableFiles .form-group { margin-left:0; margin-right:0; margin-bottom:7px; }
+                                                       #variableFiles .checkbox-inline { padding-top:0px; font-weight:normal; }
+                                                   </style>
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">첨부파일</label>
                                                         <div class="col-sm-10">
@@ -305,22 +249,22 @@
                                                     <div class="form-group" style="margin-bottom:0;">
                                                         <div class="col-sm-10 col-sm-offset-2">
                                                             <table id="variableFiles">
-	                                                            <tbody>
-		                                                            <!-- <tr>
-			                                                            <td>
-				                                                            <div class="row">
-					                                                            <div class="col-sm-7">
-						                                                            <div class="form-group">
-						                                                            <div class="input-group input-group-sm">
-						                                                            <span class="input-group-addon">파일 0</span>
-						                                                            <input type="file" class="form-control input-sm" name="uploadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
-						                                                            </div>
-						                                                           </div>
-					                                                            </div>
-			                                                            </div>
-			                                                            </td>
-			                                                        </tr> -->
-	                                                            </tbody>
+                                                               <tbody>
+                                                                  <!-- <tr>
+                                                                     <td>
+                                                                        <div class="row">
+                                                                           <div class="col-sm-7">
+                                                                              <div class="form-group">
+                                                                              <div class="input-group input-group-sm">
+                                                                              <span class="input-group-addon">파일 0</span>
+                                                                              <input type="file" class="form-control input-sm" name="uploadFile" title="파일 용량 33,485,760 바이트 이하만 업로드 가능">
+                                                                              </div>
+                                                                             </div>
+                                                                           </div>
+                                                                     </div>
+                                                                     </td>
+                                                                 </tr> -->
+                                                               </tbody>
                                                             </table>
                                                         </div>
                                                     </div>
@@ -348,7 +292,7 @@
                                                         objCell = objRow.insertCell(0);
                                             
                                                         objContent = "<div class='row'>";
-                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+objNum+"</span><input type='file' class='form-control input-sm' name='bf_file[]' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
+                                                        objContent += "<div class='col-sm-7'><div class='form-group'><div class='input-group input-group-sm'><span class='input-group-addon'>파일 "+objNum+"</span><input type='file' class='form-control input-sm' name='uploadFile' title='파일 용량 33,485,760 바이트 이하만 업로드 가능'></div></div></div>";
                                                         if (delete_code) {
                                                             objContent += delete_code;
                                                         } else {
@@ -375,27 +319,27 @@
                                                     </script>
 
 
-									<div class="well well-sm text-center">
+                           <div class="well well-sm text-center">
 
-										<!-- 자동등록방지 -->
-										
-										<c:import url ="../../common/captchaApi/naverCaptcha.jsp"/>
-									
-										<!-- 자동등록방지 -->
-									</div>
+                              <!-- 자동등록방지 -->
+                              
+                              <c:import url ="../../common/captchaApi/naverCaptcha.jsp"/>
+                           
+                              <!-- 자동등록방지 -->
+                           </div>
 
-									<div class="write-btn pull-center">
-										<button type="submit" id="submit" accesskey="s" disabled
-											class="btn btn-success btn-sm">
-											<i class="fa fa-check"></i> <b>작성완료</b>
-										</button>
-										<!-- <a href="bdetail.rm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a> -->
-										<a href="blist.rm" class="btn btn-danger btn-sm" role="button">취소</a>
-									</div>
+                           <div class="write-btn pull-center">
+                              <button type="submit" id="submit" accesskey="s"
+                                 class="btn btn-success btn-sm">
+                                 <i class="fa fa-check"></i> <b>작성완료</b>
+                              </button>
+                              <!-- <a href="bdetail.rm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a> -->
+                              <a href="blist.rm" class="btn btn-danger btn-sm" role="button">취소</a>
+                           </div>
 
-									<div class="clearfix"></div>
+                           <div class="clearfix"></div>
 
-								</form>
+                        </form>
                                         </div>
                                         
                                     </div>
@@ -527,7 +471,7 @@
 
 
 <!-- ==== FOOTER START ==== -->
-	<c:import url ="../../common/footer.jsp"/>
+   <c:import url ="../../common/footer.jsp"/>
 <!-- ==== FOOTER END ==== -->
 </body>
 </html>
