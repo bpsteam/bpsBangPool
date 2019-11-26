@@ -54,7 +54,7 @@
 	</select>
 	<insert id="insertReply" parameterType="Reply">
 		insert into reply
-		values(rid_seq.nextval, 6, #{rContent}, #{refbId}, #{rWriter}, sysdate, sysdate, 'Y')
+		values(rid_seq.nextval, 6, #{rContent}, #{refbId}, #{rWriter}, sysdate, sysdate, 'Y',DEFAULT)
 	</insert>
 	<update id="deleteReply" parameterType="_int">
 		update Reply

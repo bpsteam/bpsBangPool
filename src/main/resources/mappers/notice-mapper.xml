@@ -163,7 +163,8 @@
 			    #{rWriter},
 			    SYSDATE,
 			    SYSDATE,
-			    'Y'
+			    'Y',
+			    DEFAULT
 			)
 	</insert>
 	    
