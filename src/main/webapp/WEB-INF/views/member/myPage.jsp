@@ -199,14 +199,8 @@
                                                          <c:if test="${ mlCode eq 'G' }">Exp 60 (60%)</c:if>
                                                       </span>
                                                       
-                                                      <!-- <b><a href="javascript:;" onclick="showSideView(this, 'khajsfirepunch', '중중식', '', '');"> -->
                                                       <span class="member">
                                                          <span class="lv-icon lv-1">
-                                                            <%-- <choose>
-                                                               <when test="${ mlCode eq 'B' }"><img src="${ contextPath }/resources/lv_basic.png" style="width: 30px;"></when>
-                                                               <when test="${ mlCode eq 'S' }"><img src="${ contextPath }/resources/lv_silver.png" style="width: 30px;"></when>
-                                                               <when test="${ mlCode eq 'G' }"><img src="${ contextPath }/resources/lv_gold.png" style="width: 30px;"></when>
-                                                            </choose> --%>
                                                          
                                                             <c:if test="${ mlCode eq 'B' }"><img src="${ contextPath }/resources/lv_basic.png" style="width: 30px;"></c:if>
                                                             <c:if test="${ mlCode eq 'S' }"><img src="${ contextPath }/resources/lv_silver.png" style="width: 30px;"></c:if>
@@ -216,7 +210,7 @@
                                                       <c:if test="${ mlCode eq 'B' }">BASIC</c:if>
                                                       <c:if test="${ mlCode eq 'S' }">SILVER</c:if>
                                                       <c:if test="${ mlCode eq 'G' }">GOLD</c:if>
-                                                      레벨
+                                                       	레벨
                                                       </span>
                                                    </div>
                                                    <br>

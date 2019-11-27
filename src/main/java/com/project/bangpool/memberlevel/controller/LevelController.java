@@ -32,15 +32,10 @@ public class LevelController {
       
       Member m = (Member)session.getAttribute("loginUser");
       m.setAddress(m.getAddress().replace("/", "<br>")); // mypage 주소 줄바꿈 넣기 (은지)
-      System.out.println("LevelController m객체 : "+m);
-
       m = mService.memberLogin(m);
       
       int writeCount = lvService.getWriteCount(m.getNickname());
       int loginCount=m.getLoginCount();
-//      int mNo = Integer.parseInt(m.getmNo());
-      System.out.println("loginCount:" + loginCount);
-      
       
       HashMap<String, String> countMap = new HashMap<String, String>();
 //      countMap.put("writeCount", writeCount);
@@ -57,20 +52,14 @@ public class LevelController {
       countMap.put("level", level);
    
       int result = lvService.updatelCode(countMap);
-//      int result = lvService.updatelCode(level);
       
-         if(result > 0) {
-            
-            System.out.println("result값???"+result);
-            
-            // 업데이트 되었을 때 select
-            System.out.println("업데이트 됐냐?"+m);
-            mv.addObject("mlCode", m.getMlCode()).setViewName("myPage");
-            
-         }else {
-            throw new LevelException("mlCode 업데이트 실패");
-         }
-      
+     if(result > 0) {
+        // 업데이트 되었을 때 select
+        mv.addObject("mlCode", m.getMlCode()).setViewName("myPage");
+        
+     }else {
+        throw new LevelException("mlCode 업데이트 실패");
+     }
       
       return mv;
    }

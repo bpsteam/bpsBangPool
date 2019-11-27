@@ -86,7 +86,7 @@ document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "rkdxhxh.we
 				<div class="col-lg-2 col-sm-3 text-center">
 					<div class="myphoto">
 						<!-- <i class="fa fa-user"></i> -->
-						<img src="${ contextPath }/resources/photo.png" style="width:80px; border-radius:50px;">					
+						<img src="${ contextPath }/resources/photo2.png" style="width:80px; border-radius:50px;">					
 					</div>
 				</div>
 				<div class="col-lg-10 col-sm-9">
