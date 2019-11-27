@@ -59,7 +59,7 @@ public class RMBoardController {
       
       if(list != null) {
          mv.addObject("list", list);
-         mv.addObject("pi", pi);
+         mv.addObject("pi", pi).addObject("loc", loc);
          mv.setViewName("rmboardList");
       }else {
          throw new RMBoardException("게시글 전체 조회 실패");
@@ -161,6 +161,8 @@ public class RMBoardController {
       RMBoard board = rbService.selectBoard(rbId);
       
       if(board != null) {
+    	 // 게시글 입력 시 br적용
+    	 board.setRbContent(board.getRbContent().replace("\n", "<br>"));
          mv.addObject("rboard", board)
            .setViewName("rmboardDetailView");
       }else {

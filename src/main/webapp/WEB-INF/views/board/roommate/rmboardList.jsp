@@ -152,56 +152,6 @@
                                                     </li>
                                                     
                                                     
-<%--                                                     <li class="active" >
-                                                   		<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value=""/>
-                                                   		</c:url>
-                                                        <a class="ploc" href="${ ploc }">전체</a>
-                                                    </li>
-                                                    <li class="ploc">
-                                                    	<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value="SEOUL"/>
-                                                   		</c:url>
-                                                       	<a href="${ ploc }" >서울</a>
-                                                    </li>
-                                                    <li>
-                                                    	<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value="INCHEON"/>
-                                                   		</c:url>
-                                                        <a class="ploc" href="${ ploc }">인천/부천</a>
-                                                    </li>
-                                                    <li>
-                                                    	<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value="SUWON"/>
-                                                   		</c:url>
-                                                        <a class="ploc" href="${ ploc }">수원/경기</a>
-                                                    </li>
-                                                    <li>
-                                                    	<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value="DAEGU"/>
-                                                   		</c:url>
-                                                        <a class="ploc" href="${ ploc }">대구/경북</a>
-                                                    </li>
-                                                    <li>
-                                                    	<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value="BUSAN"/>
-                                                   		</c:url>
-                                                        <a class="ploc" href="${ ploc }">부산/경남</a>
-                                                    </li>
-                                                    <li>
-                                                    	<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value="CHUNGCHEONG"/>
-                                                   		</c:url>
-                                                        <a class="ploc" href="${ ploc }">충청/강원</a>
-                                                    </li>
-                                                    <li>
-                                                    	<c:url var="ploc" value="blist.rm">
-                                                   			<c:param name="loc" value="GWANGJU"/>
-                                                   		</c:url>
-                                                        <a class="ploc" href="${ ploc }">광주/전라</a>
-                                                    </li> --%>
-                                                    
-                                                    
                                                 </ul>
                                                 <div class="tab-content">
                                                     <div class="tab-pane fade in active" id="sample-2a">
@@ -235,70 +185,10 @@
                                                                         		<td>${ b.rbCreateDate }</td>
                                                                         		<td>${ b.rbCount }</td>
                                                                         		
-                                                                        		
-                                                                       			<%-- <c:param name="rbId" value="${ b.rbId }"></c:param>
-                                                                       			<c:param name="rLocation" value="${ b.rLocation }"></c:param>
-                                                                       			<c:param name="rbTitle" value="${ b.rbTitle }"></c:param>
-                                                                       			<c:param name="rbWriter" value="${ b.rbWriter }"></c:param> --%>
-                                                                        		
                                                                         	</tr>
                                                                         
                                                                         </c:forEach>
                                                                         
-                                                                            <!-- <tr>
-                                                                                <td>1</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user1</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>인천/부천</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user2</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user3</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user4</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user5</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user6</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>대구/경북</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user7</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>충청/강원</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user8</td>
-                                                                            </tr>
-                                                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                                                <td>3</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user9</td>
-                                                                            </tr> -->
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -320,60 +210,6 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <!-- <tr>
-                                                                                <td>1</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user1</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>인천/부천</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user2</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user3</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user4</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user5</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user6</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>대구/경북</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user7</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>충청/강원</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user8</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user9</td>
-                                                                            </tr> -->
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -396,36 +232,6 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <!-- <tr>
-                                                                                <td>1</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user1</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>인천/부천</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user2</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user3</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user4</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user5</td>
-                                                                            </tr> -->
                             
                                                                         </tbody>
                                                                     </table>
@@ -449,48 +255,6 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            <!-- <tr>
-                                                                                <td>1</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user1</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>인천/부천</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user2</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user3</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>수원/경기</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user4</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>서울</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user5</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>부산/경남</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user6</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>대구/경북</td>
-                                                                                <td>룸메이트하우스메이트 게시판 글 재목 칸 입니다.</td>
-                                                                                <td>user7</td>
-                                                                            </tr> -->
                             
                                                                         </tbody>
                                                                     </table>
@@ -948,7 +712,7 @@
 <script>
 // 탭 액티브 처리
 	$(function(){
-		var location= "${ hloc }";
+		var location= "${ loc }";
 		console.log(location);
 		
 		switch(location) {
