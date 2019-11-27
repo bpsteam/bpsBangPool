@@ -78,19 +78,9 @@
                         <!-- End Register Box -->
                           <!-- Side Column -->
                           <div class="col-md-3">
-                                <!-- Recent Posts -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">공지사항</h3>
-                                    </div>
-                                    <c:import url="../../common/noticeTopList.jsp"/>
-                                </div>
-                                <!-- End recent Posts -->
-                                <!-- About -->
-                                <div class="panel panel-default">
-                                    <c:import url="../../common/recentPosts.jsp"/>
-                                </div>
-                                <!-- End About -->
+                               		<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
                             </div>
                             <!-- End Side Column -->
                     </div>

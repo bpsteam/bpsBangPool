@@ -30,7 +30,6 @@
 	margin-top: 5px;
 }
 
-
 #variableFiles {
 	width: 100%;
 	margin: 0;
@@ -58,7 +57,6 @@
 	padding-top: 0px;
 	font-weight: normal;
 }
-
 </style>
 
 </head>
@@ -93,19 +91,20 @@
 						<div class="panel panel-blue">
 							<div class="panel-body" style="background-color: white;">
 								<form action="frbinsert.fr" method="post"
-									enctype="multipart/form-data"
-									class="form-horizontal">
+									enctype="multipart/form-data" class="form-horizontal">
 
 									<div class="form-group has-feedback">
 										<label class="col-sm-2 control-label">작성자</label>
 										<div class="col-sm-3">
-											 <c:if test="${ !empty loginUser }">
-                                                   <input type="text" name="frbWriter"  id="hbWriter" value="${ loginUser.nickname }" readonly class="form-control input-sm" size="10" maxlength="20">
-	                                         </c:if>
+											<c:if test="${ !empty loginUser }">
+												<input type="text" name="frbWriter" id="hbWriter"
+													value="${ loginUser.nickname }" readonly
+													class="form-control input-sm" size="10" maxlength="20">
+											</c:if>
 										</div>
 									</div>
 
-								<!-- 	<div class="form-group">
+									<!-- 	<div class="form-group">
 										<label class="col-sm-2 control-label" for="wr_email">E-mail</label>
 										<div class="col-sm-6">
 											<input type="text" name="wr_email" id="wr_email" readonly
@@ -115,7 +114,7 @@
 										</div>
 									</div> -->
 
-									
+
 
 									<div class="form-group">
 										<label class="col-sm-2 control-label" for="wr_subject">제목<strong
@@ -124,7 +123,7 @@
 											<div class="input-group">
 												<input type="text" name="frbTitle" required
 													class="form-control input-sm" size="50" maxlength="255">
-													
+
 											</div>
 										</div>
 									</div>
@@ -228,38 +227,26 @@
 
 									<div class="well well-sm text-center">
 
-										<script> var g5_captcha_url  = "http://myroom.oceanmate.co.kr/plugin/kcaptcha";</script>
-										<script
-											src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha.js"></script>
-										<fieldset id="captcha" class="captcha">
-											<legend>
-												<label for="captcha_key">자동등록방지</label>
-											</legend>
-											<img
-												src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha_image.php?t=1571763466619"
-												alt="" id="captcha_img">
-											<button type="button" id="captcha_mp3">
-												<span></span>숫자음성듣기
-											</button>
-											<button type="button" id="captcha_reload">
-												<span></span>새로고침
-											</button>
-											<input type="text" name="captcha_key" id="captcha_key"
-												required="" class="captcha_box required" size="6"
-												maxlength="6"> <span id="captcha_info">자동등록방지
-												숫자를 순서대로 입력하세요.</span>
-										</fieldset>
+										<!-- 자동등록방지 -->
+
+										<c:import url="../../common/captchaApi/naverCaptcha.jsp" />
+
+										<!-- 자동등록방지 -->
 									</div>
 
 									<div class="write-btn pull-center">
-										<button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button>
+										<button type="submit" id="submit" accesskey="s"
+											class="btn btn-success btn-sm">
+											<i class="fa fa-check"></i> <b>작성완료</b>
+										</button>
 										<!-- <a href="bdetail.hm" id="btn_submit" accesskey="s"
 											class="btn btn-success btn-sm"><i class="fa fa-check"></i>
 											<b>작성완료</b></a>  -->
-										<a href="frblist.fr" class="btn btn-danger btn-sm" role="button">취소</a>
+										<a href="frblist.fr" class="btn btn-danger btn-sm"
+											role="button">취소</a>
 									</div>
 
-							
+
 
 								</form>
 							</div>
@@ -271,44 +258,9 @@
 				<!-- End Main Column -->
 				<!-- Side Column -->
 				<div class="col-md-3">
-					<!-- Recent Posts -->
-					<div class="panel panel-success">
-						<div class="panel-body" style="background-color: white;">
-							<!-- <a href="#"><b>룸메이트</b></a> <br>
-                                <a href="#">하우스메이트</a> <br>
-                                <a href="#">신입생메이트</a> -->
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#sample-3a" data-toggle="tab"> <i
-										class="fa fa-cloud"></i> 룸메이트
-								</a></li>
-								<li class="active"><a href="#sample-3b" data-toggle="tab">
-										<i class="fa fa-home"></i> 하우스메이트
-								</a></li>
-								<li><a href="#sample-3c" data-toggle="tab"> <i
-										class="fa fa-comments"></i> 신입생메이트
-								</a></li>
-
-							</ul>
-						</div>
-					</div>
-					<div class="margin-bottom-10">
-						<hr>
-					</div>
-
-					<div class="panel panel-danger">
-						<div class="panel-heading">
-							<h3 class="panel-title">공지사항</h3>
-						</div>
-						<c:import url="../../common/noticeTopList.jsp"/>
-					</div>
-					<!-- End recent Posts -->
-					<!-- 공지사항 -->
-					<div class="panel panel-info">
-						<!-- 이슈 시작-->
-						<c:import url="../../common/recentPosts.jsp"/>
-						<!-- 이슈 끝-->
-					</div>
-					<!-- End 공지사항 -->
+					<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
 				</div>
 				<!-- End Side Column -->
 			</div>
