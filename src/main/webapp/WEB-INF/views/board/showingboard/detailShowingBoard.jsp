@@ -165,7 +165,6 @@
         					$replyBoard.append($div1);
         				}
         			}
-        		}
         	});
         }
         // default main pic

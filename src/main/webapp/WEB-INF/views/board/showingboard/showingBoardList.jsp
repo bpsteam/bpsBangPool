@@ -29,7 +29,7 @@
                                        				<img src="${contextPath}/resources/showinguploadFiles/${ fileSplit[0] }" style="border-radius: 0.5em; " alt="imagee" style="border-radius:0.2em" id="mainImg" >
 			                                        <figcaption>
 			                                            <h3 class="margin-top-20">${ sb.sbtitle }</h3>
-			                                            <span>${ sb.sbcontent }</span>
+			                                            <span >${ sb.sbcontent }</span>
 			                                        </figcaption>
 			                                    </figure>
 			                                </a>

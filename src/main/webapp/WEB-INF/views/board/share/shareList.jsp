@@ -426,7 +426,7 @@
 	var mapContainer = document.getElementById('map'); 	//지도를 담을 영역의 DOM 레퍼런스
 	var mapOptions = { 									//지도를 생성할 때 필요한 기본 옵션
 		center: new kakao.maps.LatLng(123,123), 			//지도의 중심좌표 초기화값.
-		level: 5										//지도의 레벨(확대, 축소 정도)
+		level: 3										//지도의 레벨(확대, 축소 정도)
 	};
 	
 	var map = new kakao.maps.Map(mapContainer, mapOptions); //지도 생성 및 객체 리턴
@@ -483,6 +483,7 @@ var otherAddress = new Array();
 var otherWriter = new Array();
 var otherItem = new Array();
 var otherIdNum = new Array();
+/* var overlay = new Array(); */
 
 /* 페이지가 로딩되고 Share Board 를 가지고 오는 함수 */
 	$.ajax({
@@ -504,8 +505,6 @@ var otherIdNum = new Array();
 
 	// java 를 통해서 받아온 String 값에 넣어준다.
 	// 주소로 좌표를 검색합니다
-	var infowindow = null;
-	var marker = null;
 	var limit = otherAddress.length;
 	for(var i=0; i < otherAddress.length; i++){
 		// geocoder 안으로 들어가면 address[i]값이 표시되지 않는다.
@@ -516,17 +515,17 @@ var otherIdNum = new Array();
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 					
 		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        marker = new kakao.maps.Marker({
+		        var marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        infowindow = new kakao.maps.CustomOverlay({
+		        	overlay = new kakao.maps.CustomOverlay({
 		            content:    '<div class="wrap">' + 
            			            '    <div class="info">' + 
            			            '        <div class="title">' + 
            			            '            방풀 나눔게시판' + 
-           			            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+           			            '            <div class="close" id="i" value=i title="닫기"></div>' + 
            			            '        </div>' + 
            			            '        <div class="body">' + 
            			            '            <div class="img">' +
@@ -542,11 +541,23 @@ var otherIdNum = new Array();
         			 map: map,
         			 position: marker.getPosition() 
 		        });
-
-		    } 
+		        	
+			
+		     }
 		     limit--;
 		}); 
-		
+		/* $(function closeOverlay() {
+    		var test = $(this).val();
+    		console.log(test + "?");
+    	    overlay.setMap(null);     
+    	}); */
+    	
+    	$("#i").click(function(){
+    		console.log("????");
+    		var test = $(this).val();
+    		console.log(test + "?");
+    		
+    	})
 	}
 	// 배열값으로 바꿔 넣어야 한다.
 	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
@@ -555,9 +566,10 @@ var otherIdNum = new Array();
 	});
 
 	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-	function closeOverlay() {
-	    overlay.setMap(null);     
-	}		        
+	/* function closeOverlay(i) {
+		console.log("탔냐"+i);
+	    overlay[i].setMap(null);     
+	}	 */	        
 	
 	// 마커 이미지의 이미지 주소입니다
 	var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
