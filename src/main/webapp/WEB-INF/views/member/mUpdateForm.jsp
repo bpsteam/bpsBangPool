@@ -37,10 +37,10 @@
 						<div class="at-title">
 							<div class="at-container" style="display:inline">
 								<div class="page-title col-md-9" style="font-size:30px">
-									<strong> <i class="fa fa-file-text"></i> Register Form
+									<strong> <i class="fa fa-file-text"></i> Information Update Form
 									</strong>
 								</div>
-								<div class="page-desc hidden-xs col-md-3" style="text-align: right">회원가입 신청서 작성</div>
+								<div class="page-desc hidden-xs col-md-3" style="text-align: right">회원 정보 수정 작성</div>
 								<div class="clearfix"></div>
 							</div>
 						</div>
