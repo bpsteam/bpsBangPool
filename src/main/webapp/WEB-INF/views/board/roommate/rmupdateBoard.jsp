@@ -312,7 +312,7 @@
                                                             <table id="variableFiles">
 	                                                            <tbody>
 		                                                            <tr>
-			                                                            <td>
+			                                                           <%--  <td>
 				                                                            <div class="row">
 					                                                            <div class="col-sm-7">
 					                                                            <div class="form-group">
@@ -329,7 +329,7 @@
 					                                                            </div>
 					                                                            </div>
 				                                                            </div>
-			                                                            </td>
+			                                                            </td> --%>
 		                                                            </tr>
 	                                                            </tbody>
                                                             </table>
