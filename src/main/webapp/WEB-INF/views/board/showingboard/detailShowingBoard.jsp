@@ -165,7 +165,8 @@
         					$replyBoard.append($div1);
         				}
         			}
-        	});
+        	}
+        });
         }
         // default main pic
         function selectImg(t){
