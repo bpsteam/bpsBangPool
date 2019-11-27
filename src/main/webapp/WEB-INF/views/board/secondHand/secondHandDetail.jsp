@@ -11,7 +11,7 @@
 
 <head>
     <!-- Title -->
-    <title>중고판매</title>
+    <title>중고판매 - 이케요</title>
     <!-- Meta -->
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="">
@@ -80,7 +80,7 @@
                                 <hr style=" margin-top:0px; margin:0px 0px 0px;">
                             </div>
 
-                            <h1 style="text-align: center;"><small>중고판매</small></h1>
+                            <h1 style="text-align: center;"><small>중고판매 - 이케요</small></h1>
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>

@@ -243,7 +243,7 @@
                 <div class="container background-white  bottom-border" style="height: 400px;">
                     <div class="row margin-vert-30">
                         <div class="col-md-12">
-                            <h2>중고판매</h2>
+                            <h2>중고판매 - 이케요</h2>
                             <br><br>
                             <!-- Filter Buttons -->
                         </div>
