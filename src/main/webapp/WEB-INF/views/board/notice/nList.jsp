@@ -25,7 +25,7 @@
 	    color: #000;
 	    font-size: 18px;
     }
-    .panel-group .panel {
+/*     .panel-group .panel {
 	    margin-bottom: 0;
 	    border-radius: 5px;
 	    overflow: hidden;
@@ -40,9 +40,9 @@
 	    padding: 0;
 	    color: #555555;
 	    font-size: 17px;
-	}
+	} */
 		
-/* 	.rBoard_Form{
+/*  	.rBoard_Form{
 		/* border:1px solid black; */
 	    color: #333333;
     	/* background-color: #f4f4f4; */
@@ -50,7 +50,7 @@
 		border-bottom: 1px solid #d8d8d8;
 		border-top-right-radius: 4px;
     	border-top-left-radius: 4px;
-	} */
+	} */ */
 </style>
 
 </head>
@@ -86,14 +86,15 @@
                      </div>
                     
 					
-                    <c:forEach var="n" items="${ list }">
+                    
 	                   <div id="rBoard" class="col-md-12">
 						    <div class="tab-content">
 						        <div class="tab-pane active in fade" id="faq">
 						            <div class="panel-group" id="accordion">
+						            <c:forEach var="n" items="${ list }">
 						                <div class="panel panel-default panel-faq">
 						                    <div class="panel-heading">
-						                        <a data-toggle="collapse" data-parent="#accordion" href="#faq-sub">
+						                        <a data-toggle="collapse" data-parent="#accordion" href="#${ n.nId }">
 						                            <h4 class="panel-title">
 						                                ${ n.nTitle }
 						                                <span class="pull-right">
@@ -102,7 +103,7 @@
 						                            </h4>
 						                        </a>
 						                    </div>
-						                    <div id="faq-sub" class="panel-collapse collapse" style="height: 0px;">
+						                    <div id="${ n.nId }" class="panel-collapse collapse" style="height: 0px;">
 						                        <div id="faq-sub" class="panel-collapse collapse in" style="">
 						                            <div class="panel-body">
 						                                <c:if test="${ n.originalFileName ne null}">
@@ -125,11 +126,12 @@
 						                        </div>
 						                    </div>
 						                </div>
-						            </div>
-						        </div>
-						    </div>
-						</div>		
-       				</c:forEach>
+					                </c:forEach>
+					            </div>
+					        </div>
+					    </div>
+					</div>		
+       				
        				<table style="margin-left: 40%;">
 						<tr align="center" height="20" id="buttonTab">
 							<td colspan="6">
