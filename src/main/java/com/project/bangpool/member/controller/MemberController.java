@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
@@ -425,9 +426,10 @@ public class MemberController {
 	// 프로필 업로드
 	@RequestMapping("pinsert.me")
 	public String insertProfile(Model model,
-							  @RequestParam("uploadFile") MultipartFile uploadFile,
+							  @RequestParam("uploadFile") MultipartFile uploadFile, 
 							  HttpServletRequest request) {
 		Member m = (Member) model.getAttribute("loginUser");
+		
 		
 		System.out.println("uploadFile:"+uploadFile);
 		System.out.println("upload OriginalFilename"+uploadFile.getOriginalFilename()); // 업로드 한 파일 현 이름으로 출력
@@ -436,8 +438,8 @@ public class MemberController {
 			String renameFileName = saveFile(uploadFile, request);
 			
 			if(renameFileName != null) {
-				m.setOriginalFileName(uploadFile.getOriginalFilename());
-				m.setRenameFileName(renameFileName);
+				m.setProfileoriginal(uploadFile.getOriginalFilename());
+				m.setProfilerename(renameFileName);
 			}
 		}
 		

@@ -15,7 +15,7 @@
   	<insert id="insertMember" parameterType="Member" >
   		insert into member 
   		values (member_seq.nextval, default, #{email}, #{pwd}, #{name}, #{nickname},
-  				#{gender}, #{birth}, #{address}, #{phone}, default, sysdate, sysdate, #{snsId}, #{loginCount})
+  				#{gender}, #{birth}, #{address}, #{phone}, default, sysdate, sysdate, #{snsId}, #{loginCount}, default, default)
   	</insert>
 
 	<update id="deleteMember" parameterType="Member">
@@ -56,10 +56,12 @@
 		and mStatus='Y'
 	</update>
 	
-	<insert id="insertProfile" parameterType="Member">
-		insert into profile
-		values (#{mNo}, #{originalFileName}, #{renameFileName})
-	</insert>
+	<update id="insertProfile" parameterType="Member">
+		update member
+		set profileoriginal = #{profileoriginal},
+			profilerename = #{profilerename}
+		where mno = #{mNo}
+	</update>
 
 
 </mapper>

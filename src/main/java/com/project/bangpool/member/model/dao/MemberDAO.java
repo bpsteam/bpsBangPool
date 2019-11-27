@@ -43,7 +43,7 @@ public class MemberDAO {
 	}
 
 	public int insertProfile(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.insert("memberMapper.insertProfile", m);
+		return sqlSession.update("memberMapper.insertProfile", m);
 	}
 
 }
