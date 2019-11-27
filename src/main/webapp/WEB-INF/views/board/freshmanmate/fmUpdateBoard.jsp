@@ -283,12 +283,14 @@
 										<!-- 자동등록방지 -->
                                             
                                             </div>
-                                                
+                                                <c:url var="bDetail" value="bdetail.fm">
+	                         				  <c:param name="fbId" value="${ board.fbId }"/>
+	                         				  </c:url>
                                              
                                                 <div class="write-btn pull-center">
                                                     <button type="submit" id="submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></button>
                                                     <!-- <a href="bdetail.fm" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b></a> -->
-                                                    <a href="blist.fm" class="btn btn-danger btn-sm" role="button">취소</a>
+                                                    <a href="${ bDetail }" class="btn btn-danger btn-sm" role="button">취소</a>
                                                 </div>
                                             
                                             
