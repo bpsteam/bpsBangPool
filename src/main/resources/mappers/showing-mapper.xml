@@ -56,9 +56,10 @@
 	
 	<!-- showing board detail 가져오기 -->
 	<select id="selectShowing" parameterType="_int" resultMap="showingResultSet">
+	
 		select * 
 		from showing sb
-		left join attachment on sb.sbid = attachment.refbid
+		left join attachment on sb.sbid = attachment.refbid and sb.bcode = attachment.bcode
 		where sbid = #{sbid} and sbstatus = 'Y'
 	</select>
 	

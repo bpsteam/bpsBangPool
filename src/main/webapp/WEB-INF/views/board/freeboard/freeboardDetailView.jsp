@@ -76,8 +76,7 @@
                                             ${ hboard.hLocation } 
                                         </span> --%>
                                         <span class="sp"></span>
-                                        <i class="fa fa-comment"></i>
-                                        <b style="color:red">4</b>
+
                                         <span class="sp"></span>
                                         <i class="fa fa-eye"></i>${ frboard.frbCount }
                                         <span class="pull-right">

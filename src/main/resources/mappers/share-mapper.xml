@@ -49,7 +49,7 @@
 		INTO SHARE_BOARD
 		VALUES(
 			SHARE_SEQ.NEXTVAL,
-			'SBCODE',
+			'SRBCODE',
 			#{srbTitle},
 			#{srbWriter},
 			#{srbContent},
@@ -74,7 +74,7 @@
 		INTO ATTACHMENT
 		VALUES(
 			ATTACHMENT_SEQ.NEXTVAL,
-			'SBCODE',
+			'SRBCODE',
 			SHARE_SEQ.CURRVAL,
 			#{originalFileName},
 			#{renameFileName}
@@ -93,7 +93,7 @@
 		FROM SHARE_BOARD SR LEFT JOIN ATTACHMENT A
     	ON (SR.SRBCODE = A.BCODE AND SR.SRBID = A.REFBID)
   		WHERE SRBID = #{srbId} AND SRSTATUS = 'Y'
-	
+																				
 	</select>	
 	
 	<!-- ***************************** REPLY ***************************** -->
@@ -105,7 +105,7 @@
 		WHERE
 			REFBID = #{ refbId } AND
 		    RSTATUS ='Y' AND
-		    BCODE ='SBCODE'
+		    BCODE ='SRBCODE'
 		ORDER BY RID ASC
 	
 	</select>
@@ -115,7 +115,7 @@
 			VALUES
 			(
 			    REPLY_SEQ.NEXTVAL,
-			    'SBCODE',
+			    'SRBCODE',
 			    #{rContent},
 			    #{refbId},
 			    #{rWriter},
@@ -133,7 +133,7 @@
 		INTO REPLY
 		VALUES(
 		    REPLY_SEQ.NEXTVAL,
-		    'SBCODE',
+		    'SRBCODE',
 		    #{rContent},
 		    #{refbId},
 		    #{rWriter},
@@ -230,7 +230,7 @@
 		  RSTATUS ='N',
 		  rModifyDate = SYSDATE
 	    WHERE
-	      BCODE ='SBCODE'
+	      BCODE ='SRBCODE'
 	      AND
 	      RID = #{ rId }
 	
