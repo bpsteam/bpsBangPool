@@ -558,7 +558,7 @@ public class FMBoardController {
 				+ "<br>본인 확인을 위하여 이래의 ID 및 인증 번호를 확인하신 후, 글 작성을 완료해주세요."
 				+ "<br><br>BangPool ID : "+loginUser.getEmail()
 				+ "<br>인증 번호 : " + authCode
-				+ "<br><br>감사합니다.<br><br><br>BANGPOOL, 방판소년단<br><br>"
+				+ "<br><br>감사합니다.<br><br><br>BANGPOOL, 방판소년단"
 				+ "<br><br>서울시 강남구 역삼동" + 
 				"<br>태헤란로 테헤란로14길" + 
 				"<br>6 남도빌딩," + 
