@@ -18,8 +18,8 @@ public class Member {
 	private Date enrollDate;
 	private Date updateDate;
 	private String profile; // 프로필
-	private String originalFileName;// 원래파일이름
-	private String renameFileName;	// 변경파일이름 
+	private String profileoriginal;// 프로필원래파일이름
+	private String profilerename;	// 프로필변경파일이름 
 
 	private int loginCount;		// 추가
 	private String snsId;
@@ -30,7 +30,7 @@ public class Member {
 
 	public Member(String mNo, String mlCode, String email, String pwd, String name, String nickname, String gender,
 			String birth, String address, String phone, String mStatus, Date enrollDate, Date updateDate,
-			String profile, String originalFileName, String renameFileName, int loginCount, String snsId) {
+			String profile, String profileoriginal, String profilerename, int loginCount, String snsId) {
 		super();
 		this.mNo = mNo;
 		this.mlCode = mlCode;
@@ -46,8 +46,8 @@ public class Member {
 		this.enrollDate = enrollDate;
 		this.updateDate = updateDate;
 		this.profile = profile;
-		this.originalFileName = originalFileName;
-		this.renameFileName = renameFileName;
+		this.profileoriginal = profileoriginal;
+		this.profilerename = profilerename;
 		this.loginCount = loginCount;
 		this.snsId = snsId;
 	}
@@ -164,20 +164,20 @@ public class Member {
 		this.profile = profile;
 	}
 
-	public String getOriginalFileName() {
-		return originalFileName;
+	public String getProfileoriginal() {
+		return profileoriginal;
 	}
 
-	public void setOriginalFileName(String originalFileName) {
-		this.originalFileName = originalFileName;
+	public void setProfileoriginal(String profileoriginal) {
+		this.profileoriginal = profileoriginal;
 	}
 
-	public String getRenameFileName() {
-		return renameFileName;
+	public String getProfilerename() {
+		return profilerename;
 	}
 
-	public void setRenameFileName(String renameFileName) {
-		this.renameFileName = renameFileName;
+	public void setProfilerename(String profilerename) {
+		this.profilerename = profilerename;
 	}
 
 	public int getLoginCount() {
@@ -201,9 +201,9 @@ public class Member {
 		return "Member [mNo=" + mNo + ", mlCode=" + mlCode + ", email=" + email + ", pwd=" + pwd + ", name=" + name
 				+ ", nickname=" + nickname + ", gender=" + gender + ", birth=" + birth + ", address=" + address
 				+ ", phone=" + phone + ", mStatus=" + mStatus + ", enrollDate=" + enrollDate + ", updateDate="
-				+ updateDate + ", profile=" + profile + ", originalFileName=" + originalFileName + ", renameFileName="
-				+ renameFileName + ", loginCount=" + loginCount + ", snsId=" + snsId + "]";
+				+ updateDate + ", profile=" + profile + ", profileoriginal=" + profileoriginal + ", profilerename="
+				+ profilerename + ", loginCount=" + loginCount + ", snsId=" + snsId + "]";
 	}
-	
 
+	
 }

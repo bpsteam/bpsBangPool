@@ -119,30 +119,33 @@
                                                             <!-- 여기 -->
                                                             <div class="panel-body">
                                                 <div class="pull-left text-center auth-photo" style="width:100px;">
-                                                   <%-- <div class="img-photo">
-                                                         <img src="${ contextPath }/resources/456.jpg" style="width: 100%;">
-                                                   </div> --%>
-                                                   
                                                    
                                                 <!-- 사진등록  -->   
                                                 <div class="member/profile">
                                                    <!-- <a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" target="_blank" class="win_memo" title="사진등록"> -->
                                                    <%-- <a href="${ pageContext.request.contextPath }/WEB-INF/views/memebr/myPhoto.jsp" target="_blank" class="win_memo" title="사진등록"> --%>
                                                    
-                                                   <a href="mProfile.me" target="_blank" class="win_memo" title="사진등록">
+                                                   <a href="#" target="_blank" class="win_memo" id="profileInsert" title="사진등록">
                                                       <div class="photo pull-left">
-                                                      <c:if test="${ empty loginUser.renameFileName }">
+                                                      <c:if test="${ empty loginUser.profilerename }">
                                                          <img src="${ contextPath }/resources/photo.png" style="width:80px; border-radius:50px;">
                                                       </c:if>
                                                          
-                                                      <c:if test="${ !empty loginUser.renameFileName }">
-                                                         <img src="${ contextPath }/resources/profileUpload/${ loginUser.renameFileName }"style="width:80px;border-radius:50px;">
+                                                      <c:if test="${ !empty loginUser.profilerename }">
+                                                         <img src="${ contextPath }/resources/profileUpload/${ loginUser.profilerename }"style="width:80px;border-radius:50px;">
                                                       </c:if>
                                                       </div>
                                                    </a>
                                                    <div class="clearfix"></div>
                                                 </div>   
+                                                   <script>
+                                                   $('#profileInsert').click(function(){
+                                                	   var popUrl = "mProfile.me";
+                                                	   var popOption = "width=500px, height=350px, top=100px; left=300px";
+                                                	   window.open(popUrl, "프로필사진등록", popOption);
+                                                   });
                                                    
+                                                   </script>
                                                    <!-- 
                                                    0 ~ 3 : 베이직
                                                    3 ~ 5 : 실버

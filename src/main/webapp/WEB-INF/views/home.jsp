@@ -107,10 +107,10 @@
 
 						<form class="login-page">
 							<div class="photo pull-left">
-								<a href="http://myroom.oceanmate.co.kr/bbs/myphoto.php"
+								<a href="mProfile.me"
 									target="_blank" class="win_memo" title="사진등록"> 
 									<!-- fa fa-code fa-4x -->
-									 <img class="img-circle" style="width:80px" src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
+									 <img class="img-circle" style="width:80px" src="${ contextPath }/resources/profileUpload/${ loginUser.profilerename }">
 								</a>
 							</div>
 							<div class="login-header margin-bottom-10">

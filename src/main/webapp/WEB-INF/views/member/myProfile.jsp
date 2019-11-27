@@ -5,21 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- <meta http-equiv="imagetoolbar" content="no">
-<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
-<meta name="title" content="마이룸메이트" />
-<meta name="publisher" content="마이룸메이트" />
-<meta name="author" content="마이룸메이트" />
-<meta name="robots" content="index,follow" />
-<meta name="keywords" content="룸메이트, 하우스메이트, 쉐어링, 하우스쉐어링, 친구만들기, roommate, housemate, 전세, 월세, 매매, 마이룸메이트" />
-<meta name="description" content="룸메이트 커뮤니티, 룸메이트, 하우스메이트 및 원룸, 아파트 전세/월세/매매 직거래 정보 제공." />
-<meta property="og:title" content="마이룸메이트" />
-<meta property="og:site_name" content="마이룸메이트" />
-<meta property="og:author" content="마이룸메이트" />
-<meta property="og:type" content="" />
-<meta property="og:description" content="룸메이트 커뮤니티, 룸메이트, 하우스메이트 및 원룸, 아파트 전세/월세/매매 직거래 정보 제공." />
-<meta property="og:url" content="http://myroom.oceanmate.co.kr/bbs/myphoto.php" />
-<link rel="canonical" href="http://myroom.oceanmate.co.kr/bbs/myphoto.php" /> -->
 <title>방풀</title>
 <link rel="stylesheet" href="http://myroom.oceanmate.co.kr/css/default.css?ver=161101">
 <link rel="stylesheet" href="http://myroom.oceanmate.co.kr/css/apms.css?ver=161101">
@@ -75,7 +60,7 @@ document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "rkdxhxh.we
 	.myphoto img, .myphoto i { width:80px; height:80px; }
 </style>
 <!-- <form name="fphotoform" class="form" role="form" method="post" enctype="multipart/form-data" autocomplete="off"> -->
-<form action="pinsert.me" class="form" role="form" method="post" enctype="multipart/form-data" autocomplete="off">
+<form  class="form" id="form" method="post" enctype="multipart/form-data" autocomplete="off">
 	<input type="hidden" name="mode" value="u">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -91,14 +76,14 @@ document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "rkdxhxh.we
 				</div>
 				<div class="col-lg-10 col-sm-9">
 					<p>회원사진은 이미지(gif/jpg/png) 파일만 가능하며, 등록시 80x80 사이즈로 자동 리사이즈됩니다.</p>
-					<p><input type=file name="uploadFile"></p>
+					<p><input type=file id="uploadFile" name="uploadFile"></p>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="text-center">
-		<button type="submit" class="btn btn-color btn-sm">등록</button>
+		<button id="profileInsert" class="btn btn-color btn-sm">등록</button>
 		<button type="button" class="btn btn-black btn-sm" onclick="window.close();">닫기</button>
 	</div>		
 </form>
@@ -110,6 +95,26 @@ $(function() {
 	open_resizeby_window.resizeTo(300,150);
 
 });
+
+/* $('#profileInsert').click(function(e){
+	e.preventDefault();
+	var form = $('#form')[0];
+	console.log(form);
+	var uploadFile = new FormData(form);
+	console.log(uploadFile);
+	$.ajax({
+		url: "pinsert.me",
+		enctype:"multipart/form-data",
+		data: uploadFile,
+		contentType: false,
+		processData: false,
+		cache : false,
+		success: function(){
+			window.opener.location.reload();
+			self.close();
+		}
+	})
+}) */
 </script>
 </div>
 

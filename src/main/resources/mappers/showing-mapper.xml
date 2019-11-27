@@ -27,9 +27,9 @@
 	
 	<!-- 자랑하기 게시글 전체 showing 객체에 담기-->
 	<select id="selectList" resultMap="showingResultSet">
-		select *
+		   select *
 		from showing
-		left join attachment on showing.sbid = attachment.refbid
+		left join attachment on showing.sbid = attachment.refbid and showing.bcode = attachment.bcode
 		where sbstatus = 'Y'
 		order by sbid desc
 	</select>
