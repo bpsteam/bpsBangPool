@@ -28,7 +28,6 @@ import com.project.bangpool.common.Reply;
 import com.project.bangpool.common.SearchCondition;
 import com.project.bangpool.common.page.PageInfo;
 import com.project.bangpool.common.page.Pagination;
-import com.project.bangpool.freshmanmateboard.model.vo.FMBoard;
 import com.project.bangpool.member.model.vo.Member;
 import com.project.bangpool.roommateboard.model.exception.RMBoardException;
 import com.project.bangpool.roommateboard.model.service.RMBoardService;
@@ -36,9 +35,10 @@ import com.project.bangpool.roommateboard.model.vo.RMBoard;
 
 @Controller
 public class RMBoardController {
-	
-	@Autowired
-	private RMBoardService rbService;
+   
+   @Autowired
+   private RMBoardService rbService;
+
 
 	@RequestMapping("blist.rm")
 	public ModelAndView boardList(@RequestParam(value="page", required=false) Integer page, 
@@ -389,3 +389,4 @@ public class RMBoardController {
 	}
 	
 }
+

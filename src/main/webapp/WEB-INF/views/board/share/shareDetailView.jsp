@@ -10,7 +10,6 @@
 	
 	<style>
 		
-		
 		.panel-default > .panel-heading {
 		    color: #EEE;
 		    background-color: #444;
@@ -62,7 +61,7 @@
 		}
 		.view-content textarea {
 			width:100%;
-			height:400px;
+			height:250px;
 		    border: none;
 		    background-color: transparent;
 		    resize: none;
@@ -135,8 +134,6 @@
 						  <div class="view-padding">
 						    <div class="view-content">
 						    	<textarea><c:out value="${ share.srbContent }"/></textarea>
-<%-- 						    	<% pageContext.setAttribute("newLineChar", "\r\n"); %>
-						    	<textarea>${ fn:replace(share.srbContent, newLineChar, "<br>")}</textarea> --%>
 						    </div>
 						  </div>
 						  
@@ -178,9 +175,11 @@
 				    <!-- 댓글 목록 -->
 				      <div id="viewcomment">
 					  </div>
-						      </div>
-					    </div>
-					</div>
+					  
+				</div>
+					
+					
+					
 					
 				</div>
 			</div>
@@ -208,16 +207,31 @@
 	        
 	  	});
 	    
+	    function startDate(){
+	    	var today = new Date();
+	    	
+	        var startDate = "${ share.srStartDate }";
+	        var startTime = "${ share.srStartHour }";
+	        var endDate = "${ share.srEndDate }";
+	        var endTime = "${ share.srEndHour }";
+	        var sd = startDate.split("-");
+	        var ed = endDate.split("-");
+	        var start = new Date(sd[0],sd[1]-1,sd[2],startTime,0,0);
+	        var end = new Date(ed[0],ed[1]-1,ed[2],endTime,59,0);
+	        
+	        var left = start-today;
+	        
+	        return left;
+	    }
+	    
 	    function countDate(){
 	        
 	    	var today = new Date();
 	    	
 	        var startDate = "${ share.srStartDate }";
 	        var startTime = "${ share.srStartHour }";
-	        console.log(startDate);
 	        var endDate = "${ share.srEndDate }";
 	        var endTime = "${ share.srEndHour }";
-	        console.log(endDate);
 	        var sd = startDate.split("-");
 	        var ed = endDate.split("-");
 	        
@@ -225,7 +239,6 @@
 	        var end = new Date(ed[0],ed[1]-1,ed[2],endTime,59,0);
 	        
 	        var left = end-today;
-	        console.log("left : " + left);
 	        var winner = $('#winner').val();
 	        
 	        if(left <= 0){
@@ -285,28 +298,36 @@
 					}
 				});
 		});
+		
 		$('#reply_event_insert').click(function(){
+			var left = startDate();
+			
 			var rContent = $('#reply_content').val();
 			var nickname = "${ loginUser.nickname }";
 			var refbId = "${ share.srbId }";
-
-			$.ajax({
-				url : "reply_event_insert.sr",
-				data : { rContent:rContent , refbId:refbId, nickname:nickname},
-				type:"post",
-				success:function(data){
-					if(data == "success"){
-						getReplyList();
-					   $('#reply_content').val("");
-					}else if(data =="error"){
-						alert("이미 참여 하였습니다.");
-						getReplyList();
-						$('#reply_content').val("");
-					}else{
-						alert("잘못옴");
+			if(left>0){
+				$.ajax({
+					url : "reply_event_insert.sr",
+					data : { rContent:rContent , refbId:refbId, nickname:nickname},
+					type:"post",
+					success:function(data){
+						if(data == "success"){
+							getReplyList();
+						   $('#reply_content').val("");
+						}else if(data =="error"){
+							alert("이미 참여 하였습니다.");
+							getReplyList();
+							$('#reply_content').val("");
+						}else{
+							alert("잘못옴");
+						}
 					}
-				}
-			});
+				});
+			}else if("${ loginUser.nickname }"== "{share.srbWriter}"){
+				
+			}else{
+				alert('이벤트 시작일을 확인해주세요!!');
+			}
 		});
 		
 		$('#rUpdate').click(function(){
@@ -353,10 +374,10 @@
 				            $rDelete = $('<div class="pull-right">');
 				           
 				           /*  $rUpdateA = $('<a id="rUpdate">').text("수정").attr('href',"rUpdateA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"); */
-				            $rUpdateA = $('<span id="rUpdate">').text("수정");
+				            /* $rUpdateA = $('<span id="rUpdate">').text("수정"); */
 				            $rDeleteA = $('<a id="rDelete">').text("삭제").attr('href',"rDeleteA.sr?rId="+data[i].rId+"&srbId="+ "${ share.srbId }"+"&nickname="+data[i].rWriter);
 				            
-					        $rUpdate.append($rUpdateA);
+					       /*  $rUpdate.append($rUpdateA); */
 					        $rUpdate.append($rDeleteA);
 							
 					        if( decodeURIComponent(data[i].rWriter.replace(/\+/g, " ")) == "${ loginUser.nickname }" ){

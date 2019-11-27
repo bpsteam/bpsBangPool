@@ -1,5 +1,7 @@
 package com.project.bangpool.memberlevel.model.service;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +30,15 @@ public class LevelServiceImpl implements LevelService{
 		return lvDAO.getLoginCount(sqlSession, mNo);
 	}
 
+
 	@Override
-	public int updatelCode(Member m) {
-		return lvDAO.updatelCode(sqlSession, m);
+	public int getWriteCount(String nickname) {
+		return lvDAO.getWriteCount(sqlSession, nickname);
+	}
+
+	@Override
+	public int updatelCode(HashMap<String, String> countMap) {
+		return lvDAO.updatelCode(sqlSession, countMap);
 	}
 
 

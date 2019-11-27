@@ -92,7 +92,7 @@
 
 						<div class="panel panel-blue">
 							<div class="panel-body" style="background-color: white;">
-								<form action="binsert.hm" method="post"
+								<form action="binsert.hm" method="post" id="insertForm"
 									enctype="multipart/form-data"
 									class="form-horizontal">
 
@@ -220,36 +220,12 @@
 
 
 									<div class="form-group">
-										<label class="col-sm-2 control-label " for="ca_name">핸드폰</label>
+										<label class="col-sm-2 control-label " for="ca_name">연락처</label>
 										<div class="col-sm-7">
-											<input type="text" name="wr_phone" readonly
+											<input type="text" name="contactInfo" readonly
 												value="${ loginUser.phone }" id="wr_name"
 												class="form-control input-sm" size="10" maxlength="20">
 				
-											<!-- <table>
-												<tbody>
-													<tr>
-														<td><select name="wr_4" itemname="핸드폰 국번"
-															class="form-control input-sm" style="width: 100px;">
-																<option value="" selected="">국번</option>
-																<option value="010">010</option>
-																<option value="011">011</option>
-																<option value="016">016</option>
-																<option value="017">017</option>
-																<option value="018">018</option>
-																<option value="019">019</option>
-														</select></td>
-														<td>-</td>
-														<td><input type="text" name="wr_5" size="4"
-															maxlength="4" itemname="핸드폰 앞자리" value=""
-															class="form-control input-sm"></td>
-														<td>-</td>
-														<td><input type="text" name="wr_6" size="4"
-															maxlength="4" itemname="핸드폰 뒷자리" value=""
-															class="form-control input-sm"></td>
-													</tr>
-												</tbody>
-											</table> -->
 										</div>
 									</div>
 
@@ -383,6 +359,8 @@
                                                             flen--;
                                                         }
                                                     }
+                                                    
+                                                    
                                                     </script>
 
 

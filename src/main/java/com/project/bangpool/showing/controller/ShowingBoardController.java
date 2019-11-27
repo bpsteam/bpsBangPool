@@ -166,7 +166,6 @@ public class ShowingBoardController {
 		}
 		return mv;
 	}
-	
 	// 김상욱 메소드 추가
 	@RequestMapping("ddetailShowing2.sb")
 	public ModelAndView bdetailShowingBoard(@RequestParam("sbid") int sbid,
@@ -226,7 +225,7 @@ public class ShowingBoardController {
 			else
 				originFileName += String.valueOf(reloadFile.get(i).getOriginalFilename());
 		}
-		// FIXME 여러게 만들어진 파일 지우기 ? ? ? ?.
+		
 		if(reloadFile != null && reloadFile.size() > 0) {
 			deleteFile(sb.getRenameFileName(), request);
 		}
@@ -244,7 +243,6 @@ public class ShowingBoardController {
 		}
 		
 		int result = sService.updateShowing(sb);
-		System.out.println("sb : "+sb);
 		if(result > 0) {
 			mv.addObject("page" , page).setViewName("redirect:bShowing.sb?sbId=" + sb.getSbid());
 		}
@@ -300,8 +298,6 @@ public class ShowingBoardController {
 		JSONArray jArr = new JSONArray();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		System.out.println(list);
-		
 		for(Showing b : list) {
 			
 			if(b.getRenameFileName().contains(";")) {
@@ -317,5 +313,24 @@ public class ShowingBoardController {
 		gson.toJson(list, response.getWriter());
 		
 	}
-	
+
+	@RequestMapping("rdelete.sb")
+	public ModelAndView reply_Delete(@RequestParam("sbId") int sbId,
+									 @RequestParam("rId") int rId,
+									 @RequestParam("page") int page,
+									 ModelAndView mv){
+		System.out.println("sbId"+sbId);
+		System.out.println("rId"+rId);
+		System.out.println("mv"+mv);
+		
+		int result = sService.deleteReply(rId);
+		
+		if(result>0) {
+			mv.setViewName("redirect:ddetailShowing.sb?sbId="+sbId+"&page="+page);
+		}
+		
+		
+		return mv;
+	}
+
 }

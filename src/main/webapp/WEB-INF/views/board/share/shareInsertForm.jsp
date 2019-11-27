@@ -193,7 +193,6 @@
 											<select id="nanum_type" class="form-control input-sm"
 												name="srEvent">
 												<option value="랜덤당첨">랜덤당첨</option>
-												<option value="직접추첨">직접추첨</option>
 											</select>
 										</div>
 									</div>

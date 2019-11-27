@@ -59,5 +59,8 @@ public class ShowingDao {
 	public ArrayList<Showing> selectTopList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("showingMapper.selectTopList");
 	}
+	public int deleteReply(SqlSessionTemplate sqlSession, int rId) {
+		return sqlSession.update("showingMapper.deleteReply", rId);
+	}
 	
 }

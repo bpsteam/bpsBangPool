@@ -26,5 +26,6 @@ public interface ShowingServiceImpl {
 	ArrayList<Reply> selectReplyList(int sbId);
 	
 	ArrayList<Showing> selectTopList();
-
+	
+	int deleteReply(int rId);
 }

@@ -1,5 +1,7 @@
 package com.project.bangpool.memberlevel.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -17,8 +19,12 @@ public class LevelDAO {
 //		return sqlSession.selectOne("levelMapper.selectlCode", loginCount);
 //	}
 
-	public int updatelCode(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.update("levelMapper.updatelCode", m);
+	public int getWriteCount(SqlSessionTemplate sqlSession, String nickname) {
+		return sqlSession.selectOne("levelMapper.getWriteCount", nickname);
+	}
+
+	public int updatelCode(SqlSessionTemplate sqlSession, HashMap<String, String> countMap) {
+		return sqlSession.update("levelMapper.updatelCode", countMap);
 	}
 
 }
