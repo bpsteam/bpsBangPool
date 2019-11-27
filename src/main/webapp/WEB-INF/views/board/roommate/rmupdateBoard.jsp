@@ -398,7 +398,7 @@
 									</div>
 
 									<div class="write-btn pull-center">
-                                                    <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b>
+                                                    <button type="submit" id="submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b>
 	                                                    <c:url var="blist" value="blist.rm">
 															<%-- <c:param name="page" value="${ page }"/> --%>
 														</c:url>
