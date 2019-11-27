@@ -18,7 +18,6 @@
 					$div = $("#topListA");
 					$div.html("");
 					
-					
 					for(var i in data){
 						
 						$div2 = $('<div class="col-md-3">');
@@ -40,10 +39,10 @@
 						}
 						
 						$a.append($span2)
+						
 						$div2.append($a);
 						
 						$div.append($div2);
-						
 						
 					}
 				}

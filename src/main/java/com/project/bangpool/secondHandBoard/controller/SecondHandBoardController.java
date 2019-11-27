@@ -243,12 +243,6 @@ public class SecondHandBoardController {
 									@RequestParam("page2") int page,
 									ModelAndView mv) {
 		
-		
-		System.out.println("reply : "+reply);
-//		System.out.println("shbId : "+shbId);
-		System.out.println("page : "+page);
-		
-		
 		int result = shbService.insertReply(reply);
 		
 		int shbId = reply.getRefbId();
@@ -258,7 +252,7 @@ public class SecondHandBoardController {
 			mv.addObject("page", page).addObject("shbId", shbId).setViewName("redirect:shbdetail.se");
 			
 		}else {
-			throw new SecondHandBoardException("중고나라 게시글 작성에 실패하였습니다.");
+			throw new SecondHandBoardException("중고판매 댓글 작성에 실패하였습니다.");
 		}
 		
 		return mv;
@@ -278,7 +272,7 @@ public class SecondHandBoardController {
 			mv.addObject("page", page).addObject("shbId",shbId).addObject("rId", rId).setViewName("redirect:shbdetail.se");
 			
 		}else {
-			throw new SecondHandBoardException("중고나라 게시글 작성에 실패하였습니다.");
+			throw new SecondHandBoardException("중고판매 댓글 삭제에 실패하였습니다.");
 		}
 		
 		return mv;
