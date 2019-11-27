@@ -173,8 +173,8 @@ public class HMBoardController {
 		// 파일이 저장될 경로 설정 ==> webapp 아래에 있는 resources를 데려온다는 의미.
 		
 
-		String savePath = root + "\\hmBoardUploadFiles";
-		String savePath2 = root + "\\attboarduploads";
+		String savePath = root + "/hmBoardUploadFiles";
+		String savePath2 = root + "/attboarduploads";
 
 
 		
@@ -197,8 +197,8 @@ public class HMBoardController {
 								+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 								// '.' 붙여서 확장자 갖고 옴.
 
-		String renamePath = folder + "\\" + renameFileName;
-		String renamePath2 = folder2 + "\\" + renameFileName;
+		String renamePath = folder + "/" + renameFileName;
+		String renamePath2 = folder2 + "/" + renameFileName;
 
 		
 		try {
