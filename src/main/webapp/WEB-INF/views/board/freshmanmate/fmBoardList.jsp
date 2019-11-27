@@ -518,66 +518,32 @@
 						
 					</script>
                         <br>
-                    
-                        <!-- Recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-body" style="background-color: white;">
-                                <!-- <a href="#"><b>룸메이트</b></a> <br>
-                                <a href="#">하우스메이트</a> <br>
-                                <a href="#">신입생메이트</a> -->
-                                <ul class="nav nav-pills nav-stacked">
-                                        <li >
-                                            <a href="blist.rm">
-                                                <i class="fa fa-cloud"></i>  룸메이트</a>
-                                        </li>
-                                        <li>
-                                            <a href="blist.hm" >
-                                                <i class="fa fa-home"></i>  하우스메이트</a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="#freshman" >
-                                                <i class="fa fa-comments"></i>  신입생메이트</a>
-                                        </li>
-                                        
-                                    </ul>
-                            </div>
-                        </div>
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-        
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <a href="blist.rm" style="color:white">
-                                    <span class="pull-right lightgray font-16 en">+</span>
-                                    <span class="div-title-underbar-bold border-navy font-16 en" >
-                                        <b>공지사항</b>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="widget-box panel-body">
-                                <div class="basic-post-list ">
-                                	<c:import url ="../../common/noticeTopList.jsp"/>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <!-- End recent Posts -->
-                        <!-- RecentPost -->
-                        <div class="panel panel-info">
-						
-						      <!-- recentPost 최근 본 개시물 Import -->
-						      <c:import url="../../common/recentPosts.jsp"/>
-						      <!-- recentPost Import -->
-                        </div>
-                        <!-- End RecentPost -->
-                    </div>
+                          <div class="margin-bottom-10">
+       <hr>
+   </div>
+					<div class="panel panel-success">
+						<div class="panel-body" style="background-color: white;">
+							<!-- <a href="#"><b>룸메이트</b></a> <br>
+           <a href="#">하우스메이트</a> <br>
+           <a href="#">신입생메이트</a> -->
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="blist.rm"> <i class="fa fa-cloud"></i>
+										룸메이트
+								</a></li>
+								<li><a href="blist.hm"> <i class="fa fa-home"></i>
+										하우스메이트
+								</a></li>
+								<li class="active"><a href="#freshman"> <i
+										class="fa fa-comments"></i> 신입생메이트
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
+				</div>
                     <!-- End Side Column -->
                 </div>
             </div>
