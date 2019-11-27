@@ -485,12 +485,11 @@
    		}, 10000); 
    		 
    		 
-   		var fbId = ${ board.fbId };
-   		var bcode = "${ board.bcode }";
-   		var fbTitle = "${ board.fbTitle }";
-   		var imgg= "${board.originalFileName}";
+   		var fbId = ${ board.fbId }; // 게시글 번호 
+   		var bcode = "${ board.bcode }"; // 게시판 코드 
+   		var fbTitle = "${ board.fbTitle }"; // 게시글 제목 
+   		var imgg= "${board.originalFileName}"; // 파일 유무
    		var img=imgg.split(";")[0];
-   		console.log(img);
    		$.ajax({
    			url: "createCookie.fm",
    			data: {fbId:fbId, bcode:bcode, fbTitle:fbTitle, img:img},

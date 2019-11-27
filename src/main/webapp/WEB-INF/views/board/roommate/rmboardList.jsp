@@ -855,38 +855,9 @@
                                     </ul>
                             </div>
                         </div>
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-        
-                        <div class="panel panel-aqua">
-                            <!-- 이슈 시작-->
-                           <div class="panel-heading">
-                                <a href="blist.rm" style="color:white">
-                                    <span class="pull-right lightgray font-16 en">+</span>
-                                    <span class="div-title-underbar-bold border-navy font-16 en" >
-                                        <b>공지사항</b>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="widget-box panel-body">
-                                <div class="basic-post-list ">
-                                	<c:import url ="../../common/noticeTopList.jsp"/>
-                                </div>
-                            </div>
-                            <!-- 이슈 끝-->
-                        </div>
-                        <!-- End recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <!-- 공지사항 -->
-                        <div class="panel panel-green">
-                               <!-- 뉴스 시작 -->
-                               <c:import url="../../common/recentPosts.jsp"/>
-                           	</div>
-                       	</div>
-                        <!-- End 공지사항 -->
+                     <!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
                     </div>
                     <!-- End Side Column -->
                 </div>

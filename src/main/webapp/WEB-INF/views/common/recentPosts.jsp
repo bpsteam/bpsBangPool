@@ -25,14 +25,10 @@
 		String img="";
 		
 	    Cookie[] cookies = request.getCookies();
-	    System.out.println("쿠키개수 : "+cookies.length);
 	    
 	    for(Cookie c : cookies){
-	        System.out.println("cookies: " +c.getName());
-	        System.out.println("cookies: " +c.getValue());
 	    	
 	        if(c.getName().contains("recent_")){
-	        	System.out.println("array print out (recentPost) : " + c.getName().contains("recent_"));
 	        	String cValue = c.getValue();
 	        	
 	 			bId = cValue.split("_")[0];
@@ -44,16 +40,14 @@
 			 			pageContext.setAttribute("img", img);
 			 			System.out.println("cookie img print : " +img);
 		 			}
-		 			
+		 		// JSP로 받은 값을 JSTL로 호환하기 위해 pageContext.setAttribute 사용
 	 			pageContext.setAttribute("bcode", bcode);
 	 			pageContext.setAttribute("bTitle", bTitle);
 	 			pageContext.setAttribute("bId", bId);
 	        %>
 
-			<%-- <c:set var=cValue value="${ cValue }"/> --%>
-			<%-- <c:forTokens  var="name" items="${ cValue }" delims="_">  --%>
-
 			<li class="ellipsis" style="padding:0px;text-align: left; " >
+				<!-- pageContext.setAttribute로 올라온 값을 JSTL로 받아서 사용 -->
 				<c:if test="${ bcode eq 'FMBCODE' }">
 					<a href="bdetail.fm?bId=${bId }" />
 				</c:if> <c:if test="${ bcode eq 'HMBCODE' }">
@@ -65,9 +59,7 @@
 				</c:if> <c:if test="${ empty img }">
 					<i class="fa-file-text"></i>
 				</c:if> 
-			<!-- <span class="subject_title" style="width:auto">  -->
 					<b> <c:out value="${ bTitle }" /></b>
-					<!-- </span>  -->
 				</a>
 			</li><br>
 			<% 

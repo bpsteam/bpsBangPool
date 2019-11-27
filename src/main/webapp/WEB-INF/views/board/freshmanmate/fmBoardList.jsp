@@ -518,66 +518,32 @@
 						
 					</script>
                         <br>
-                    
-                        <!-- Recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-body" style="background-color: white;">
-                                <!-- <a href="#"><b>룸메이트</b></a> <br>
-                                <a href="#">하우스메이트</a> <br>
-                                <a href="#">신입생메이트</a> -->
-                                <ul class="nav nav-pills nav-stacked">
-                                        <li >
-                                            <a href="blist.rm">
-                                                <i class="fa fa-cloud"></i>  룸메이트</a>
-                                        </li>
-                                        <li>
-                                            <a href="blist.hm" >
-                                                <i class="fa fa-home"></i>  하우스메이트</a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="#freshman" >
-                                                <i class="fa fa-comments"></i>  신입생메이트</a>
-                                        </li>
-                                        
-                                    </ul>
-                            </div>
-                        </div>
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-        
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <a href="blist.rm" style="color:white">
-                                    <span class="pull-right lightgray font-16 en">+</span>
-                                    <span class="div-title-underbar-bold border-navy font-16 en" >
-                                        <b>공지사항</b>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="widget-box panel-body">
-                                <div class="basic-post-list ">
-                                	<c:import url ="../../common/noticeTopList.jsp"/>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <!-- End recent Posts -->
-                        <!-- RecentPost -->
-                        <div class="panel panel-info">
-						
-						      <!-- recentPost 최근 본 개시물 Import -->
-						      <c:import url="../../common/recentPosts.jsp"/>
-						      <!-- recentPost Import -->
-                        </div>
-                        <!-- End RecentPost -->
-                    </div>
+                          <div class="margin-bottom-10">
+       <hr>
+   </div>
+					<div class="panel panel-success">
+						<div class="panel-body" style="background-color: white;">
+							<!-- <a href="#"><b>룸메이트</b></a> <br>
+           <a href="#">하우스메이트</a> <br>
+           <a href="#">신입생메이트</a> -->
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="blist.rm"> <i class="fa fa-cloud"></i>
+										룸메이트
+								</a></li>
+								<li><a href="blist.hm"> <i class="fa fa-home"></i>
+										하우스메이트
+								</a></li>
+								<li class="active"><a href="#freshman"> <i
+										class="fa fa-comments"></i> 신입생메이트
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
+				</div>
                     <!-- End Side Column -->
                 </div>
             </div>
@@ -669,25 +635,23 @@
 					var $fbCount;
 					
 					var loginUser = "${ loginUser }";
-   					console.log(loginUser);
-   					
-	   				
+	   				/* 리스트를 그려줄 때 기준이 되는 tbody 지우고 시작하기 */
 	   				$tbody = $("#tbody");
 	   				$tbody.html("");
+	   				/* 컨트롤러에서 보내준 HashMap에 list라는 키 값 불러오기 */
 	   					for(var i in data.list){
-   				
 	   					/* 	console.log(data.list[i]); */
+	   					/* 배열에 담긴 각 리스트의 게시판 아이디 불러오기 */
    						fbId = data.list[i].fbId;
 	   						/* console.log(data.list[0].currentPage); */
 	   					//	console.log(data);
-	   					
+	   						/* 컨트롤러에서 받은 데이터 사용해서 반복문으로 테이블 그려주기 */
 		   					$tr = $("<tr>");
-		   					$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);
+
+	   						$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);$
 		   					$flocation=$("<td>").text(data.list[i].fLocation);
-		   					
 		   					$fbtitle = $("<td align='left'>");
 		   					if(loginUser != ""){
-		   						console.log("왜 여기 타?");
 		   						$atag=$("<a>").attr('href','bdetail.fm?fbId='+fbId);
 		   						$atag.text(data.list[i].fbTitle);
 		   						$fbtitle.append($atag);
@@ -707,12 +671,7 @@
 		   					$tbody.append($tr);
 	   					 }
 	   					
-	   				// 페이징
-	   				$pagingul = $("#paging");
-	   				$pagingul.html("");
-	   				
 	   				var tt = data.pi;
-	   				console.log("data.list[0] : "+tt);
 	   				
 	   				startPage=data.pi.startPage;
 	   				currentPage=data.pi.currentPage;
@@ -722,16 +681,18 @@
 	   				endPage=data.pi.endPage;    
 	   				
 	   				boardLimit=data.pi.boardLimit;
-	   				
-	   				console.log("ajax : "+currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
-	   				
 	   			
+	   				// 해쉬맵에 담아서 제이슨 뷰를 통해 보내준 또다른 객체 페이징 그려내는 코드
+	   				$pagingul = $("#paging");
+	   				$pagingul.html("");
+	   				
 	   				$previousli = $("<li>");
 	   				if(currentPage <= 1){
 	   					$least=$("<a>").text("«");
 	   					$previousli.append($least);
 	   				}else{
-	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)+'&fLocation='+location).text("«");
+	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)
+	   									+'&fLocation='+location).text("«");
 	   					$previousli.append($previousatag);
 	   				}
 	   				$pagingul.append($previousli);
@@ -745,18 +706,19 @@
                   		 $pagingul.append($numliactive);
                   		 
                   	 }else{
-                  		 $pagenum=$("<a>").attr('href','blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
+                  		 $pagenum=$("<a>").attr('href',
+                  				 	'blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
                   		 $numli.append($pagenum);
                   		 $pagingul.append($numli);
                   	 }
                    }
-                              
              	  $nextli=$("<li>");
 				  if(currentPage>=maxPage){
 					  $nextatag=$("<a>").text("»");
 					  $nextli.append($nextatag);
 				  }else{
-					  $maxatag=$("<a>").attr('href','blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
+					  $maxatag=$("<a>").attr('href',
+							  'blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
 					  $nextli.append($maxatag);
 				  }
 				  
