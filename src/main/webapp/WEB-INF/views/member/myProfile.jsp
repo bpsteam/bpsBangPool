@@ -60,7 +60,7 @@ document.write(unescape("%3Cscript id='log_script' src='" + JsHost + "rkdxhxh.we
 	.myphoto img, .myphoto i { width:80px; height:80px; }
 </style>
 <!-- <form name="fphotoform" class="form" role="form" method="post" enctype="multipart/form-data" autocomplete="off"> -->
-<form  class="form" id="form" method="post" enctype="multipart/form-data" autocomplete="off">
+<form action="pinsert.me" class="form" id="form" method="post" enctype="multipart/form-data" autocomplete="off">
 	<input type="hidden" name="mode" value="u">
 	<div class="panel panel-default">
 		<div class="panel-heading">

@@ -186,7 +186,10 @@
        				
                </div>
                <div class="col-md-3">
-                   <div class="panel panel-success">
+               	<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
+                  <%--  <div class="panel panel-success">
                        <div class="panel-body" style="background-color: white;">
                            <ul class="nav nav-pills nav-stacked">
                              <li class="active">
@@ -218,7 +221,7 @@
 	                                   	<c:import url="../../common/freeTopList.jsp"/>
 	                               	</div>
 	                           	</div>
-	                       	</div>
+	                       	</div> --%>
        				</div>
 				</div>
 			</div>
