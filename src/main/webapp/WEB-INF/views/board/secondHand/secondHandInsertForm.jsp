@@ -15,7 +15,7 @@
                         <div class="col-md-9 ">
                             <form action="shbinsert.se" class="form-group" method="post" enctype="Multipart/form-data">
                                 <div class="signup-header">
-                                    <h2>중고판매 등록하기</h2>
+                                    <h2>중고판매 - 이케요 등록하기</h2>
                                 </div>
                                 <label>글제목</label>
                                 <input class="form-control margin-bottom-20" type="text" name="shbTitle">

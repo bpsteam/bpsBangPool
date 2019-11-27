@@ -9,7 +9,7 @@
     <!--<![endif]-->
     <head>
         <!-- Title -->
-        <title>방풀 - 중고판매</title>
+        <title>방풀 - 중고판매 - 이케요</title>
 
         <style>
             h6{color:black}
@@ -71,7 +71,7 @@
                 <div class="container background-white">
                     <div class="row margin-vert-30" style="margin-bottom: -10px;">
                         <div class="col-md-12">
-                            <h3>중고판매</h3><br>
+                            <h3>중고판매 - 이케요</h3><br>
                             <!-- Filter Buttons -->
                             <div class="goods_pick_list"> <!-- <span class="pick_list_num">상품 <strong>232</strong> 개</span> -->
                                 

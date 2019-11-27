@@ -216,7 +216,7 @@
                                         <span class="glyphicon glyphicon-book "> 중고거래</span>
                                         <ul>
                                             <li>
-                                                <a href="shblistView.se">중고판매</a>
+                                                <a href="shblistView.se">중고판매 - 이케요</a>
                                             </li>
                                             <li>
                                                 <a href="srListView.sr">중고나눔</a>
@@ -392,7 +392,7 @@
                                                         </td>   
                                                         <td style="text-align: center;" >   
                                                             <ul style="list-style: none; padding:0px">
-                                                                <li><a href="shblistView.se">중고판매</a></li>
+                                                                <li><a href="shblistView.se">중고판매 - 이케요</a></li>
                                                                 <li><a href="shblistView.se">중고나눔</a></li>      
                                                             </ul> 
                                                         </td>
