@@ -18,8 +18,6 @@
 					$div = $("#topListA");
 					$div.html("");
 					
-					
-					
 					for(var i in data){
 						
 						$div2 = $('<div class="col-md-3">');

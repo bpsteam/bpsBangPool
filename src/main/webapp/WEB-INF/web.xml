@@ -247,7 +247,7 @@
    
    <!-- 어태치먼트 관련 -->
    <servlet>
-      <servlet-name>freeboardServlet</servlet-name>
+      <servlet-name>attachmentServlet</servlet-name>
       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
       <init-param>
          <param-name>contextConfigLocation</param-name>
@@ -257,7 +257,7 @@
    </servlet>
       
    <servlet-mapping>
-      <servlet-name>freeboardServlet</servlet-name>
+      <servlet-name>attachmentServlet</servlet-name>
       <url-pattern>*.at</url-pattern>
    </servlet-mapping>
 
