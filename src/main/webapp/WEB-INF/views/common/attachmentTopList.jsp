@@ -22,21 +22,21 @@
 					for(var i in data){
 						
 						$div2 = $('<div class="col-md-3">');
-						if(data[i].bCode = 'RMBCODE'){
+						if(data[i].bCode == "RMBCODE"){
 							$a = $('<a>').attr('href',"bdetail.rm?rbId="+data[i].refbId);
-							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px">' );
-						}else if(data[i].bCode = 'HMBCODE'){
+							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px;">' );
+						}else if(data[i].bCode == "HMBCODE"){
 							$a = $('<a>').attr('href',"bdetail.hm?hbId="+data[i].refbId);
-							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px">' );
-						}else if(data[i].bCode = 'FMBCODE'){
+							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px;">' );
+						}else if(data[i].bCode == "FMBCODE"){
 							$a = $('<a>').attr('href',"bdetail.fm?fbId="+data[i].refbId);
-							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px">' );
-						}else if(data[i].bCode = 'SBCODE'){
+							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px;">' );
+						}else if(data[i].bCode == "SBCODE"){
 							$a = $('<a>').attr('href',"ddetailShowing2.sb?sbid="+data[i].refbId);
-							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px">' );
+							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px;">' );
 						}else{
 							$a = $('<a>').attr('href',"bdetail.fr?frbId="+data[i].refbId);
-							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px">' );
+							$span2 = $('<img src="${contextPath}/resources/attboarduploads/'+data[i].renameFileName+'" style="max-width:100%; height:180px;">' );
 						}
 						
 						$a.append($span2)
