@@ -291,44 +291,9 @@
 				<!-- End Main Column -->
 				<!-- Side Column -->
 				<div class="col-md-3">
-					<!-- Recent Posts -->
-					<div class="panel panel-success">
-						<div class="panel-body" style="background-color: white;">
-							<!-- <a href="#"><b>룸메이트</b></a> <br>
-                                <a href="#">하우스메이트</a> <br>
-                                <a href="#">신입생메이트</a> -->
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#sample-3a" data-toggle="tab"> <i
-										class="fa fa-cloud"></i> 룸메이트
-								</a></li>
-								<li class="active"><a href="#sample-3b" data-toggle="tab">
-										<i class="fa fa-home"></i> 하우스메이트
-								</a></li>
-								<li><a href="#sample-3c" data-toggle="tab"> <i
-										class="fa fa-comments"></i> 신입생메이트
-								</a></li>
-
-							</ul>
-						</div>
-					</div>
-					<div class="margin-bottom-10">
-						<hr>
-					</div>
-
-					<div class="panel panel-danger">
-						<div class="panel-heading">
-							<h3 class="panel-title">공지사항</h3>
-						</div>
-						<c:import url="../../common/noticeTopList.jsp"/>
-					</div>
-					<!-- End recent Posts -->
-					<!-- 공지사항 -->
-					<div class="panel panel-info">
-						<!-- 이슈 시작-->
-						<c:import url="../../common/recentPosts.jsp"/>
-						<!-- 이슈 끝-->
-					</div>
-					<!-- End 공지사항 -->
+							<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
 				</div>
 				<!-- End Side Column -->
 			</div>

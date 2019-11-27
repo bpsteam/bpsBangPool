@@ -47,21 +47,9 @@
                         <!-- insertShowingBoard end Box -->
                         <!-- Side Column start -->
                         <div class="col-md-3">
-                                <!-- Recent Posts -->
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">공지사항</h3>
-                                    </div>
-                                    <c:import url="../../common/noticeTopList.jsp"/>
-                                </div>
-                                <!-- End recent Posts -->
-                                <!-- About -->
-                                <div class="panel panel-default">
-	                                <!-- 이슈 시작-->
-									<c:import url="../../common/recentPosts.jsp"/>
-									<!-- 이슈 끝-->
-                                </div>
-                             	<!-- End About -->
+                                	<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
                             </div>
                         <!-- Side Column end -->
                     </div>

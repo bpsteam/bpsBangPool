@@ -372,27 +372,11 @@
                                     </ul>
                             </div>
                         </div>
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
+                      
         
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">공지사항</h3>
-                            </div>
-                            <c:import url="../../common/noticeTopList.jsp"/>
-                        </div>
-                        <!-- End recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <!-- 공지사항 -->
-                        <div class="panel panel-info">
-                            <!-- 이슈 시작-->
-                            <c:import url="../../common/recentPosts.jsp"/>
-                            <!-- 이슈 끝-->
-                        </div>
-                        <!-- End 공지사항 -->
+                        		<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
                     </div>
                     <!-- End Side Column -->
                 </div>

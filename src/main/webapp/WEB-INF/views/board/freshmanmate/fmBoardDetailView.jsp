@@ -406,55 +406,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">공지사항</h3>
-                            </div>
-                            <div class="panel-body" style="background-color: white;">
-                                <div class="table-responsive">
-                                    <table class="table table-hover" style="margin-bottom:0px">
-
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>공지사항입니다1</td>
-                                                <td>07/19</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>공지사항입니다2</td>
-                                                <td>08/24</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>공지사항입니다3</td>
-                                                <td>10/20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #dddddd;">
-                                                <td>4</td>
-                                                <td>공지사항입니다4</td>
-                                                <td>11/15</td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!-- End recent Posts -->
-                        <!-- RecentPost -->
-                        <div class="panel panel-info">
-						
-						      <!-- recentPost 최근 본 개시물 Import -->
-						      <c:import url="../../common/recentPosts.jsp"/>
-						      <!-- recentPost Import -->
-                        </div>
-                        <!-- End RecentPost -->
+                      		<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
                     </div>
                 </div>
                 <!-- End Side Column -->
