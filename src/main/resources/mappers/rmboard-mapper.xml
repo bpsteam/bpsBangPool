@@ -66,10 +66,13 @@
 		where rbId = #{rbId}
 			  and RBSTATUS = 'Y' -->
 			  
-		select rb.*, a.ORIGINALFILENAME, a.renamefilename
+		select rb.*, 
+		a.ORIGINALFILENAME, 
+		a.renamefilename
 		from ROOMATE_BOARD rb
 		left join attachment a on a.bcode=rb.bcode
-		where rb.rbid = a.refbid
+		where 
+		rb.rbid = a.refbid
 		and rb.rbstatus='Y' 
 		and rb.rbid =#{rbId} 	  
 	</select>

@@ -131,8 +131,6 @@ public class ShareController {
 		
 		Share s = srService.shareDetail(srbId);
 		
-		/*s.setSrEventEnterCount(m.size());*/
-		
 		String srStartDate = srDate.format(s.getSrStartDate());
 		String srEndDate = srDate.format(s.getSrEndDate());
 		
