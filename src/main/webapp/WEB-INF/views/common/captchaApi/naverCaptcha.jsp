@@ -44,67 +44,60 @@
 		$("#submit").attr('disabled',true);
 		$.ajax({
 			url : "captchaKey.do",
-		//	dataType:"json",
 			success : function(data) {
 				console.log(data);
-	//			var key = data;
-	//			location.href = "captchaImg.do?key="+key;
-
 				$('#key').val(data);
-				
 				getCaptchaImg();
-	
 			}, error : function(data){
 				console.log("error : "+data);
 			}
 		});
 	});
 	
-	$(document).ready(function() {
+	$(document).ready(function() { // 키발급 요청
 		$.ajax({
 			url : "captchaKey.do",
-		//	dataType:"json",
 			success : function(data) {
 				console.log(data);
-	//			var key = data;
-	//			location.href = "captchaImg.do?key="+key;
-
-				$('#key').val(data);
-				
+				// 컨트롤러에서 받아오는 key값을 hidden input 태그에 value 설정
+				$('#key').val(data); // PrintWriter를 사용하여 받아온 키 값 
+				// 방아온 키를 사용하여 이미지를 받아오기 위한 메소드
 				getCaptchaImg();
-	
 			}, error : function(data){
 				console.log("error : "+data);
 			}
 		});
 		
 	});
-	function getCaptchaImg(){
+	
+	function getCaptchaImg(){ // 캡차 이미지 요청
 		$(function(){
-		//	alert("이미지 캡차 메소드 실행 ");
-		var key = $("#key").val();
+			// hidden input에 담아 준 키 가지고 이미지 받으러 가는 ajax 실행
+			var key = $("#key").val();
 			$.ajax({
 				url: "captchaImg.do",
 				data: {key: key},
 				success: function(data){
-					$("#captchaDiv").html("<img src='${ contextPath }/resources/captchaImg/"+data+"'>").css('float','left');
+					// 성공하고 받아오는 이미지 이름으로 경로 찾아서 div에서 출력해주기
+					$("#captchaDiv").html // PrintWriter로 받아온 이미지 파일이름
+					("<img src='${ contextPath }/resources/captchaImg/"+data+"'>")
+					.css('float','left');
 				}
 			});
 		});
 	}
 	
-
-	 $("#checkNo").on("click",function(){
-	//	var form01Data = $("#form01").serialize();
-	//	console.log(form01Data);
+	
+	 $("#checkNo").on("click",function(){ // 키 & value 비교
+		// 인증 키 값과 사용자가 입력한 value를 가지고 비교하는 ajax
 		var key = $("#key").val();
 		var value = $("#value").val();
 		$.ajax({
 			url : "checkNo.do",
 			data : {key:key,value:value},
-			dataType:"json",
+			dataType:"json", // json 타입으로 반환
 			success : function(data) {
-				console.log(data.result);
+				// 값 비교 후 성공하면 성공 알림창, 실패하면 실패 알림창 
 				if(data.result){
 					alert("성공");
 					$("#submit").attr('disabled',false);

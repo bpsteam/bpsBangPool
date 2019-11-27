@@ -669,25 +669,23 @@
 					var $fbCount;
 					
 					var loginUser = "${ loginUser }";
-   					console.log(loginUser);
-   					
-	   				
+	   				/* 리스트를 그려줄 때 기준이 되는 tbody 지우고 시작하기 */
 	   				$tbody = $("#tbody");
 	   				$tbody.html("");
+	   				/* 컨트롤러에서 보내준 HashMap에 list라는 키 값 불러오기 */
 	   					for(var i in data.list){
-   				
 	   					/* 	console.log(data.list[i]); */
+	   					/* 배열에 담긴 각 리스트의 게시판 아이디 불러오기 */
    						fbId = data.list[i].fbId;
 	   						/* console.log(data.list[0].currentPage); */
 	   					//	console.log(data);
-	   					
+	   						/* 컨트롤러에서 받은 데이터 사용해서 반복문으로 테이블 그려주기 */
 		   					$tr = $("<tr>");
-		   					$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);
+
+	   						$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);$
 		   					$flocation=$("<td>").text(data.list[i].fLocation);
-		   					
 		   					$fbtitle = $("<td align='left'>");
 		   					if(loginUser != ""){
-		   						console.log("왜 여기 타?");
 		   						$atag=$("<a>").attr('href','bdetail.fm?fbId='+fbId);
 		   						$atag.text(data.list[i].fbTitle);
 		   						$fbtitle.append($atag);
@@ -707,12 +705,7 @@
 		   					$tbody.append($tr);
 	   					 }
 	   					
-	   				// 페이징
-	   				$pagingul = $("#paging");
-	   				$pagingul.html("");
-	   				
 	   				var tt = data.pi;
-	   				console.log("data.list[0] : "+tt);
 	   				
 	   				startPage=data.pi.startPage;
 	   				currentPage=data.pi.currentPage;
@@ -722,16 +715,18 @@
 	   				endPage=data.pi.endPage;    
 	   				
 	   				boardLimit=data.pi.boardLimit;
-	   				
-	   				console.log("ajax : "+currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
-	   				
 	   			
+	   				// 해쉬맵에 담아서 제이슨 뷰를 통해 보내준 또다른 객체 페이징 그려내는 코드
+	   				$pagingul = $("#paging");
+	   				$pagingul.html("");
+	   				
 	   				$previousli = $("<li>");
 	   				if(currentPage <= 1){
 	   					$least=$("<a>").text("«");
 	   					$previousli.append($least);
 	   				}else{
-	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)+'&fLocation='+location).text("«");
+	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)
+	   									+'&fLocation='+location).text("«");
 	   					$previousli.append($previousatag);
 	   				}
 	   				$pagingul.append($previousli);
@@ -745,18 +740,19 @@
                   		 $pagingul.append($numliactive);
                   		 
                   	 }else{
-                  		 $pagenum=$("<a>").attr('href','blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
+                  		 $pagenum=$("<a>").attr('href',
+                  				 	'blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
                   		 $numli.append($pagenum);
                   		 $pagingul.append($numli);
                   	 }
                    }
-                              
              	  $nextli=$("<li>");
 				  if(currentPage>=maxPage){
 					  $nextatag=$("<a>").text("»");
 					  $nextli.append($nextatag);
 				  }else{
-					  $maxatag=$("<a>").attr('href','blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
+					  $maxatag=$("<a>").attr('href',
+							  'blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
 					  $nextli.append($maxatag);
 				  }
 				  

@@ -11,7 +11,7 @@
 		<label class="col-sm-2 control-label" for="email">대학생인증<strong class="sound_only">*</strong></label>
 		<div class="col-sm-6">
 			<input type="email" name="schoolemail" id="schoolemail"
-				placeholder="인증받을 대학교 이메일을 입력해주세요." required
+				placeholder="인증받을 대학교 이메일을 입력해주세요." 
 				class="form-control input-sm email" size="50" maxlength="100">
 		<span id="result-check">
 		</span>
@@ -24,7 +24,7 @@
 			<strong class="sound_only">*</strong>
 		</label>
 		<div class="col-sm-3">
-			<input type="text" name="emailAuth" id="emailAuth" required
+			<input type="text" name="emailAuth" id="emailAuth" 
 				class="form-control input-sm" maxlength="20" > 
 		</div>
 		<button type="button" disabled class="btn btn-bronze btn-sm" id="emailAuthBtn">인증번호확인</button>
@@ -51,9 +51,10 @@
 	});
 	
 	
-	// email check function
+	// 학교 이메일만 들어오게 유효성 검사 
 	function email_check(email) {   
-	  var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	  var regex=/([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)
+			  	|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 	  var regExpKor = /ac.kr/; 
 	  var regExpFor = /.edu/; 
 		var test = false;
@@ -66,21 +67,16 @@
 	  return (email != '' && email != 'undefined' && test ); 
 	}
 	
-	// check when email input lost foucus
+	// blur : 인풋에서 커서가 떠나면
 	$("#schoolemail").blur(function(){
 	  var email = $(this).val();
-	
-	  // if value is empty then exit
 	  if( email == '' || email == 'undefined') return;
-	
-	  // valid check
-	  if(! email_check(email) ) {
-		  console.log("나와봐 " +email_check(email));
+	  // email_check(email) 이라는 함수를 통해 이메일 검사 후 결과 처리 ]
+	  if(! email_check(email) ) { // 검사 통과 실패 (학교이메일X)
 	  	$("#result-check").text('Not valid school email').css("color", "red");
 	    $(this).focus();
 	    return false;
-	  }
-	  else {
+	  } else { // 검사 통과 (학교이메일O)
 		  console.log("성공 나와봐 " +email_check(email));
 	  	$("#result-check").text('Email address test OK.').css("color","green");
 	  	$("#emailBtn").prop('disabled', false);
@@ -137,9 +133,10 @@
 		if(validation){
 			$('#insertform').submit();
 		}else{
-			e.preventDefault();
+			$('#insertform').submit();
+			/* e.preventDefault();
 			alert("이메일 인증은 필수입니다.");
-			$('#emailAuth').select();
+			$('#emailAuth').select(); */
 		}
 		
 	});
