@@ -282,7 +282,6 @@
 
 										<!-- 자동등록방지 -->
 										
-										
 										<c:import url ="../../common/captchaApi/naverCaptcha.jsp"/>
 									
 										<!-- 자동등록방지 -->

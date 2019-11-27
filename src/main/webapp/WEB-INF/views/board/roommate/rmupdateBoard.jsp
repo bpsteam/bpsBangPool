@@ -386,21 +386,18 @@
                                                         }
                                                     }
                                                     </script>
-                                            
-                                                
-                                                        <div class="well well-sm text-center">
-                                                        
-                                            <script> var g5_captcha_url  = "http://myroom.oceanmate.co.kr/plugin/kcaptcha";</script>
-                                            <script src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha.js"></script>
-                                            <fieldset id="captcha" class="captcha">
-                                            <legend><label for="captcha_key">자동등록방지</label></legend>
-                                            <img src="http://myroom.oceanmate.co.kr/plugin/kcaptcha/kcaptcha_image.php?t=1571763466619" alt="" id="captcha_img">
-                                            <button type="button" id="captcha_mp3"><span></span>숫자음성듣기</button>
-                                            <button type="button" id="captcha_reload"><span></span>새로고침</button><input type="text" name="captcha_key" id="captcha_key" required="" class="captcha_box required" size="6" maxlength="6">
-                                            <span id="captcha_info">자동등록방지 숫자를 순서대로 입력하세요.</span>
-                                            </fieldset>		</div>
-                                                
-                                                <div class="write-btn pull-center">
+
+
+									<div class="well well-sm text-center">
+
+										<!-- 자동등록방지 -->
+
+										<c:import url="../../common/captchaApi/naverCaptcha.jsp" />
+
+										<!-- 자동등록방지 -->
+									</div>
+
+									<div class="write-btn pull-center">
                                                     <button type="submit" id="btn_submit" accesskey="s" class="btn btn-success btn-sm"><i class="fa fa-check"></i> <b>작성완료</b>
 	                                                    <c:url var="blist" value="blist.rm">
 															<%-- <c:param name="page" value="${ page }"/> --%>
