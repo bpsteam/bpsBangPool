@@ -243,7 +243,7 @@
                 <div class="container background-white  bottom-border" style="height: 400px;">
                     <div class="row margin-vert-30">
                         <div class="col-md-12">
-                            <h2>이케요</h2>
+                            <h2>중고판매</h2>
                             <br><br>
                             <!-- Filter Buttons -->
                         </div>
@@ -290,75 +290,50 @@
                                     <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend" style="color:white">
                                         <span class="pull-right lightgray font-16 en">+</span>
                                         <span class="div-title-underbar-bold border-navy font-16 en">
-                                            <b>친구만들기</b>
+                                            <b>중고나눔</b>
                                         </span>
                                     </a>
                                 </div>
                                 <div class="widget-box panel-body">
                                     <div class="basic-post-list ">
                                 
-                                        <ul class="post-list">
+                                        <ul class="post-list" style="padding-left:0px;">
                                             <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend&amp;wr_id=1136">
-                                
-                                                    <span class="pull-right gray font-12">
-                                                        &nbsp;09.22 </span>
-                                                    <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span class="subject_title"><b>서울
-                                                            33살남자구 여자룸메구해요</b></span>
+                                                    <span class="lightgray"></span> <span class="subject_title"><b>조금 낡았지만 쓸만한 화장대 나눔해여</b></span>
                                                 </a>
                                             </li>
                                             <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend&amp;wr_id=1135">
-                                
-                                                    <span class="pull-right gray font-12">
-                                                        &nbsp;09.15 </span>
-                                                    <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span class="subject_title">룸메이트
-                                                        구합니다</span>
+                                                    <span class="lightgray"></span> <span class="subject_title"><b>경기도 안성 책상 나눔해여, 안성탕면 서비스로 드려요</b></span>
                                                 </a>
                                             </li>
                                             <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend&amp;wr_id=1134">
-                                
-                                                    <span class="pull-right gray font-12">
-                                                        &nbsp;09.14 </span>
-                                                    <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                        class="subject_title">친구 모십니다</span>
+                                                    <span class="lightgray"></span> <span
+                                                        class="subject_title"><b>서울 개집 무료 나눔해여</b></span>
                                                 </a>
                                             </li>
                                             <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend&amp;wr_id=1131">
-                                
-                                                    <span class="pull-right gray font-12">
-                                                        &nbsp;07.17 </span>
-                                                    <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span class="subject_title">안산
-                                                        여성룸메이트 구해요</span>
+                                                    <span class="lightgray"></span> <span class="subject_title"><b>인천 계양구 식탁 가져가실분~</b></span>
                                                 </a>
                                             </li>
                                             <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend&amp;wr_id=1130">
-                                
-                                                    <span class="pull-right gray font-12">
-                                                        &nbsp;07.08 </span>
-                                                    <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span class="subject_title">친구
-                                                        구함</span>
+                                                    <span class="lightgray"></span> <span class="subject_title"><b>수원 인계동 장식장 가져가실분~ 조금 커요</b></span>
                                                 </a>
                                             </li>
                                             <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend&amp;wr_id=1129">
-                                
-                                                    <span class="pull-right gray font-12">
-                                                        &nbsp;06.28 </span>
-                                                    <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                        class="subject_title">베라기프트살사람</span>
+                                                    <span class="lightgray"></span> <span
+                                                        class="subject_title"><b>컴퓨터 책상 가져갈사람 여기여기 붙어라</b></span>
                                                 </a>
                                             </li>
                                             <li class="ellipsis">
                                                 <a href="http://myroom.oceanmate.co.kr/bbs/board.php?bo_table=friend&amp;wr_id=1126">
-                                
-                                                    <span class="pull-right gray font-12">
-                                                        &nbsp;06.13 </span>
-                                                    <span class="lightgray"><i class="fa fa-caret-right"></i></span> <span
-                                                        class="subject_title">같이친구할여자</span>
+                                                    <span class="lightgray"></span> <span
+                                                        class="subject_title"><b>아이용 킥보드 나눔해여~</b></span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -397,6 +372,9 @@
                 
                 <div class="container background-white  bottom-border">
                     <div class="row margin-vert-30">
+                    	<div class="col-md-12">
+                            <h2>최근 등록된 사진</h2>
+                       	</div>
                         <div class="col-md-12">
                                 <hr class="margin-top-30">
                                 <div id="carousel-example-2" class="carousel slide alternative" data-ride="carousel">

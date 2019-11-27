@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>방풀 - 자유게시판</title>
 
 
     <style>
@@ -69,10 +69,10 @@
                     <div class="col-sm-9">
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="housemate">
-                                        <h1><small>HOUSEMATE</small></h1>
+                                        <h1><small>자유게시판</small></h1>
                                         <div class="margin-bottom-10">
                                                 <hr>
-                                         </div>
+                                        </div>
 
 							<form action="blist.hm">
 								<div class="tabs alternative">

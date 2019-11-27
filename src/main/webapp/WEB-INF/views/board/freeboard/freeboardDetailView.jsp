@@ -332,9 +332,7 @@
                                    </a>
                                </div>
                                <div class="widget-box panel-body">
-                                   <div class="basic-post-list ">
-                                   	<c:import url="../../common/freeTopList.jsp"/>
-                               	</div>
+                                   <c:import url="../../common/recentPosts.jsp"/>
                            	</div>
                        	</div>
                         <!-- End 공지사항 -->
