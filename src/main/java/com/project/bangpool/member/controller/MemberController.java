@@ -462,7 +462,7 @@ public class MemberController {
 	private String saveFile(MultipartFile file, HttpServletRequest request) {
 		// 파일이 저장될 경로
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\profileUpload";
+		String savePath = root + "/profileUpload";
 		
 		File folder = new File(savePath);
 		// 폴더가 없으면 folder 만들어라.
@@ -476,7 +476,7 @@ public class MemberController {
 								+"."
 								+ originFileName.substring(originFileName.lastIndexOf(".")+1);
 		
-		String renamePath = folder + "\\" + renameFileName;
+		String renamePath = folder + "/" + renameFileName;
 		
 		try {
 			file.transferTo(new File(renamePath));

@@ -13,10 +13,10 @@
 
 
 	<div class="panel-heading">
-		<h3 class="panel-title">Recent Posts</h3>
+		<h3 class="panel-title">최근 본 게시글</h3>
 	</div>
 	<div class="panel-body"
-		style="background-color: white; padding-bottom: 0px; height: 313px; overflow-y:scroll; overflow:hidden; ">
+		style="background-color: white; padding-bottom: 0px; height: 269px; overflow-y:scroll; overflow:hidden; ">
 		<ul class="post-list" id="ultag" style=" list-style: none; padding: 0px; overflow:hidden; text-overflow:ellipsis">
 			<%
 	    String bId ="";

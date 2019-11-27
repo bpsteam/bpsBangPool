@@ -257,7 +257,10 @@
                     </div>
 
                     <div class="col-md-3">
-                        <div class="margin-bottom-10">
+                    	<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
+                        <!-- <div class="margin-bottom-10">
                             <hr>
                         </div>
                         <div class="panel panel-danger">
@@ -297,10 +300,10 @@
                             </div>
                         </div>
                         
-                        <!-- End recent Posts -->
-                        <!-- 공지사항 -->
+                        End recent Posts
+                        공지사항
                         <div class="panel panel-info">
-                            <!-- 이슈 시작-->
+                            이슈 시작
                             <div class="panel-heading">
                                 <h3 class="panel-title">최신 게시글</h3>
                             </div>
@@ -333,12 +336,12 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
-                    </div>
+                  
                     
-                </div>
-                <div class="panel panel-success">
+                
+                <div class="panel panel-success col-sm-12">
                		<div class="panel-heading">
                			<h3 class="panel-title">무료나눔</h3>
                    	</div>
@@ -348,13 +351,15 @@
 						<!-- end 지도 -->
                     </div>
    				</div>
+   				
+   				
+   				</div>
             </div>
-        
+          </div>
             <div class="margin-bottom-30">
                 <hr>
             </div>
         
-        </div>
         <!-- === END CONTENT === -->
         
         

@@ -107,11 +107,17 @@
 
 						<form class="login-page">
 							<div class="photo pull-left">
-								<a href="mProfile.me"
-									target="_blank" class="win_memo" title="사진등록"> 
-									<!-- fa fa-code fa-4x -->
-									 <img class="img-circle" style="width:80px" src="${ contextPath }/resources/profileUpload/${ loginUser.profilerename }">
-								</a>
+								<!-- <a href="mProfile.me" target="_blank" class="win_memo"
+									title="사진등록">  -->
+									<c:if test="${ empty loginUser.profilerename }">
+										 <img class="img-circle" style="width:80px" 
+										 src="${ contextPath }/resources/assets/img/profiles/userimg.jpg">
+									</c:if> 
+									<c:if test="${ !empty loginUser.profilerename }">
+										<img class= "img-circle" src="${ contextPath }/resources/profileUpload/${ loginUser.profilerename }"
+											style="width: 80px; border-radius: 50px;">
+									</c:if>
+								<!-- </a> -->
 							</div>
 							<div class="login-header margin-bottom-10">
 								<h4>${ loginUser.name }님<br> 환영합니다.</h4>

@@ -17,14 +17,9 @@
 
    <div class="panel panel-danger">
        <div class="panel-heading">
-           <a href="blist.rm" style="color:white">
-               <span class="pull-right lightgray font-16 en">+</span>
-               <span class="div-title-underbar-bold border-navy font-16 en" >
-                   <b>공지사항</b>
-               </span>
-           </a>
+              	<h3 class="panel-title">공지사항</h3>
        </div>
-       <div class="widget-box panel-body">
+       <div class="widget-box panel-body" style="background-color: white">
            <div class="basic-post-list ">
           <c:import url ="../../common/noticeTopList.jsp"/> 
           <%--  	<c:import url ="noticeTopList.jsp"/> --%>

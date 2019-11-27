@@ -22,6 +22,8 @@
             <li data-target="#carousel-example" data-slide-to="4"></li>
             <li data-target="#carousel-example" data-slide-to="5"></li>
             <li data-target="#carousel-example" data-slide-to="6"></li>
+            <li data-target="#carousel-example" data-slide-to="7"></li>
+            <li data-target="#carousel-example" data-slide-to="8"></li>
               </ol>
          	<div class="clearfix"></div>
    		<!-- End Carousel Indicators -->
@@ -31,34 +33,40 @@
            <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
        </div>
        <div class="item">
-           <!-- <img src="${contextPath}/resources/assets/img/slideshow/BPads1.png"> -->
-           <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
+            <img src="${contextPath}/resources/assets/img/slideshow/BPads1.png"> 
+          <%--  <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
        <div class="item">
-           <!-- <img src="${contextPath}/resources/assets/img/slideshow/BPads2.png"> -->
-           <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
+            <img src="${contextPath}/resources/assets/img/slideshow/BPads2.png"> 
+           <%-- <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
       
        <div class="item">
-           <!-- <img src="${contextPath}/resources/assets/img/slideshow/SELLENT3.png"> -->
-           <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
+             <img src="${contextPath}/resources/assets/img/slideshow/SELLENT3.png">  
+          <%--  <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
        <div class="item">
-           <!-- <img src="${contextPath}/resources/assets/img/slideshow/TMC6.png"> -->
-           <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
+             <img src="${contextPath}/resources/assets/img/slideshow/TMC6.png">  
+          <%--  <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
        <div class="item">
-       <!-- <img src="${contextPath}/resources/assets/img/slideshow/SELLENT1.png"> -->
-       <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
+         <img src="${contextPath}/resources/assets/img/slideshow/SELLENT1.png">  
+       <%-- <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
        <div class="item">
-            <!-- <img src="${contextPath}/resources/assets/img/slideshow/JSG1.png"> -->
-            <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png">
+              <img src="${contextPath}/resources/assets/img/slideshow/JSG1.png">  
+           <%--  <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
                           
        <div class="item" style="height: 422px">
              <img src="${contextPath}/resources/assets/img/slideshow/eveningAd.png">
           <%--   <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
+       </div>
+       <div class="item">
+       <a href="home.do">
+             <img src="${contextPath}/resources/assets/img/slideshow/studyhubAd.png">
+          <%--   <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
+       </a>
        </div>
                           
         </div>

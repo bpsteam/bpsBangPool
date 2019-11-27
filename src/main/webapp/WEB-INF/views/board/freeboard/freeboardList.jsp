@@ -226,11 +226,14 @@
 
                     <!-- Side Column -->
                     <div class="col-md-3">
+                    	<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
                         <!-- Recent Posts -->
                         <!-- <div class="margin-bottom-10">
                             <hr>
                         </div> -->
-                        <div class="panel panel-success">
+                        <%-- <div class="panel panel-success">
                             <div class="panel-body" style="background-color: white;">
                                 <!-- <a href="#"><b>룸메이트</b></a> <br>
                                 <a href="#">하우스메이트</a> <br>
@@ -272,7 +275,7 @@
                                 </div>
                             </div>
                             <!-- 이슈 끝-->
-                        </div>
+                        </div> --%>
                         <!-- End recent Posts -->
                         <!-- 공지사항 -->
                         <%-- <div class="panel panel-green">
