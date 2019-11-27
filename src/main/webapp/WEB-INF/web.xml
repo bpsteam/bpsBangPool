@@ -260,7 +260,6 @@
       <servlet-name>attachmentServlet</servlet-name>
       <url-pattern>*.at</url-pattern>
    </servlet-mapping>
-
 	
 	<!-- 공용에러페이지 등록 -->
 	<!-- <error-page>
