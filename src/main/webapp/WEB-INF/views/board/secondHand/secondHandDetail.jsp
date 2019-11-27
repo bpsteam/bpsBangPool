@@ -80,7 +80,7 @@
                                 <hr style=" margin-top:0px; margin:0px 0px 0px;">
                             </div>
 
-                            <h1 style="text-align: center;"><small>중고 이케요</small></h1>
+                            <h1 style="text-align: center;"><small>중고판매</small></h1>
                             <div class="margin-bottom-10">
                                 <hr>
                             </div>
@@ -373,19 +373,7 @@
                         <!-- 공지사항 -->
                         <div class="panel panel-green">
                                <!-- 뉴스 시작 -->
-                               <div class="panel-heading">
-                                   <a href="frblist.fr" style="color:white">
-                                       <span class="pull-right lightgray font-16 en">+</span>
-                                       <span class="div-title-underbar-bold border-navy font-16 en">
-                                           <b>자유게시판</b>
-                                       </span>
-                                   </a>
-                               </div>
-                               <div class="widget-box panel-body">
-                                   <div class="basic-post-list ">
-                                   	<c:import url="../../common/freeTopList.jsp"/>
-                               	</div>
-                           	</div>
+                               <c:import url="../../common/recentPosts.jsp"/>
                        	</div>
                         <!-- End 공지사항 -->
                     </div>

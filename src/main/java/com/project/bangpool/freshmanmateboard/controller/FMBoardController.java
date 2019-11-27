@@ -91,10 +91,11 @@ public class FMBoardController {
 
 	@RequestMapping("tablist.fm")
 	public ModelAndView tabBoardList(@RequestParam(value="page", required=false) Integer page,
-						HttpServletResponse response,String fLocation, ModelAndView mv) throws JsonIOException, IOException {
+						HttpServletResponse response, String fLocation, ModelAndView mv) 
+								throws JsonIOException, IOException {
 		response.setContentType("application/json; charset=utf-8");
 		
-		System.out.println("blist location 출력 : " +fLocation);
+//		System.out.println("blist location 출력 : " +fLocation);
 		
 		String location = fLocation.trim();
 		
@@ -109,10 +110,20 @@ public class FMBoardController {
 		
 		int listCount = fbService.getListCount(location);
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		System.out.println("탭리스트에서 페이지 pi정보 "+pi);
+//		System.out.println("탭리스트에서 페이지 pi정보 "+pi);
 //		ArrayList<PiBoard> list = fbService.selectPiList(location, pi);
 		ArrayList<FMBoard> list = fbService.selectList(location, pi);
 		System.out.println(list);
+		// 객체 타입이 서로 다른 게시판과 페이징 객체를 한번에 ajax 결과로 보내주기 위해 
+		// HashMap<String, Object> 선언. Object로 선언하여 두가지 객체 담음.
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("pi", pi);
+		
+		mv.addAllObjects(map);
+		mv.setViewName("jsonView");
+		
+		return mv;
 		
 //		JSONArray jArr = new JSONArray();
 //		for(PiBoard b : list) {
@@ -148,16 +159,11 @@ public class FMBoardController {
 	  //      System.out.println("jsonarray: "+board);
 //		}
 		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list);
-		map.put("pi", pi);
-		
-		mv.addAllObjects(map);
-		mv.setViewName("jsonView");
+	
 //		
 //		response.setContentType("application/json; charset=utf-8");
 		
-		return mv;
+	
 		
 //		return map;
 		
@@ -620,23 +626,21 @@ public class FMBoardController {
 	}
 	
 	@RequestMapping("createCookie.fm")
-	public void createCookie(HttpServletResponse response, HttpSession session, FMBoard b, @RequestParam(value="img", required=false) String img) {
-		System.out.println("controller img "+img);
+	public void createCookie(HttpServletResponse response, HttpSession session, 
+					FMBoard b, @RequestParam(value="img", required=false) String img) {
 		String cookieValue = "";
+		// 쿠키에 올릴때 space가 안올라감.  
 		String title = b.getFbTitle().trim().replace(" ", "%32%");
-		System.out.println("title printout : "+ title);
 		
 		if(img == null || img == "") {
 			cookieValue = b.getFbId()+"_"+b.getBcode()+"_"+title;
 		}else {
 			cookieValue = b.getFbId()+"_"+b.getBcode()+"_"+title+"_imageExists";
 		}
-		Cookie setCookie = new Cookie("recent_hm"+b.getFbId(), cookieValue); // 쿠키 이름을 name으로 생성
-		//Member m = (Member)session.getAttribute("loginUser");
+		Cookie setCookie = new Cookie("recent_hm"+b.getFbId(), cookieValue);
 		
 		setCookie.setComment("최근본게시물") ;
 		setCookie.setMaxAge(60*60*24); // 기간을 하루로 지정
-		//setCookie.setPath("/");
 		System.out.println("쿠키생성 : " +setCookie.getValue());
 		response.addCookie(setCookie);
 	}

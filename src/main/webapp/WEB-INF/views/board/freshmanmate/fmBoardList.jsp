@@ -296,288 +296,37 @@
                     
                     <!-- 메이트 매칭 모달창 -->
                         <button id="matching_onclick" type="button" class="btn btn-primary btn-sm" style="width: 100%;">나에게 맞는 메이트 찾기</button>
-                        <div id="matching_form" class="section_matching">
-                            <div class="matching_content">
-                                <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
-								<form class="signup-page" id="mform">
-									<div class="signup-header">
-										<h2 style="display: inline;">나에게 맞는 메이트는?</h2>
-										<span class="close"><h1 style="display: inline;">&times;</h1></span>
-										<br><br><br><br> 
-									</div>
-									<div class="row">
-										<div class="col-sm-6">
-											<label>메이트 *</label>
-											<select id="mBcode" 
-												class="form-control margin-bottom-20">
-												<option value="">선택</option>
-												<option value="RMBCODE">룸메이트</option>
-												<option value="HMBCODE">하우스메이트</option>
-												<option value="FMBCODE">신입생메이트</option>
-											</select>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-6">
-											<label>지역</label> 
-											<select id="mLocation" class="form-control margin-bottom-20">
-												<option value="">선택하세요</option>
-												<option value="서울">서울</option>
-												<option value="인천">인천/부천</option>
-												<option value="수원">수원/경기</option>
-												<option value="대구">대구/경북</option>
-												<option value="부산">부산/경남</option>
-												<option value="충청">충청/강원</option>
-												<option value="광주">광주/전라</option>
-											</select>
-										</div>
-										<div class="col-sm-6">
-											<label>상대 성별</label> 
-											<select id="mReqgender" class="form-control margin-bottom-20">
-												<option value="">선택하세요</option>
-												<option value="무관">무관</option>
-												<option value="남성">남성</option>
-												<option value="여성">여성</option>
-											</select>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-6">
-											<label>주거형태</label> 
-											<select id="mLivingType"class="form-control margin-bottom-20">
-												<option value="">선택하세요</option>
-												<option value="단독주택">단독주택</option>
-												<option value="빌라">빌라</option>
-												<option value="아파트">아파트</option>
-												<option value="오피스텔">오피스텔</option>
-											</select>
-										</div>
-										<div class="col-sm-6">
-											<label>방갯수</label> 
-											<select id="mRoom" class="form-control margin-bottom-20">
-												<option value="">선택하세요</option>
-												<option value="원룸">원룸</option>
-												<option value="투룸">투룸</option>
-												<option value="쓰리룸">쓰리룸</option>
-												<option value="포룸">포룸</option>
-											</select>
-										</div>
-									</div>
+                       	<!-- mateMatching -->
+					<c:import url="../../common/mateMatching.jsp" />
+					<!-- mateMatching -->
 
-
-									<div class="row">
-										<div class="col-lg-8"></div>
-										<div class="col-lg-4 text-right">
-											<button class="btn btn-primary" type="button" id="matchingBtn">매칭하기</button>
-										</div>
-									</div>
-									<hr>
-
-									<!-- 매칭하기 누른 후 추천 메이트 목록 보여주기 -->
-									<div class="row" >
-										<div class="col-md-12" id="matListDiv">
-					
-										</div>
-									</div>
-								</form>
-							</div>
-                            </div>
-                        </div>
-                        
-                        <script>
-                        
-						var section_matching = document.getElementById("matching_form");
-
-						var matching_btn = document.getElementById("matching_onclick");
-
-						var span = document.getElementsByClassName("close")[0];
-
-						matching_btn.onclick = function() {
-							section_matching.style.display = "block";
-						}
-
-						span.onclick = function() {
-							section_matching.style.display = "none";
-						}
-						
-						// "나에게 맞는 메이트 찾기" 버튼 눌렀을 때
-						$("#matchingBtn").on("click", function(){
-							var mBcode = $("#mBcode option:selected").val();
-							var mLocation = $("#mLocation option:selected").val();
-							var mReqgender = $("#mReqgender option:selected").val();
-							var mLivingType = $("#mLivingType option:selected").val();
-							var mRoom = $("#mRoom option:selected").val(); 
-							console.log(mBcode);
-							
-							$.ajax({
-								url: "matchingList.mc",
-								data: {mBcode:mBcode, mLocation:mLocation, mReqgender:mReqgender,
-									mLivingType:mLivingType, mRoom:mRoom},
-								type: "post",
-								success: function(data){
-									console.log("ajax 성공");
-									$(".section_matching").css('display','block');
-									
-									$matListDiv = $("#matListDiv");
-									$matListDiv.html("");
-									console.log(data);
-									
-									var $mDiv;
-									var $atag;
-									var $figuretag;
-									var $imgtag;
-									var $h6tag;
-									
-									if(data.length > 0){
-										switch (data[0].bcode) {
-										case "RMBCODE":
-											for(var i in data){
-												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-												$atag = $("<a>").attr('href','bdetail.rm?rbId='+data[i].rbId);
-												$figuretag = $("<figure>");
-												if(data[i].renameFileName != null){
-													$imgtag = $("<img>").attr('src','${ contextPath }/resources/rmboarduploads/'+data[i].renameFileName)
-													  .width('400px').height('200px');
-												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
-																	  .width('400px').height('200px');
-												}
-												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].rbTitle);
-												
-												$mDiv.append($atag);
-												$atag.append($figuretag); 
-												$figuretag.append($imgtag);
-												$atag.append($h6tag);
-												$matListDiv.append($mDiv);
-											}
-											break;
-											
-										case "HMBCODE":
-											for(var i in data){
-												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-												$atag = $("<a>").attr('href','bdetail.hm?hbId='+data[i].hbId);
-												$figuretag = $("<figure>");
-												if(data[i].renameFileName != null){
-													$imgtag = $("<img>").attr('src','${ contextPath }/resources/hmBoardUploadFiles/'+data[i].renameFileName)
-													  .width('400px').height('200px');
-												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
-																	  .width('400px').height('200px');
-												}
-												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].hbTitle);
-												
-												$mDiv.append($atag);
-												$atag.append($figuretag); 
-												$figuretag.append($imgtag);
-												$atag.append($h6tag);
-												$matListDiv.append($mDiv);
-											}
-											break;
-										case "FMBCODE":
-											for(var i in data){
-												$mDiv = $("<div>").addClass("col-md-4 portfolio-item margin-bottom-40 design");
-												$atag = $("<a>").attr('href','bdetail.fm?fbId='+data[i].fbId);
-												$figuretag = $("<figure>");
-												if(data[i].renameFileName != null){
-													$imgtag = $("<img>").attr('src','${ contextPath }/resources/fmboarduploads/'+data[i].renameFileName)
-													  .width('400px').height('200px');
-												} else {
-													$imgtag = $("<img>").attr('src', '${ contextPath }/resources/assets/img/matching1.JPG')
-																	  .width('400px').height('200px');
-												}
-												$h6tag = $("<h6>").addClass("project-item__cover__title").text(data[i].fbTitle);
-												
-												$mDiv.append($atag);
-												$atag.append($figuretag); 
-												$figuretag.append($imgtag);
-												$atag.append($h6tag);
-												$matListDiv.append($mDiv);
-											}
-											break;
-										default:
-											break;
-										}
-									}
-									
-									
-									// 모달창의 x를 누를때  기존값 초기화시키기
-									$(".close").on("click", function(){
-										$matListDiv.html("");
-										$("#mform").each(function() {
-											this.reset();	
-										});
-									});
-									
-								},
-								error: function() {
-									alert("필수 항목을 반드시 입력해주세요.");
-								}
-							});
-							
-						});
-						
-					</script>
                         <br>
-                    
-                        <!-- Recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <div class="panel panel-success">
-                            <div class="panel-body" style="background-color: white;">
-                                <!-- <a href="#"><b>룸메이트</b></a> <br>
-                                <a href="#">하우스메이트</a> <br>
-                                <a href="#">신입생메이트</a> -->
-                                <ul class="nav nav-pills nav-stacked">
-                                        <li >
-                                            <a href="blist.rm">
-                                                <i class="fa fa-cloud"></i>  룸메이트</a>
-                                        </li>
-                                        <li>
-                                            <a href="blist.hm" >
-                                                <i class="fa fa-home"></i>  하우스메이트</a>
-                                        </li>
-                                        <li class="active">
-                                            <a href="#freshman" >
-                                                <i class="fa fa-comments"></i>  신입생메이트</a>
-                                        </li>
-                                        
-                                    </ul>
-                            </div>
-                        </div>
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-        
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">
-                                <a href="blist.rm" style="color:white">
-                                    <span class="pull-right lightgray font-16 en">+</span>
-                                    <span class="div-title-underbar-bold border-navy font-16 en" >
-                                        <b>공지사항</b>
-                                    </span>
-                                </a>
-                            </div>
-                            <div class="widget-box panel-body">
-                                <div class="basic-post-list ">
-                                	<c:import url ="../../common/noticeTopList.jsp"/>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End recent Posts -->
-                        <div class="margin-bottom-10">
-                            <hr>
-                        </div>
-                        <!-- End recent Posts -->
-                        <!-- RecentPost -->
-                        <div class="panel panel-info">
-						
-						      <!-- recentPost 최근 본 개시물 Import -->
-						      <c:import url="../../common/recentPosts.jsp"/>
-						      <!-- recentPost Import -->
-                        </div>
-                        <!-- End RecentPost -->
-                    </div>
+                          <div class="margin-bottom-10">
+       <hr>
+   </div>
+					<div class="panel panel-success">
+						<div class="panel-body" style="background-color: white;">
+							<!-- <a href="#"><b>룸메이트</b></a> <br>
+           <a href="#">하우스메이트</a> <br>
+           <a href="#">신입생메이트</a> -->
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="blist.rm"> <i class="fa fa-cloud"></i>
+										룸메이트
+								</a></li>
+								<li><a href="blist.hm"> <i class="fa fa-home"></i>
+										하우스메이트
+								</a></li>
+								<li class="active"><a href="#freshman"> <i
+										class="fa fa-comments"></i> 신입생메이트
+								</a></li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- category 시작 -->
+					<c:import url="../../common/rightCategory.jsp" />
+					<!-- category  끝-->
+				</div>
                     <!-- End Side Column -->
                 </div>
             </div>
@@ -669,25 +418,23 @@
 					var $fbCount;
 					
 					var loginUser = "${ loginUser }";
-   					console.log(loginUser);
-   					
-	   				
+	   				/* 리스트를 그려줄 때 기준이 되는 tbody 지우고 시작하기 */
 	   				$tbody = $("#tbody");
 	   				$tbody.html("");
+	   				/* 컨트롤러에서 보내준 HashMap에 list라는 키 값 불러오기 */
 	   					for(var i in data.list){
-   				
 	   					/* 	console.log(data.list[i]); */
+	   					/* 배열에 담긴 각 리스트의 게시판 아이디 불러오기 */
    						fbId = data.list[i].fbId;
 	   						/* console.log(data.list[0].currentPage); */
 	   					//	console.log(data);
-	   					
+	   						/* 컨트롤러에서 받은 데이터 사용해서 반복문으로 테이블 그려주기 */
 		   					$tr = $("<tr>");
-		   					$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);
+
+	   						$fbid=$("<td text-align:'center'>").text(data.list[i].fbId);$
 		   					$flocation=$("<td>").text(data.list[i].fLocation);
-		   					
 		   					$fbtitle = $("<td align='left'>");
 		   					if(loginUser != ""){
-		   						console.log("왜 여기 타?");
 		   						$atag=$("<a>").attr('href','bdetail.fm?fbId='+fbId);
 		   						$atag.text(data.list[i].fbTitle);
 		   						$fbtitle.append($atag);
@@ -707,12 +454,7 @@
 		   					$tbody.append($tr);
 	   					 }
 	   					
-	   				// 페이징
-	   				$pagingul = $("#paging");
-	   				$pagingul.html("");
-	   				
 	   				var tt = data.pi;
-	   				console.log("data.list[0] : "+tt);
 	   				
 	   				startPage=data.pi.startPage;
 	   				currentPage=data.pi.currentPage;
@@ -722,16 +464,18 @@
 	   				endPage=data.pi.endPage;    
 	   				
 	   				boardLimit=data.pi.boardLimit;
-	   				
-	   				console.log("ajax : "+currentPage+" "+listCount+" "+pageLimit+" "+maxPage+" "+startPage+" "+endPage+" "+boardLimit);
-	   				
 	   			
+	   				// 해쉬맵에 담아서 제이슨 뷰를 통해 보내준 또다른 객체 페이징 그려내는 코드
+	   				$pagingul = $("#paging");
+	   				$pagingul.html("");
+	   				
 	   				$previousli = $("<li>");
 	   				if(currentPage <= 1){
 	   					$least=$("<a>").text("«");
 	   					$previousli.append($least);
 	   				}else{
-	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)+'&fLocation='+location).text("«");
+	   					$previousatag = $("<a>").attr('href','blist.fm?page='+(currentPage-1)
+	   									+'&fLocation='+location).text("«");
 	   					$previousli.append($previousatag);
 	   				}
 	   				$pagingul.append($previousli);
@@ -745,18 +489,19 @@
                   		 $pagingul.append($numliactive);
                   		 
                   	 }else{
-                  		 $pagenum=$("<a>").attr('href','blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
+                  		 $pagenum=$("<a>").attr('href',
+                  				 	'blist.fm?page='+startPage+'&fLocation='+location).text(startPage);
                   		 $numli.append($pagenum);
                   		 $pagingul.append($numli);
                   	 }
                    }
-                              
              	  $nextli=$("<li>");
 				  if(currentPage>=maxPage){
 					  $nextatag=$("<a>").text("»");
 					  $nextli.append($nextatag);
 				  }else{
-					  $maxatag=$("<a>").attr('href','blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
+					  $maxatag=$("<a>").attr('href',
+							  'blist.fm?page='+(currentPage+1)+'&fLocation='+location).text("»");
 					  $nextli.append($maxatag);
 				  }
 				  

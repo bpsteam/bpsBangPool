@@ -122,28 +122,10 @@
                                         </div>
                                         <div
                                             style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <!-- 19-09-02 </div> -->
                                             ${ rboard.rbCreateDate} </div>
                                         <div style="both:clear;">
                                         </div>
 
-                                        <%-- <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>게시물구분</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            	<!-- 세놓아요 </div> -->
-                                            	${ rboard.bcode} </div>
-                                        <div
-                                            style="text-align:center;background-color:#eaeaea;height:30px;width:20%;float:left;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <b>조회건수</b>
-                                        </div>
-                                        <div
-                                            style="float:left;width:30%;height:30px;padding-left:20px;padding-top:5px;border:1px solid #dddddd;border-top:0px;">
-                                            <!-- 128 -->
-                                            ${ rboard.rbCount}
-                                        </div> --%>
                                         <div style="both:clear;">
                                         </div>
                                         
@@ -549,7 +531,7 @@
 							$firDiv = $("<div>").addClass("col-md-12");
 							$replyContent = $("<p>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
 							$secDiv = $("<div>").addClass("testimonial-info");
-							$rimg = $("<img>").addClass("img-circle img-responsive img-sm").attr('src','${contextPath}/resources/assets/img/profiles/53.jpg').width( '10%' ).height('10%');
+							$rimg = $("<img>").addClass("img-circle img-responsive img-sm").attr('src','${contextPath}/resources/assets/img/profiles/userimg.jpg').width( '10%' ).height('10%');
 							$rWriter = $("<span>").addClass("testimonial-author").text(data[i].rWriter);
 							$rCreateDate = $("<em>").text(data[i].rCreateDate);
 							
@@ -571,50 +553,6 @@
 			});
 			
 		}
-		
-		
-		/* function getReplyList(){
-			var rbId = ${ rboard.rbId };
-			
-			$.ajax({
-				url: "rList.rm",
-				data: {rbId:rbId},
-				dataType : "json",
-				success: function(data){
-					$tableBody = $("#rtb tbody");
-					$tableBody.html("");
-					
-					var $tr;
-					var $rWriter;
-					var $rContent;
-					var $rCreateDate;
-					
-					$("#rCount").text("댓글 ("+data.length + ")");
-					
-					if(data.length > 0){
-						for(var i in data){
-							$tr = $("<tr>");
-							$rWriter = $("<td width='100'>").text(data[i].rWriter);
-							$rContent = $("<td>").text(decodeURIComponent(data[i].rContent.replace(/\+/g, " ")));
-							$rCreateDate = $("<td width='100'>").text(data[i].rCreateDate);
-							
-							$tr.append($rWriter);
-							$tr.append($rContent);
-							$tr.append($rCreateDate);
-							$tableBody.append($tr);
-							
-						}
-					}else{
-						$tr = $("<tr>");
-						$rContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
-						
-						$tr.append($rContent);
-						$tableBody.append($tr);
-					}
-				}
-			});
-			
-		} */
 		
 		
 	</script>
