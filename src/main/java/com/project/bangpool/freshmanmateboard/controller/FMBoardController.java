@@ -207,7 +207,7 @@ public class FMBoardController {
 							HttpServletRequest request,ModelAndView mv) {
 		
 		b.setContactInfo(phone1+"-"+phone2+"-"+phone3);
-		System.out.println("인서트할때 엔터 값 확인 : "+b);
+		System.out.println("인서트할때 값 확인 : "+b);
 //		System.out.println(uploadFile1 +"/"+ uploadFile2+"/"+uploadFile3);
 //		System.out.println(uploadFile1.getOriginalFilename());
 //		System.out.println(uploadFile2.getOriginalFilename());
