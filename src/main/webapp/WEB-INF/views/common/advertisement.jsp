@@ -63,7 +63,7 @@
           <%--   <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </div>
        <div class="item">
-       <a href="home.do">
+       <a href="http://192.168.10.240:8899/FinalProject/">
              <img src="${contextPath}/resources/assets/img/slideshow/studyhubAd.png">
           <%--   <img src="${contextPath}/resources/assets/img/slideshow/BPslide.png"> --%>
        </a>

@@ -184,9 +184,11 @@ public class MemberController {
 		
 		if(result>0) {
 			Member loginUser = mService.memberLogin(m);
+			loginUser.setAddress(loginUser.getAddress().replace("/", "<br>"));
+			
 			System.out.println("session 에 새로올리자 "+loginUser);
 			model.addAttribute("loginUser", loginUser);
-			return "myPage";
+			return "redirect:mlevel.me";
 		}else {
 			throw new MemberException("회원정보 수정 실패");
 		}

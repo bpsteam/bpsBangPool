@@ -202,10 +202,16 @@
 														</div>
 														<div class="auth-info">
 															<div class="en font-14" style="margin-bottom: 6px;">
-																<span class="pull-right font-12"> <c:if
-																		test="${ mlCode eq 'B' }">Exp 0 (0%)</c:if> <c:if
-																		test="${ mlCode eq 'S' }">Exp 30 (30%)</c:if> <c:if
-																		test="${ mlCode eq 'G' }">Exp 60 (60%)</c:if>
+																<span class="pull-right font-12"> 
+																<c:if test="${ mlCode eq 'B' }">Exp 33 (30%)</c:if>
+		                                                         <c:if test="${ mlCode eq 'S' }">Exp 66 (60%)</c:if>
+		                                                         <c:if test="${ mlCode eq 'G' }">Exp 99 (90%)</c:if>
+																<%-- <c:if
+																		test="${ mlCode eq 'B' }">Exp 10 (10%)</c:if> 
+																		<c:if
+																		test="${ mlCode eq 'S' }">Exp 30 (30%)</c:if> 
+																		<c:if
+																		test="${ mlCode eq 'G' }">Exp 60 (60%)</c:if> --%>
 																</span> <span class="member"> <span class="lv-icon lv-1">
 
 																		<c:if test="${ mlCode eq 'B' }">
@@ -226,6 +232,27 @@
 																</span>
 															</div>
 															<br>
+															
+															<%-- <c:if test="${ mlCode eq 'G' }">   
+					                                                   <div class="progress progress-sm">
+					                                         <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="width: 95%"></div>
+					                                       </div>
+					                                                </c:if>
+					                     
+					                                                <c:if test="${ mlCode eq 'S' }">
+					                                                   <div class="progress progress-sm">
+					                                         <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="width: 62%"></div>
+					                                       </div>
+					                                               </c:if>      
+					                                               
+					                                               <c:if test="${ mlCode eq 'B' }">
+					                                                   <div class="progress progress-sm">
+					                                         <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" style="width: 32%"></div>
+					                                       </div>
+					                                               </c:if>  --%>
+																				
+
+
 
 															<c:if test="${ mlCode eq 'G' }">
 																<div class="progress progress-striped active">
