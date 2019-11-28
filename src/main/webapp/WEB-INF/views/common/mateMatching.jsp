@@ -213,7 +213,7 @@
 															$imgtag = $("<img>")
 																	.attr(
 																			'src',
-																			'${ contextPath }/resources/assets/img/matching1.JPG')
+																			'${ contextPath }/resources/assets/img/matchingNoImg.png')
 																	.width(
 																			'400px')
 																	.height(
@@ -261,7 +261,7 @@
 															$imgtag = $("<img>")
 																	.attr(
 																			'src',
-																			'${ contextPath }/resources/assets/img/matching1.JPG')
+																			'${ contextPath }/resources/assets/img/matchingNoImg.png')
 																	.width(
 																			'400px')
 																	.height(
@@ -308,7 +308,7 @@
 															$imgtag = $("<img>")
 																	.attr(
 																			'src',
-																			'${ contextPath }/resources/assets/img/matching1.JPG')
+																			'${ contextPath }/resources/assets/img/matchingNoImg.png')
 																	.width(
 																			'400px')
 																	.height(
